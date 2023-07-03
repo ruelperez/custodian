@@ -1,4 +1,4 @@
-<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="add_request_modal">
+<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="edit_request_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,14 +6,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form wire:submit.prevent="submit">
-                    @if(session()->has('dataAdded'))
+                <form wire:submit.prevent="edit_submit">
+                    @if(session()->has('dataUpdated'))
                         <div class="alert alert-success" style="width: 60%; ">
-                            {{ session('dataAdded') }}
+                            {{ session('dataUpdated') }}
                         </div>
-                    @elseif(session()->has('dataError'))
+                    @elseif(session()->has('errorUpdated'))
                         <div class="alert alert-danger" style="width: 60%; ">
-                            {{ session('dataError') }}
+                            {{ session('errorUpdated') }}
                         </div>
                     @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
@@ -36,7 +36,7 @@
                         <input type="text" class="form-control" placeholder="Total Cost" wire:model="total_cost" >
                     </div>
                     @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Update</button>
                 </form>
             </div>
         </div>

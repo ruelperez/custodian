@@ -10,6 +10,9 @@ class Request extends Model
     protected $fillable = [
         'item_name',
         'quantity',
+        'unit',
+        'unit_cost',
+        'total_cost',
     ];
 
     use HasFactory;
