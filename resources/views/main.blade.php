@@ -36,12 +36,12 @@
         </div>
     </div>
     <div style="border: solid black 1px; width: 81%;">
-        <h5 style="margin-top: 3%; margin-left: 15%;">Purchase Request</h5>
-        <div style="background-color: #F5F5F5; margin-left: 2%;margin-top: 2%; width: 45%; border: solid lightslategray 1px">
-            <span data-bs-toggle="modal" data-bs-target="#add_request_modal" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
-            @livewire('purchase-request')
-        </div>
+        <div style="@if($option != "purchase") display: none; @endif">
 
+
+                @livewire('purchase-request')
+
+        </div>
     </div>
 
 </div>

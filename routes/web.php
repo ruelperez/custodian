@@ -18,6 +18,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
         return view('main', ['option' => $option]);
     });
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
+    Route::get('/form-request/{request}', [\App\Http\Controllers\RequestController::class, 'pdf'])->name('form.pdf');
 });
 
 Route::get('/', function () {
