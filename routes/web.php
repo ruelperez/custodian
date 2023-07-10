@@ -18,7 +18,8 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
         return view('main', ['option' => $option]);
     });
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
-    Route::get('/form-request/{request}', [\App\Http\Controllers\RequestController::class, 'pdf'])->name('form.pdf');
+    Route::get('/form-request/{request}', [\App\Http\Controllers\RequestController::class, 'pdf'])->name('form-request.pdf');
+    Route::get('/form-order/{request}', [\App\Http\Controllers\OrderController::class, 'pdf'])->name('form-order.pdf');
 });
 
 Route::get('/', function () {

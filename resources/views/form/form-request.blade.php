@@ -28,7 +28,7 @@
 <table style="width: 100%; text-align: center; margin-top: 3%;">
     <tr>
         <td>
-            <b>PURCHASE REQUEST</b>
+            <b>PURCHASE {{strtoupper($request)}}</b>
         </td>
     </tr>
     <tr style="text-align: right;">

@@ -38,7 +38,6 @@
     <div style="border: solid black 1px; width: 81%;">
         <div style="@if($option != "purchase") display: none; @endif">
 
-
                 @livewire('purchase-request')
 
         </div>

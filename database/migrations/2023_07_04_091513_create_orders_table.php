@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('item_name');
+            $table->bigInteger('quantity')->nullable();
+            $table->string('unit')->nullable();
+            $table->bigInteger('unit_cost')->nullable();
+            $table->bigInteger('total_cost')->nullable();
+            $table->boolean('isRemove')->default(false);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
