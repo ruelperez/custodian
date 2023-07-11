@@ -41,6 +41,12 @@
                 @livewire('purchase-request')
 
         </div>
+
+        <div style="@if($option != "inventory") display: none; @endif">
+
+            @livewire('inventory')
+
+        </div>
     </div>
 
 </div>
