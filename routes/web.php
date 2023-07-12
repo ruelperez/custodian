@@ -20,6 +20,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
     Route::get('/form-request/{request}', [\App\Http\Controllers\RequestController::class, 'pdf'])->name('form-request.pdf');
     Route::get('/form-order/{request}', [\App\Http\Controllers\OrderController::class, 'pdf'])->name('form-order.pdf');
+    Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
 });
 
 Route::get('/', function () {

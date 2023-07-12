@@ -9,11 +9,11 @@
             <input type="text" placeholder="Search" wire:model.debounce.1ms="searchInput" style="width: 100%; padding: 1%; margin-top: 2%;">
         </div>
         <div style="margin-left: 52%;">
-            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 35px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-request.pdf',['request' => 'request'])}}'"></i>
+            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 35px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
 
-    <div style="background-color: #F5F5F5; margin-left: 1%;width: 98%;border: solid lightslategray 1px; margin-top: 0.5%;">
+    <div style="background-color: #F5F5F5; margin-left: 1%;width: 98%;border: solid lightslategray 1px; margin-top: 0.5%; margin-bottom: 2%;">
        @include('modal.edit-inventory-modal')
 
         <table class="table table-hover" style="width: 100%; text-align: center">
@@ -53,19 +53,23 @@
                 </tr>
 
             @else
+                @php $q=0; @endphp
                 @foreach($request_data as $data)
-                    <tr>
-                        <td>{{$data->quantity}}</td>
-                        <td>{{$data->unit}}</td>
-                        <td>{{$data->unit_cost}}</td>
-                        <td>{{$data->total_cost}}</td>
-                        <td>{{$data->item_name}}</td>
-                        <td>{{$data->inventory_number}}</td>
-                        <td>{{$data->estimated}}</td>
-                        <td>{{$data->item_type}}</td>
-                        <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
-                        <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
-                    </tr>
+                    @if($q < 10)
+                        <tr>
+                            <td>{{$data->quantity}}</td>
+                            <td>{{$data->unit}}</td>
+                            <td>{{$data->unit_cost}}</td>
+                            <td>{{$data->total_cost}}</td>
+                            <td>{{$data->item_name}}</td>
+                            <td>{{$data->inventory_number}}</td>
+                            <td>{{$data->estimated}}</td>
+                            <td>{{$data->item_type}}</td>
+                            <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
+                            <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
+                        </tr>
+                    @endif
+                    @php $q++; @endphp
                 @endforeach
             @endif
             </tbody>

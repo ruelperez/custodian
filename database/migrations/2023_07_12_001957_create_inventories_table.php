@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
-            $table->bigInteger('quantity')->nullable();
+            $table->string('quantity')->nullable();
             $table->string('unit')->nullable();
-            $table->bigInteger('unit_cost')->nullable();
-            $table->bigInteger('total_cost')->nullable();
-            $table->bigInteger('inventory_number')->nullable();
+            $table->string('unit_cost')->nullable();
+            $table->string('total_cost')->nullable();
+            $table->string('inventory_number')->nullable();
             $table->string('estimated')->nullable();
             $table->string('item_type');
             $table->rememberToken();
