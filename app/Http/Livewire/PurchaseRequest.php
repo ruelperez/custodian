@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BackupOrder;
 use App\Models\Order;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -238,8 +239,6 @@ class PurchaseRequest extends Component
 
     public function move_to_inventory(){
         $order = Order::all();
-        $inventory = \App\Models\Inventory::all();
-
         foreach ($order as $orders){
             try {
                 $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('quantity',$orders->quantity);
@@ -258,12 +257,28 @@ class PurchaseRequest extends Component
                     $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit_cost',$orders->unit_cost);
                     $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('total_cost',$orders->total_cost);
                 }
+
+                BackupOrder::create([
+                    'item_name' => $orders->item_name,
+                    'quantity' => $orders->quantity,
+                    'unit' => $orders->unit,
+                    'unit_cost' => $orders->unit_cost,
+                    'total_cost' => $orders->total_cost,
+                    'item_type' => $orders->item_type,
+                ]);
+
+
+
                 session()->flash('transfer',"Successfully  Moved to Inventory");
             }
             catch (\Exception $e){
                 session()->flash('failed',"Failed to Move");
             }
 
+        }
+
+        foreach ($order as $ord){
+            Order::find($ord->id)->delete();
         }
 
     }
@@ -275,4 +290,9 @@ class PurchaseRequest extends Component
     public function add_request_click(){
         $this->base = 0;
     }
+
+//    public function move_to_backup(){
+//        $req = Request::all();
+//        foreach ()
+//    }
 }
