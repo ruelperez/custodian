@@ -12,7 +12,6 @@ class Request extends Model
         'quantity',
         'unit',
         'unit_cost',
-        'isRemove',
         'total_cost',
     ];
 

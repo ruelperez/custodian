@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('requests', function (Blueprint $table) {
-            $table->string('unit')->nullable();
+        Schema::create('backup_orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('item_name');
+            $table->bigInteger('quantity')->nullable();
+            $table->bigInteger('unit')->nullable();
             $table->bigInteger('unit_cost')->nullable();
             $table->bigInteger('total_cost')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -23,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('requests', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('backup_orders');
     }
 };

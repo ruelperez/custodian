@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Input Item Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
                 <form wire:submit.prevent="submit">
                     @if(session()->has('dataAdded'))
                         <div class="alert alert-success" style="width: 60%; ">
@@ -16,12 +16,27 @@
                             {{ session('dataError') }}
                         </div>
                     @endif
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Item Description" wire:model="item_name" required>
+                    <div class="mb-2" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
                     </div>
                     @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
+                    @if($basis != 0)
+                        <div style="width: 66%; margin-left: 14%; position: absolute;">
+                            <ul class="list-group">
+                                @php $h=0; @endphp
+                                @foreach($result as $data)
+                                    @if($h < 6)
+                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">
+                                            {{$data->item_name}}
+                                        </li>
+                                    @endif
+                                    @php $h++; @endphp
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity" required>
+                        <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity" required>
                     </div>
                     @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">

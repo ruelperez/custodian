@@ -2,16 +2,28 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Inventory extends Component
 {
-    public $request_data, $searchInput, $item_name, $quantity, $data_id, $inventory_number, $estimated, $unit, $unit_cost, $total_cost, $item_type = "consumable";
+    public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $estimated, $unit, $unit_cost,
+            $total_cost, $item_type = "consumable", $ng=0;
 
     public function render()
     {
+        if ($this->searchInput != ""){
+            $this->search();
+        }
+
         $this->request_data = \App\Models\Inventory::all();
         return view('livewire.inventory');
+    }
+
+    public function search(){
+        $this->result = DB::table('inventories')
+            ->where('item_name','LIKE', '%'.$this->searchInput.'%')
+            ->get();
     }
 
     public function submit()
@@ -22,16 +34,16 @@ class Inventory extends Component
             'item_type' => 'required',
         ]);
         if ($this->unit == "") {
-            $this->unit = null;
+            $this->unit = 0;
         }
         if ($this->unit_cost == "") {
-            $this->unit_cost = null;
+            $this->unit_cost = 0;
         }
         if ($this->total_cost == "") {
-            $this->total_cost = null;
+            $this->total_cost = 0;
         }
         if ($this->inventory_number == "") {
-            $this->inventory_number = null;
+            $this->inventory_number = 0;
         }
         if ($this->estimated == "") {
             $this->estimated = null;
@@ -83,6 +95,21 @@ class Inventory extends Component
     public function edit_submit()
     {
         $data = \App\Models\Inventory::find($this->data_id);
+        if ($this->unit == "") {
+            $this->unit = 0;
+        }
+        if ($this->unit_cost == "") {
+            $this->unit_cost = 0;
+        }
+        if ($this->total_cost == "") {
+            $this->total_cost = 0;
+        }
+        if ($this->inventory_number == "") {
+            $this->inventory_number = 0;
+        }
+        if ($this->estimated == "") {
+            $this->estimated = null;
+        }
         try {
             $data->unit = $this->unit;
             $data->quantity = $this->quantity;

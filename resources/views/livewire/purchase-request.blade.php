@@ -59,7 +59,10 @@
         <button style="margin-left: 2%; margin-top: 2%;" type="button" class="btn btn-primary">Save to Stock Card</button>
 
         <div style="background-color: #F5F5F5; margin-left: 2%;margin-top: 0.5%; width: 100%; border: solid lightslategray 1px">
-            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 92%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-order.pdf',['request' => 'order'])}}'"></i>
+            <div style="display: flex;">
+                <button class="btn btn-success" style="margin-top: 1%; margin-left: 58%;" wire:click="move_to_inventory">Move to Inventory</button>
+                <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 5%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-order.pdf',['request' => 'order'])}}'"></i>
+            </div>
             <div class="spinner-border spin" wire:loading wire:target="forward" style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
