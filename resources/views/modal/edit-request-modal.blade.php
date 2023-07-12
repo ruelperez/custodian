@@ -36,6 +36,26 @@
                         <input type="text" class="form-control" placeholder="Total Cost" wire:model="total_cost" >
                     </div>
                     @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
+                        <div style="margin-left: 15%;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Consumable
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Non-Consumable
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" wire:model="item_type" value="sets">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Sets
+                                </label>
+                            </div>
+                        </div>
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Update</button>
                 </form>
             </div>

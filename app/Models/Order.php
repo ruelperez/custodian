@@ -12,6 +12,7 @@ class Order extends Model
         'quantity',
         'unit',
         'unit_cost',
+        'item_type',
         'total_cost',
     ];
 

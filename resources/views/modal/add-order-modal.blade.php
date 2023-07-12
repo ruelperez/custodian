@@ -1,4 +1,4 @@
-<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="add_request_modal">
+<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="add_order_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
-                <form wire:submit.prevent="submit">
+                <form wire:submit.prevent="submit_order">
                     @if(session()->has('dataAdded'))
                         <div class="alert alert-success" style="width: 60%; ">
                             {{ session('dataAdded') }}

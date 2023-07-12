@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $item_name, $order_data, $fa=0, $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $item_name, $order_data, $fa=0, $item_type="consumable", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -40,37 +40,75 @@ class PurchaseRequest extends Component
     }
 
     public function submit(){
-        $data = $this->validate([
-            'item_name' => 'required',
-            'quantity' => 'integer',
-        ]);
-        if ($this->unit == ""){
-            $this->unit = 0;
-        }
-        if ($this->unit_cost == ""){
-            $this->unit_cost = 0;
-        }
-        if ($this->total_cost == ""){
-            $this->total_cost = 0;
-        }
-        try {
-            Request::create([
-                'item_name' => $this->item_name,
-                'quantity' => $this->quantity,
-                'unit' => $this->unit,
-                'unit_cost' => $this->unit_cost,
-                'total_cost' => $this->total_cost,
+        if ($this->base == 0){
+            $data = $this->validate([
+                'item_name' => 'required',
+                'quantity' => 'integer',
             ]);
-            $this->item_name = "";
-            $this->quantity = "";
-            $this->unit_cost = "";
-            $this->total_cost = "";
-            $this->unit = "";
-            session()->flash('dataAdded',"Successfully Added");
+            if ($this->unit == ""){
+                $this->unit = 0;
+            }
+            if ($this->unit_cost == ""){
+                $this->unit_cost = 0;
+            }
+            if ($this->total_cost == ""){
+                $this->total_cost = 0;
+            }
+            try {
+                Request::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'total_cost' => $this->total_cost,
+                    'item_type' => $this->item_type,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit_cost = "";
+                $this->total_cost = "";
+                $this->unit = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
-        catch (\Exception $e){
-            session()->flash('dataError',"Failed to Add");
+        elseif ($this->base == 1){
+            $data = $this->validate([
+                'item_name' => 'required',
+                'quantity' => 'integer',
+            ]);
+            if ($this->unit == ""){
+                $this->unit = 0;
+            }
+            if ($this->unit_cost == ""){
+                $this->unit_cost = 0;
+            }
+            if ($this->total_cost == ""){
+                $this->total_cost = 0;
+            }
+            try {
+                Order::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'total_cost' => $this->total_cost,
+                    'item_type' => $this->item_type,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit_cost = "";
+                $this->total_cost = "";
+                $this->unit = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
+
     }
 
     public function delete($id){
@@ -86,6 +124,7 @@ class PurchaseRequest extends Component
         $this->unit_cost = $sae->unit_cost;
         $this->total_cost = $sae->total_cost;
         $this->item_name = $sae->item_name;
+        $this->item_type = $sae->item_type;
     }
 
     public function edit_submit(){
@@ -106,12 +145,14 @@ class PurchaseRequest extends Component
                 $data->unit_cost = $this->unit_cost;
                 $data->total_cost = $this->total_cost;
                 $data->item_name = $this->item_name;
+                $data->item_type = $this->item_type;
                 $data->save();
                 $this->item_name = "";
                 $this->quantity = "";
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
+                $this->item_type = "consumable";
                 session()->flash('dataUpdated',"Successfully Updated");
             }
             catch (\Exception $e){
@@ -135,12 +176,14 @@ class PurchaseRequest extends Component
                 $data->unit_cost = $this->unit_cost;
                 $data->total_cost = $this->total_cost;
                 $data->item_name = $this->item_name;
+                $data->item_type = $this->item_type;
                 $data->save();
                 $this->item_name = "";
                 $this->quantity = "";
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
+                $this->item_type = "consumable";
                 session()->flash('dataUpdated',"Successfully Updated");
             }
             catch (\Exception $e){
@@ -151,7 +194,7 @@ class PurchaseRequest extends Component
     }
 
     public function forward(){
-       $request_data = Request::where('isRemove','0')->get();
+       $request_data = Request::all();
        foreach ($request_data as $data){
            Order::create([
                'item_name' => $data->item_name,
@@ -159,6 +202,7 @@ class PurchaseRequest extends Component
                'unit' => $data->unit,
                'unit_cost' => $data->unit_cost,
                'total_cost' => $data->total_cost,
+               'item_type' => $data->item_type,
            ]);
        }
     }
@@ -192,19 +236,43 @@ class PurchaseRequest extends Component
         $this->fa = 0;
     }
 
-    public function move_to_inventory(){ $n = null;
-        $s = 10;
-        $r = $n + $s;
-        dd($r);
+    public function move_to_inventory(){
         $order = Order::all();
         $inventory = \App\Models\Inventory::all();
-        foreach ($order as $orders){
-            foreach ($inventory as $inv){
 
-//                if ($orders->item_name ==$inv->item_name){
-//
-//                }
+        foreach ($order as $orders){
+            try {
+                $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('quantity',$orders->quantity);
+                if ($tt == 0){
+                    \App\Models\Inventory::create([
+                        'item_name' => $orders->item_name,
+                        'quantity' => $orders->quantity,
+                        'unit' => $orders->unit,
+                        'unit_cost' => $orders->unit_cost,
+                        'total_cost' => $orders->total_cost,
+                        'item_type' => $orders->item_type,
+                    ]);
+                }
+                else{
+                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit',$orders->unit);
+                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit_cost',$orders->unit_cost);
+                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('total_cost',$orders->total_cost);
+                }
+                session()->flash('transfer',"Successfully  Moved to Inventory");
             }
+            catch (\Exception $e){
+                session()->flash('failed',"Failed to Move");
+            }
+
         }
+
+    }
+
+    public function add_order_click(){
+        $this->base = 1;
+    }
+
+    public function add_request_click(){
+        $this->base = 0;
     }
 }
