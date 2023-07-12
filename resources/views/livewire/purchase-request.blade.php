@@ -2,6 +2,16 @@
     <div style="margin-top: 2%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Request</h5>
         <div style="background-color: #F5F5F5; margin-left: 2%;margin-top: 5%; width: 100%; border: solid lightslategray 1px">
+            @if(session()->has('move'))
+                <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
+                    {{ session('move') }}
+                </div>
+            @endif
+            @if(session()->has('move_failed'))
+                <div class="alert alert-danger" style="width: 10%; ">
+                    {{ session('move_failed') }}
+                </div>
+            @endif
             <div style="display: flex;">
                 <button class="btn btn-success" style="margin-top: 1%; margin-left: 61%;" wire:click="move_to_backup">Move to Backup</button>
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 5%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-request.pdf',['request' => 'request'])}}'"></i>

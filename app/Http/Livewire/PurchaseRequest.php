@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupOrder;
+use App\Models\BackupRequest;
 use App\Models\Order;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -291,8 +292,27 @@ class PurchaseRequest extends Component
         $this->base = 0;
     }
 
-//    public function move_to_backup(){
-//        $req = Request::all();
-//        foreach ()
-//    }
+    public function move_to_backup(){
+        $req = Request::all();
+        try {
+            foreach ($req as $reqs){
+                BackupRequest::create([
+                    'item_name' => $reqs->item_name,
+                    'quantity' => $reqs->quantity,
+                    'unit' => $reqs->unit,
+                    'unit_cost' => $reqs->unit_cost,
+                    'total_cost' => $reqs->total_cost,
+                    'item_type' => $reqs->item_type,
+                ]);
+            }
+            foreach ($req as $rr){
+                Request::find($rr->id)->delete();
+            }
+            session()->flash('move',"Successfully Moved to Backup");
+        }catch (\Exception $e){
+            session()->flash('move_failed',"Failed to Moved to Backup");
+        }
+
+
+    }
 }
