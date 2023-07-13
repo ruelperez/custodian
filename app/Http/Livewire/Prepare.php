@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $results, $fa=0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $results, $search_data, $fa=0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -20,7 +20,6 @@ class Prepare extends Component
                 $this->picks = 0;
             }
             elseif ($this->receiver != ""){
-                $this->basin = 1;
                 $this->searchs();
             }
             else{
@@ -47,26 +46,32 @@ class Prepare extends Component
     }
 
     public function submit(){
+
         $data = $this->validate([
             'item_name' => 'required',
-            'quantity' => 'integer',
         ]);
+
         if ($this->unit == ""){
             $this->unit = 0;
         }
+        if ($this->quantity == ""){
+            $this->quantity = 0;
+        }
 
         try {
+
             \App\Models\Prepare::create([
                 'item_name' => $this->item_name,
                 'quantity' => $this->quantity,
                 'unit' => $this->unit,
                 'item_type' => $this->item_type,
+                'receiver' => $this->receiver,
             ]);
             $this->item_name = "";
             $this->quantity = "";
-            $this->unit_cost = "";
-            $this->total_cost = "";
             $this->unit = "";
+            $this->item_type = "consumable";
+            $this->receiver = "";
             session()->flash('dataAdded',"Successfully Added");
         }
         catch (\Exception $e){
@@ -89,12 +94,24 @@ class Prepare extends Component
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
             ->get();
+        if (count($this->result) == 0){
+            $this->basis = 0;
+        }
+        else{
+            $this->basis = 1;
+        }
     }
 
     public function searchs(){
         $this->results = DB::table('receivers')
             ->where('fullname','LIKE', '%'.$this->receiver.'%')
             ->get();
+        if (count($this->results) == 0){
+            $this->basin = 0;
+        }
+        else{
+            $this->basin = 1;
+        }
     }
 
     public function click_input_item(){
@@ -110,5 +127,7 @@ class Prepare extends Component
     public function not_item_click(){
         $this->fa = 1;
         $this->fas = 1;
+        $this->basis = 0;
+        $this->basin = 0;
     }
 }

@@ -47,7 +47,7 @@
                             <td>{{$data->item_name}}</td>
                             <td>{{$data->quantity}}</td>
                             <td>{{$data->item_type}}</td>
-                            <td>{{$data->teachers_name}}</td>
+                            <td>{{ucwords($data->receiver)}}</td>
                             <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
                             <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
                         </tr>

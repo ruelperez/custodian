@@ -11,7 +11,7 @@ class Prepare extends Model
         'item_name',
         'quantity',
         'unit',
-        'teachers_name',
+        'receiver',
         'item_type',
     ];
 

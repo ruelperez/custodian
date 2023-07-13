@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('prepares', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
-            $table->bigInteger('quantity')->nullable();
-            $table->bigInteger('unit')->nullable();
+            $table->bigInteger('quantity')->default(0);
+            $table->bigInteger('unit')->default(0);
             $table->string('item_type');
+            $table->string('receiver');
             $table->rememberToken();
             $table->timestamps();
         });
