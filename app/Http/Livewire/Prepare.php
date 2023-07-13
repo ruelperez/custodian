@@ -2,16 +2,32 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Receiver;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $fa=0, $item_name, $basin=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $results, $fa=0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
+
+        if ($this->fas == 0){
+            if ($this->receiver != "" and $this->picks == 1){
+                $this->basin = 0;
+                $this->picks = 0;
+            }
+            elseif ($this->receiver != ""){
+                $this->basin = 1;
+                $this->searchs();
+            }
+            else{
+                $this->basin = 0;
+            }
+        }
+
         if ($this->fa == 0){
             if ($this->item_name != "" and $this->pick == 1){
                 $this->basis = 0;
@@ -63,6 +79,11 @@ class Prepare extends Component
         $this->item_name = $data->item_name;
         $this->pick = 1;
     }
+    public function click_items($id){
+        $data = Receiver::find($id);
+        $this->receiver = $data->fullname;
+        $this->picks = 1;
+    }
 
     public function search(){
         $this->result = DB::table('inventories')
@@ -70,11 +91,24 @@ class Prepare extends Component
             ->get();
     }
 
+    public function searchs(){
+        $this->results = DB::table('receivers')
+            ->where('fullname','LIKE', '%'.$this->receiver.'%')
+            ->get();
+    }
+
     public function click_input_item(){
         $this->fa = 0;
+        $this->fas = 1;
+    }
+
+    public function click_input_items(){
+        $this->fas = 0;
+        $this->fa = 1;
     }
 
     public function not_item_click(){
         $this->fa = 1;
+        $this->fas = 1;
     }
 }

@@ -17,23 +17,23 @@
                         </div>
                     @endif
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_item" wire:model.debounce.1ms="receiver" required>
+                        <input type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
                     </div>
-{{--                    @if($basin != 0)--}}
-{{--                        <div style="width: 66%; margin-left: 14%; position: absolute;">--}}
-{{--                            <ul class="list-group">--}}
-{{--                                @php $h=0; @endphp--}}
-{{--                                @foreach($result as $data)--}}
-{{--                                    @if($h < 6)--}}
-{{--                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">--}}
-{{--                                            {{$data->item_name}}--}}
-{{--                                        </li>--}}
-{{--                                    @endif--}}
-{{--                                    @php $h++; @endphp--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
+                    @if($basin != 0)
+                        <div style="width: 66%; margin-left: 14%; position: absolute;">
+                            <ul class="list-group">
+                                @php $h=0; @endphp
+                                @foreach($results as $data)
+                                    @if($h < 6)
+                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_items({{$data->id}})">
+                                            {{$data->fullname}}
+                                        </li>
+                                    @endif
+                                    @php $h++; @endphp
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
                     </div>
