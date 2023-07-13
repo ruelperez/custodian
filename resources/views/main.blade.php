@@ -47,6 +47,11 @@
             @livewire('inventory')
 
         </div>
+        <div style="@if($option != "prepare") display: none; @endif">
+
+            @livewire('prepare')
+
+        </div>
     </div>
 
 </div>
