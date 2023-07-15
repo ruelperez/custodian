@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inventory extends Model
+class BackupPrepare extends Model
 {
     protected $fillable = [
         'item_name',
         'quantity',
         'unit',
-        'inventory_number',
+        'receiver',
         'item_type',
+        'serial',
     ];
 
     use HasFactory;

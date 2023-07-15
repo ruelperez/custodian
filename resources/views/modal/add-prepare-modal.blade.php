@@ -54,12 +54,18 @@
                     @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit">
+                        @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('unit') <span style="color: red">{{ $message }}</span> @enderror
+
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
+                        @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
+
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
+                    </div>
+
                     <div style="margin-left: 15%;">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" wire:model="item_type" wire:click="not_item_click" value="consumable">

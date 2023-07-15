@@ -21,7 +21,7 @@
                     </div>
                     @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity" required>
+                        <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity">
                     </div>
                     @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
@@ -29,21 +29,9 @@
                     </div>
                     @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Unit Cost" wire:model="unit_cost">
-                    </div>
-                    @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Total Cost" wire:model="total_cost" >
-                    </div>
-                    @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Inventory Item No." wire:model="inventory_number" >
                     </div>
                     @error('inventory_number') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Estimated Useful Life" wire:model="estimated" >
-                    </div>
-                    @error('estimated') <span style="color: red">{{ $message }}</span> @enderror
                     <div style="margin-left: 15%;">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">

@@ -21,7 +21,7 @@
                     </div>
                     @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity" required>
+                        <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity">
                     </div>
                     @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">

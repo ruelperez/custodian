@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('backup_prepares', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
-            $table->bigInteger('quantity')->nullable();
-            $table->bigInteger('unit')->nullable();
-            $table->bigInteger('unit_cost')->nullable();
-            $table->bigInteger('total_cost')->nullable();
-            $table->bigInteger('inventory_number')->nullable();
-            $table->string('estimated')->nullable();
+            $table->bigInteger('quantity');
+            $table->bigInteger('unit');
             $table->string('item_type');
+            $table->string('receiver');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('backup_prepares');
     }
 };

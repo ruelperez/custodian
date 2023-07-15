@@ -45,10 +45,12 @@ class PurchaseRequest extends Component
         if ($this->base == 0){
             $data = $this->validate([
                 'item_name' => 'required',
-                'quantity' => 'integer',
             ]);
             if ($this->unit == ""){
                 $this->unit = 0;
+            }
+            if ($this->quantity == ""){
+                $this->quantity = 0;
             }
             if ($this->unit_cost == ""){
                 $this->unit_cost = 0;
@@ -79,10 +81,12 @@ class PurchaseRequest extends Component
         elseif ($this->base == 1){
             $data = $this->validate([
                 'item_name' => 'required',
-                'quantity' => 'integer',
             ]);
             if ($this->unit == ""){
                 $this->unit = 0;
+            }
+            if ($this->quantity == ""){
+                $this->quantity = 0;
             }
             if ($this->unit_cost == ""){
                 $this->unit_cost = 0;
@@ -141,6 +145,9 @@ class PurchaseRequest extends Component
             if ($this->total_cost == ""){
                 $this->total_cost = 0;
             }
+            if ($this->quantity == ""){
+                $this->quantity = 0;
+            }
             try {
                 $data->unit = $this->unit;
                 $data->quantity = $this->quantity;
@@ -165,6 +172,9 @@ class PurchaseRequest extends Component
             $data = Order::find($this->data_id);
             if ($this->unit == ""){
                 $this->unit = 0;
+            }
+            if ($this->quantity == ""){
+                $this->quantity = 0;
             }
             if ($this->unit_cost == ""){
                 $this->unit_cost = 0;
@@ -248,15 +258,12 @@ class PurchaseRequest extends Component
                         'item_name' => $orders->item_name,
                         'quantity' => $orders->quantity,
                         'unit' => $orders->unit,
-                        'unit_cost' => $orders->unit_cost,
-                        'total_cost' => $orders->total_cost,
                         'item_type' => $orders->item_type,
+                        'inventory_number' => 0,
                     ]);
                 }
                 else{
                     $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit',$orders->unit);
-                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit_cost',$orders->unit_cost);
-                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('total_cost',$orders->total_cost);
                 }
 
                 BackupOrder::create([

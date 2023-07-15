@@ -19,25 +19,16 @@
                 <thead>
                 <tr>
                     <th>
-                        Quantity
-                    </th>
-                    <th>
                         Unit
-                    </th>
-                    <th>
-                        Unit Cost
-                    </th>
-                    <th>
-                        Total Cost
                     </th>
                     <th>
                         Description
                     </th>
                     <th>
-                        Inventory Item No.
+                        Quantity
                     </th>
                     <th>
-                        Estimated Useful Life
+                        Inventory Item No.
                     </th>
                     <th>
                         Item Type
@@ -56,13 +47,10 @@
                     @foreach($request_data as $data)
                         @if($q < 10)
                             <tr>
-                                <td>{{$data->quantity}}</td>
                                 <td>{{$data->unit}}</td>
-                                <td>{{$data->unit_cost}}</td>
-                                <td>{{$data->total_cost}}</td>
                                 <td>{{$data->item_name}}</td>
+                                <td>{{$data->quantity}}</td>
                                 <td>{{$data->inventory_number}}</td>
-                                <td>{{$data->estimated}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
@@ -80,25 +68,16 @@
                 <thead>
                 <tr>
                     <th>
-                        Quantity
-                    </th>
-                    <th>
                         Unit
-                    </th>
-                    <th>
-                        Unit Cost
-                    </th>
-                    <th>
-                        Total Cost
                     </th>
                     <th>
                         Description
                     </th>
                     <th>
-                        Inventory Item No.
+                        Quantity
                     </th>
                     <th>
-                        Estimated Useful Life
+                        Inventory Item No.
                     </th>
                     <th>
                         Item Type
@@ -117,13 +96,10 @@
                     @foreach($result as $data)
                         @if($q < 10)
                             <tr>
-                                <td>{{$data->quantity}}</td>
                                 <td>{{$data->unit}}</td>
-                                <td>{{$data->unit_cost}}</td>
-                                <td>{{$data->total_cost}}</td>
                                 <td>{{$data->item_name}}</td>
+                                <td>{{$data->quantity}}</td>
                                 <td>{{$data->inventory_number}}</td>
-                                <td>{{$data->estimated}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>

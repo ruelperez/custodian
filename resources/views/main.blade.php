@@ -37,20 +37,16 @@
     </div>
     <div style="border: solid black 1px; width: 81%;">
         <div style="@if($option != "purchase") display: none; @endif">
-
-                @livewire('purchase-request')
-
+            @livewire('purchase-request')
         </div>
-
         <div style="@if($option != "inventory") display: none; @endif">
-
             @livewire('inventory')
-
         </div>
         <div style="@if($option != "prepare") display: none; @endif">
-
             @livewire('prepare')
-
+        </div>
+        <div style="@if($option != "waste") display: none; @endif">
+            @livewire('waste')
         </div>
     </div>
 
