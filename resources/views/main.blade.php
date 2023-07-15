@@ -48,6 +48,9 @@
         <div style="@if($option != "waste") display: none; @endif">
             @livewire('waste')
         </div>
+        <div style="@if($option != "report") display: none; @endif">
+            @livewire('report')
+        </div>
     </div>
 
 </div>
