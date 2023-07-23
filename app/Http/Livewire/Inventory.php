@@ -106,4 +106,5 @@ class Inventory extends Component
         }
 
     }
+
 }

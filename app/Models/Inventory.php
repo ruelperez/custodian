@@ -16,4 +16,12 @@ class Inventory extends Model
     ];
 
     use HasFactory;
+
+    public function stockcard(){
+        return $this->hasMany(StockCard::class);
+    }
+
+    public function propertycard(){
+        return $this->hasMany(PropertyCard::class);
+    }
 }

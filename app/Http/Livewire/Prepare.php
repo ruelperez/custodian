@@ -197,6 +197,27 @@ class Prepare extends Component
         foreach ($data as $datas){
             $inv = \App\Models\Inventory::where('item_name',$datas->item_name)->get();
             if (count($inv) > 0){
+                foreach ($inv as $in){
+                    if ($datas->unit > 0){
+                        \App\Models\PropertyCard::create([
+                            'item_name' => $datas->item_name,
+                            'unit' => $datas->unit,
+                            'receiptUnit' => $in->unit,
+                            'receiver' => $datas->receiver,
+                            'inventory_id' => $in->id,
+                        ]);
+                    }
+                    else{
+                        \App\Models\StockCard::create([
+                            'item_name' => $datas->item_name,
+                            'quantity' => $datas->quantity,
+                            'receiptQty' => $in->quantity,
+                            'receiver' => $datas->receiver,
+                            'inventory_id' => $in->id,
+                        ]);
+                    }
+
+                }
                 try {
                     \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('quantity',$datas->quantity);
                     \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('unit',$datas->unit);
