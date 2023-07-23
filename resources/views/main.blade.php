@@ -49,7 +49,38 @@
             @livewire('waste')
         </div>
         <div style="@if($option != "report") display: none; @endif">
-            @livewire('report')
+            @if(isset($reports))
+                @if($reports == "stock-card")
+                    @livewire('stock-card')
+                @elseif($reports == "property-card")
+                    @livewire('property-card')
+                @elseif($reports == "waste-material")
+                    @livewire('waste-report')
+                @elseif($reports == "purchase-material")
+                    @livewire('purchase-report')
+                @endif
+            @else
+                <div>
+                    <h4 style="text-align: center; margin-top: 3%;">Report</h4>
+                    <div style="display: flex; margin-top: 6%;">
+                        <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/report/stock-card';">
+                            Stock Card
+                        </div>
+                        <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #483D8B; padding-top: 10px; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/report/property-card';">
+                            Property Card/Property Acknowledge Receipt
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-top: 4%">
+                        <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/waste-material';">
+                            Waste Material Request
+                        </div>
+                        <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/purchase-order';">
+                            Purchase Order
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         </div>
     </div>
 
