@@ -9,9 +9,11 @@
         <div style="width: 34%; margin-left: 30%;">
             <ul class="list-group">
                 @foreach($stock as $data)
-                    <li class="list-group-item btn" wire:click="click_suggest({{$data->id}})" style="text-align: left;">
-                        {{$data->item_name}}
-                    </li>
+                    @if($data->item_type != "sets")
+                        <li class="list-group-item btn" wire:click="click_suggest({{$data->id}})" style="text-align: left;">
+                            {{$data->item_name}}
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
@@ -79,7 +81,11 @@
                     @endif
                 </tbody>
             </table>
+            @if($showAllBtn == "show")
+            <button class="btn btn-warning" wire:click="showAll" style="margin-left: 2%; margin-bottom: 1%;">Show All</button>
+            @elseif($showAllBtn == "hide")
+                <button class="btn btn-warning" wire:click="showless" style="margin-left: 2%; margin-bottom: 1%;">Show Less</button>
+            @endif
         </div>
-        {{$stockcard_data->links('pagination-links')}}
     @endif
 </div>

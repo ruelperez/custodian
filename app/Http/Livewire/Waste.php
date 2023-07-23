@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Waste extends Component
 {
-    public $search_teacher,$rt=0, $item_condition="good", $delete_id, $result, $base=0, $prepare_data, $click=0;
+    public $search_teacher, $item_condition="good", $display_search= "show", $delete_id, $result, $display_table = "hide", $prepare_data;
 
     public function render()
     {
@@ -18,8 +18,7 @@ class Waste extends Component
             $this->search();
         }
         else{
-           $this->base = 0;
-            $this->search();
+            $this->result = [];
         }
         return view('livewire.waste');
     }
@@ -28,37 +27,25 @@ class Waste extends Component
         $this->result = DB::table('receivers')
             ->where('fullname','LIKE','%'.$this->search_teacher.'%')
             ->get();
-        if ($this->rt == 1){
-            $this->find();
-        }
-        if ($this->search_teacher == ""){
-            $this->click = 0;
-        }
     }
 
     public function click_suggest($id){
-        $this->click = 1;
         $data = Receiver::find($id);
         $this->search_teacher = $data->fullname;
+        $this->display_search = "hide";
     }
 
     public function find(){
+        $this->display_table = "show";
         $this->prepare_data = DB::table('backup_prepares')
             ->where('receiver','LIKE', '%'.$this->search_teacher.'%')
             ->get();
-        if (count($this->prepare_data) > 0){
-            $this->base = 1;
-        }
     }
 
-    public function search_click(){
-        $this->base = 0;
-        $this->click = 0;
-    }
 
     public function delete_click($id){
         $this->delete_id = $id;
-        $this->rt = 1;
+        $this->find();
     }
 
     public function deploy(){
@@ -84,5 +71,11 @@ class Waste extends Component
            BackupPrepare::find($this->delete_id)->delete();
         }
 
+        $this->find();
+    }
+
+    public function updatedSearchTeacher(){
+        $this->display_search = "show";
+        $this->display_table = "hide";
     }
 }

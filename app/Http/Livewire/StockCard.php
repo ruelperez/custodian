@@ -10,7 +10,7 @@ class StockCard extends Component
 {
     use WithPagination;
 
-    public $stock, $search="", $stockcard_data, $display_search = "show", $inventory_id, $click_search_bar = 0, $display_table = "hide";
+    public $stock, $search="", $stockcard_data, $showAllBtn="show", $display_search = "show", $inventory_id, $click_search_bar = 0, $display_table = "hide";
 
     public function render()
     {
@@ -50,4 +50,22 @@ class StockCard extends Component
         $this->display_search = "show";
         $this->display_table = "hide";
     }
+
+    public function showAll(){
+        $this->display_table = "show";
+        $this->stockcard_data = DB::table('stock_cards')
+            ->where('inventory_id',$this->inventory_id)
+            ->get();
+        $this->showAllBtn = "hide";
+    }
+
+    public function showless(){
+        $this->showAllBtn = "show";
+        $this->display_table = "show";
+        $this->stockcard_data = DB::table('stock_cards')
+            ->where('inventory_id',$this->inventory_id)
+            ->take(6)
+            ->get();
+    }
+
 }
