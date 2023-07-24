@@ -1,7 +1,7 @@
 <div>
-    <h4 style="text-align: center; margin-top: 3%;">Stock Card</h4>
+    <h4 style="text-align: center; margin-top: 3%;">Property Card</h4>
     <div class="input-group mb-1" style="width: 40%; margin-left: 30%; margin-top: 3%;">
-        <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <span class="input-group-text" wire:click="find" id="basic-addon2" style="cursor: pointer;">Search</span>
     </div>
 
@@ -9,9 +9,11 @@
         <div style="width: 34%; margin-left: 30%;">
             <ul class="list-group">
                 @foreach($stock as $data)
-                    <li class="list-group-item btn" wire:click="click_suggest({{$data->id}})" style="text-align: left;">
-                        {{$data->item_name}}
-                    </li>
+                    @if($data->item_type == "sets")
+                        <li class="list-group-item btn" wire:click="click_suggest({{$data->id}})" style="text-align: left;">
+                            {{$data->item_name}}
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
@@ -31,10 +33,10 @@
                 <thead>
                 <tr>
                     <th>
-                        Receipt Qty.
+                        Receipt Unit.
                     </th>
                     <th>
-                        Qty
+                        Unit
                     </th>
                     <th>
                         Office
@@ -53,21 +55,20 @@
                     @foreach($stockcard_data as $preps)
                         <tr>
                             <td>
-                                {{$preps->receiptQty}}
+                                {{$preps->receiptUnit}}
                             </td>
                             <td>
-                                {{$preps->quantity}}
+                                {{$preps->unit}}
                             </td>
                             <td>
                                 {{$preps->receiver}}
                             </td>
                             <td>
-                                {{$preps->receiptQty - $preps->quantity}}
+                                {{$preps->receiptUnit - $preps->unit}}
                             </td>
                             <td>
                                 {{$preps->created_at}}
                             </td>
-                            <td><i class="fa-solid fa-circle-xmark" wire:click="delete_click({{$preps->id}})" style="color: red; cursor: pointer; font-size: 20px;" data-bs-toggle="modal" data-bs-target="#waste_delete_modal"></i></td>
                         </tr>
                     @endforeach
                 @else

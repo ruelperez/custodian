@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class PurchaseReport extends Component
+class RequestReport extends Component
 {
     public $search="", $request_data;
 
@@ -15,13 +15,13 @@ class PurchaseReport extends Component
             $this->feed();
         }
         else{
-            $this->request_data = DB::table('backup_orders')->orderBy('item_name','asc')->take(10)->get();
+            $this->request_data = DB::table('backup_requests')->orderBy('item_name','asc')->take(10)->get();
         }
-        return view('livewire.purchase-report');
+        return view('livewire.request-report');
     }
 
     public function feed(){
-        $this->request_data = DB::table('backup_orders')
+        $this->request_data = DB::table('backup_requests')
             ->where('item_name','like', '%'.$this->search.'%')
             ->orWhere('created_at','like','%'.$this->search.'%')
             ->take(10)

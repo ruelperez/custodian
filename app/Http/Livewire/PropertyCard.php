@@ -39,7 +39,7 @@ class PropertyCard extends Component
 
     public function find(){
         $this->display_table = "show";
-        $this->stockcard_data = DB::table('stock_cards')
+        $this->stockcard_data = DB::table('property_cards')
             ->where('inventory_id',$this->inventory_id)
             ->take(6)
             ->get();
@@ -53,7 +53,7 @@ class PropertyCard extends Component
 
     public function showAll(){
         $this->display_table = "show";
-        $this->stockcard_data = DB::table('stock_cards')
+        $this->stockcard_data = DB::table('property_cards')
             ->where('inventory_id',$this->inventory_id)
             ->get();
         $this->showAllBtn = "hide";
@@ -62,7 +62,7 @@ class PropertyCard extends Component
     public function showless(){
         $this->showAllBtn = "show";
         $this->display_table = "show";
-        $this->stockcard_data = DB::table('stock_cards')
+        $this->stockcard_data = DB::table('property_cards')
             ->where('inventory_id',$this->inventory_id)
             ->take(6)
             ->get();

@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class WasteReport extends Component
+class Graph extends Component
 {
     public function render()
     {
-        return view('livewire.waste-report');
+        return view('livewire.graph');
     }
 }

@@ -10,10 +10,13 @@ use Livewire\Component;
 
 class Waste extends Component
 {
-    public $search_teacher, $item_condition="good", $display_search= "show", $delete_id, $result, $display_table = "hide", $prepare_data;
+    public $search_teacher, $item_condition="good", $display_search= "show", $rf=0, $delete_id, $result, $display_table = "hide", $prepare_data;
 
     public function render()
     {
+        if ($this->rf == 1){
+            $this->find();
+        }
         if ($this->search_teacher != ""){
             $this->search();
         }
@@ -46,6 +49,7 @@ class Waste extends Component
     public function delete_click($id){
         $this->delete_id = $id;
         $this->find();
+        $this->rf = 1;
     }
 
     public function deploy(){
@@ -70,10 +74,9 @@ class Waste extends Component
         if ($ju == 1){
            BackupPrepare::find($this->delete_id)->delete();
         }
-
+        $this->rf = 0;
         $this->find();
     }
-
     public function updatedSearchTeacher(){
         $this->display_search = "show";
         $this->display_table = "hide";

@@ -56,7 +56,7 @@
                     @livewire('property-card')
                 @elseif($reports == "waste-material")
                     @livewire('waste-report')
-                @elseif($reports == "purchase-material")
+                @elseif($reports == "purchase-report")
                     @livewire('purchase-report')
                 @endif
             @else
@@ -72,9 +72,9 @@
                     </div>
                     <div style="display: flex; margin-top: 4%">
                         <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/waste-material';">
-                            Waste Material Request
+                            Purchase Request
                         </div>
-                        <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/purchase-order';">
+                        <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/purchase-report';">
                             Purchase Order
                         </div>
                     </div>
