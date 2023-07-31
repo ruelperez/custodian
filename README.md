@@ -1,18 +1,31 @@
 ## Property Custodian
 
+### Download and install the following tools:
+- [XAMPP](https://www.apachefriends.org/download.html)
+- IDE code editor such as
+  [VS Code](https://code.visualstudio.com),
+  [WebStorm](https://www.jetbrains.com/webstorm) or
+  [Sublime Text](https://www.sublimetext.com).
+- [Composer](https://getcomposer.org/download/)
+
 ### Installation
 
-1. Download and install [XAMPP](https://www.apachefriends.org/download.html).
-2. Download and install [Composer](https://getcomposer.org/download/)
-2. Clone or download this repository [custodian](https://github.com/ruelperez/custodian)
-3. Run `composer update`
-4. Run `cp .env.example .env`
-5. Run `php artisan key:generate`
-6. Create database named `costudian`
-7. Import `costudian.sql` located at [database/costudian.sql](database/costudian.sql)
-8. Run `php artisan serve`
+1. Clone or download this repository [custodian](https://github.com/ruelperez/custodian)
+2. Create database name `costudian`
+3. Open the cloned project in your code editor.
+3. Open terminal and execute the following commands:
 
-
+#### Install Backend dependencies:
+    composer install
+#### Create Environment File:
+    cp .env.example .env
+#### Generate Application Key:
+    php artisan key:generate
+#### Run Migration:
+    php artisan migrate
+#### Serve the Application:
+    php artisan serve
+### Production
 ### Login
 - Open <http://127.0.0.1:8000> in your web browser.
 
