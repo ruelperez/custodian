@@ -11,7 +11,7 @@
 </head>
 <body>
 <div style="display: flex; margin-top: 1%;">
-    <div style="margin-left: 23%;">
+    <div style="margin-left: 23%; padding-bottom: 1%;">
         <img src="{{asset('image/logo.jpg')}}" width="90">
     </div>
     <div style="margin-left: 2%;">
@@ -23,7 +23,7 @@
     </div>
 
 </div>
-<img src="{{asset('image/front.jpg')}}" width="1400" height="700">
+<img src="{{asset('image/front.jpg')}}" width="1490" height="700" style="margin-left: 1%;">
 
 @include('modal.login-modal')
 <button style="display: none;" onclick="location.href = 'register';">register</button>
