@@ -20,7 +20,7 @@
     @livewireScripts
 </head>
 <body>
-<div style="display: flex; border: solid black 1px; background-color: #6495ED;">
+<div style="display: flex; background-color: #6495ED;">
     <div style="margin-left: 28%; margin-top: 1%; padding-bottom: 1%">
         <img src="{{asset('image/logo.jpg')}}" width="80">
     </div>

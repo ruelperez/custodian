@@ -2,7 +2,7 @@
 
 <div style="display: flex">
 
-    <div style="border: solid black 1px; width: 19%;">
+    <div style="width: 19%;">
         <div style="text-align: center; margin-top: 5%;">
             <img src="{{ asset('image/profile.jpg') }}" width="50%">
             <h5>ADMIN</h5>
@@ -35,7 +35,7 @@
             </ul>
         </div>
     </div>
-    <div style="border: solid black 1px; width: 81%;">
+    <div style="width: 81%; margin-left: 3%;">
         <div style="@if($option != "purchase") display: none; @endif">
             @livewire('purchase-request')
         </div>
