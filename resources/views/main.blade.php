@@ -36,6 +36,9 @@
         </div>
     </div>
     <div style="width: 81%; margin-left: 3%;">
+        <div style="@if($option != "graph") display: none; @endif">
+            @livewire('graph')
+        </div>
         <div style="@if($option != "purchase") display: none; @endif">
             @livewire('purchase-request')
         </div>
