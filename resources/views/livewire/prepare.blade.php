@@ -3,10 +3,10 @@
     @include('modal.deploy-confirmation')
     <h4 style="text-align: center; margin-top: 3%;">Prepare Material Request</h4>
     <div style="display: flex; margin-top: 3%;">
-        <div style="margin-left: 15%; width: 12%;">
+        <div style="margin-left: 12%; width: 12%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_prepare_modal">Add</button>
         </div>
-        <div style="margin-left: 45%;">
+        <div style="margin-left: 46%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deploy_confirmation">Deploy</button>
         </div>
         <div style="margin-left: 3%;">
