@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -91,12 +91,19 @@ class Prepare extends Component
     public function click_item($id){
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
+        $this->item_type = $data->item_type;
+        $this->basis = 0;
+        $this->basin = 0;
+        $this->item_disable = 1;
         $this->pick = 1;
     }
     public function click_items($id){
         $data = Receiver::find($id);
         $this->receiver = $data->fullname;
         $this->picks = 1;
+        $this->basis = 0;
+        $this->receiver_disable = 1;
+        $this->basin = 0;
     }
 
     public function search(){
@@ -126,11 +133,13 @@ class Prepare extends Component
     public function click_input_item(){
         $this->fa = 0;
         $this->fas = 1;
+        $this->item_disable = 0;
     }
 
     public function click_input_items(){
         $this->fas = 0;
         $this->fa = 1;
+        $this->receiver_disable = 0;
     }
 
     public function not_item_click(){

@@ -16,9 +16,17 @@
                             {{ session('dataError') }}
                         </div>
                     @endif
-                    <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
+                    <div style="display: flex">
+                        <div class="mb-2" style="width: 70%; margin-left: 15%;" >
+                            <input @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
+                        </div>
+                        @if($basin == 0)
+                            <div style="margin-left: 2%; margin-top: 6px;">
+                                <i class="fa-solid fa-pen-to-square" style="cursor: pointer" wire:click="click_input_items"></i>
+                            </div>
+                        @endif
                     </div>
+
                     @if($basin != 0)
                         <div style="width: 66%; margin-left: 14%; position: absolute;">
                             <ul class="list-group">
@@ -34,9 +42,17 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
+                    <div style="display: flex">
+                        <div class="mb-2" style="width: 70%; margin-left: 15%;">
+                            <input @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
+                        </div>
+                        @if($basis == 0)
+                            <div style="margin-left: 2%; margin-top: 6px;">
+                                <i class="fa-solid fa-pen-to-square" style="cursor: pointer" wire:click="click_input_item"></i>
+                            </div>
+                        @endif
                     </div>
+
                     @if($basis != 0)
                         <div style="width: 66%; margin-left: 14%; position: absolute;">
                             <ul class="list-group">
@@ -52,40 +68,41 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit">
-                        @error('unit') <span style="color: red">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
-                        @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
-                    </div>
-
+                    @if($item_type == "sets")
+                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                            <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit">
+                            @error('unit') <span style="color: red">{{ $message }}</span> @enderror
+                        </div>
+                    @else
+                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                            <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
+                            @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
+                        </div>
+                    @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
                     </div>
 
-                    <div style="margin-left: 15%;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" wire:click="not_item_click" value="consumable">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Consumable
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Non-Consumable
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="sets">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Sets
-                            </label>
-                        </div>
-                    </div>
+    {{--                    <div style="margin-left: 15%;">--}}
+    {{--                        <div class="form-check">--}}
+    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" wire:click="not_item_click" value="consumable">--}}
+    {{--                            <label class="form-check-label" for="flexRadioDefault1">--}}
+    {{--                                Consumable--}}
+    {{--                            </label>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="form-check">--}}
+    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">--}}
+    {{--                            <label class="form-check-label" for="flexRadioDefault2">--}}
+    {{--                                Non-Consumable--}}
+    {{--                            </label>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="form-check">--}}
+    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" value="sets">--}}
+    {{--                            <label class="form-check-label" for="flexRadioDefault2">--}}
+    {{--                                Sets--}}
+    {{--                            </label>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                 </form>
             </div>

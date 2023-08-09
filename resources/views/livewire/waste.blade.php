@@ -44,7 +44,7 @@
                 <tbody>
                 @if(count($prepare_data) > 0)
                     @foreach($prepare_data as $preps)
-                        @if($preps->item_type == "non-consumable")
+                        @if($preps->item_type == "non-consumable" or $preps->item_type == "sets")
                             <tr>
                                 <td>
                                     {{$preps->unit}}

@@ -12,11 +12,16 @@ class Graph extends Component
     {
         $inv = \App\Models\Inventory::all();
         foreach ($inv as $invs){
-            $this->item_name[] = $invs->item_name;
-            $this->item_quantity[] = $invs->quantity;
+            if ($invs->item_type == "sets"){
+                $this->item_name[] = $invs->item_name;
+                $this->item_quantity[] = $invs->unit;
+            }
+            else{
+                $this->item_name[] = $invs->item_name;
+                $this->item_quantity[] = $invs->quantity;
+            }
         }
-        $this->lack_item = DB::table('inventories')->where('quantity', '<', 10)->get();
-
+        $this->lack_item = \App\Models\Inventory::all();
         return view('livewire.graph');
     }
 }

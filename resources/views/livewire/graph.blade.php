@@ -19,14 +19,25 @@
            <tbody>
                 @if(count($lack_item) > 0)
                     @foreach($lack_item as $lack)
-                        <tr>
-                            <td>
-                                {{ucfirst($lack->item_name)}}
-                            </td>
-                            <td>
-                                {{$lack->quantity}}
-                            </td>
-                        </tr>
+                        @if($lack->item_type == "sets" and $lack->unit <= 5)
+                            <tr>
+                                <td>
+                                    {{ucfirst($lack->item_name)}}
+                                </td>
+                                <td>
+                                    {{$lack->unit}}
+                                </td>
+                            </tr>
+                        @elseif($lack->quantity <= 10)
+                            <tr>
+                                <td>
+                                    {{ucfirst($lack->item_name)}}
+                                </td>
+                                <td>
+                                    {{$lack->quantity}}
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 @else
                     <tr>
@@ -76,7 +87,7 @@
         options: {
             scales: {
                 y: {
-                    max: 1000,
+                    max: 300,
                     min: 0,
                     ticks: {
                         stepSize: 50
