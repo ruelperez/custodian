@@ -1,5 +1,5 @@
 <div>
-    <h4 style="text-align: center; margin-top: 3%;">Waste Report</h4>
+    <h4 style="text-align: center; margin-top: 3%;">Request Report</h4>
     <div style="display: flex;">
         <div class="input-group mb-1" style="width: 30%; margin-left: 15%; margin-top: 3%;">
             <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
