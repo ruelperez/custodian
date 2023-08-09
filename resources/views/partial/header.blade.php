@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/design.css')}}">
     <style>
         .list-group-item {
             list-style: none; /* Remove bullet point */

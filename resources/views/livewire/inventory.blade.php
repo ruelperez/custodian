@@ -14,24 +14,27 @@
     </div>
     @include('modal.edit-inventory-modal')
     @if($searchInput == "")
-        <div style="background-color: #F5F5F5; margin-left: 1%;width: 98%;border: solid lightslategray 1px; margin-top: 0.5%; margin-bottom: 2%;">
-            <table class="table table-hover" style="width: 100%; text-align: center">
+        <div style="margin-left: 1%;width: 95%; margin-top: 0.5%; margin-bottom: 2%;">
+            <table class="table table-hover" style="background-color:#F8F8FF; width: 100%;">
                 <thead>
-                <tr>
+                <tr class="inv">
                     <th>
                         Unit
                     </th>
                     <th>
-                        Description
+                        Desc
                     </th>
                     <th>
                         Quantity
                     </th>
                     <th>
-                        Inventory Item No.
+                        Item No.
                     </th>
                     <th>
                         Item Type
+                    </th>
+                    <th colspan="2">
+                        Action
                     </th>
                 </tr>
 
@@ -46,14 +49,14 @@
                     @php $q=0; @endphp
                     @foreach($request_data as $data)
                         @if($q < 10)
-                            <tr>
-                                <td>{{$data->unit}}</td>
-                                <td>{{$data->item_name}}</td>
+                            <tr class="invs">
+                                <td >{{$data->unit}}</td>
+                                <td>{{ucfirst($data->item_name)}}</td>
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->inventory_number}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
-                                <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
+                                <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
                             </tr>
                         @endif
                         @php $q++; @endphp
@@ -63,24 +66,27 @@
             </table>
         </div>
     @else
-        <div style="background-color: #F5F5F5; margin-left: 1%;width: 98%;border: solid lightslategray 1px; margin-top: 0.5%; margin-bottom: 2%;">
-            <table class="table table-hover" style="width: 100%; text-align: center">
+        <div style="margin-left: 1%;width: 98%; margin-top: 0.5%; margin-bottom: 2%;">
+            <table class="table table-hover" style="background-color: #E6E6FA; width: 100%; text-align: left">
                 <thead>
-                <tr>
+                <tr class="invs">
                     <th>
                         Unit
                     </th>
                     <th>
-                        Description
+                        Desc
                     </th>
                     <th>
                         Quantity
                     </th>
                     <th>
-                        Inventory Item No.
+                        Item No.
                     </th>
                     <th>
                         Item Type
+                    </th>
+                    <th colspan="2">
+                        Action
                     </th>
                 </tr>
 
@@ -95,9 +101,9 @@
                     @php $q=0; @endphp
                     @foreach($result as $data)
                         @if($q < 10)
-                            <tr>
+                            <tr class="inv">
                                 <td>{{$data->unit}}</td>
-                                <td>{{$data->item_name}}</td>
+                                <td>{{ucfirst($data->item_name)}}</td>
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->inventory_number}}</td>
                                 <td>{{$data->item_type}}</td>
