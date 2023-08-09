@@ -22,12 +22,12 @@
 </head>
 <body>
 <div style="display: flex; background-color: #6495ED;">
-    <div style="margin-left: 28%; margin-top: 1%; padding-bottom: 1%">
-        <img src="{{asset('image/logo.jpg')}}" width="80">
+    <div style="margin-left: 5%; margin-top: 1%; padding-bottom: 1%">
+        <img src="{{asset('image/logo.jpg')}}" width="85">
     </div>
-    <div style="margin-left: 2%; padding-top: 1%;">
-        <h3 style="margin-left: 13%;">TANDAAY NATIONAL HIGH SCHOOL</h3>
-        <h3>PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h3>
+    <div style="padding-top: 2.5%; width: 15%;">
+        <h5 style="color: white; margin-left: 5%; text-align: center">TANDAAY NATIONAL HIGH SCHOOL</h5>
     </div>
-
+    <h4 style="color: white; margin-top: 3%; margin-left: 10%;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
 </div>
+

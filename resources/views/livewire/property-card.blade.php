@@ -23,7 +23,7 @@
             <div style="margin-left: 45%;">
                 <h4 style="text-align: center; margin-top: 3%;">{{ucwords($search)}}</h4>
             </div>
-            <div style="margin-left: 30%;">
+            <div style="margin-left: 27%;">
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
             </div>
         </div>

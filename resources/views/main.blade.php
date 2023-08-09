@@ -58,7 +58,7 @@
                 @elseif($reports == "property-card")
                     @livewire('property-card')
                 @elseif($reports == "waste-material")
-                    @livewire('waste-report')
+                    @livewire('request-report')
                 @elseif($reports == "purchase-report")
                     @livewire('purchase-report')
                 @endif
