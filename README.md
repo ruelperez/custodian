@@ -12,8 +12,9 @@
 
 1. Clone or download this repository [custodian](https://github.com/ruelperez/custodian)
 2. Create database name `costudian`
-3. Open the cloned project in your code editor.
-3. Open terminal and execute the following commands:
+3. Import `costudian.sql` located at [database/costudian.sql](database/costudian.sql)
+4. Open the cloned project in your code editor.
+5. Open terminal and execute the following commands:
 
 #### Install Backend dependencies:
     composer install
@@ -21,13 +22,13 @@
     cp .env.example .env
 #### Generate Application Key:
     php artisan key:generate
-#### Run Migration:
-    php artisan migrate
 #### Serve the Application:
     php artisan serve
 ### Production
 ### Login
 - Open <http://127.0.0.1:8000> in your web browser.
+- Username - admin
+- Password - admin
 
 ### Technologies Used
 #### Front-end
