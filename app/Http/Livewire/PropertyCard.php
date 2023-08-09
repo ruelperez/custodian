@@ -39,6 +39,7 @@ class PropertyCard extends Component
 
     public function find(){
         $this->display_table = "show";
+        $this->display_search = "hide";
         $this->stockcard_data = DB::table('property_cards')
             ->where('inventory_id',$this->inventory_id)
             ->take(6)

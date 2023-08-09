@@ -19,10 +19,10 @@
 
     @if($display_table == "show")
         <h5 style="text-align: center; margin-top: 3%;">{{ucwords($search_teacher)}}</h5>
-        <div style="background-color: #F5F5F5; margin-left: 15%;width: 70%;border: solid lightslategray 1px; margin-top: 1%; margin-bottom: 2%;">
+        <div style="margin-left: 15%;width: 70%;margin-top: 1%; margin-bottom: 2%;">
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
-                <tr>
+                <tr class="inv">
                     <th>
                         Unit
                     </th>
@@ -38,6 +38,9 @@
                     <th>
                         Date
                     </th>
+                    <th colspan="2">
+                        Action
+                    </th>
                 </tr>
                 </thead>
 
@@ -45,7 +48,7 @@
                 @if(count($prepare_data) > 0)
                     @foreach($prepare_data as $preps)
                         @if($preps->item_type == "non-consumable" or $preps->item_type == "sets")
-                            <tr>
+                            <tr class="invs">
                                 <td>
                                     {{$preps->unit}}
                                 </td>

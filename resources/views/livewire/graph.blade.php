@@ -5,7 +5,7 @@
     </div>
 
     <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
-        <table class="table table-hover" style="background-color: #E6E6FA;">
+        <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
             <thead>
                 <tr>
                     <th>

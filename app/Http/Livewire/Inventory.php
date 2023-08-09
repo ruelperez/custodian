@@ -15,13 +15,16 @@ class Inventory extends Component
         if ($this->searchInput != ""){
             $this->search();
         }
+        else{
+            $this->request_data = \App\Models\Inventory::all();
+        }
 
-        $this->request_data = \App\Models\Inventory::all();
+
         return view('livewire.inventory');
     }
 
     public function search(){
-        $this->result = DB::table('inventories')
+        $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
             ->get();
     }

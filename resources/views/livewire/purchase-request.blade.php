@@ -1,7 +1,7 @@
-<div style="display: flex;">
+<div style="display: flex; margin-right: 2%;">
     <div style="margin-top: 2%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Request</h5>
-        <div style="background-color: #F5F5F5; margin-left: 2%;margin-top: 5%; width: 100%; border: solid lightslategray 1px">
+        <div style="margin-left: 2%;margin-top: 5%; width: 100%;background-color:#F8F8FF; ">
             @if(session()->has('move'))
                 <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
                     {{ session('move') }}
@@ -12,7 +12,7 @@
                     {{ session('move_failed') }}
                 </div>
             @endif
-            <div style="display: flex;">
+            <div style="display: flex; padding-top: 2%;">
                 <button class="btn btn-success" style="margin-top: 1%; margin-left: 61%;" wire:click="move_to_backup">Move to Backup</button>
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 5%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-request.pdf',['request' => 'request'])}}'"></i>
             </div>
@@ -20,14 +20,14 @@
             @include('modal.add-request-modal')
             @include('modal.edit-request-modal')
 
-            <table class="table table-hover" style="width: 100%; text-align: center">
+            <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 2%;">
                 <thead>
-                <tr>
+                <tr style="background-color: #20B2AA; color: white">
                     <th>
                         Unit
                     </th>
                     <th>
-                        Item Description
+                        Description
                     </th>
                     <th>
                         Quantity
@@ -40,6 +40,9 @@
                     </th>
                     <th>
                         Item Type
+                    </th>
+                    <th colspan="2">
+                        Action
                     </th>
                 </tr>
 
@@ -73,7 +76,7 @@
     <div style="margin-top: 2%; margin-left: 0.5%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Order</h5>
 
-        <div style="background-color: #F5F5F5; margin-left: 2%;margin-top: 5%; width: 96%; border: solid lightslategray 1px">
+        <div style="background-color:#F8F8FF; margin-left: 2%;margin-top: 5%; width: 96%;">
             @if(session()->has('transfer'))
                 <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
                     {{ session('transfer') }}
@@ -85,21 +88,21 @@
                     </div>
                 @endif
             <div style="display: flex;">
-                <button class="btn btn-success" style="margin-top: 1%; margin-left: 58%;" wire:click="move_to_inventory">Move to Inventory</button>
+                <button class="btn btn-success" style="margin-top: 3%; margin-left: 58%;" wire:click="move_to_inventory">Move to Inventory</button>
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 5%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-order.pdf',['request' => 'order'])}}'"></i>
             </div>
             <div class="spinner-border spin" wire:loading wire:target="forward" style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
-                <table class="table table-hover" style="width: 100%; text-align: center" >
+                <table class="table table-hover" style="width: 100%; text-align: center;margin-top: 2%;" >
                     <thead>
-                    <tr>
+                    <tr style="background-color: #20B2AA; color: white">
                         <th>
                             Unit
                         </th>
                         <th>
-                            Item Description
+                           Description
                         </th>
                         <th>
                             Quantity
@@ -112,6 +115,9 @@
                         </th>
                         <th>
                             Item Type
+                        </th>
+                        <th colspan="2">
+                            Action
                         </th>
                     </tr>
 

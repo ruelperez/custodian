@@ -14,10 +14,10 @@
         </div>
     </div>
     @include('modal.edit-prepare-modal')
-    <div style="background-color: #F5F5F5; margin-left: 12%;width: 70%;border: solid lightslategray 1px; margin-top: 0.5%; margin-bottom: 2%;">
+    <div style="margin-left: 12%;width: 70%; margin-top: 0.5%; margin-bottom: 2%;">
         <table class="table table-hover" style="width: 100%; text-align: center">
             <thead>
-            <tr>
+            <tr class="inv">
                 <th>
                     Unit
                 </th>
@@ -36,6 +36,9 @@
                 <th>
                     Receiver
                 </th>
+                <th colspan="2">
+                    Action
+                </th>
             </tr>
 
             </thead>
@@ -49,7 +52,7 @@
                 @php $q=0; @endphp
                 @foreach($prepare_data as $data)
                     @if($q < 10)
-                        <tr>
+                        <tr class="invs">
                             <td>{{$data->unit}}</td>
                             <td>{{$data->item_name}}</td>
                             <td>{{$data->quantity}}</td>
