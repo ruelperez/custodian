@@ -2,37 +2,36 @@
 
 <div style="display: flex">
 
-    <div style="width: 19%;">
+    <div style="width: 19%; background-color: #4682B4">
         <div style="text-align: center; margin-top: 5%;">
             <img src="{{ asset('image/profile.jpg') }}" width="50%">
-            <h5>ADMIN</h5>
-            <form action="/Dashboard/logout" method="POST">
+            <h5 style="color: white; margin-top: 5%;">ADMIN</h5>
+            <form action="/Dashboard/logout" method="POST" style="margin-top: 5%;">
                 @csrf
-                <button type="submit" style="border: none; background-color: white; color: blue; cursor: pointer;">Logout</button>
+                <button type="submit" style="border: none;border-radius: 25px; width: 35%; background-color: white; color: blue; cursor: pointer;">Logout</button>
             </form>
 
         </div>
-        <div>
-            <ul class="list-group" style="width: 100%; margin-top: 40px; padding-left: 0px; text-align: center;" >
-                <li class="list-group-item btn" style="@if($option == "graph") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px; cursor: pointer; "  onclick="location.href = '/Dashboard/graph/';">
-                    GRAPH
-                </li>
-                <li class="list-group-item btn" style="@if($option == "purchase") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px;cursor: pointer;"  onclick="location.href = '/Dashboard/purchase/';">
-                    PURCHASE REQUEST
-                </li>
-                <li class="list-group-item btn" style="@if($option == "inventory") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px;cursor: pointer;"  onclick="location.href = '/Dashboard/inventory/';">
-                    INVENTORY
-                </li>
-                <li class="list-group-item btn" style="@if($option == "prepare") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px;cursor: pointer;"  onclick="location.href = '/Dashboard/prepare/';">
-                    PREPARE MATERIAL REQUEST
-                </li>
-                <li class="list-group-item btn" style="@if($option == "waste") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px;cursor: pointer;"  onclick="location.href = '/Dashboard/waste/';">
-                    PREPARE WASTE MATERIAL REQUEST
-                </li>
-                <li class="list-group-item btn" style="@if($option == "report") background-color: #20B2AA; color: white; @endif padding-bottom: 5px; padding-top: 5px;cursor: pointer;"  onclick="location.href = '/Dashboard/report/';">
-                    REPORTS
-                </li>
-            </ul>
+        <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
+        <div style="margin-top: 3%;" class="navig">
+            <div onclick="location.href = '/Dashboard/graph/';">
+                GRAPH
+            </div>
+            <div onclick="location.href = '/Dashboard/purchase/';">
+                PURCHASE REQUEST
+            </div>
+            <div onclick="location.href = '/Dashboard/inventory/';">
+                INVENTORY
+            </div>
+            <div onclick="location.href = '/Dashboard/prepare/';" >
+                PREPARE MATERIAL REQUEST
+            </div>
+            <div onclick="location.href = '/Dashboard/waste/';">
+                PREPARE WASTE MATERIAL REQUEST
+            </div>
+            <div onclick="location.href = '/Dashboard/report/';">
+                REPORTS
+            </div>
         </div>
     </div>
     <div style="width: 81%; margin-left: 3%;">
