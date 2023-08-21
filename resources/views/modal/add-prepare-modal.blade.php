@@ -82,27 +82,6 @@
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
                     </div>
-
-    {{--                    <div style="margin-left: 15%;">--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" wire:click="not_item_click" value="consumable">--}}
-    {{--                            <label class="form-check-label" for="flexRadioDefault1">--}}
-    {{--                                Consumable--}}
-    {{--                            </label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">--}}
-    {{--                            <label class="form-check-label" for="flexRadioDefault2">--}}
-    {{--                                Non-Consumable--}}
-    {{--                            </label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="radio" wire:model="item_type" value="sets">--}}
-    {{--                            <label class="form-check-label" for="flexRadioDefault2">--}}
-    {{--                                Sets--}}
-    {{--                            </label>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                 </form>
             </div>

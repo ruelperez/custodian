@@ -30,6 +30,9 @@
             <div onclick="location.href = '/Dashboard/waste/';">
                 PREPARE WASTE MATERIAL REQUEST
             </div>
+            <div onclick="location.href = '/Dashboard/deployed/';">
+                DEPLOYED ITEM
+            </div>
             <div onclick="location.href = '/Dashboard/report/';">
                 REPORTS
             </div>
@@ -50,6 +53,9 @@
         </div>
         <div style="@if($option != "waste") display: none; @endif">
             @livewire('waste')
+        </div>
+        <div style="@if($option != "deployed") display: none; @endif">
+            @livewire('deployed')
         </div>
         <div style="@if($option != "report") display: none; @endif">
             @if(isset($reports))

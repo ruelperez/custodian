@@ -82,6 +82,8 @@ class Prepare extends Component
             $this->receiver = "";
             $this->serial = "";
             session()->flash('dataAdded',"Successfully Added");
+            $this->receiver_disable = 0;
+            $this->item_disable = 0;
         }
         catch (\Exception $e){
             session()->flash('dataError',"Failed to Add");
