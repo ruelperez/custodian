@@ -4,7 +4,8 @@
 
     <div style="width: 19%; background-color: #4682B4">
         <div style="text-align: center; margin-top: 5%;">
-            <img src="{{ asset('image/profile.jpg') }}" width="50%">
+{{--            <img src="{{ asset('image/profile.jpg') }}" width="50%">--}}
+            <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
             <h5 style="color: white; margin-top: 5%;">ADMIN</h5>
             <form action="/Dashboard/logout" method="POST" style="margin-top: 5%;">
                 @csrf
