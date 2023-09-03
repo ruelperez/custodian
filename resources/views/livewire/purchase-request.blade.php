@@ -71,7 +71,7 @@
             </table>
         </div>
     </div>
-    <i class="fa-solid fa-circle-arrow-right" style="font-size: 30px; margin-left: 2%; margin-top: 22%; cursor: pointer;" title="Forward to Purchase Order" wire:click="forward" wire:loading.attr="disabled"></i>
+    <i class="fa-solid fa-circle-arrow-right" style="font-size: 30px; margin-left: 2%; margin-top: 22%; cursor: pointer;" title="Forward to Purchase Order" onclick="forward()"></i>
 
     <div style="margin-top: 2%; margin-left: 0.5%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Order</h5>
@@ -91,7 +91,7 @@
                 <button class="btn btn-success" style="margin-top: 3%; margin-left: 58%;" wire:click="move_to_inventory">Move to Inventory</button>
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="margin-left: 5%; margin-top: 1%; font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-order.pdf',['request' => 'order'])}}'"></i>
             </div>
-            <div class="spinner-border spin" wire:loading wire:target="forward" style="margin-left:45%;">
+            <div style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
@@ -147,7 +147,10 @@
                 </table>
         </div>
     </div>
-
-
-
 </div>
+<script>
+    function forward(){
+        if (confirm("Are you sure to forward the data to purchase order???"))
+            window.livewire.emit('move');
+    }
+</script>

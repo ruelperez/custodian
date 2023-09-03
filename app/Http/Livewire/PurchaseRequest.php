@@ -205,6 +205,10 @@ class PurchaseRequest extends Component
 
     }
 
+    protected $listeners = [
+        'move' => 'forward'
+    ];
+
     public function forward(){
        $request_data = Request::all();
        foreach ($request_data as $data){
