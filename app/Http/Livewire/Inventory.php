@@ -4,28 +4,32 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 
 class Inventory extends Component
 {
-    public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
+    use WithPagination;
+
+    public $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
             $item_type = "consumable", $ng=0;
 
     public function render()
     {
         if ($this->searchInput != ""){
             $this->search();
+            $request = $this->result;
         }
         else{
-            $this->request_data = \App\Models\Inventory::all();
+            $request = \App\Models\Inventory::latest()->paginate(10);
         }
 
-
-        return view('livewire.inventory');
+        return view('livewire.inventory',['request_data' => $request]);
     }
 
     public function search(){
-        $this->request_data = DB::table('inventories')
-            ->where('item_name','LIKE', '%'.$this->searchInput.'%')
+        $this->result = DB::table('inventories')
+            ->where('item_name','LIKE', '%'.$this->searchInput.'%')->take(10)
             ->get();
     }
 
