@@ -24,49 +24,23 @@
                 <thead>
                 <tr class="inv">
                     <th>
-                        Unit
+                        Date Deployed
                     </th>
                     <th>
-                        Description
-                    </th>
-                    <th>
-                        Quantity
-                    </th>
-                    <th>
-                        Serial No.
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th colspan="2">
                         Action
                     </th>
                 </tr>
                 </thead>
-
                 <tbody>
                 @if(count($prepare_data) > 0)
                     @foreach($prepare_data as $preps)
-                        @if($preps->item_type == "non-consumable" or $preps->item_type == "sets")
-                            <tr class="invs">
-                                <td>
-                                    {{$preps->unit}}
-                                </td>
-                                <td>
-                                    {{$preps->item_name}}
-                                </td>
-                                <td>
-                                    {{$preps->quantity}}
-                                </td>
-                                <td>
-                                    {{$preps->serial}}
-                                </td>
-                                <td>
-                                    {{$preps->created_at}}
-                                </td>
-                                <td><i class="fa-solid fa-circle-xmark" wire:click="delete_click({{$preps->id}})" style="color: red; cursor: pointer; font-size: 20px;" data-bs-toggle="modal" data-bs-target="#waste_delete_modal"></i></td>
-                            </tr>
-                        @endif
+                        <tr class="invs">
+                            <td>
+                                {{$preps->created_at}}
+                            </td>
+
+                            <td>@livewire('view-button',['date' => $preps->created_at])</td>
+                        </tr>
                     @endforeach
                 @else
                     <tr>
@@ -80,5 +54,72 @@
                 </tbody>
             </table>
         </div>
+{{--        <div style="margin-left: 15%;width: 70%;margin-top: 1%; margin-bottom: 2%;">--}}
+{{--            <table class="table table-hover" style="width: 100%; text-align: center">--}}
+{{--                <thead>--}}
+{{--                <tr class="inv">--}}
+{{--                    <th>--}}
+{{--                        Unit--}}
+{{--                    </th>--}}
+{{--                    <th>--}}
+{{--                        Description--}}
+{{--                    </th>--}}
+{{--                    <th>--}}
+{{--                        Quantity--}}
+{{--                    </th>--}}
+{{--                    <th>--}}
+{{--                        Serial No.--}}
+{{--                    </th>--}}
+{{--                    <th>--}}
+{{--                        Date--}}
+{{--                    </th>--}}
+{{--                    <th colspan="2">--}}
+{{--                        Action--}}
+{{--                    </th>--}}
+{{--                </tr>--}}
+{{--                </thead>--}}
+
+{{--                <tbody>--}}
+{{--                @if(count($prepare_data) > 0)--}}
+{{--                    @foreach($prepare_data as $preps)--}}
+{{--                        @if($preps->item_type == "non-consumable" or $preps->item_type == "sets")--}}
+{{--                            <tr class="invs">--}}
+{{--                                <td>--}}
+{{--                                    {{$preps->unit}}--}}
+{{--                                </td>--}}
+{{--                                <td>--}}
+{{--                                    {{$preps->item_name}}--}}
+{{--                                </td>--}}
+{{--                                <td>--}}
+{{--                                    {{$preps->quantity}}--}}
+{{--                                </td>--}}
+{{--                                <td>--}}
+{{--                                    {{$preps->serial}}--}}
+{{--                                </td>--}}
+{{--                                <td>--}}
+{{--                                    {{$preps->created_at}}--}}
+{{--                                </td>--}}
+{{--                                <td><i class="fa-solid fa-circle-xmark" wire:click="delete_click({{$preps->id}})" style="color: red; cursor: pointer; font-size: 20px;" data-bs-toggle="modal" data-bs-target="#waste_delete_modal"></i></td>--}}
+{{--                            </tr>--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                @else--}}
+{{--                    <tr>--}}
+{{--                        <td colspan="6">--}}
+{{--                            No Item Posted--}}
+{{--                        </td>--}}
+
+{{--                    </tr>--}}
+{{--                @endif--}}
+
+{{--                </tbody>--}}
+{{--            </table>--}}
+{{--        </div>--}}
     @endif
 </div>
+
+<script>
+    function see(data){
+        window.livewire.emit('seen', data);
+    }
+</script>
