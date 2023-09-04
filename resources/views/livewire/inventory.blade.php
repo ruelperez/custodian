@@ -8,9 +8,6 @@
         <div style="width: 25%; margin-left: 3%;">
             <input type="text" placeholder="Search Item" wire:model.debounce.1ms="searchInput" style="width: 100%; padding: 1%; margin-top: 2%;">
         </div>
-        <div style="margin-left: 52%;">
-            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 35px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
-        </div>
     </div>
     @include('modal.edit-inventory-modal')
         <div style="margin-left: 1%;width: 95%; margin-top: 0.5%; margin-bottom: 2%;">
