@@ -8,10 +8,7 @@
         <div style="width: 25%; margin-left: 3%;">
             <input type="text" placeholder="Search Item" wire:model.debounce.1ms="searchInput" style="width: 100%; padding: 1%; margin-top: 2%;">
         </div>
-        <div style="margin-left: 10%; display: flex; margin-top:1%; ">
-            {{$request_data->links('pagination')}}
-        </div>
-        <div style="margin-left: 20%;">
+        <div style="margin-left: 52%;">
             <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 35px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
@@ -47,16 +44,20 @@
                     </tr>
 
                 @else
+                    @php $q=0; @endphp
                     @foreach($request_data as $data)
-                        <tr class="invs">
-                            <td >{{$data->unit}}</td>
-                            <td>{{ucfirst($data->item_name)}}</td>
-                            <td>{{$data->quantity}}</td>
-                            <td>{{$data->inventory_number}}</td>
-                            <td>{{$data->item_type}}</td>
-                            <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
-                            <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
-                        </tr>
+                        @if($q < 10)
+                            <tr class="invs">
+                                <td >{{$data->unit}}</td>
+                                <td>{{ucfirst($data->item_name)}}</td>
+                                <td>{{$data->quantity}}</td>
+                                <td>{{$data->inventory_number}}</td>
+                                <td>{{$data->item_type}}</td>
+                                <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
+                                <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
+                            </tr>
+                        @endif
+                        @php $q++; @endphp
                     @endforeach
                 @endif
                 </tbody>
