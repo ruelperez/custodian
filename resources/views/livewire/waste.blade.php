@@ -3,7 +3,7 @@
     <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Prepare Waste Material Request</h5>
     <div class="input-group mb-1" style="width: 40%; margin-left: 30%; margin-top: 3%;">
         <input type="text" wire:model.debounce.1ms="search_teacher" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <span class="input-group-text" wire:click="find" id="basic-addon2" style="cursor: pointer;">Search</span>
+        <span class="input-group-text" @if($display_table == "hide") wire:click="find" @endif id="basic-addon2" style="cursor: pointer;">Search</span>
     </div>
     @if($display_search == "show")
         <div style="width: 34%; margin-left: 30%;">
