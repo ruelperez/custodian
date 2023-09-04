@@ -1,7 +1,7 @@
 <div>
     @include('modal.add-prepare-modal')
     @include('modal.deploy-confirmation')
-    <h4 style="text-align: center; margin-top: 3%;">Prepare Material Request</h4>
+    <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Prepare Material Request</h5>
     <div style="display: flex; margin-top: 3%;">
         <div style="margin-left: 12%; width: 12%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_prepare_modal">Add</button>
