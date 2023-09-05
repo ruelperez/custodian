@@ -1,11 +1,11 @@
 .invs td {
     padding-left: 3%;
     background-color:#F8F8FF;
-    text-align: left;
+    text-align: center;
 }
 .inv th {
-    padding-left: 3%;
-    text-align: left;
+    text-align: center;
+    width: 50%;
 }
 .inv {
     background-color: #20B2AA;

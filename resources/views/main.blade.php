@@ -51,9 +51,15 @@
         <div style="@if($option != "prepare") display: none; @endif">
             @livewire('prepare')
         </div>
-        <div style="@if($option != "waste") display: none; @endif">
+        @if(isset($reports))
+            @if($option == "waste" and $reports == "view")
+            <div>
+fgunynur
+            </div>
+            @endif
+        @elseif($option == "waste")
             @livewire('waste')
-        </div>
+        @endif
         <div style="@if($option != "deployed") display: none; @endif">
             @livewire('deployed')
         </div>
