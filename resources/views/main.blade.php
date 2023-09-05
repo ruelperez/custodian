@@ -54,7 +54,7 @@
         @if(isset($reports))
             @if($option == "waste" and $reports == "view")
             <div>
-fgunynur
+                @livewire('waste-item',['teacher_id' => $teacher_id])
             </div>
             @endif
         @elseif($option == "waste")
