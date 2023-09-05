@@ -40,22 +40,9 @@ class Waste extends Component
 
     public function find(){
         $this->display_table = "show";
-//        $this->prepare_data = DB::table('backup_prepares')
-//            ->where('receiver','LIKE', '%'.$this->search_teacher.'%')
-//            ->get();
         $this->prepare_data = DB::table('backup_prepares')
-            ->select('created_at')
-            ->where('receiver','=',$this->search_teacher)
-            ->where('item_type', '!=','consumable')
-          ->distinct()
+            ->where('receiver','LIKE', '%'.$this->search_teacher.'%')
             ->get();
-
-//        $posts = DB::table('backup_prepares')->select(DB::raw('DATE(created_at) as created_date'))
-//            ->where('receiver','=',$this->search_teacher)
-//            ->where('item_type', '!=','consumable')
-//            ->distinct()
-//            ->get();
-//        dd($posts);
     }
 
 
@@ -94,5 +81,4 @@ class Waste extends Component
         $this->display_search = "show";
         $this->display_table = "hide";
     }
-
 }
