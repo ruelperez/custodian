@@ -87,10 +87,10 @@
                     </div>
                     <div style="display: flex; margin-top: 4%">
                         <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/waste-material';">
-                            Purchase Request
+                            Request Report
                         </div>
                         <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/report/purchase-report';">
-                            Purchase Order
+                            Purchase Report
                         </div>
                     </div>
                 </div>
