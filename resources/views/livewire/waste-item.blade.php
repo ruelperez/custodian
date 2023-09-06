@@ -1,6 +1,20 @@
 <div>
     <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Prepare Waste Material Request</h5>
     <h6 style="text-align: left; margin-top: 3%; margin-left: 1%;">{{ucwords($teacher_name->fullname)}}</h6>
+    <div style="display: flex; margin-left: 50%;">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Print
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver">
+                <li><button class="dropdown-item" type="button">Request Form</button></li>
+                <li><button class="dropdown-item" type="button">PWMR Form</button></li>
+            </ul>
+        </div>
+        <div>
+`            <button>Fininsh</button>
+        </div>
+    </div>
     <div style="display: flex; width: 100%; border: solid black 1px;">
         <div style="width: 50%; border: solid black 1px;">
             <table>

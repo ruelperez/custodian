@@ -14,7 +14,7 @@
             @endif
             <div style="display: flex; padding-top: 2%;">
                 <button class="btn btn-success" style="margin-top: 1%; margin-left: 61%;" wire:click="move_to_backup" @if(count($request_data) == 0) disabled @endif>Move to Backup</button>
-                <i class="fa-solid fa-print" title="Save Form" style="margin-left: 5%; margin-top: 1%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-request.pdf',['request' => 'request'])}}'"></i>
+                <i class="fa-solid fa-print" title="Save Form" style="margin-left: 5%; margin-top: 1%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request';"></i>
             </div>
             <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
             @include('modal.add-request-modal')
@@ -89,7 +89,7 @@
                 @endif
             <div style="display: flex;">
                 <button class="btn btn-success" style="margin-top: 3%; margin-left: 58%;" wire:click="move_to_inventory" @if(count($order_data) == 0) disabled @endif>Move to Inventory</button>
-                <i title="Save Form" class="fa-solid fa-print" style="@if(count($order_data) == 0) pointer-events: none; @endif margin-left: 5%; margin-top: 3%; font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-order.pdf',['request' => 'order'])}}'"></i>
+                <i title="Save Form" class="fa-solid fa-print" style="@if(count($order_data) == 0) pointer-events: none; @endif margin-left: 5%; margin-top: 3%; font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/order';"></i>
             </div>
             <div style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
