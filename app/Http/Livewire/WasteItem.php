@@ -10,13 +10,28 @@ use Livewire\Component;
 
 class WasteItem extends Component
 {
-    public $receiver_id, $movedData, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $qtyNotModel, $waste_id, $unitNotModel, $movedData, $qty, $unit, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
     public function render()
     {
+        if ($this->qty != ""){
+            $this->qtyValidator();
+        }
         $this->displayData();
         $this->displayMoved();
         return view('livewire.waste-item');
+    }
+
+    public function qtyValidator(){
+        if (!is_numeric($this->qty)){
+            session()->flash('notNumber',"Input numbers only");
+        }
+        elseif ($this->qtyNotModel >= $this->qty){
+
+        }
+        else{
+            session()->flash('failed', $this->qtyNotModel." ".$this->item_name." available");
+        }
     }
 
     public function mount($teacher_id){
@@ -72,4 +87,25 @@ class WasteItem extends Component
         ]);
         MovedItem::find($id)->delete();
     }
+
+    public function clickArrow($id){
+        $data = BackupPrepare::find($id);
+        $this->item_name = $data->item_name;
+        $this->waste_id = $id;
+        $this->qtyNotModel = $data->quantity;
+        $this->unitNotModel = $data->unit;
+    }
+
+    public function submitMove(){
+        if ($this->qtyNotModel >= $this->qty){
+            $data = BackupPrepare::find($this->waste_id);
+            $newQty = $data->quantity - $this->qty;
+            $data->quantity = $newQty;
+            $data->save();
+        }
+        else{
+            session()->flash('failed',"Insufficient");
+        }
+    }
+
 }
