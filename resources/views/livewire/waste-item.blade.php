@@ -97,6 +97,9 @@
                 @foreach($movedData as $data)
                     <tr style="cursor: pointer">
                         <td>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </td>
+                        <td>
                             {{$data->item_name}}
                         </td>
                         <td>
