@@ -23,7 +23,16 @@
                         </div>
                         <div>
                             <label for="fname">Unit</label>
-                            <input type="text" wire:model="unit" required>
+                            <input type="text" wire:model.debounce.10ms="unit" required>
+                            @if(session()->has('failedUnit'))
+                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
+                                    {{ session('failedUnit') }}
+                                </div>
+                            @elseif(session()->has('notNumberUnit'))
+                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
+                                    {{ session('notNumberUnit') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

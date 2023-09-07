@@ -17,6 +17,9 @@ class WasteItem extends Component
         if ($this->qty != ""){
             $this->qtyValidator();
         }
+        if ($this->unit != ""){
+            $this->unitValidator();
+        }
         $this->displayData();
         $this->displayMoved();
         return view('livewire.waste-item');
@@ -30,7 +33,19 @@ class WasteItem extends Component
 
         }
         else{
-            session()->flash('failed', $this->qtyNotModel." ".$this->item_name." available");
+            session()->flash('failed', $this->qtyNotModel." quantity available");
+        }
+    }
+
+    public function unitValidator(){
+        if (!is_numeric($this->unit)){
+            session()->flash('notNumberUnit',"Input numbers only");
+        }
+        elseif ($this->unitNotModel >= $this->unit){
+
+        }
+        else{
+            session()->flash('failedUnit', $this->unitNotModel." quantity available");
         }
     }
 
