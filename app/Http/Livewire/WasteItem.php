@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class WasteItem extends Component
 {
-    public $receiver_id, $qtyNotModel, $waste_id, $unitNotModel, $movedData, $qty, $unit, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $qtyPass = 0, $unitPass = 0, $qtyNotModel, $waste_id, $unitNotModel, $movedData, $qty = 0, $unit = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
     public function render()
     {
@@ -28,24 +28,28 @@ class WasteItem extends Component
     public function qtyValidator(){
         if (!is_numeric($this->qty)){
             session()->flash('notNumber',"Input numbers only");
+            $this->qtyPass = 0;
         }
         elseif ($this->qtyNotModel >= $this->qty){
-
+            $this->qtyPass = 1;
         }
         else{
             session()->flash('failed', $this->qtyNotModel." quantity available");
+            $this->qtyPass = 0;
         }
     }
 
     public function unitValidator(){
         if (!is_numeric($this->unit)){
             session()->flash('notNumberUnit',"Input numbers only");
+            $this->unitPass = 0;
         }
         elseif ($this->unitNotModel >= $this->unit){
-
+            $this->unitPass = 1;
         }
         else{
             session()->flash('failedUnit', $this->unitNotModel." quantity available");
+            $this->unitPass = 0;
         }
     }
 
@@ -64,29 +68,19 @@ class WasteItem extends Component
     public function displayMoved(){
         $this->movedData = MovedItem::where('receiver', $this->receiver_name)->get();
     }
-
-    public function handleMouseOver($id){
-        $this->hover_id = $id;
-        $this->ff = 1;
-    }
-
-    public function mouseOut(){
-        $this->ff = 0;
-    }
-
-    public function clickMove($id){
-        $data = BackupPrepare::find($id);
+    public function clickMove(){
+        $data = BackupPrepare::find($this->waste_id);
         MovedItem::create([
             'item_name' => $data->item_name,
-            'quantity' => $data->quantity,
-            'unit' => $data->unit,
+            'quantity' => $this->qty,
+            'unit' => $this->unit,
             'receiver' => $data->receiver,
             'item_type' => $data->item_type,
             'serial' => $data->serial,
             'created_at' => $data->created_at,
-
         ]);
-        BackupPrepare::find($id)->delete();
+        $this->qty = 0;
+        $this->unit = 0;
     }
 
     public function clickMoveBack($id){
@@ -112,14 +106,18 @@ class WasteItem extends Component
     }
 
     public function submitMove(){
-        if ($this->qtyNotModel >= $this->qty){
+        if ($this->qtyPass == 1 and $this->unitPass == 1){
             $data = BackupPrepare::find($this->waste_id);
             $newQty = $data->quantity - $this->qty;
+            $newUnit = $data->unit - $this->unit;
             $data->quantity = $newQty;
+            $data->unit = $newUnit;
             $data->save();
+            $this->clickMove();
         }
         else{
-            session()->flash('failed',"Insufficient");
+            dd('haha');
+            return;
         }
     }
 

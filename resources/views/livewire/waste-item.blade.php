@@ -18,7 +18,7 @@
     </div>
     <div style="display: flex; width: 100%; border: solid black 1px;">
         <div style="width: 50%; border: solid black 1px;">
-            <table>
+            <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                     <tr>
                         <th>
@@ -48,10 +48,14 @@
                                     {{$data->item_name}}
                                 </td>
                                 <td>
-                                    {{$data->quantity}}
+                                    @if($data->quantity > 0)
+                                        {{$data->quantity}}
+                                    @endif
                                 </td>
                                 <td>
-                                    {{$data->unit}}
+                                    @if($data->unit > 0)
+                                        {{$data->unit}}
+                                    @endif
                                 </td>
                                 <td>
                                     {{$data->serial}}
@@ -69,11 +73,17 @@
             </table>
         </div>
         <div style="width: 50%; border: solid black 1px;">
-            <table>
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>
                         Deployed Item
+                    </th>
+                    <th>
+                        Qty
+                    </th>
+                    <th>
+                        Unit
                     </th>
                     <th>
                         Serial No.
@@ -85,9 +95,15 @@
                 </thead>
                 <tbody>
                 @foreach($movedData as $data)
-                    <tr style="cursor: pointer" wire:mouseover="handleMouseOver({{$data->id}})" wire:mouseout="mouseOut">
+                    <tr style="cursor: pointer">
                         <td>
                             {{$data->item_name}}
+                        </td>
+                        <td>
+                            {{$data->quantity}}
+                        </td>
+                        <td>
+                            {{$data->unit}}
                         </td>
                         <td>
                             {{$data->serial}}
@@ -95,13 +111,6 @@
                         <td>
                             {{$data->created_at}}
                         </td>
-                        @if($ff == 1)
-                            @if($hover_id == $data->id)
-                                <td wire:click="clickMoveBack({{$data->id}})">
-                                    move back
-                                </td>
-                            @endif
-                        @endif
                     </tr>
 
                 @endforeach
