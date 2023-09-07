@@ -17,11 +17,11 @@
                         </div>
                     @endif
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
+                        <input type="text" id="request-searchInput" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
                     </div>
                     @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
                     @if($basis != 0)
-                        <div style="width: 66%; margin-left: 14%; position: absolute;">
+                        <div id="request-searchSuggestions" style="width: 66%; margin-left: 14%; position: absolute; @if($basis == 0) display: none; @endif ">
                             <ul class="list-group">
                                 @php $h=0; @endphp
                                 @foreach($result as $data)
@@ -77,3 +77,5 @@
         </div>
     </div>
 </div>
+
+

@@ -206,8 +206,15 @@ class PurchaseRequest extends Component
     }
 
     protected $listeners = [
-        'move' => 'forward'
+        'move' => 'forward',
+        'removeSuggest' => 'hideSuggest',
     ];
+
+    public function hideSuggest(){
+        $this->basis = 0;
+        $this->pick = 1;
+//        dd($this->basis);
+    }
 
     public function forward(){
        $request_data = Request::all();

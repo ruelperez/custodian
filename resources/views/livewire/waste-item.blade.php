@@ -97,9 +97,6 @@
                 @foreach($movedData as $data)
                     <tr style="cursor: pointer">
                         <td>
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </td>
-                        <td>
                             {{$data->item_name}}
                         </td>
                         <td>
@@ -114,6 +111,9 @@
                         <td>
                             {{$data->created_at}}
                         </td>
+                        <td>
+                            <i class="fa-solid fa-xmark" onclick="removeItemMoved({{$data->id}})"></i>
+                        </td>
                     </tr>
 
                 @endforeach
@@ -123,3 +123,8 @@
 
     </div>
 </div>
+<script>
+    function removeItemMoved(id){
+        alert(id);
+    }
+</script>

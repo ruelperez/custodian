@@ -149,8 +149,32 @@
     </div>
 </div>
 <script>
+
     function forward(){
         if (confirm("Are you sure to forward the data to purchase order???"))
             window.livewire.emit('move');
     }
+
+    const searchInput = document.getElementById('request-searchInput');
+    const searchSuggestions = document.getElementById('request-searchSuggestions');
+
+    // Event listener for clicking outside of the search container
+    document.addEventListener('click', function (event) {
+        if (!searchInput.contains(event.target)) {
+            window.livewire.emit('removeSuggest');
+        }
+    });
+
+    // Function to show search suggestions
+    function showSuggestions() {
+        searchSuggestions.style.display = 'block';
+
+    }
+
+    // Function to hide search suggestions
+    function hideSuggestions() {
+        searchSuggestions.hide();
+    }
+
+
 </script>
