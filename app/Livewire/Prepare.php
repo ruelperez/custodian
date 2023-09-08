@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\Receiver;
-use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 

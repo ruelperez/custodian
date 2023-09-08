@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\MovedItem;
 use App\Models\Receiver;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class WasteItem extends Component

@@ -7,46 +7,46 @@
     <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
         <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
             <thead>
-                <tr>
-                    <th>
-                        Insufficient Item
-                    </th>
-                    <th>
-                        Qty
-                    </th>
-                </tr>
+            <tr>
+                <th>
+                    Insufficient Item
+                </th>
+                <th>
+                    Qty
+                </th>
+            </tr>
             </thead>
-           <tbody>
-                @if(count($lack_item) > 0)
-                    @foreach($lack_item as $lack)
-                        @if($lack->item_type == "sets" and $lack->unit <= 5)
-                            <tr>
-                                <td>
-                                    {{ucfirst($lack->item_name)}}
-                                </td>
-                                <td>
-                                    {{$lack->unit}}
-                                </td>
-                            </tr>
-                        @elseif($lack->quantity <= 10)
-                            <tr>
-                                <td>
-                                    {{ucfirst($lack->item_name)}}
-                                </td>
-                                <td>
-                                    {{$lack->quantity}}
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="2" style="text-align: center">
-                            None
-                        </td>
-                    </tr>
-                @endif
-           </tbody>
+            <tbody>
+            @if(count($lack_item) > 0)
+                @foreach($lack_item as $lack)
+                    @if($lack->item_type == "sets" and $lack->unit <= 5)
+                        <tr>
+                            <td>
+                                {{ucfirst($lack->item_name)}}
+                            </td>
+                            <td>
+                                {{$lack->unit}}
+                            </td>
+                        </tr>
+                    @elseif($lack->quantity <= 10)
+                        <tr>
+                            <td>
+                                {{ucfirst($lack->item_name)}}
+                            </td>
+                            <td>
+                                {{$lack->quantity}}
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="2" style="text-align: center">
+                        None
+                    </td>
+                </tr>
+            @endif
+            </tbody>
         </table>
     </div>
 </div>

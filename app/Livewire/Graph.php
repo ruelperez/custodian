@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Graph extends Component
