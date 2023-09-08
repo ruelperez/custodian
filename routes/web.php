@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('Dashboard')->middleware('auth')->group(function (){
-    Route::get('/{option}', function ($option){
-        return view('main', ['option' => $option]);
+    Route::get('/custodian', function (){
+        return view('main');
     });
     Route::get('/data/{option}/{reports}', function ($option,$reports){
         return view('main', ['option' => $option, 'reports' => $reports]);

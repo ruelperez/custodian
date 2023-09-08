@@ -1,6 +1,5 @@
 <div>
     @include('modal.move-modal')
-    <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Prepare Waste Material Request</h5>
     <h6 style="text-align: left; margin-top: 3%; margin-left: 1%;">{{ucwords($teacher_name->fullname)}}</h6>
     <div style="display: flex; margin-left: 50%;">
         <div class="dropdown">

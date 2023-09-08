@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Waste extends Component
 {
-    public $search_teacher, $item_condition="good", $display_search= "show", $rf=0, $delete_id, $result, $display_table = "hide", $prepare_data;
+    public $search_teacher, $receiver_id, $tg = 0, $item_condition="good", $display_search= "show", $rf=0, $delete_id, $result, $display_table = "hide", $prepare_data;
 
     public function render()
     {
@@ -31,5 +31,14 @@ class Waste extends Component
 
     public function allTeachers(){
         $this->result = Receiver::all();
+    }
+
+    public function clickView($id){
+        $this->receiver_id = $id;
+        $this->tg = 1;
+    }
+
+    public function backButton(){
+        $this->tg = 0;
     }
 }

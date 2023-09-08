@@ -16,7 +16,7 @@ class UserController extends Controller
         if(auth()->attempt($validated)){
             $request->session()->regenerate();
 
-            return redirect('/Dashboard/graph');
+            return redirect('/Dashboard/custodian');
         }
         return back()->withErrors(['username' => 'login failed']);
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/Dashboard/graph');
+        return redirect('/Dashboard/custodian');
     }
 
     public function logout(Request $request){
