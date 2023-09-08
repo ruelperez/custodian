@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Http\Livewire;
 
+use App\Models\BackupPrepare;
+use App\Models\BackupWaste;
 use App\Models\Receiver;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
