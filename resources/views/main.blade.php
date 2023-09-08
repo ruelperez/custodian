@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+{{--    @livewire('han')--}}
     <div style="width: 81%; margin-left: 3%;">
         <div style="@if($option != "graph") display: none; @endif">
             @livewire('graph')
