@@ -78,6 +78,7 @@ class WasteItem extends Component
             'item_type' => $data->item_type,
             'serial' => $data->serial,
             'created_at' => $data->created_at,
+            'backup_prepare_id' => $this->waste_id,
         ]);
         $this->qty = 0;
         $this->unit = 0;
@@ -119,6 +120,27 @@ class WasteItem extends Component
             dd('haha');
             return;
         }
+    }
+
+    protected $listeners = [
+        'remove' => 'removeItemMoved',
+    ];
+
+    public function removeItemMoved($id){
+        $moveData = MovedItem::find($id);
+        $backupData = BackupPrepare::find($moveData->backup_prepare_id);
+//        qty addition
+        $newQty = $backupData->quantity + $moveData->quantity;
+        $backupData->quantity = $newQty;
+//        unit addition
+        $newUnit = $backupData->unit + $moveData->unit;
+        $backupData->unit = $newUnit;
+        $backupData->save();
+//        delete move item data
+        MovedItem::find($id)->delete();
+
+
+
     }
 
 }

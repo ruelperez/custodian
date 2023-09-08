@@ -52,3 +52,10 @@
         </div>
     @endif
 </div>
+<script>
+    function removeItemMoved(id,name){
+        if (confirm('Are you sure to remove '+name+'?')){
+            window.livewire.emit('remove', id);
+        }
+    }
+</script>

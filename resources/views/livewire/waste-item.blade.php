@@ -111,7 +111,7 @@
                             {{$data->created_at}}
                         </td>
                         <td>
-                            <i class="fa-solid fa-xmark" onclick="removeItemMoved({{$data->id}})"></i>
+                            <i class="fa-solid fa-xmark" onclick="removeItemMoved({{$data->id}},'{{$data->item_name}}')"></i>
                         </td>
                     </tr>
 
@@ -122,8 +122,4 @@
 
     </div>
 </div>
-<script>
-    function removeItemMoved(id){
-        alert(id);
-    }
-</script>
+
