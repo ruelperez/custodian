@@ -41,6 +41,7 @@
                     @foreach($deployed_data as $data)
                         @if($data->unit < 1 and $data->quantity < 1)
 
+                        @elseif($data->item_type == "consumable")
                         @else
                             <tr style="cursor: pointer">
                                 <td>

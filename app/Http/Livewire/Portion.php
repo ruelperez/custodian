@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph";
+    public $option = "graph", $report=0;
 
     public function render()
     {
@@ -15,5 +15,16 @@ class Portion extends Component
 
     public function clickPortion($porName){
         $this->option = $porName;
+        if ($this->option != "report"){
+            $this->report = 0;
+        }
+    }
+
+    public function clickReport($reportName){
+        $this->report = $reportName;
+    }
+
+    public function clickBack(){
+        $this->report = 0;
     }
 }

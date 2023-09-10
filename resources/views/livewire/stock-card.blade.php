@@ -1,5 +1,5 @@
 <div>
-    <h4 style="text-align: center; margin-top: 3%;">Stock Card</h4>
+    <h4 style="text-align: center;">Stock Card</h4>
     <div class="input-group mb-1" style="width: 40%; margin-left: 30%; margin-top: 3%;">
         <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <span class="input-group-text" wire:click="find" id="basic-addon2" style="cursor: pointer;">Search</span>

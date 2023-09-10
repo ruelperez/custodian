@@ -29,10 +29,7 @@
                 <div wire:click="clickPortion('waste')">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div onclick="location.href = '/Dashboard/deployed/';">
-                    DEPLOYED ITEM
-                </div>
-                <div onclick="location.href = '/Dashboard/report/';">
+                <div wire:click="clickPortion('report')">
                     REPORTS
                 </div>
             </div>
@@ -60,37 +57,35 @@
             <div style="@if($option != "waste") display: none; @endif">
                 @livewire('waste')
             </div>
-            <div style="@if($option != "deployed") display: none; @endif">
-                @livewire('deployed')
-            </div>
             @if($option == "report")
                 <div>
-                    @if(isset($reports))
-                        @if($reports == "stock-card")
+                    @if($report != 0)
+                        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" wire:click="clickBack"></i>
+                        @if($report == "stock-card")
                             @livewire('stock-card')
-                        @elseif($reports == "property-card")
+                        @elseif($report == "property-card")
                             @livewire('property-card')
-                        @elseif($reports == "waste-material")
+                        @elseif($report == "request-report")
                             @livewire('request-report')
-                        @elseif($reports == "purchase-report")
+                        @elseif($report == "purchase-report")
                             @livewire('purchase-report')
                         @endif
                     @else
                         <div>
                             <h4 style="text-align: center; margin-top: 3%;">Report</h4>
                             <div style="display: flex; margin-top: 6%;">
-                                <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/data/report/stock-card';">
+                                <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" wire:click="clickReport('stock-card')">
                                     Stock Card
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #483D8B; padding-top: 10px; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/data/report/property-card';">
+                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #483D8B; padding-top: 10px; text-align: center;color: white; font-size: 25px" wire:click="clickReport('property-card')">
                                     Property Card/Property Acknowledge Receipt
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 4%">
-                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/data/report/waste-material';">
+                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('waste-material')">
                                     Request Report
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/data/report/purchase-report';">
+                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('purchase-report')">
                                     Purchase Report
                                 </div>
                             </div>
