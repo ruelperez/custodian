@@ -1,5 +1,5 @@
 <div>
-    <div style="display: flex">
+    <div style="display: flex; width: 100%;">
 
         <div style="width: 19%; background-color: #4682B4">
             <div style="text-align: center; margin-top: 5%;">
