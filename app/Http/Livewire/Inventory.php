@@ -34,6 +34,8 @@ class Inventory extends Component
         $data = $this->validate([
             'item_name' => 'required',
             'item_type' => 'required',
+            'quantity' => 'required|integer',
+            'inventory_number' => 'integer',
         ]);
         if ($this->unit == "") {
             $this->unit = 0;
