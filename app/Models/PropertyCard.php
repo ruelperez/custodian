@@ -9,7 +9,8 @@ class PropertyCard extends Model
 {
     protected $fillable = [
         'item_name',
-        'receiptUnit',
+        'quantity',
+        'receiptQty',
         'unit',
         'receiver',
         'inventory_id'

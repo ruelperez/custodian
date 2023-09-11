@@ -1,25 +1,13 @@
 <div>
     @include('modal.move-modal')
-    <h6 style="text-align: left; margin-top: 3%; margin-left: 1%;">{{ucwords($teacher_name->fullname)}}</h6>
-    <div style="display: flex; margin-left: 50%;">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                Print
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver">
-                <li><button class="dropdown-item" type="button" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';">Request Form</button></li>
-                <li><button class="dropdown-item" type="button">PWMR Form</button></li>
-            </ul>
-        </div>
-        <div>
-`            <button>Fininsh</button>
-        </div>
-    </div>
-    <div style="display: flex; width: 100%; border: solid black 1px;">
-        <div style="width: 50%; border: solid black 1px;">
+    <p style="text-align: left; margin-top: 3%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
+
+    <div style="display: flex; width: 100%;">
+        <div style="width: 47%;">
+            <button class="btn btn-success" style="margin-left: 69.5%; margin-bottom: 2%;" onclick="moveToInventory()">Move to Inventory</button>
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
-                    <tr>
+                    <tr class="inv">
                         <th>
                             Deployed Item
                         </th>
@@ -32,14 +20,14 @@
                         <th>
                             Serial No.
                         </th>
-                        <th>
+                        <th colspan="2">
                             Date
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($deployed_data as $data)
-                        @if($data->unit < 1 and $data->quantity < 1)
+                        @if($data->quantity < 1)
 
                         @elseif($data->item_type == "consumable")
                         @else
@@ -53,9 +41,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($data->unit > 0)
-                                        {{$data->unit}}
-                                    @endif
+                                    {{$data->unit}}
                                 </td>
                                 <td>
                                     {{$data->serial}}
@@ -72,10 +58,24 @@
                 </tbody>
             </table>
         </div>
-        <div style="width: 50%; border: solid black 1px;">
-            <table class="table table-hover">
+        <div style="width: 47%; margin-left: 3%;">
+            <div style="display: flex; margin-left: 50%;">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Print
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver">
+                        <li><button class="dropdown-item" type="button" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';">Request Form</button></li>
+                        <li><button class="dropdown-item" type="button">PWMR Form</button></li>
+                    </ul>
+                </div>
+                <div>
+                    `            <button>Fininsh</button>
+                </div>
+            </div>
+            <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
-                <tr>
+                <tr class="inv">
                     <th>
                         Deployed Item
                     </th>
@@ -90,6 +90,9 @@
                     </th>
                     <th>
                         Date
+                    </th>
+                    <th>
+
                     </th>
                 </tr>
                 </thead>

@@ -33,7 +33,10 @@
                 <thead>
                 <tr>
                     <th>
-                        Receipt Unit.
+                        Receipt Qty
+                    </th>
+                    <th>
+                       Qty
                     </th>
                     <th>
                         Unit
@@ -55,7 +58,10 @@
                     @foreach($stockcard_data as $preps)
                         <tr>
                             <td>
-                                {{$preps->receiptUnit}}
+                                {{$preps->receiptQty}}
+                            </td>
+                            <td>
+                                {{$preps->quantity}}
                             </td>
                             <td>
                                 {{$preps->unit}}
@@ -64,7 +70,7 @@
                                 {{$preps->receiver}}
                             </td>
                             <td>
-                                {{$preps->receiptUnit - $preps->unit}}
+                                {{$preps->receiptQty - $preps->quantity}}
                             </td>
                             <td>
                                 {{$preps->created_at}}

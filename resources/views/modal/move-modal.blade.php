@@ -12,25 +12,12 @@
                             <label for="fname">Quantity </label>
                             <input type="text" wire:model.debounce.10ms="qty" @if($qtyNotModel < 1) disabled @else required @endif>
                             @if(session()->has('failed'))
-                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
+                                <div class="alert alert-danger" style="width: 76%; margin-left: 25%; padding-bottom: 1%; padding-top: 1%; text-align:left; margin-top: 1%; ">
                                     {{ session('failed') }}
                                 </div>
                             @elseif(session()->has('notNumber'))
-                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
+                                <div class="alert alert-danger" style="width: 76%; margin-left: 25%; padding-bottom: 1%; padding-top: 1%; text-align:left; margin-top: 1%; ">
                                     {{ session('notNumber') }}
-                                </div>
-                            @endif
-                        </div>
-                        <div>
-                            <label for="fname">Unit</label>
-                            <input type="text" wire:model.debounce.10ms="unit" required @if($unitNotModel < 1) disabled @else required @endif>
-                            @if(session()->has('failedUnit'))
-                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
-                                    {{ session('failedUnit') }}
-                                </div>
-                            @elseif(session()->has('notNumberUnit'))
-                                <div class="alert alert-danger" style="width: 76%;text-align:left; margin-top: 1%; ">
-                                    {{ session('notNumberUnit') }}
                                 </div>
                             @endif
                         </div>

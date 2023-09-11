@@ -11,6 +11,7 @@ class StockCard extends Model
         'item_name',
         'receiptQty',
         'quantity',
+        'unit',
         'receiver',
         'inventory_id'
     ];

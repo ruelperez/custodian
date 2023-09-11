@@ -10,15 +10,12 @@ use Livewire\Component;
 
 class WasteItem extends Component
 {
-    public $receiver_id, $qtyPass = 0, $unitPass = 0, $qtyNotModel, $waste_id, $unitNotModel, $movedData, $qty = 0, $unit = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $qtyPass = 0, $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
     public function render()
     {
         if ($this->qty != ""){
             $this->qtyValidator();
-        }
-        if ($this->unit != ""){
-            $this->unitValidator();
         }
         $this->displayData();
         $this->displayMoved();
@@ -36,20 +33,6 @@ class WasteItem extends Component
         else{
             session()->flash('failed', $this->qtyNotModel." quantity available");
             $this->qtyPass = 0;
-        }
-    }
-
-    public function unitValidator(){
-        if (!is_numeric($this->unit)){
-            session()->flash('notNumberUnit',"Input numbers only");
-            $this->unitPass = 0;
-        }
-        elseif ($this->unitNotModel >= $this->unit){
-            $this->unitPass = 1;
-        }
-        else{
-            session()->flash('failedUnit', $this->unitNotModel." quantity available");
-            $this->unitPass = 0;
         }
     }
 
@@ -73,7 +56,7 @@ class WasteItem extends Component
         MovedItem::create([
             'item_name' => $data->item_name,
             'quantity' => $this->qty,
-            'unit' => $this->unit,
+            'unit' => $data->unit,
             'receiver' => $data->receiver,
             'item_type' => $data->item_type,
             'serial' => $data->serial,
@@ -81,7 +64,6 @@ class WasteItem extends Component
             'backup_prepare_id' => $this->waste_id,
         ]);
         $this->qty = 0;
-        $this->unit = 0;
     }
 
     public function clickMoveBack($id){
@@ -103,16 +85,13 @@ class WasteItem extends Component
         $this->item_name = $data->item_name;
         $this->waste_id = $id;
         $this->qtyNotModel = $data->quantity;
-        $this->unitNotModel = $data->unit;
     }
 
     public function submitMove(){
-        if ($this->qtyPass == 1 and $this->unitPass == 1){
+        if ($this->qtyPass == 1){
             $data = BackupPrepare::find($this->waste_id);
             $newQty = $data->quantity - $this->qty;
-            $newUnit = $data->unit - $this->unit;
             $data->quantity = $newQty;
-            $data->unit = $newUnit;
             $data->save();
             $this->clickMove();
         }
@@ -124,7 +103,14 @@ class WasteItem extends Component
 
     protected $listeners = [
         'remove' => 'removeItemMoved',
+        'move' => 'moveToInventory',
     ];
+
+    public function moveToInventory(){
+        foreach ($this->deployed_data as $data){
+
+        }
+    }
 
     public function removeItemMoved($id){
         $moveData = MovedItem::find($id);
@@ -132,9 +118,6 @@ class WasteItem extends Component
 //        qty addition
         $newQty = $backupData->quantity + $moveData->quantity;
         $backupData->quantity = $newQty;
-//        unit addition
-        $newUnit = $backupData->unit + $moveData->unit;
-        $backupData->unit = $newUnit;
         $backupData->save();
 //        delete move item data
         MovedItem::find($id)->delete();

@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $currentQty, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -51,11 +51,13 @@ class Prepare extends Component
         $data = $this->validate([
             'item_name' => 'required',
         ]);
-        if ($this->unit == ""){
-            $this->unit = 0;
-        }
         if ($this->quantity == ""){
             $this->quantity = 0;
+        }
+
+        if ($this->quantity > $this->currentQty){
+            session()->flash('insufficient',"Insufficient item quantity");
+            return;
         }
 
         try {
@@ -65,7 +67,6 @@ class Prepare extends Component
             if (count($accepter) == 0){
                 Receiver::create(['fullname' => $this->receiver]);
             }
-
 
             \App\Models\Prepare::create([
                 'item_name' => $this->item_name,
@@ -93,7 +94,9 @@ class Prepare extends Component
     public function click_item($id){
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
+        $this->unit = $data->unit;
         $this->item_type = $data->item_type;
+        $this->currentQty = $data->quantity;
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;
@@ -209,11 +212,12 @@ class Prepare extends Component
             $inv = \App\Models\Inventory::where('item_name',$datas->item_name)->get();
             if (count($inv) > 0){
                 foreach ($inv as $in){
-                    if ($datas->unit > 0){
+                    if ($datas->item_type == "sets"){
                         \App\Models\PropertyCard::create([
                             'item_name' => $datas->item_name,
                             'unit' => $datas->unit,
-                            'receiptUnit' => $in->unit,
+                            'quantity' => $datas->quantity,
+                            'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
                         ]);
@@ -222,6 +226,7 @@ class Prepare extends Component
                         \App\Models\StockCard::create([
                             'item_name' => $datas->item_name,
                             'quantity' => $datas->quantity,
+                            'unit' => $datas->unit,
                             'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
@@ -231,7 +236,6 @@ class Prepare extends Component
                 }
                 try {
                     \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('quantity',$datas->quantity);
-                    \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('unit',$datas->unit);
                     session()->flash('good',"good");
                     $f = 1;
                 }

@@ -59,8 +59,9 @@
                                 @php $h=0; @endphp
                                 @foreach($result as $data)
                                     @if($h < 6)
-                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">
+                                        <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">
                                             {{$data->item_name}}
+                                            <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                         </li>
                                     @endif
                                     @php $h++; @endphp
@@ -68,17 +69,19 @@
                             </ul>
                         </div>
                     @endif
-                    @if($item_type == "sets")
                         <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit">
+                            <input type="text" class="form-control" placeholder="Unit" wire:model="unit" disabled>
                             @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
-                    @else
-                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
-                            @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
-                        </div>
-                    @endif
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
+                        @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
+                        @if(session()->has('insufficient'))
+                            <div class="alert alert-danger" style="width: 100%; padding-top: 2px; padding-bottom: 2px; margin-top: 1%;">
+                                {{ session('insufficient') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
                     </div>
