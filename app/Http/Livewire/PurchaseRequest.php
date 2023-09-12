@@ -28,6 +28,9 @@ class PurchaseRequest extends Component
                 $this->basis = 0;
             }
         }
+        if ($this->quantity != 0 and $this->unit_cost != 0 and $this->unit_cost != "" and $this->quantity != ""){
+            $this->total_cost = $this->quantity * $this->unit_cost;
+        }
 
         $this->request_data = Request::all();
         $this->order_data = Order::all();
@@ -237,7 +240,7 @@ class PurchaseRequest extends Component
         $this->unit = $sae->unit;
         $this->quantity = $sae->quantity;
         $this->unit_cost = $sae->unit_cost;
-        $this->total_cost = $sae->total_cost;
+        $this->total_cost = $this->quantity * $this->unit_cost;
         $this->item_name = $sae->item_name;
     }
 

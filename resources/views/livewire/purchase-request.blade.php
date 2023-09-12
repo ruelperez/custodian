@@ -136,7 +136,7 @@
                                 <td>{{$data->unit}}</td>
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->unit_cost}}</td>
-                                <td>{{$data->total_cost}}</td>
+                                <td>{{$data->total_cost = $data->quantity * $data->unit_cost}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#edit_request_modal" style="cursor: pointer;" wire:click="edit_order({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete_order({{$data->id}})"></i></td>
