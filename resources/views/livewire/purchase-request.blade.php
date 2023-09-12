@@ -24,13 +24,13 @@
                 <thead>
                 <tr style="background-color: #20B2AA; color: white">
                     <th>
+                        Desc
+                    </th>
+                    <th>
                         Unit
                     </th>
                     <th>
-                        Description
-                    </th>
-                    <th>
-                        Quantity
+                        Qty
                     </th>
                     <th>
                         Unit Cost
@@ -56,8 +56,8 @@
                 @else
                     @foreach($request_data as $data)
                         <tr>
-                            <td>{{$data->unit}}</td>
                             <td>{{$data->item_name}}</td>
+                            <td>{{$data->unit}}</td>
                             <td>{{$data->quantity}}</td>
                             <td>{{$data->unit_cost}}</td>
                             <td>{{$data->total_cost}}</td>
@@ -99,10 +99,10 @@
                     <thead>
                     <tr style="background-color: #20B2AA; color: white">
                         <th>
-                            Unit
+                           Desc
                         </th>
                         <th>
-                           Description
+                            Unit
                         </th>
                         <th>
                             Quantity
@@ -132,8 +132,8 @@
                     @else
                         @foreach($order_data as $data)
                             <tr>
-                                <td>{{$data->unit}}</td>
                                 <td>{{$data->item_name}}</td>
+                                <td>{{$data->unit}}</td>
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->unit_cost}}</td>
                                 <td>{{$data->total_cost}}</td>
