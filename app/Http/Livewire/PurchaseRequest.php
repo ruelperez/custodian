@@ -242,6 +242,7 @@ class PurchaseRequest extends Component
         $this->unit_cost = $sae->unit_cost;
         $this->total_cost = $this->quantity * $this->unit_cost;
         $this->item_name = $sae->item_name;
+        $this->item_type = $sae->item_type;
     }
 
     public function delete_order($id){
