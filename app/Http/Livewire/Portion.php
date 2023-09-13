@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph", $report=0;
+    public $option = "graph", $report=0, $df=0;
 
     public function render()
     {
@@ -27,4 +27,18 @@ class Portion extends Component
     public function clickBack(){
         $this->report = 0;
     }
+
+    protected $listeners = [
+        'clickBack1' => 'back1',
+        'clickBack2' => 'back2',
+    ];
+
+    public function back1(){
+        $this->df = 1;
+    }
+
+    public function back2(){
+        $this->df = 0;
+    }
+
 }

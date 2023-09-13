@@ -60,19 +60,21 @@
             @if($option == "report")
                 <div>
                     @if($report != 0)
-                        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" wire:click="clickBack"></i>
+                        @if($df == 0)
+                            <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" wire:click="clickBack"></i>
+                        @endif
                         @if($report == "stock-card")
                             @livewire('stock-card')
                         @elseif($report == "property-card")
                             @livewire('property-card')
                         @elseif($report == "request-report")
-                            @livewire('request-report')
+                            @livewire('request-bydate')
                         @elseif($report == "purchase-report")
                             @livewire('purchase-report')
                         @endif
                     @else
                         <div>
-                            <h4 style="text-align: center; margin-top: 3%;">Report</h4>
+                            <h5 style="margin-left: 1%; margin-top: 3%;">Report</h5>
                             <div style="display: flex; margin-top: 6%;">
                                 <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" wire:click="clickReport('stock-card')">
                                     Stock Card
@@ -98,3 +100,12 @@
     </div>
 
 </div>
+<script>
+    function clickBack(){
+        window.livewire.emit('clickBack1');
+    }
+
+    function clickBk(){
+        window.livewire.emit('clickBack2')
+    }
+</script>

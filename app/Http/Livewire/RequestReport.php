@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class RequestReport extends Component
 {
-    public $search="", $request_data;
+    public $search="", $request_data, $clickBk = 0, $dataDate;
 
     public function render()
     {
@@ -15,9 +15,15 @@ class RequestReport extends Component
             $this->feed();
         }
         else{
-            $this->request_data = DB::table('backup_requests')->orderBy('item_name','asc')->take(10)->get();
+            $this->request_data = DB::table('backup_requests')
+                ->where('created_at','like', '%'.$this->dataDate.'%')
+                ->get();
         }
         return view('livewire.request-report');
+    }
+
+    public function mount($dateData){
+       $this->dataDate = $dateData;
     }
 
     public function feed(){
@@ -26,5 +32,9 @@ class RequestReport extends Component
             ->orWhere('created_at','like','%'.$this->search.'%')
             ->take(10)
             ->get();
+    }
+
+    public function clickBack(){
+        $this->clickBk = 1;
     }
 }
