@@ -35,7 +35,7 @@
             </div>
         </div>
         {{--    @livewire('han')--}}
-        <div style="width: 81%; margin-left: 3%;">
+        <div style="width: 81%; margin-left: 3%; margin-right: 3%;">
             <div style="@if($option != "graph") display: none; @endif">
                 @livewire('graph')
             </div>
@@ -108,4 +108,17 @@
     function clickBk(){
         window.livewire.emit('clickBack2')
     }
+
+    function moveBup(){
+        if(confirm('Are you sure to move all item to backup folder?')){
+            window.livewire.emit('movetoBup');
+        }
+    }
+
+    function moveInv(){
+        if(confirm('Are you sure to move all item to backup folder?')){
+            window.livewire.emit('moveToInv');
+        }
+    }
+
 </script>

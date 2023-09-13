@@ -211,6 +211,8 @@ class PurchaseRequest extends Component
     protected $listeners = [
         'move' => 'forward',
         'removeSuggest' => 'hideSuggest',
+        'movetoBup' => 'move_to_backup',
+        'moveToInv' => 'move_to_inventory',
     ];
 
     public function hideSuggest(){
@@ -252,6 +254,7 @@ class PurchaseRequest extends Component
     public function click_item($id){
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
+        $this->unit = $data->unit;
         $this->pick = 1;
     }
 
@@ -289,8 +292,6 @@ class PurchaseRequest extends Component
                     'total_cost' => $orders->total_cost,
                     'item_type' => $orders->item_type,
                 ]);
-
-
 
                 session()->flash('transfer',"Successfully  Moved to Inventory");
             }

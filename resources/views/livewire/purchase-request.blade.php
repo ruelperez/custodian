@@ -1,7 +1,7 @@
-<div style="display: flex; margin-right: 2%;">
-    <div style="margin-top: 2%;">
+<div style="display: flex; width: 100%;">
+    <div style="margin-top: 2%; width: 50%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Request</h5>
-        <div style="margin-left: 2%;margin-top: 5%; width: 100%;background-color:#F8F8FF; ">
+        <div style="margin-top: 5%; width: 100%;background-color:#F8F8FF;">
             @if(session()->has('move'))
                 <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
                     {{ session('move') }}
@@ -12,15 +12,15 @@
                     {{ session('move_failed') }}
                 </div>
             @endif
-            <div style="display: flex; padding-top: 2%;">
-                <button class="btn btn-success" style="margin-top: 1%; margin-left: 61%;" wire:click="move_to_backup" @if(count($request_data) == 0) disabled @endif>Move to Backup</button>
-                <i class="fa-solid fa-print" title="Save Form" style="margin-left: 5%; margin-top: 1%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request';"></i>
+            <div style="display: flex;">
+                <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; margin-left: 75%;">+</span>
+                <i class="fa-solid fa-suitcase" title="move to backup" style="font-size: 20px; color: green; margin-left: 5%; margin-top: 3.5%; @if(count($request_data) != 0) cursor:pointer; @endif" @if(count($request_data) != 0) onclick="moveBup()" @endif></i>
+                <i class="fa-solid fa-print" title="Save Form" style="margin-left: 5%; margin-top: 3%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request';"></i>
             </div>
-            <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
             @include('modal.add-request-modal')
             @include('modal.edit-request-modal')
 
-            <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 2%;">
+            <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 1%;">
                 <thead>
                 <tr style="background-color: #20B2AA; color: white">
                     <th>
@@ -50,7 +50,7 @@
                 <tbody>
                 @if(count($request_data) == 0)
                     <tr style="text-align: center">
-                        <td colspan="5"> No Request Posted</td>
+                        <td colspan="7"> No Request Posted</td>
                     </tr>
 
                 @else
@@ -71,12 +71,12 @@
             </table>
         </div>
     </div>
-    <i class="fa-solid fa-circle-arrow-right" style="@if(count($request_data) == 0) pointer-events: none; @endif font-size: 30px; margin-left: 2%; margin-top: 22%; cursor: pointer;" title="Forward to Purchase Order" onclick="forward()"></i>
+    <i class="fa-solid fa-circle-arrow-right" style="@if(count($request_data) == 0) pointer-events: none; @endif font-size: 30px; margin-left: 2%; margin-right: 2%; margin-top: 22%; cursor: pointer;" title="Forward to Purchase Order" onclick="forward()"></i>
 
-    <div style="margin-top: 2%; margin-left: 0.5%;">
+    <div style="margin-top: 2%; width: 50%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Order</h5>
 
-        <div style="background-color:#F8F8FF; margin-left: 2%;margin-top: 5%; width: 96%;">
+        <div style="background-color:#F8F8FF; margin-top: 5%; width: 100%;">
             @if(session()->has('transfer'))
                 <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
                     {{ session('transfer') }}
@@ -87,15 +87,16 @@
                         {{ session('failed') }}
                     </div>
                 @endif
+
             <div style="display: flex;">
-                <button class="btn btn-success" style="margin-top: 3%; margin-left: 58%;" wire:click="move_to_inventory" @if(count($order_data) == 0) disabled @endif>Move to Inventory</button>
-                <i title="Save Form" class="fa-solid fa-print" style="@if(count($order_data) == 0) pointer-events: none; @endif margin-left: 5%; margin-top: 3%; font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/order';"></i>
+                <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 75%; cursor: pointer;">+</span>
+                <i class="fa-solid fa-suitcase" title="move to inventory" style="font-size: 20px; color: green; margin-left: 5%; margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
+                <i class="fa-solid fa-print" title="Save Form" style="margin-left: 5%; margin-top: 3%; @if(count($order_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/order';"></i>
             </div>
             <div style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 45%; cursor: pointer;">+</span>
-                <table class="table table-hover" style="width: 100%; text-align: center;margin-top: 2%;" >
+               <table class="table table-hover" style="width: 100%; text-align: center;margin-top: 1%;" >
                     <thead>
                     <tr style="background-color: #20B2AA; color: white">
                         <th>
@@ -105,7 +106,7 @@
                             Unit
                         </th>
                         <th>
-                            Quantity
+                            Qty
                         </th>
                         <th>
                             Unit Cost
@@ -126,7 +127,7 @@
                     <tbody>
                     @if(count($order_data) == 0)
                         <tr style="text-align: center">
-                            <td colspan="5"> No Request Posted</td>
+                            <td colspan="7"> No Request Posted</td>
                         </tr>
 
                     @else
