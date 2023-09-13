@@ -27,7 +27,7 @@
                             <td style="text-align: left; padding-left: 3%;">
                                 {{$preps->date}}
                             </td>
-                            <td style="text-align: right; padding-right: 7.5%; color: green" onclick="clickBack()" wire:click="click('{{$preps->date}}')">
+                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->date}}')">
                                 View
                             </td>
                         </tr>
