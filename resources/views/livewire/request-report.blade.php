@@ -4,8 +4,8 @@
     @endif
     <h5 style="margin-left: 1%;">Request Report</h5>
     <div style="display: flex;">
-        <div style="margin-left: 37%;margin-top: 4%;">
-            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+        <div style="margin-left: 82%;margin-top: 4%;">
+            <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
 
