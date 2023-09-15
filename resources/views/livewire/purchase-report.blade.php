@@ -4,10 +4,7 @@
     @endif
     <h5 style="margin-left: 1%;">Purchase Report</h5>
     <div style="display: flex;">
-        <div class="input-group mb-1" style="width: 30%; margin-left: 15%; margin-top: 3%;">
-            <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        </div>
-        <div style="margin-left: 37%;margin-top: 4%;">
+        <div style="margin-left: 82%;margin-top: 4%;">
             <i title="Save Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>

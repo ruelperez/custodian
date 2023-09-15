@@ -1,27 +1,11 @@
 <div>
-    <h4 style="text-align: center;">Stock Card</h4>
-    <div class="input-group mb-1" style="width: 40%; margin-left: 30%; margin-top: 3%;">
-        <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <span class="input-group-text" wire:click="find" id="basic-addon2" style="cursor: pointer;">Search</span>
-    </div>
-
-    @if($display_search == "show")
-        <div style="width: 34%; margin-left: 30%;">
-            <ul class="list-group">
-                @foreach($stock as $data)
-                    @if($data->item_type != "sets")
-                        <li class="list-group-item btn" wire:click="click_suggest({{$data->id}})" style="text-align: left;">
-                            {{$data->item_name}}
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
-        </div>
+    @if($clickBk == 0)
+        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" onclick="clickBk4()" wire:click="clickBack"></i>
     @endif
-    @if($display_table == "show")
+    <h5 style="margin-left: 1%;">Stock Card</h5>
         <div style="display: flex; margin-top: 3%;">
             <div style="margin-left: 45%;">
-                <h4 style="text-align: center; margin-top: 3%;">{{ucwords($search)}}</h4>
+                <h4 style="text-align: center; margin-top: 3%;">{{ucwords($itemName)}}</h4>
             </div>
             <div style="margin-left: 30%;">
                 <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
@@ -87,5 +71,4 @@
                 <button class="btn btn-warning" wire:click="showless" style="margin-left: 2%; margin-bottom: 1%;">Show Less</button>
             @endif
         </div>
-    @endif
 </div>

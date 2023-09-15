@@ -64,7 +64,7 @@
                             <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" wire:click="clickBack"></i>
                         @endif
                         @if($report == "stock-card")
-                            @livewire('stock-card')
+                            @livewire('stockcard-by-item')
                         @elseif($report == "property-card")
                             @livewire('property-card')
                         @elseif($report == "request-report")
@@ -111,6 +111,10 @@
 
     function clickBk3(){
         window.livewire.emit('clickBack3')
+    }
+
+    function clickBk4(){
+        window.livewire.emit('clickBack4')
     }
 
     function moveBup(){

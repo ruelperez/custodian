@@ -10,7 +10,7 @@ class StockCard extends Component
 {
     use WithPagination;
 
-    public $stock, $search="", $stockcard_data, $showAllBtn="show", $display_search = "show", $inventory_id, $click_search_bar = 0, $display_table = "hide";
+    public $stock, $search="", $itemName, $clickBk=0, $stockcard_data, $showAllBtn="show", $display_search = "show", $inventory_id, $click_search_bar = 0, $display_table = "hide";
 
     public function render()
     {
@@ -18,9 +18,15 @@ class StockCard extends Component
             $this->feed();
         }
         else{
-            $this->stock = [];
+            $this->stockcard_data = DB::table('stock_cards')
+                ->where('item_name', '=', $this->itemName)
+                ->get();
         }
         return view('livewire.stock-card');
+    }
+
+    public function mount($dateData){
+        $this->itemName = $dateData;
     }
 
     public function feed(){
@@ -66,6 +72,10 @@ class StockCard extends Component
             ->where('inventory_id',$this->inventory_id)
             ->take(6)
             ->get();
+    }
+
+    public function clickBack(){
+        $this->clickBk = 1;
     }
 
 }
