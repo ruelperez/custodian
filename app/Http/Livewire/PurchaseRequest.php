@@ -280,9 +280,6 @@ class PurchaseRequest extends Component
                         'inventory_number' => 0,
                     ]);
                 }
-                else{
-                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit',$orders->unit);
-                }
 
                 BackupOrder::create([
                     'item_name' => $orders->item_name,
@@ -295,7 +292,7 @@ class PurchaseRequest extends Component
 
                 session()->flash('transfer',"Successfully  Moved to Inventory");
             }
-            catch (\Exception $e){
+            catch (\Exception $e){dd('2');
                 session()->flash('failed',"Failed to Move");
             }
 

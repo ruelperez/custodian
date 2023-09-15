@@ -70,7 +70,7 @@
                         @elseif($report == "request-report")
                             @livewire('request-bydate')
                         @elseif($report == "purchase-report")
-                            @livewire('purchase-report')
+                            @livewire('purchase-bydate')
                         @endif
                     @else
                         <div>
@@ -107,6 +107,10 @@
 
     function clickBk(){
         window.livewire.emit('clickBack2')
+    }
+
+    function clickBk3(){
+        window.livewire.emit('clickBack3')
     }
 
     function moveBup(){

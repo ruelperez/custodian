@@ -31,6 +31,7 @@ class Portion extends Component
     protected $listeners = [
         'clickBack1' => 'back1',
         'clickBack2' => 'back2',
+        'clickBack3' => 'back3',
     ];
 
     public function back1(){
@@ -38,6 +39,10 @@ class Portion extends Component
     }
 
     public function back2(){
+        $this->df = 0;
+    }
+
+    public function back3(){
         $this->df = 0;
     }
 

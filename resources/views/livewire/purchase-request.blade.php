@@ -81,12 +81,11 @@
                 <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
                     {{ session('transfer') }}
                 </div>
-            @endif
-                @if(session()->has('failed'))
+            @elseif(session()->has('failed'))
                     <div class="alert alert-danger" style="width: 10%; ">
                         {{ session('failed') }}
                     </div>
-                @endif
+            @endif
 
             <div style="display: flex;">
                 <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);margin-left: 75%; cursor: pointer;">+</span>
