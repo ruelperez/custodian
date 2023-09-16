@@ -2,7 +2,7 @@
     @if($clickView == 0)
         <h5 style="margin-left: 1%;">Stock Card</h5>
         <div style="display: flex;">
-            <div class="input-group mb-1" style="width: 30%; margin-left: 25%; margin-top: 3%;">
+            <div class="input-group mb-1" style="width: 30%; margin-left: 25%; margin-top: 1%;">
                 <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
             </div>
         </div>

@@ -3,16 +3,16 @@
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk5()" wire:click="clickBack"></i>
     @endif
     <h5 style="margin-left: 1%;">Property Card</h5>
-    <div style="display: flex; margin-top: 3%;">
-        <div style="margin-left: 40%;">
-            <h4 style="text-align: center; margin-top: 3%;">{{ucwords($itemName)}}</h4>
+    <div style="display: flex; margin-top: 3%; margin-left: 15%;width: 70%;">
+        <div>
+            <h5>{{ucwords($itemName)}}</h5>
         </div>
-        <div style="margin-left: 22%; margin-top: 2%;">
+        <div style="margin-left: auto;">
             <i title="Save Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
 
-    <div style="margin-left: 15%;width: 70%;margin-top: 1%; margin-bottom: 2%;">
+    <div style="margin-left: 15%;width: 70%; margin-bottom: 2%; margin-top: 1%;">
         <table class="table table-hover" style="width: 100%; text-align: center">
             <thead>
             <tr class="inv">

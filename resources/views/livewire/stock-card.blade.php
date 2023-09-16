@@ -7,9 +7,9 @@
         <div style="margin-left: 15%;width: 70%;margin-top: 2%; margin-bottom: 2%;">
             <div style="display: flex;">
                 <div>
-                    <h4 style="text-align: center; margin-top: 3%;">{{ucwords($itemName)}}</h4>
+                    <h5>{{ucwords($itemName)}}</h5>
                 </div>
-                <div style="margin-left: auto; margin-top: 1%;">
+                <div style="margin-left: auto;">
                     <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
                 </div>
             </div>
