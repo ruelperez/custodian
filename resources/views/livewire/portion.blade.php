@@ -29,6 +29,9 @@
                 <div wire:click="clickPortion('waste')">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
+                <div wire:click="clickPortion('deployed')">
+                    DEPLOYED ITEM
+                </div>
                 <div wire:click="clickPortion('report')">
                     REPORTS
                 </div>
@@ -56,6 +59,9 @@
 {{--                @endif--}}
             <div style="@if($option != "waste") display: none; @endif">
                 @livewire('waste')
+            </div>
+            <div style="@if($option != "deployed") display: none; @endif">
+                @livewire('deployed')
             </div>
             @if($option == "report")
                 <div>
