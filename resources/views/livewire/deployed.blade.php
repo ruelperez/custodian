@@ -1,4 +1,7 @@
 <div>
+    @if($tg == 1)
+        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" wire:click="clickBack"></i>
+    @endif
     <h5 style="text-align: left; @if($tg == 0) margin-top: 3%; @else margin-top: 1%; @endif  margin-left: 1%;">Deployed Item</h5>
     @include('modal.waste-delete-modal')
     @if($tg == 0)
@@ -44,7 +47,6 @@
             </div>
         </div>
     @endif
-
     @if($tg == 1)
         <div>
             @livewire('deployed-table',['teacher_name' => $teacher_name])

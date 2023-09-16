@@ -2,7 +2,6 @@
 {{--    @if($clickBk == 0)--}}
 {{--        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk4()" wire:click="clickBack"></i>--}}
 {{--    @endif--}}
-    <h5 style="margin-left: 1%;">Deployed Item</h5>
     <div style="display: flex; margin-top: 3%;">
         <div style="margin-left: 45%;">
             <h4 style="text-align: center; margin-top: 3%;">{{ucwords($teacherName)}}</h4>

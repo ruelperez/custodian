@@ -33,4 +33,8 @@ class Deployed extends Component
         $this->teacher_name = $name;
         $this->tg = 1;
     }
+
+    public function clickBack(){
+        $this->tg = 0;
+    }
 }
