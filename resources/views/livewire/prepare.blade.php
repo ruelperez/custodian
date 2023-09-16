@@ -6,8 +6,11 @@
         <div style="margin-left: 12%; width: 12%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_prepare_modal">Add</button>
         </div>
-        <div style="margin-left: 50.5%;">
+        <div style="margin-left: 46%%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deploy_confirmation" @if(count($prepare_data) == 0) disabled @endif>Deploy</button>
+        </div>
+        <div style="margin-left: 3%;">
+            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 35px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
     @include('modal.edit-prepare-modal')
