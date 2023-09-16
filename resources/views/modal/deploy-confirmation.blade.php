@@ -23,7 +23,7 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" wire:click="deploy" wire:loading.attr="disabled" style="width: 25%;">Deploy</button>
+                <button class="btn btn-primary" wire:click="deploy" wire:loading.attr="disabled" style="width: 25%;" @if(session()->has('good')) disabled @endif>Deploy</button>
             </div>
         </div>
     </div>
