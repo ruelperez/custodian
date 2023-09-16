@@ -11,7 +11,7 @@
                 </div>
                 <div wire:loading.remove style="text-align: center;">
                     @if($hh == 0)
-                    Please assure that you have already save the file before doing a deploy. The data you have input will remove after deploying.
+                    Are you sure to deploy item?
                     @elseif($hh == 1)
                         @if(session()->has('good'))
                             <i class="fa-sharp fa-solid fa-circle-check" style="color: green; font-size: 40px;"></i>
