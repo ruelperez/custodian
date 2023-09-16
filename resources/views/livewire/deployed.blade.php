@@ -1,5 +1,4 @@
 <div>
-    <i class="fa-solid fa-backward" style="margin-top: 2%; font-size: 20px; cursor: pointer; @if($tg == 0) display: none; @endif " wire:click="backButton"></i>
     <h5 style="text-align: left; @if($tg == 0) margin-top: 3%; @else margin-top: 1%; @endif  margin-left: 1%;">Deployed Item</h5>
     @include('modal.waste-delete-modal')
     @if($tg == 0)
