@@ -1,15 +1,14 @@
 <div>
-    <div style="display: flex;">
-        <div style="margin-left: 44%; margin-top: 2%;">
-            <h4 style="text-align: center; margin-top: 3%;">{{ucwords($teacherName)}}</h4>
+    <div style="margin-left: 15%;width: 70%;margin-top: 2%; margin-bottom: 2%;">
+        <div style="display: flex;">
+            <div>
+                <h5 style="text-align: center; margin-top: 3%;">{{ucwords($teacherName)}}</h5>
+            </div>
+            <div style="margin-left: auto">
+                <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+            </div>
         </div>
-        <div style="margin-left: 28%; margin-top: 3%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
-        </div>
-    </div>
-
-    <div style="margin-left: 15%;width: 70%;margin-top: 1%; margin-bottom: 2%;">
-        <table class="table table-hover" style="width: 100%; text-align: center">
+        <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 1%;">
             <thead>
             <tr class="inv">
                 <th>
