@@ -51,12 +51,6 @@
             <div style="@if($option != "prepare") display: none; @endif">
                 @livewire('prepare')
             </div>
-{{--            @if(isset($reports))--}}
-{{--                @if($option == "waste" and $reports == "view")--}}
-{{--                    <div>--}}
-{{--                        @livewire('waste-item',['teacher_id' => $teacher_id])--}}
-{{--                    </div>--}}
-{{--                @endif--}}
             <div style="@if($option != "waste") display: none; @endif">
                 @livewire('waste')
             </div>
