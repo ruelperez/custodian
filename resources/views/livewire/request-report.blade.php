@@ -1,6 +1,6 @@
 <div>
     @if($clickBk == 0)
-        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" onclick="clickBk()" wire:click="clickBack"></i>
+        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk()" wire:click="clickBack"></i>
     @endif
     <h5 style="margin-left: 1%;">Request Report</h5>
     <div style="display: flex;">
@@ -39,7 +39,7 @@
                 @foreach($request_data as $preps)
                     <tr class="invs">
                         <td>
-                            {{$preps->item_name}}
+                            {{ucwords($preps->item_name)}}
                         </td>
                         <td>
                             {{$preps->quantity}}

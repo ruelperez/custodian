@@ -61,12 +61,12 @@
                 <div>
                     @if($report != 0)
                         @if($df == 0)
-                            <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" wire:click="clickBack"></i>
+                            <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" wire:click="clickBack"></i>
                         @endif
                         @if($report == "stock-card")
                             @livewire('stockcard-by-item')
                         @elseif($report == "property-card")
-                            @livewire('property-card')
+                            @livewire('property-by-item')
                         @elseif($report == "request-report")
                             @livewire('request-bydate')
                         @elseif($report == "purchase-report")

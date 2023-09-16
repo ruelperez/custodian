@@ -1,6 +1,6 @@
 <div>
     @if($clickBk == 0)
-        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%;" onclick="clickBk4()" wire:click="clickBack"></i>
+        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk4()" wire:click="clickBack"></i>
     @endif
     <h5 style="margin-left: 1%;">Stock Card</h5>
         <div style="display: flex; margin-top: 3%;">
@@ -65,10 +65,5 @@
                     @endif
                 </tbody>
             </table>
-            @if($showAllBtn == "show")
-            <button class="btn btn-warning" wire:click="showAll" style="margin-left: 2%; margin-bottom: 1%;">Show All</button>
-            @elseif($showAllBtn == "hide")
-                <button class="btn btn-warning" wire:click="showless" style="margin-left: 2%; margin-bottom: 1%;">Show Less</button>
-            @endif
         </div>
 </div>
