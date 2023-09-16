@@ -292,7 +292,7 @@ class PurchaseRequest extends Component
 
                 session()->flash('transfer',"Successfully  Moved to Inventory");
             }
-            catch (\Exception $e){dd('2');
+            catch (\Exception $e){
                 session()->flash('failed',"Failed to Move");
             }
 

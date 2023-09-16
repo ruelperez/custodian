@@ -74,7 +74,6 @@
                         @endif
                     @else
                         <div>
-                            <h5 style="margin-left: 1%; margin-top: 3%;">Report</h5>
                             <div style="display: flex; margin-top: 6%;">
                                 <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" wire:click="clickReport('stock-card')">
                                     Stock Card
@@ -100,37 +99,4 @@
     </div>
 
 </div>
-<script>
-    function clickBack(){
-        window.livewire.emit('clickBack1');
-    }
 
-    function clickBk(){
-        window.livewire.emit('clickBack2')
-    }
-
-    function clickBk3(){
-        window.livewire.emit('clickBack3')
-    }
-
-    function clickBk4(){
-        window.livewire.emit('clickBack4')
-    }
-
-    function clickBk5(){
-        window.livewire.emit('clickBack5')
-    }
-
-    function moveBup(){
-        if(confirm('Are you sure to move all item to backup folder?')){
-            window.livewire.emit('movetoBup');
-        }
-    }
-
-    function moveInv(){
-        if(confirm('Are you sure to move all item to backup folder?')){
-            window.livewire.emit('moveToInv');
-        }
-    }
-
-</script>

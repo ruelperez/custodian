@@ -51,10 +51,8 @@
     </div>
 </div>
 <!-- Show Graph Data -->
-<script src="https://cdnjs.com/libraries/Chart.js"></script>
+
 <script src="{{ asset('js/chart.js') }}"></script>
-
-
 
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');

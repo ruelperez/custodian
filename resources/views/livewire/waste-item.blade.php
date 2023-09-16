@@ -59,6 +59,17 @@
             </table>
         </div>
         <div style="width: 47%; margin-left: 3%;">
+            @if(session()->has('successMove'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('successMove')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if(session()->has('failedMove'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{session('failedMove')}}
+                </div>
+            @endif
             <div style="display: flex; margin-left: 50%;">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,4 +137,3 @@
 
     </div>
 </div>
-

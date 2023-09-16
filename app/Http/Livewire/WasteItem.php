@@ -7,6 +7,7 @@ use App\Models\MovedItem;
 use App\Models\Receiver;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use PHPUnit\Exception;
 
 class WasteItem extends Component
 {
@@ -53,17 +54,24 @@ class WasteItem extends Component
     }
     public function clickMove(){
         $data = BackupPrepare::find($this->waste_id);
-        MovedItem::create([
-            'item_name' => $data->item_name,
-            'quantity' => $this->qty,
-            'unit' => $data->unit,
-            'receiver' => $data->receiver,
-            'item_type' => $data->item_type,
-            'serial' => $data->serial,
-            'created_at' => $data->created_at,
-            'backup_prepare_id' => $this->waste_id,
-        ]);
-        $this->qty = 0;
+        try {
+            MovedItem::create([
+                'item_name' => $data->item_name,
+                'quantity' => $this->qty,
+                'unit' => $data->unit,
+                'receiver' => $data->receiver,
+                'item_type' => $data->item_type,
+                'serial' => $data->serial,
+                'created_at' => $data->created_at,
+                'backup_prepare_id' => $this->waste_id,
+            ]);
+            $this->qty = 0;
+            session()->flash('successMove', "Successfully Moved");
+        }
+        catch (\Exception $e){
+            session()->flash('failedMove',"Failed to Move");
+        }
+
     }
 
     public function clickMoveBack($id){
@@ -96,7 +104,6 @@ class WasteItem extends Component
             $this->clickMove();
         }
         else{
-            dd('haha');
             return;
         }
     }
