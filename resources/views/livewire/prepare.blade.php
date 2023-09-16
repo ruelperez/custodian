@@ -7,7 +7,7 @@
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_prepare_modal">Add</button>
         </div>
         <div style="margin-left: 50.5%;">
-            <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deploy_confirmation">Deploy</button>
+            <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deploy_confirmation" @if(count($prepare_data) == 0) disabled @endif>Deploy</button>
         </div>
     </div>
     @include('modal.edit-prepare-modal')
