@@ -1,12 +1,9 @@
 <div>
-{{--    @if($clickBk == 0)--}}
-{{--        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk4()" wire:click="clickBack"></i>--}}
-{{--    @endif--}}
-    <div style="display: flex; margin-top: 3%;">
-        <div style="margin-left: 45%;">
+    <div style="display: flex;">
+        <div style="margin-left: 44%; margin-top: 2%;">
             <h4 style="text-align: center; margin-top: 3%;">{{ucwords($teacherName)}}</h4>
         </div>
-        <div style="margin-left: 30%;">
+        <div style="margin-left: 28%; margin-top: 3%;">
             <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
