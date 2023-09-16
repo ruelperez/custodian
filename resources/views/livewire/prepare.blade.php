@@ -9,8 +9,8 @@
         <div style="margin-left: 45%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deploy_confirmation" @if(count($prepare_data) == 0) disabled @endif>Deploy</button>
         </div>
-        <div style="margin-left: 3%; margin-top: 1%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+        <div style="margin-left: 3%; margin-top: 1%;" >
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; @if(count($prepare_data) > 0) cursor: pointer; @endif color: #0a53be" @if(count($prepare_data) > 0) onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'" @endif></i>
         </div>
     </div>
     @include('modal.edit-prepare-modal')
