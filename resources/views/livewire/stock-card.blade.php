@@ -8,7 +8,7 @@
                 <h4 style="text-align: center; margin-top: 3%;">{{ucwords($itemName)}}</h4>
             </div>
             <div style="margin-left: 30%;">
-                <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+                <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
             </div>
         </div>
 
