@@ -4,7 +4,7 @@
 
     <div style="display: flex; width: 100%;">
         <div style="width: 47%;">
-            <button class="btn btn-success" style="margin-left: 69.5%; margin-bottom: 2%;" onclick="moveToInventory()">Move to Inventory</button>
+            <button class="btn btn-success" style="margin-bottom: 1%; width: 40%;" onclick="moveToInventory()">Move to Inventory</button>
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                     <tr class="inv">
@@ -70,18 +70,15 @@
                     {{session('failedMove')}}
                 </div>
             @endif
-            <div style="display: flex; margin-left: 50%;">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+            <div style="display: flex;">
+                <div class="dropdown" style="margin-bottom: 1%;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;" @if(count($movedData) == 0) disabled @endif >
                         Print
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver">
                         <li><button class="dropdown-item" type="button" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';">Request Form</button></li>
                         <li><button class="dropdown-item" type="button">PWMR Form</button></li>
                     </ul>
-                </div>
-                <div>
-                    `            <button>Fininsh</button>
                 </div>
             </div>
             <table class="table table-hover" style="width: 100%; text-align: center">
@@ -126,7 +123,7 @@
                             {{$data->created_at}}
                         </td>
                         <td>
-                            <i class="fa-solid fa-xmark" onclick="removeItemMoved({{$data->id}},'{{$data->item_name}}')"></i>
+                            <i class="fa-solid fa-xmark" onclick="removeItemMoved({{$data->id}},'{{$data->item_name}}')" style="color: red"></i>
                         </td>
                     </tr>
 

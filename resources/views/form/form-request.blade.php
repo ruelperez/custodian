@@ -81,11 +81,11 @@
             <b>Total Cost</b>
         </td>
     </tr>
-    @php $n=1; $h=0; @endphp
+    @php $h=0; @endphp
     @foreach($request_data as $data)
     <tr style="border: 1px solid;">
         <td style="border: 1px solid; width: 15%;">
-            {{$n}}
+
         </td>
         <td style="border: 1px solid;">
             {{$data->unit}}
@@ -103,7 +103,7 @@
             {{$data->total_cost}}
         </td>
     </tr>
-        @php $n++; $h+=$data->total_cost; @endphp
+        @php $h+=$data->total_cost; @endphp
     @endforeach
     <tr style="border: 1px solid;">
         <td style="border: 1px solid; width: 15%;">
