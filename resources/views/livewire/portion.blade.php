@@ -29,11 +29,11 @@
                 <div wire:click="clickPortion('waste')">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('deployed')">
-                    DEPLOYED ITEM
-                </div>
                 <div wire:click="clickPortion('report')">
                     REPORTS
+                </div>
+                <div wire:click="clickPortion('deployed')">
+                    DEPLOYED ITEM
                 </div>
             </div>
         </div>
@@ -71,6 +71,8 @@
                             @livewire('request-bydate')
                         @elseif($report == "purchase-report")
                             @livewire('purchase-bydate')
+                        @elseif($report == "pmr-report")
+                            @livewire('pmr-bydate')
                         @endif
                     @else
                         <div>
@@ -88,6 +90,11 @@
                                 </div>
                                 <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('purchase-report')">
                                     Purchase Report
+                                </div>
+                            </div>
+                            <div style="display: flex; margin-top: 4%">
+                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pmr-report')">
+                                    PMR Report
                                 </div>
                             </div>
                         </div>

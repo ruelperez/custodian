@@ -24,6 +24,10 @@
         window.livewire.emit('clickBack5')
     }
 
+    function clickBk6(){
+        window.livewire.emit('clickBack6')
+    }
+
     function moveBup(){
         if(confirm('Are you sure to move all item to backup folder?')){
             window.livewire.emit('movetoBup');
