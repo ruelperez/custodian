@@ -73,6 +73,8 @@
                             @livewire('purchase-bydate')
                         @elseif($report == "pmr-report")
                             @livewire('pmr-bydate')
+                        @elseif($report == "pwmr-report")
+                            @livewire('pwmr-byname')
                         @endif
                     @else
                         <div>
@@ -95,6 +97,9 @@
                             <div style="display: flex; margin-top: 4%">
                                 <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pmr-report')">
                                     PMR Report
+                                </div>
+                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
+                                    PWMR Report
                                 </div>
                             </div>
                         </div>
