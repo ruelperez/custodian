@@ -1,9 +1,10 @@
 <div>
     @include('modal.move-modal')
+    @include('modal.printRequestModal')
     <p style="text-align: left; margin-top: 3%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
 
     <div style="display: flex; width: 100%;">
-        <div style="width: 47%;">
+        <div style="width: 48%;">
             <button class="btn btn-success" style="margin-bottom: 1%; width: 40%;" onclick="moveToInventory()">Move to Inventory</button>
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
@@ -18,10 +19,13 @@
                             Unit
                         </th>
                         <th>
-                            Serial No.
+                            Serial
                         </th>
-                        <th colspan="2">
+                        <th>
                             Date
+                        </th>
+                        <th>
+
                         </th>
                     </tr>
                 </thead>
@@ -58,7 +62,7 @@
                 </tbody>
             </table>
         </div>
-        <div style="width: 47%; margin-left: 3%;">
+        <div style="width: 48%; margin-left: auto;">
             @if(session()->has('successMove'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{session('successMove')}}
@@ -75,8 +79,8 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;" @if(count($movedData) == 0) disabled @endif >
                         Print
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver">
-                        <li><button class="dropdown-item" type="button" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';">Request Form</button></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver;">
+                        <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#printRequestModal">Request Form</button></li>
                         <li><button class="dropdown-item" type="button">PWMR Form</button></li>
                     </ul>
                 </div>
@@ -94,7 +98,7 @@
                         Unit
                     </th>
                     <th>
-                        Serial No.
+                        Serial
                     </th>
                     <th>
                         Date
