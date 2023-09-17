@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeMove">Cancel</button>
-                <button type="submit" class="btn btn-primary" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';" style="width: 30%;">Print</button>
+                <button type="submit" class="btn btn-primary" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';" wire:click="clickPrint" style="width: 30%;">Print</button>
             </div>
         </div>
     </div>
