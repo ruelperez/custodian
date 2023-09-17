@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\BackupPrepare;
 use App\Models\MovedItem;
 use App\Models\Receiver;
+use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use PHPUnit\Exception;
@@ -128,9 +129,31 @@ class WasteItem extends Component
         $backupData->save();
 //        delete move item data
         MovedItem::find($id)->delete();
-
-
-
     }
 
+    public function clickPrint(){
+        $rt = 0;
+        $move = MovedItem::all();
+        try {
+            foreach ($move as $moves){
+                Request::create([
+                    'item_name' => $moves->item_name,
+                    'quantity' => $moves->quantity,
+                    'unit' => $moves->unit,
+                    'item_type' => $moves->item_type,
+                ]);
+            }
+            $rt = 1;
+        }
+        catch (\Exception $e){
+            $rt = 0;
+        }
+
+        if ($rt == 1){
+            foreach ($move as $delMove){
+                $delMove->delete();
+            }
+        }
+
+    }
 }
