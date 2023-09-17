@@ -20,9 +20,6 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::get('/data/{option}/{reports}', function ($option,$reports){
         return view('main', ['option' => $option, 'reports' => $reports]);
     });
-    Route::get('/{option}/{reports}/{teacher_id}', function ($option,$reports,$teacher_id){
-        return view('main', ['option' => $option, 'reports' => $reports, 'teacher_id' => $teacher_id]);
-    });
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
     Route::get('/request-pdf/{request}', [\App\Http\Controllers\RequestController::class, 'pdf']);
     Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
