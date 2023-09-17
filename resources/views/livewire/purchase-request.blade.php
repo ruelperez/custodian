@@ -3,13 +3,15 @@
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Request</h5>
         <div style="margin-top: 5%; width: 100%;background-color:#F8F8FF;">
             @if(session()->has('move'))
-                <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
-                    {{ session('move') }}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('move')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
             @if(session()->has('move_failed'))
-                <div class="alert alert-danger" style="width: 10%; ">
-                    {{ session('move_failed') }}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('move_failed')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
             <div style="display: flex;">
@@ -78,13 +80,19 @@
 
         <div style="background-color:#F8F8FF; margin-top: 5%; width: 100%;">
             @if(session()->has('transfer'))
-                <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">
-                    {{ session('transfer') }}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('transfer')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+{{--                <div class="alert alert-success" style="width: 80%; margin-left: 10%;text-align: center; margin-top: 1%; ">--}}
+{{--                    {{ session('transfer') }}--}}
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
+{{--                </div>--}}
             @elseif(session()->has('failed'))
-                    <div class="alert alert-danger" style="width: 10%; ">
-                        {{ session('failed') }}
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{session('failed')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
 
             <div style="display: flex;">
@@ -153,6 +161,12 @@
     function forward(){
         if (confirm("Are you sure to forward the data to purchase order???"))
             window.livewire.emit('move');
+    }
+
+    function moveInv(){
+        if(confirm("Click \"OK\" to transfer purchase order item to inventory")){
+            window.livewire.emit('moveToInv');
+        }
     }
 
     const searchInput = document.getElementById('request-searchInput');

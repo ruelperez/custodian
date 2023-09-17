@@ -1,6 +1,7 @@
 <div>
     @include('modal.move-modal')
     @include('modal.printRequestModal')
+    @include('modal.printWasteModal')
     <p style="text-align: left; margin-top: 3%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
 
     <div style="display: flex; width: 100%;">
@@ -72,17 +73,21 @@
             @if(session()->has('failedMove'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{session('failedMove')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div style="display: flex;">
+            <div style="display: flex; padding-right: 2%;">
                 <div class="dropdown" style="margin-bottom: 1%;">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;" @if(count($movedData) == 0) disabled @endif >
                         Print
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="background-color: silver;">
                         <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#printRequestModal">Request Form</button></li>
-                        <li><button class="dropdown-item" type="button">PWMR Form</button></li>
+                        <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#printWasteModal">WMR Form</button></li>
                     </ul>
+                </div>
+                <div style="margin-left: auto; margin-top: 3%;">
+                    <i class="fa-solid fa-suitcase" title="move to backup" style="font-size: 23px; color: green; cursor:pointer;"  onclick="moveBup()"></i>
                 </div>
             </div>
             <table class="table table-hover" style="width: 100%; text-align: center">
