@@ -1,5 +1,5 @@
 <div>
-    @if($tg == 1)
+    @if($rt == 1)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk8()" wire:click="clickBack"></i>
         <h5 style="text-align: left; margin-left: 1%;">Waste Material Report</h5>
     @endif

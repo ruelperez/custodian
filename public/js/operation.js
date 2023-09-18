@@ -6,6 +6,10 @@ function clickBk(){
     window.livewire.emit('clickBack2')
 }
 
+function clickBack21(){
+    window.livewire.emit('clickBk23')
+}
+
 function clickBk3(){
     window.livewire.emit('clickBack3')
 }
@@ -28,6 +32,10 @@ function clickBk7(){
 
 function clickBk8(){
     window.livewire.emit('clickBack8')
+}
+
+function clickBk25(){
+    window.livewire.emit('clickBack25')
 }
 
 function moveBup(){

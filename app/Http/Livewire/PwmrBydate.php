@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class PwmrBydate extends Component
 {
-    public $teacherName, $search, $request_data, $clickView = 0, $dateData;
+    public $teacherName, $search, $fg = 0, $request_data, $clickView = 0, $dateData;
 
     public function render()
     {
@@ -30,15 +30,22 @@ class PwmrBydate extends Component
     }
 
     public function search(){
-        $this->request_data = BackupPrepare::select(DB::raw('DATE(created_at) as date'))
-            ->groupBy('date')
+        $this->request_data = BackupWaste::select(DB::raw('DATE(created_at) as date'))
             ->where('created_at','like', '%'.$this->search.'%')
+            ->where('receiver', '=', $this->teacherName)
+            ->distinct()
             ->get();
     }
 
     public function click($name){
         $this->dateData = $name;
         $this->clickView = 1;
+        $this->fg = 1;
+    }
+
+    public function clickBack(){
+        $this->fg = 0;
+        $this->clickView = 0;
     }
 
 //    protected $listeners = [

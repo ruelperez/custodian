@@ -1,10 +1,7 @@
 <div>
-    @if($clickBk == 0)
-        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk6()" wire:click="clickBack"></i>
-    @endif
-    <h5 style="margin-left: 1%;">Waste Material Report</h5>
+    <p style="margin-left: 1%;margin-top: 1.5%; font-size: 20px;">{{ucwords($teacherName)}}</p>
     <div style="display: flex;">
-        <div style="margin-left: 82%;margin-top: 4%;">
+        <div style="margin-left: 82%;margin-top: 1%;">
             <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/pmr-report/{{$dataDate}}';"></i>
         </div>
     </div>
