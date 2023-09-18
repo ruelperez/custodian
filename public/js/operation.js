@@ -22,9 +22,23 @@ function clickBk6(){
     window.livewire.emit('clickBack6')
 }
 
+function clickBk7(){
+    window.livewire.emit('clickBack7')
+}
+
+function clickBk8(){
+    window.livewire.emit('clickBack8')
+}
+
 function moveBup(){
     if(confirm('Are you sure to move all item to backup folder?')){
         window.livewire.emit('movetoBup');
+    }
+}
+
+function clickTransfer(){
+    if(confirm('Transfer moved item to backup. Click "OK" to proceed ')){
+        window.livewire.emit('transfer');
     }
 }
 

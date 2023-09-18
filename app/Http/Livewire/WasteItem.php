@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\BackupWaste;
 use App\Models\MovedItem;
 use App\Models\Receiver;
 use App\Models\Request;
@@ -112,7 +113,35 @@ class WasteItem extends Component
     protected $listeners = [
         'remove' => 'removeItemMoved',
         'move' => 'moveToInventory',
+        'transfer' => 'moveToBackupWaste'
     ];
+
+    public function moveToBackupWaste(){
+        $g = 0;
+        $datas = MovedItem::all();
+        try {
+            foreach ($datas as $data){
+                BackupWaste::create([
+                    'item_name' => $data->item_name,
+                    'quantity' => $data->quantity,
+                    'unit' => $data->unit,
+                    'receiver' => $data->receiver,
+                    'serial' => $data->serial,
+                ]);
+            }
+            $g = 1;
+        }
+        catch (\Exception $e){
+            $g = 0;
+        }
+
+        if ($g == 1){
+            foreach ($datas as $data){
+                $data->delete();
+            }
+        }
+
+    }
 
     public function moveToInventory(){
         foreach ($this->deployed_data as $data){

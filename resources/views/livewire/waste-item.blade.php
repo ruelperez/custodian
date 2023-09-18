@@ -87,7 +87,7 @@
                     </ul>
                 </div>
                 <div style="margin-left: auto; margin-top: 3%;">
-                    <i class="fa-solid fa-suitcase" title="move to backup" style="font-size: 23px; color: green; cursor:pointer;"  onclick="moveBup()"></i>
+                    <i class="fa-solid fa-suitcase" title="move to backup" style="font-size: 23px; color: green; @if(count($movedData) == 0) @else cursor:pointer; @endif " @if(count($movedData) == 0) @else onclick="clickTransfer()" @endif></i>
                 </div>
             </div>
             <table class="table table-hover" style="width: 100%; text-align: center">

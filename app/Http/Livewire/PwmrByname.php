@@ -2,27 +2,28 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\BackupPrepare;
+use App\Models\BackupWaste;
 use Livewire\Component;
 
-class Deployed extends Component
+class PwmrByname extends Component
 {
     public $search_teacher, $result, $tg = 0, $teacher_name;
+
     public function render()
     {
         if ($this->search_teacher != ""){
             $this->search();
         }
         else{
-            $this->result = BackupPrepare::select('receiver')
+            $this->result = BackupWaste::select('receiver')
                 ->distinct()
                 ->get();
         }
-        return view('livewire.deployed');
+        return view('livewire.pwmr-byname');
     }
 
     public function search(){
-        $this->result = BackupPrepare::select('receiver')
+        $this->result = BackupWaste::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
             ->distinct()
             ->get();

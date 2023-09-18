@@ -13,7 +13,6 @@ class BackupWaste extends Model
         'unit',
         'receiver',
         'serial',
-        'condition',
     ];
 
     use HasFactory;

@@ -35,6 +35,8 @@ class Portion extends Component
         'clickBack4' => 'back4',
         'clickBack5' => 'back5',
         'clickBack6' => 'back6',
+        'clickBack7' => 'back7',
+        'clickBack8' => 'back8'
     ];
 
     public function back1(){
@@ -58,6 +60,14 @@ class Portion extends Component
     }
 
     public function back6(){
+        $this->df = 0;
+    }
+
+    public function back7(){
+        $this->df = 1;
+    }
+
+    public function back8(){
         $this->df = 0;
     }
 
