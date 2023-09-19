@@ -75,6 +75,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = "";
                 $this->total_cost = "";
                 $this->unit = "";
+                $this->item_type = "";
                 session()->flash('dataAdded',"Successfully Added");
             }
             catch (\Exception $e){
@@ -111,6 +112,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = "";
                 $this->total_cost = "";
                 $this->unit = "";
+                $this->item_type = "";
                 session()->flash('dataAdded',"Successfully Added");
             }
             catch (\Exception $e){
