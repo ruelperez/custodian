@@ -57,3 +57,15 @@ function itemMove(){
 function requestBtnClose(){
     $('#requestBtnClose').click();
 }
+
+function deleteItemRequest(id){
+    if (confirm('Are you sure you want to delete?')){
+        window.livewire.emit('deleteItemRequest', id);
+    }
+}
+
+function deleteItemOrder(id){
+    if (confirm('Are you sure you want to delete?')){
+        window.livewire.emit('deleteItemOrder', id);
+    }
+}

@@ -215,6 +215,8 @@ class PurchaseRequest extends Component
         'removeSuggest' => 'hideSuggest',
         'movetoBup' => 'move_to_backup',
         'moveToInv' => 'move_to_inventory',
+        'deleteItemRequest' => 'delete',
+        'deleteItemOrder' => 'delete_order',
     ];
 
     public function hideSuggest(){

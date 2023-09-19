@@ -73,7 +73,7 @@
                             <td>{{$data->total_cost}}</td>
                             <td>{{$data->item_type}}</td>
                             <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_request_modal" wire:click="edit({{$data->id}})"></i></td>
-                            <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
+                            <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="deleteItemRequest({{$data->id}})"></i></td>
                         </tr>
                     @endforeach
                 @endif
@@ -160,7 +160,7 @@
                                 <td>{{$data->total_cost = $data->quantity * $data->unit_cost}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#edit_request_modal" style="cursor: pointer;" wire:click="edit_order({{$data->id}})"></i></td>
-                                <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete_order({{$data->id}})"></i></td>
+                                <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="deleteItemOrder({{$data->id}})"></i></td>
                             </tr>
                         @endforeach
                     @endif
