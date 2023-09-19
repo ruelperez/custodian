@@ -14,25 +14,25 @@
             </div>
             <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
             <div style="margin-top: 3%;" class="navig">
-                <div wire:click="clickPortion('graph')">
+                <div wire:click="clickPortion('graph')" @if($option == "graph") style="background-color: #00BFFF" @endif>
                     GRAPH
                 </div>
-                <div wire:click="clickPortion('purchase')">
+                <div wire:click="clickPortion('purchase')" @if($option == "purchase") style="background-color: #00BFFF" @endif>
                     PURCHASE REQUEST
                 </div>
-                <div wire:click="clickPortion('inventory')">
+                <div wire:click="clickPortion('inventory')" @if($option == "inventory") style="background-color: #00BFFF" @endif>
                     INVENTORY
                 </div>
-                <div wire:click="clickPortion('prepare')">
+                <div wire:click="clickPortion('prepare')" @if($option == "prepare") style="background-color: #00BFFF" @endif>
                     PREPARE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('waste')">
+                <div wire:click="clickPortion('waste')" @if($option == "waste") style="background-color: #00BFFF" @endif>
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('report')">
+                <div wire:click="clickPortion('report')" @if($option == "report") style="background-color: #00BFFF" @endif>
                     REPORTS
                 </div>
-                <div wire:click="clickPortion('deployed')">
+                <div wire:click="clickPortion('deployed')" @if($option == "deployed") style="background-color: #00BFFF" @endif>
                     DEPLOYED ITEM
                 </div>
             </div>
