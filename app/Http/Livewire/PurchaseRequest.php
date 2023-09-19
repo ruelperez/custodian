@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $item_name, $order_data, $fa=0, $item_type="consumable", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $item_name, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -164,7 +164,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
-                $this->item_type = "consumable";
+                $this->item_type = "";
                 session()->flash('dataUpdated',"Successfully Updated");
             }
             catch (\Exception $e){
@@ -198,11 +198,11 @@ class PurchaseRequest extends Component
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
-                $this->item_type = "consumable";
-                session()->flash('dataUpdated',"Successfully Updated");
+                $this->item_type = "";
+                session()->flash('dataUpdatedOrder',"Successfully Updated");
             }
             catch (\Exception $e){
-                session()->flash('errorUpdated',"Failed to Update");
+                session()->flash('errorUpdatedOrder',"Failed to Update");
             }
         }
 
@@ -255,6 +255,7 @@ class PurchaseRequest extends Component
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
         $this->unit = $data->unit;
+        $this->item_type = $data->item_type;
         $this->pick = 1;
     }
 
@@ -306,10 +307,22 @@ class PurchaseRequest extends Component
 
     public function add_order_click(){
         $this->base = 1;
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit_cost = null;
+        $this->total_cost = null;
+        $this->unit = null;
+        $this->item_type = "";
     }
 
     public function add_request_click(){
         $this->base = 0;
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit_cost = null;
+        $this->total_cost = null;
+        $this->unit = null;
+        $this->item_type = "";
     }
 
     public function move_to_backup(){

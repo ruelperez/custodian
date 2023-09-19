@@ -53,3 +53,7 @@ function clickTransfer(){
 function itemMove(){
     $('#closeMove').click();
 }
+
+function requestBtnClose(){
+    $('#requestBtnClose').click();
+}
