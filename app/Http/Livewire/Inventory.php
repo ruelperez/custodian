@@ -8,7 +8,7 @@ use Livewire\Component;
 class Inventory extends Component
 {
     public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
-            $item_type = "consumable", $ng=0;
+            $item_type, $ng=0;
 
     public function render()
     {
@@ -32,10 +32,9 @@ class Inventory extends Component
     public function submit()
     {
         $data = $this->validate([
-            'item_name' => 'required',
+            'item_name' => 'required|unique:inventories,item_name',
             'item_type' => 'required',
             'quantity' => 'required|integer',
-            'inventory_number' => 'integer',
         ]);
         if ($this->unit == "") {
             $this->unit = 0;
