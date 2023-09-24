@@ -70,7 +70,7 @@
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname')
                         @elseif($report == "deployed")
-                        @livewire('deployed')
+                        @livewire('deployed-byname')
                         @endif
                     @else
                         <div>

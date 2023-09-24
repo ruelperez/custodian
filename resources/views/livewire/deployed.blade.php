@@ -1,56 +1,68 @@
 <div>
-    @if($tg == 1)
-        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" wire:click="clickBack"></i>
-        <h5 style="text-align: left; margin-left: 1%;">Deployed Item</h5>
-    @endif
-    @include('modal.waste-delete-modal')
-    @if($tg == 0)
-        <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Deployed Item</h5>
-        <div>
-            <div class="input-group mb-1" style="width: 40%; margin-left: 30%; margin-top: 5%;">
-                <input type="text" wire:model.debounce.1ms="search_teacher" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            </div>
-            <div style="margin-left: 20%;width: 60%;margin-top: 2%; margin-bottom: 2%;">
-                <table class="table table-hover" style="width: 100%; text-align: center">
-                    <thead>
-                    <tr class="inv">
-                        <th>
-                            Teachers
-                        </th>
-                        <th>
-                            Action
-                        </th>
+    <p style="margin-left: 1%;margin-top: 1.5%; font-size: 20px;">{{ucwords($teacherName)}}</p>
+    <div style="display: flex;">
+        <div style="margin-left: 82%;margin-top: 1%;">
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/pmr-report/{{$dataDate}}';"></i>
+        </div>
+    </div>
+
+    <div style="margin-left: 15%;width: 70%; margin-top: 0.5%; margin-bottom: 2%;">
+        <table class="table table-hover" style="width: 100%; text-align: center">
+            <thead>
+            <tr class="inv">
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Unit
+                </th>
+                <th>
+                    Serial
+                </th>
+                <th>
+                    Receiver
+                </th>
+                <th>
+                    Time Created
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @if(count($request_data) > 0)
+                @foreach($request_data as $preps)
+                    <tr class="invs">
+                        <td>
+                            {{ucwords($preps->item_name)}}
+                        </td>
+                        <td>
+                            {{$preps->quantity}}
+                        </td>
+                        <td>
+                            {{$preps->unit}}
+                        </td>
+                        <td>
+                            {{$preps->serial}}
+                        </td>
+                        <td>
+                            {{$preps->receiver}}
+                        </td>
+                        <td>
+                            {{$preps->created_at}}
+                        </td>
                     </tr>
-                    </thead>
-
-                    <tbody>
-                    @if(count($result) > 0)
-                        @foreach($result as $preps)
-                            <tr class="invs">
-                                <td>
-                                    {{ucwords($preps->receiver)}}
-                                </td>
-                                <td style="color: #0c63e4; cursor: pointer" wire:click="clickView('{{$preps->receiver}}')">
-                                    View
-                                </td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="2">
-                                No Item Posted
-                            </td>
-
-                        </tr>
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    @endif
-    @if($tg == 1)
-        <div>
-            @livewire('deployed-table',['teacher_name' => $teacher_name])
-        </div>
-    @endif
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6">
+                        No Data Posted
+                    </td>
+                </tr>
+            @endif
+            </tbody>
+        </table>
+    </div>
 </div>

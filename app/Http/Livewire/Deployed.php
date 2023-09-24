@@ -3,37 +3,27 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Deployed extends Component
 {
-    public $search_teacher, $result, $tg = 0, $teacher_name;
+    public $request_data, $clickBk = 0, $dataDate, $teacherName;
     public function render()
     {
-        if ($this->search_teacher != ""){
-            $this->search();
-        }
-        else{
-            $this->result = BackupPrepare::select('receiver')
-                ->distinct()
-                ->get();
-        }
+        $this->request_data = DB::table('backup_prepares')
+            ->where('created_at','like', '%'.$this->dataDate.'%')
+            ->where('receiver', '=', $this->teacherName)
+            ->get();
         return view('livewire.deployed');
     }
 
-    public function search(){
-        $this->result = BackupPrepare::select('receiver')
-            ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
-            ->distinct()
-            ->get();
-    }
-
-    public function clickView($name){
-        $this->teacher_name = $name;
-        $this->tg = 1;
+    public function mount($teacher_name,$date_data){
+        $this->teacherName = $teacher_name;
+        $this->dataDate = $date_data;
     }
 
     public function clickBack(){
-        $this->tg = 0;
+        $this->clickBk = 1;
     }
 }
