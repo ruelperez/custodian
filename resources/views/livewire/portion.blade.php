@@ -32,9 +32,6 @@
                 <div wire:click="clickPortion('report')" @if($option == "report") style="background-color: #00BFFF" @endif>
                     REPORTS
                 </div>
-                <div wire:click="clickPortion('deployed')" @if($option == "deployed") style="background-color: #00BFFF" @endif>
-                    DEPLOYED ITEM
-                </div>
             </div>
         </div>
         {{--    @livewire('han')--}}
@@ -54,9 +51,6 @@
             <div style="@if($option != "waste") display: none; @endif">
                 @livewire('waste')
             </div>
-            <div style="@if($option != "deployed") display: none; @endif">
-                @livewire('deployed')
-            </div>
             @if($option == "report")
                 <div>
                     @if($report != 0)
@@ -75,6 +69,8 @@
                             @livewire('pmr-bydate')
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname')
+                        @elseif($report == "deployed")
+                        @livewire('deployed')
                         @endif
                     @else
                         <div>
@@ -100,6 +96,11 @@
                                 </div>
                                 <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
                                     PWMR Report
+                                </div>
+                            </div>
+                            <div style="display: flex; margin-top: 4%">
+                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('deployed')">
+                                    Deployed Item
                                 </div>
                             </div>
                         </div>
