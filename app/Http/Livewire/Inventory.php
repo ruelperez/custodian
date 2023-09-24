@@ -8,10 +8,14 @@ use Livewire\Component;
 class Inventory extends Component
 {
     public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
-            $item_type, $ng=0;
+            $item_type, $ng=0, $kl = 0;
 
     public function render()
     {
+        if ($this->item_name != ""){
+            $this->itemValidator();
+        }
+
         if ($this->searchInput != ""){
             $this->search();
         }
@@ -21,6 +25,22 @@ class Inventory extends Component
 
 
         return view('livewire.inventory');
+    }
+
+    public function itemValidator(){
+        $count = 0;
+        $data = \App\Models\Inventory::all();
+        foreach ($data as $datas){
+            if ($datas->item_name == $this->item_name){
+                $count++;
+            }
+        }
+        if ($count > 0){
+            $this->kl = 1;
+        }
+        else{
+            $this->kl = 0;
+        }
     }
 
     public function search(){
