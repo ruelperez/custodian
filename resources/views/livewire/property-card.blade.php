@@ -7,9 +7,6 @@
         <div>
             <h5>{{ucwords($itemName)}}</h5>
         </div>
-        <div style="margin-left: auto;">
-            <i title="Save Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
-        </div>
     </div>
 
     <div style="margin-left: 15%;width: 70%; margin-bottom: 2%; margin-top: 1%;">
