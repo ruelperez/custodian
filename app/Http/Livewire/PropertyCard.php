@@ -10,7 +10,7 @@ class PropertyCard extends Component
 {
     use WithPagination;
 
-    public $itemName, $item, $qty, $prop_id, $unit, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
+    public $itemName, $item, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
 
     public function render()
     {
@@ -67,5 +67,39 @@ class PropertyCard extends Component
         }
 
     }
+
+    public function edit($id){
+        $this->component_id = $id;
+        $data = \App\Models\Component::find($id);
+        $this->item = $data->item_name;
+        $this->qty = $data->quantity;
+        $this->unit = $data->unit;
+        $this->prop_num = $data->property_number;
+        $this->date = $data->date_acquired;
+        $this->amount = $data->amount;
+        $this->prop_id = $data->property_card_id;
+        $this->teacher_name = $data->receiver;
+    }
+
+    public function submitEdit(){
+        $data = \App\Models\Component::find($this->component_id);
+        try {
+            $data->item_name = $this->item;
+            $data->quantity = $this->qty;
+            $data->unit = $this->unit;
+            $data->property_number = $this->prop_num;
+            $data->date_acquired = $this->date;
+            $data->amount = $this->amount;
+            $data->receiver = $this->teacher_name;
+            $data->property_card_id = $this->prop_id;
+            $data->save();
+            session()->flash('successEdit',"Successfully updated");
+        }
+        catch (\Exception $e){
+            session()->flash('failedEdit',"Failed to update");
+        }
+
+    }
+
 
 }

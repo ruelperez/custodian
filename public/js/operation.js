@@ -73,3 +73,7 @@ function deleteItemOrder(id){
 function clickPropAdd(){
     $('#propButton').click();
 }
+
+function clickPropEdit(){
+    $('#propEditButton').click();
+}

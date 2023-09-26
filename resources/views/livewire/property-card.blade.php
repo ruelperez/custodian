@@ -1,6 +1,7 @@
 <div>
     @include('modal.property-table')
     @include('modal.propertyAdd_modal')
+    @include('modal.propertyEdit_modal')
     @if($clickBk == 0)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk5()" wire:click="clickBack"></i>
     @endif

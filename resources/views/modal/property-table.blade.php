@@ -18,6 +18,16 @@
                             {{session('dataFailed')}}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+                    @elseif(session()->has('successEdit'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{session('successEdit')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif(session()->has('failedEdit'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{session('failedEdit')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                 </div>
                 <div style="display: flex">
@@ -71,7 +81,7 @@
                                 <td>{{$data->property_number}}</td>
                                 <td>{{$data->date_acquired}}</td>
                                 <td>{{$data->amount}}</td>
-                                <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#edit_request_modal" style="cursor: pointer;" wire:click="edit_order({{$data->id}})"></i></td>
+                                <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#propEdit_modal" style="cursor: pointer;" wire:click="edit({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="deleteItemOrder({{$data->id}})"></i></td>
                             </tr>
                         @endforeach
