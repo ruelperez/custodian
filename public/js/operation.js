@@ -69,3 +69,7 @@ function deleteItemOrder(id){
         window.livewire.emit('deleteItemOrder', id);
     }
 }
+
+function clickPropAdd(){
+    $('#propButton').click();
+}
