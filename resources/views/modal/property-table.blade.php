@@ -2,10 +2,11 @@
     <div class="modal-dialog modal-lg" role="document" style="">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;"><h5>{{ucwords($itemName)}}</h5></h5>
+                <h5 class="modal-title" id="insertModalLabel"><h5>{{ucwords($itemName)}}</h5></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
+                <p>Receiver: {{ucwords($teacher_name)}}</p>
                 <div>
                     @if(session()->has('dataAdded'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,9 +20,15 @@
                         </div>
                     @endif
                 </div>
-                <div style="width: 12%;">
-                    <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Add</button>
+                <div style="display: flex">
+                    <div style="width: 12%;">
+                        <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Add</button>
+                    </div>
+                    <div style="margin-left: 82%;margin-top: 2%;">
+                        <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+                    </div>
                 </div>
+
                 <table class="table table-hover" style="width: 100%; text-align: center;margin-top: 1%;" >
                     <thead>
                         <tr style="background-color: #20B2AA; color: white">
