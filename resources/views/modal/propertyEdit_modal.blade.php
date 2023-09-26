@@ -21,8 +21,8 @@
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
                         <input type="text" id="request-searchInput" class="form-control" wire:model="prop_num" placeholder="Property Number">
                     </div>
-                    <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" id="request-searchInput" class="form-control" wire:model="date" placeholder="Date Acquired" disabled>
+                    <div class="mb-2" style="width: 70%; margin-left: 15%;" hidden>
+                        <input type="text" id="request-searchInput" class="form-control" wire:model="date" placeholder="Date Acquired">
                     </div>
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
                         <input type="text" id="request-searchInput" class="form-control" wire:model="amount" placeholder="Amount">
