@@ -77,3 +77,9 @@ function clickPropAdd(){
 function clickPropEdit(){
     $('#propEditButton').click();
 }
+
+function propDelete(id,name){
+    if (confirm('Click "OK" to delete '+name)){
+        window.livewire.emit('propDel', id);
+    }
+}

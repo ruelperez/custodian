@@ -101,5 +101,18 @@ class PropertyCard extends Component
 
     }
 
+    protected $listeners = [
+        'propDel' => 'propDelete'
+    ];
 
+    public function propDelete($id){
+        try {
+            \App\Models\Component::find($id)->delete();
+            session()->flash('successDel', "Successfully deleted");
+        }
+        catch (\Exception $e){
+            session()->flash('failedDel', "Failed to delete");
+        }
+
+    }
 }
