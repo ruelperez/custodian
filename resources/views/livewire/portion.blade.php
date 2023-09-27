@@ -69,8 +69,6 @@
                             @livewire('pmr-bydate')
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname')
-                        @elseif($report == "deployed")
-                            @livewire('deployed-byname')
                         @endif
                     @else
                         <div>
@@ -96,11 +94,6 @@
                                 </div>
                                 <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
                                     PWMR Report
-                                </div>
-                            </div>
-                            <div style="display: flex; margin-top: 4%">
-                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #1E7770; padding-top: 25px; text-align: center;color: white;font-size: 25px; margin-bottom: 2%;" wire:click="clickReport('deployed')">
-                                    Deployed Item
                                 </div>
                             </div>
                         </div>

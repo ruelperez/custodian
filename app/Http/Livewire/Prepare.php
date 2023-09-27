@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $currentQty, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -264,5 +264,17 @@ class Prepare extends Component
 
         }
 
+    }
+
+    public function clickReport($name){
+        $this->sample = $name;
+    }
+
+    protected $listeners = [
+        'clickBack40' => 'back',
+    ];
+
+    function back(){
+        $this->sample = 0;
     }
 }

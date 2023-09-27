@@ -5,6 +5,7 @@
     @endif
     @include('modal.waste-delete-modal')
     @if($tg == 0)
+            <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk40()"></i>
         <h5 style="text-align: left; margin-left: 1%;">Deployed Item</h5>
         <div>
             <div class="input-group mb-1" style="width: 40%; margin-left: 20%; margin-top: 5%;">

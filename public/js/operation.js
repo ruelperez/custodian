@@ -83,3 +83,7 @@ function propDelete(id,name){
         window.livewire.emit('propDel', id);
     }
 }
+
+function clickBk40(){
+    window.livewire.emit('clickBack40')
+}
