@@ -99,11 +99,21 @@
                                 </div>
                             </div>
                             <div style="display: flex;">
-                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('request-report')">
-                                    Request Report
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/purchase-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>Purchase Report</b></h4>
+                                    </div>
                                 </div>
-                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('purchase-report')">
-                                    Purchase Report
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/order-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>Order Report</b></h4>
+                                    </div>
                                 </div>
                             </div>
                             <div style="display: flex;">
