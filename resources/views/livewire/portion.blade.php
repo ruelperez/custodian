@@ -71,28 +71,46 @@
                             @livewire('pwmr-byname')
                         @endif
                     @else
-                        <div>
-                            <div style="display: flex; margin-top: 6%;">
-                                <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" wire:click="clickReport('stock-card')">
-                                    Stock Card
+                        <div style="width: 70%; margin-left: 15%; margin-top: 7%;">
+                            <div style="display: flex; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;">
+                                <div style="margin-left: 10%;">
+                                    <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #483D8B; padding-top: 10px; text-align: center;color: white; font-size: 25px" wire:click="clickReport('property-card')">
-                                    Property Card/Property Acknowledge Receipt
+                                <div style="margin-left: 16%; margin-top: 3%;">
+                                    <h4><b>TEACHERS</b></h4>
                                 </div>
                             </div>
-                            <div style="display: flex; margin-top: 4%">
-                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('request-report')">
+                            <div style="display: flex; ">
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/stock-card.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>STOCK CARD</b></h4>
+                                    </div>
+                                </div>
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/property.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 5%;">
+                                        <h5><b>Property Card/Property Acknowledge Receipt</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('request-report')">
                                     Request Report
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('purchase-report')">
+                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('purchase-report')">
                                     Purchase Report
                                 </div>
                             </div>
-                            <div style="display: flex; margin-top: 4%">
-                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pmr-report')">
+                            <div style="display: flex;">
+                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pmr-report')">
                                     PMR Report
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
+                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
                                     PWMR Report
                                 </div>
                             </div>
