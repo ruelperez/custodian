@@ -6,7 +6,7 @@
 
     <div style="display: flex; width: 100%;">
         <div style="width: 48%;">
-            <button class="btn btn-success" style="margin-bottom: 1%; width: 40%;" onclick="moveToInventory()">Move to Inventory</button>
+            <button class="btn btn-success" style="margin-bottom: 1%; width: 40%;" onclick="moveToInventory('{{$teacher_name->fullname}}')">Move to Inventory</button>
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                     <tr class="inv">

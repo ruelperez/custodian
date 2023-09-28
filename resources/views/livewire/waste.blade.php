@@ -59,9 +59,9 @@
         }
     }
 
-    function moveToInventory(){
+    function moveToInventory(name){
         if (confirm('Are you sure to move all item to inventory?')){
-            window.livewire.emit('move');
+            window.livewire.emit('move', name);
         }
     }
 </script>
