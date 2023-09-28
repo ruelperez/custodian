@@ -26,7 +26,7 @@
                 <div wire:click="clickPortion('prepare')" @if($option == "prepare") style="background-color: #00BFFF" @endif>
                     PREPARE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('waste')" @if($option == "waste") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('waste')" @if($option == "waste") style="background-color: #00BFFF" @endif onclick="clickWaste()">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
                 <div wire:click="clickPortion('report')" @if($option == "report") style="background-color: #00BFFF" @endif>

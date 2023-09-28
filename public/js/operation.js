@@ -87,3 +87,7 @@ function propDelete(id,name){
 function clickBk40(){
     window.livewire.emit('clickBack40')
 }
+
+function clickWaste(){
+    window.livewire.emit('clickBack45')
+}

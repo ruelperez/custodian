@@ -41,4 +41,12 @@ class Waste extends Component
     public function backButton(){
         $this->tg = 0;
     }
+
+    protected $listeners = [
+        'clickBack45' => 'clickWaste'
+    ];
+
+    public function clickWaste(){
+        $this->tg = 0;
+    }
 }

@@ -1,6 +1,6 @@
 <div>
     @include('modal.add-inventory-modal')
-    <h5 style="text-align: left; margin-top: 3%;">Inventory Custodian Slip</h5>
+    <h5 style="text-align: left; margin-top: 3%;">Inventory</h5>
     <div style="display: flex; margin-top: 3%;">
         <div style="width: 12%;">
             <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_inventory_modal">Add</button>
