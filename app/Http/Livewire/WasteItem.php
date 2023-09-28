@@ -117,7 +117,7 @@ class WasteItem extends Component
 
     protected $listeners = [
         'remove' => 'removeItemMoved',
-        'move' => 'moveToInventory',
+        'moves' => 'moveToInventory',
         'transfer' => 'moveToBackupWaste'
     ];
 

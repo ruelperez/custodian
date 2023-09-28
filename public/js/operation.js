@@ -99,8 +99,7 @@ function removeItemMoved(id,name){
 }
 
 function moveToInventory(){
-    alert('haha');
     if (confirm('Are you sure to move all item to inventory?')){
-        window.livewire.emit('move');
+        window.livewire.emit('moves');
     }
 }
