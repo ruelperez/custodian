@@ -69,10 +69,12 @@
                             @livewire('pmr-bydate')
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname')
+                        @elseif($report == "teacher")
+                            @livewire('teacher-byname')
                         @endif
                     @else
                         <div style="width: 70%; margin-left: 15%; margin-top: 7%;">
-                            <div style="display: flex; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;">
+                            <div style="display: flex; cursor: pointer; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
                                 <div style="margin-left: 10%;">
                                     <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
