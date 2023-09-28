@@ -14,43 +14,65 @@
             </div>
             <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
             <div style="margin-top: 3%;" class="navig">
-                <div wire:click="clickPortion('graph')" @if($option == "graph") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #00BFFF" @endif>
                     DASHBOARD
                 </div>
-                <div wire:click="clickPortion('purchase')" @if($option == "purchase") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #00BFFF" @endif>
                     PURCHASE REQUEST
                 </div>
-                <div wire:click="clickPortion('inventory')" @if($option == "inventory") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #00BFFF" @endif>
                     INVENTORY
                 </div>
-                <div wire:click="clickPortion('prepare')" @if($option == "prepare") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #00BFFF" @endif>
                     PREPARE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('waste')" @if($option == "waste") style="background-color: #00BFFF" @endif onclick="clickWaste()">
+                <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #00BFFF" @endif onclick="clickWaste()">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('report')" @if($option == "report") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('report')" wire:loading.attr="disabled" @if($option == "report") style="background-color: #00BFFF" @endif>
                     REPORTS
                 </div>
             </div>
         </div>
         {{--    @livewire('han')--}}
         <div style="width: 81%; margin-left: 3%; margin-right: 3%;">
-            <div style="@if($option != "graph") display: none; @endif">
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('graph')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('purchase')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('waste')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('inventory')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('prepare')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('report')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
                 @livewire('graph')
             </div>
-            <div style="@if($option != "purchase") display: none; @endif">
+            <div style="@if($option != "purchase") display: none; @endif" wire:loading.remove>
                 @livewire('purchase-request')
             </div>
-            <div style="@if($option != "inventory") display: none; @endif">
+            <div style="@if($option != "inventory") display: none; @endif" wire:loading.remove>
                 @livewire('inventory')
             </div>
-            <div style="@if($option != "prepare") display: none; @endif">
-                @livewire('prepare')
-            </div>
-            <div style="@if($option != "waste") display: none; @endif">
-                @livewire('waste')
-            </div>
+            @if($option == "prepare")
+                <div wire:loading.remove>
+                    @livewire('prepare')
+                </div>
+            @endif
+            @if($option == "waste")
+                <div wire:loading.remove>
+                    @livewire('waste')
+                </div>
+            @endif
             @if($option == "report")
                 <div>
                     @if($report != 0)
@@ -68,7 +90,7 @@
                         @elseif($report == "pmr-report")
                             @livewire('pmr-bydate')
                         @elseif($report == "pwmr-report")
-                            @livewire('pwmr-byname')
+                            @livewire('pwmr-byname',['waste' => $option])
                         @elseif($report == "teacher")
                             @livewire('teacher-byname')
                         @endif

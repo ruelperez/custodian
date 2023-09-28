@@ -13,15 +13,17 @@ use PHPUnit\Exception;
 
 class WasteItem extends Component
 {
-    public $receiver_id, $qtyPass = 0, $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $qtyPass = 0, $gk = 0, $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
     public function render()
     {
         if ($this->qty != ""){
             $this->qtyValidator();
         }
-        $this->displayData();
-        $this->displayMoved();
+        if ($this->gk == 0){
+            $this->displayData();
+            $this->displayMoved();
+        }
         return view('livewire.waste-item');
     }
 
@@ -144,6 +146,7 @@ class WasteItem extends Component
     }
 
     public function moveToInventory(){
+        $this->gk = 1;
         foreach ($this->deployed_data as $data){
             try {
                 $tt = \App\Models\Inventory::where('item_name',$data->item_name)->increment('quantity',$data->quantity);
@@ -174,6 +177,8 @@ class WasteItem extends Component
         foreach ($this->deployed_data as $ord){
             BackupPrepare::find($ord->id)->delete();
         }
+
+        Receiver::find($this->receiver_id)->delete();
     }
 
     public function removeItemMoved($id){

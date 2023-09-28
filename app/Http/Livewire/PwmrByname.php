@@ -22,6 +22,10 @@ class PwmrByname extends Component
         return view('livewire.pwmr-byname');
     }
 
+    public function mount($waste){
+
+    }
+
     public function search(){
         $this->result = BackupWaste::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')

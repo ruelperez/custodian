@@ -18,10 +18,7 @@ class Waste extends Component
             $this->search();
         }
         else{
-            $this->result = BackupPrepare::select('receiver')
-                ->where('item_type','!=','consumable')
-                ->distinct()
-                ->get();
+            $this->allTeachers();
         }
         return view('livewire.waste');
     }
@@ -30,6 +27,10 @@ class Waste extends Component
         $this->result = DB::table('receivers')
             ->where('fullname','LIKE','%'.$this->search_teacher.'%')
             ->get();
+    }
+
+    public function allTeachers(){
+        $this->result = Receiver::all();
     }
 
     public function clickView($id){
@@ -41,11 +42,6 @@ class Waste extends Component
         $this->tg = 0;
     }
 
-    protected $listeners = [
-        'clickBack45' => 'clickWaste'
-    ];
 
-    public function clickWaste(){
-        $this->tg = 0;
-    }
+
 }

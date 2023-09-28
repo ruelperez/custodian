@@ -25,7 +25,7 @@
                         @foreach($result as $preps)
                             <tr class="invs">
                                 <td>
-                                    {{$preps->receiver}}
+                                    {{$preps->fullname}}
                                 </td>
                                 <td style="color: #0c63e4; cursor: pointer" wire:click="clickView({{$preps->id}})">
                                     View

@@ -80,4 +80,8 @@ class Portion extends Component
         $this->df = 0;
     }
 
+    public function loadingState(){
+
+    }
+
 }
