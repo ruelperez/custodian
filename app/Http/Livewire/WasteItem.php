@@ -24,6 +24,9 @@ class WasteItem extends Component
             $this->displayData();
             $this->displayMoved();
         }
+        else{
+            $this->deployed_data = [];
+        }
         return view('livewire.waste-item');
     }
 

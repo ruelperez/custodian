@@ -91,3 +91,16 @@ function clickBk40(){
 function clickWaste(){
     window.livewire.emit('clickBack45')
 }
+
+function removeItemMoved(id,name){
+    if (confirm('Are you sure to remove '+name+'?')){
+        window.livewire.emit('remove', id);
+    }
+}
+
+function moveToInventory(){
+    alert('haha');
+    if (confirm('Are you sure to move all item to inventory?')){
+        window.livewire.emit('move');
+    }
+}

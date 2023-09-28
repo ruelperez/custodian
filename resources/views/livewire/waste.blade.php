@@ -52,16 +52,4 @@
         </div>
     @endif
 </div>
-<script>
-    function removeItemMoved(id,name){
-        if (confirm('Are you sure to remove '+name+'?')){
-            window.livewire.emit('remove', id);
-        }
-    }
 
-    function moveToInventory(name){
-        if (confirm('Are you sure to move all item to inventory?')){
-            window.livewire.emit('move', name);
-        }
-    }
-</script>
