@@ -15,7 +15,7 @@
             <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
             <div style="margin-top: 3%;" class="navig">
                 <div wire:click="clickPortion('graph')" @if($option == "graph") style="background-color: #00BFFF" @endif>
-                    GRAPH
+                    DASHBOARD
                 </div>
                 <div wire:click="clickPortion('purchase')" @if($option == "purchase") style="background-color: #00BFFF" @endif>
                     PURCHASE REQUEST
