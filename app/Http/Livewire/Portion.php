@@ -19,6 +19,9 @@ class Portion extends Component
         if ($this->option != "report"){
             $this->report = 0;
         }
+        else{
+            $this->report = 0;
+        }
     }
 
     public function clickReport($reportName){
