@@ -117,11 +117,21 @@
                                 </div>
                             </div>
                             <div style="display: flex;">
-                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #898550; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pmr-report')">
-                                    PMR Report
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/pmr-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>P.M.R Report</b></h4>
+                                    </div>
                                 </div>
-                                <div style="cursor: pointer;width: 50%; height: 100px; background-color: #808000; padding-top: 25px; text-align: center;color: white;font-size: 25px" wire:click="clickReport('pwmr-report')">
-                                    PWMR Report
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/pwmr-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>P.W.M.R Report</b></h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
