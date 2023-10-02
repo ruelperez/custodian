@@ -40,14 +40,8 @@
                                     Non-Consumable
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" wire:model="item_type" value="sets">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Sets
-                                </label>
-                            </div>
                         </div>
-                    <button type="submit" class="btn btn-primary" onclick="requestBtnClose()" style="width: 60%; margin-left: 20%;">Update</button>
+                    <button type="submit" class="btn btn-primary" onclick="requestBtnClose()" style="width: 60%; margin-left: 20%; margin-top: 3%;">Update</button>
                 </form>
             </div>
         </div>
