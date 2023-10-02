@@ -109,8 +109,7 @@
                         {{ session('errorUpdatedOrder') }}
                     </div>
                 @endif
-                <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" wire:loading.remove style="font-size: 30px; color: rgb(165, 42, 42);@if(session()->has('dataUpdatedOrder') or session()->has('errorUpdatedOrder')) margin-left: 3%; @else margin-left: 75%; @endif  cursor: pointer;">+</span>
-                <i class="fa-solid fa-suitcase" title="move to inventory" style="font-size: 20px; color: green; margin-left: 5%; margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
+                <i class="fa-solid fa-suitcase" title="move to inventory" style="@if(session()->has('dataUpdatedOrder') or session()->has('errorUpdatedOrder')) margin-left: 3%; @else margin-left: 84%; @endif font-size: 20px; color: green;  margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
                 <i class="fa-solid fa-print" title="Print" style="margin-left: 5%; margin-top: 3%; @if(count($order_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/order';"></i>
             </div>
             <div style="margin-left:45%;">
