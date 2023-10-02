@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BackupRequest;
+use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -37,4 +39,5 @@ class PurchaseReport extends Component
     public function clickBack(){
         $this->clickBk = 1;
     }
+
 }

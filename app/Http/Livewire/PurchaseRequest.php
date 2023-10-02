@@ -340,6 +340,7 @@ class PurchaseRequest extends Component
                     'unit_cost' => $reqs->unit_cost,
                     'total_cost' => $reqs->total_cost,
                     'item_type' => $reqs->item_type,
+                    'created_at' => $reqs->created_at,
                 ]);
             }
             foreach ($req as $rr){

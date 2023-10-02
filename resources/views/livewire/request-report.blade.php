@@ -4,7 +4,19 @@
     @endif
     <h5 style="margin-left: 1%;">Request Report</h5>
     <div style="display: flex;">
-        <div style="margin-left: 82%;margin-top: 4%;">
+        @if(session()->has('moveSuccess'))
+            <div class="alert alert-success" style="width: 56%; padding-top: 1.5%; padding-bottom: 1.5%; margin-bottom: 1%; margin-left: 15%; ">
+                {{ session('moveSuccess') }}
+            </div>
+        @elseif(session()->has('moveFailed'))
+            <div class="alert alert-danger" style="width: 56%; padding-top: 1.5%; padding-bottom: 1.5%; margin-bottom: 1%; margin-left: 15%; ">
+                {{ session('moveFailed') }}
+            </div>
+        @endif
+        <div style="margin-top: 4%; @if(session()->has('moveSuccess') or session()->has('moveFailed')) margin-left: 5%; @else margin-left: 76%; @endif">
+            <i class="fa-solid fa-suitcase" title="move to purchase request" onclick="clickMove()" style="font-size: 23px; color: green; margin-left: 5%;cursor:pointer;"></i>
+        </div>
+        <div style="margin-left: 3%;margin-top: 4%;">
             <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>

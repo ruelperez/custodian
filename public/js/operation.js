@@ -103,3 +103,9 @@ function moveToInventory(){
         window.livewire.emit('moves');
     }
 }
+
+function clickMove(){
+    if (confirm('Are you sure to move to purchase request?')){
+        window.livewire.emit('movebToPr');
+    }
+}
