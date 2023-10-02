@@ -19,22 +19,13 @@
            <tbody>
                 @if(count($lack_item) > 0)
                     @foreach($lack_item as $lack)
-                        @if($lack->item_type == "sets" and $lack->unit <= 5)
+                        @if($lack->quantity <= 50)
                             <tr>
                                 <td>
                                     {{ucfirst($lack->item_name)}}
                                 </td>
                                 <td>
                                     {{$lack->unit}}
-                                </td>
-                            </tr>
-                        @elseif($lack->quantity <= 10)
-                            <tr>
-                                <td>
-                                    {{ucfirst($lack->item_name)}}
-                                </td>
-                                <td>
-                                    {{$lack->quantity}}
                                 </td>
                             </tr>
                         @endif
