@@ -146,7 +146,7 @@
                                         <img src="{{asset('image/pmr-report.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 7%;">
-                                        <h4><b>P.M.R Report</b></h4>
+                                        <h4><b>ICS Report</b></h4>
                                     </div>
                                 </div>
                                 <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
