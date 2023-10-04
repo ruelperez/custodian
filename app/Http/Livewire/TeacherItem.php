@@ -22,8 +22,14 @@ class TeacherItem extends Component
     }
 
     public function suggestion(){
-        $this->suggestData = \App\Models\Inventory::where('item_name','LIKE', '%'.$this->item_name.'%')
-            ->get();
+        if ($this->item_name != ""){
+            $this->suggestData = \App\Models\Inventory::where('item_name','LIKE', '%'.$this->item_name.'%')
+                ->get();
+        }
+        else{
+            $this->suggestData = [];
+        }
+
     }
 
     public function displayData(){
@@ -52,10 +58,6 @@ class TeacherItem extends Component
                 'year' => 'integer'
             ]);
         }
-    }
-
-    public function inputChange(){
-        dd('baba');
     }
     public function clickSort1($name){
         $this->sort1 = $name;
