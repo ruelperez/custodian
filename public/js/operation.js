@@ -109,3 +109,8 @@ function clickMove(){
         window.livewire.emit('movebToPr');
     }
 }
+
+// Teachers add item
+function inputChange(){
+    window.livewire.emit('input_change');
+}

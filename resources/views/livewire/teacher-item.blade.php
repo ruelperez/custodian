@@ -1,9 +1,16 @@
 <div>
+    @include('modal.add_teacher_item')
     <div style="display: flex;">
         <div style="margin-left: 10%;">
             <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
         </div>
-        <div style="margin-left: 64%;">
+        <div style="margin-left: 50%;">
+            <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
+        </div>
+        <div style="margin-left: 3%; margin-top: 1%;">
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+        </div>
+        <div style="margin-left: 3%;">
             <div class="dropdown">
                 <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-sort" style="font-size: 19px; cursor: pointer;"></i>

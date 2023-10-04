@@ -60,7 +60,6 @@
                                 <td>{{$data->unit}}</td>
                                 <td>{{$data->item_name}}</td>
                                 <td>{{$data->quantity}}</td>
-                                <td>{{$data->serial}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td>{{ucwords($data->receiver)}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_prepare_modal" wire:click="edit({{$data->id}})"></i></td>

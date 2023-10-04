@@ -128,7 +128,7 @@
                                         <img src="{{asset('image/purchase-report.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 7%;">
-                                        <h4><b>Purchase Report</b></h4>
+                                        <h4><b>Purchase Requests</b></h4>
                                     </div>
                                 </div>
                                 <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
@@ -136,7 +136,7 @@
                                         <img src="{{asset('image/order-report.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 7%;">
-                                        <h4><b>Order Report</b></h4>
+                                        <h4><b>Purchase Orders</b></h4>
                                     </div>
                                 </div>
                             </div>
