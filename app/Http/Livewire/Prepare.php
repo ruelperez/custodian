@@ -47,7 +47,7 @@ class Prepare extends Component
     }
 
     public function getIcsNum(){
-        $lastId = BackupPrepare::latest()->first();
+        $lastId = BackupPrepare::latest('ics')->first();
 
         if ($lastId) {
             $nextId = $lastId->id + 1;
@@ -87,16 +87,16 @@ class Prepare extends Component
                 'item_type' => $this->item_type,
                 'receiver' => $this->receiver,
                 'serial' => $this->serial,
+                'ics' => $this->ics,
             ]);
             $this->item_name = "";
             $this->quantity = "";
             $this->unit = "";
-            $this->item_type = "consumable";
             $this->receiver = "";
             $this->serial = "";
-            session()->flash('dataAdded',"Successfully Added");
             $this->receiver_disable = 0;
             $this->item_disable = 0;
+            session()->flash('dataAdded',"Successfully Added");
         }
         catch (\Exception $e){
             session()->flash('dataError',"Failed to Add");
@@ -267,6 +267,7 @@ class Prepare extends Component
                     'item_type' => $dat->item_type,
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,
+                    'ics' => $dat->ics,
                 ]);
             }
 
