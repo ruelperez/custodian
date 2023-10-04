@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $ics, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $ics, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -47,13 +47,13 @@ class Prepare extends Component
     }
 
     public function getIcsNum(){
-        $lastId = BackupPrepare::latest('ics')->first();
-
+        $lastId = BackupPrepare::latest('ics_last')->first();
         if ($lastId) {
-            $nextId = $lastId->id + 1;
+            $nextId = $lastId->ics_last + 1;
         } else {
             $nextId = 1;
         }
+        $this->ics_last_number = $nextId;
         $r = date('Y-m-');
         $this->ics = $r.$nextId;
     }
@@ -268,6 +268,7 @@ class Prepare extends Component
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,
                     'ics' => $dat->ics,
+                    'ics_last' => $this->ics_last_number,
                 ]);
             }
 
