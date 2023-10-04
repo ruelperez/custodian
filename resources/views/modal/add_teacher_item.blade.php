@@ -33,27 +33,9 @@
                     </div>
                     @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Unit Cost"  wire:model="unit_cost">
+                        <input type="text" class="form-control" placeholder="Serial No."  wire:model="serial" >
                     </div>
-                    @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Total Cost"  wire:model="total_cost" >
-                    </div>
-                    @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div style="margin-left: 15%;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Consumable
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Non-Consumable
-                            </label>
-                        </div>
-                    </div>
+                    @error('serial') <span style="color: red">{{ $message }}</span> @enderror
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%; margin-top: 3%;">ADD</button>
                 </form>
             </div>
