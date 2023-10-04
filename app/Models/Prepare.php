@@ -13,8 +13,7 @@ class Prepare extends Model
         'unit',
         'receiver',
         'item_type',
-        'serial',
-        'ics',
+        'serial'
     ];
 
     use HasFactory;
