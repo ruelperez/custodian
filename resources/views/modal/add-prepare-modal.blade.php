@@ -16,7 +16,9 @@
                             {{ session('dataError') }}
                         </div>
                     @endif
-                    <div style="display: flex">
+                    <label>ICS No.</label>
+                    <u>{{$ics}}</u>
+                    <div style="display: flex; margin-top: 3%;">
                         <div class="mb-2" style="width: 70%; margin-left: 15%;" >
                             <input @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
                         </div>

@@ -10,11 +10,11 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $ics, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
-
+        $this->getIcsNum();
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
                 $this->basin = 0;
@@ -44,6 +44,18 @@ class Prepare extends Component
 
         $this->prepare_data = \App\Models\Prepare::all();
         return view('livewire.prepare');
+    }
+
+    public function getIcsNum(){
+        $lastId = BackupPrepare::latest()->first();
+
+        if ($lastId) {
+            $nextId = $lastId->id + 1;
+        } else {
+            $nextId = 1;
+        }
+        $r = date('Y-m-');
+        $this->ics = $r.$nextId;
     }
 
     public function submit(){
