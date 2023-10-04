@@ -15,6 +15,7 @@ class BackupPrepare extends Model
         'item_type',
         'serial',
         'created_at',
+        'ics',
     ];
 
     use HasFactory;

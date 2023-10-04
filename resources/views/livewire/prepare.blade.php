@@ -1,4 +1,4 @@
-<div>
+
     @include('modal.add-prepare-modal')
     @include('modal.deploy-confirmation')
     @if($sample != 0)
@@ -35,10 +35,10 @@
                         Serial No.
                     </th>
                     <th>
-                        Remarks
+                        Receiver
                     </th>
                     <th>
-                        Receiver
+                        ICS No.
                     </th>
                     <th colspan="2">
                         Action
@@ -62,6 +62,7 @@
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->item_type}}</td>
                                 <td>{{ucwords($data->receiver)}}</td>
+                                <td>{{$data->ics}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_prepare_modal" wire:click="edit({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
                             </tr>

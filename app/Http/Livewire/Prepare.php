@@ -10,11 +10,10 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $ics, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $ics = "", $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
-        $this->getIcsNum();
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
                 $this->basin = 0;
@@ -46,11 +45,11 @@ class Prepare extends Component
         return view('livewire.prepare');
     }
 
-    public function getIcsNum(){
-        $lastId = BackupPrepare::latest()->first();
-
-        if ($lastId) {
-            $nextId = $lastId->id + 1;
+    public function get(){
+        $d = BackupPrepare::latest('ics')->first();
+        if ($d) {
+            $lastId = $d->ics;
+            $nextId = $lastId + 1;
         } else {
             $nextId = 1;
         }
@@ -87,16 +86,16 @@ class Prepare extends Component
                 'item_type' => $this->item_type,
                 'receiver' => $this->receiver,
                 'serial' => $this->serial,
+                'ics' => $this->ics,
             ]);
             $this->item_name = "";
             $this->quantity = "";
             $this->unit = "";
-            $this->item_type = "consumable";
             $this->receiver = "";
             $this->serial = "";
-            session()->flash('dataAdded',"Successfully Added");
             $this->receiver_disable = 0;
             $this->item_disable = 0;
+            session()->flash('dataAdded',"Successfully Added");
         }
         catch (\Exception $e){
             session()->flash('dataError',"Failed to Add");
@@ -267,6 +266,7 @@ class Prepare extends Component
                     'item_type' => $dat->item_type,
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,
+                    'ics' => $this->ics,
                 ]);
             }
 
@@ -286,7 +286,4 @@ class Prepare extends Component
         'clickBack40' => 'back',
     ];
 
-    function back(){
-        $this->sample = 0;
-    }
 }

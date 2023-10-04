@@ -18,7 +18,7 @@
                     @endif
                     <label>ICS No.</label>
                     <u>{{$ics}}</u>
-                    <div style="display: flex; margin-top: 3%;">
+                    <div style="display: flex; margin-top: 3%">
                         <div class="mb-2" style="width: 70%; margin-left: 15%;" >
                             <input @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
                         </div>
@@ -71,12 +71,12 @@
                             </ul>
                         </div>
                     @endif
-                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Unit" wire:model="unit" disabled>
+                        <div class="mb-3" style="width: 70%; margin-left: 15%;" >
+                            <input type="text" class="form-control" placeholder="Unit" wire:model="unit">
                             @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
+                        <input type="text"  class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
                         @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                         @if(session()->has('insufficient'))
                             <div class="alert alert-danger" style="width: 100%; padding-top: 2px; padding-bottom: 2px; margin-top: 1%;">
