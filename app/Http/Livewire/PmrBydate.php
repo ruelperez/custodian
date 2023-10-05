@@ -18,6 +18,7 @@ class PmrBydate extends Component
         else{
             $this->request_data = BackupPrepare::select('ics')
                 ->distinct()
+                ->orderBy('ics','desc')
                 ->get();
         }
 
@@ -28,6 +29,7 @@ class PmrBydate extends Component
         $this->request_data = BackupPrepare::select('ics')
             ->distinct()
             ->where('ics','like', '%'.$this->search.'%')
+            ->orderBy('ics','desc')
             ->get();
     }
 
