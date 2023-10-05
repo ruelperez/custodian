@@ -2,17 +2,9 @@
     @include('modal.move-modal')
     @include('modal.printRequestModal')
     @include('modal.printWasteModal')
-    @if(session()->has('transfer'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{session('transfer')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    <p style="text-align: left; @if(session()->has('transfer')) margin-top: 1%; @else margin-top: 3%; @endif margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
-
+    <p style="text-align: left; margin-top: 7%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
     <div style="display: flex; width: 100%;">
         <div style="width: 48%;">
-            <button class="btn btn-success" style="margin-bottom: 1%; width: 40%;" onclick="moveToInventory()">Move to Inventory</button>
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                     <tr class="inv">

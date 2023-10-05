@@ -1,10 +1,24 @@
 <div>
     @include('modal.add_teacher_item')
+    <div style="margin-left: 1%; margin-top: 2%;">
+        <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
+    </div>
+    @if(session()->has('transfer'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('transfer')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{session('failed')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div style="display: flex;">
         <div style="margin-left: 10%;">
-            <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
+            <button class="btn btn-success" onclick="moveToInventory()">Move to Inventory</button>
         </div>
-        <div style="margin-left: 50%;">
+        <div style="margin-left: 44%;">
             <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
         </div>
         <div style="margin-left: 3%; margin-top: 1%;">

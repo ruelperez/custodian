@@ -19,6 +19,7 @@ class TeacherItem extends Component
 
     public function mount($teacherName){
         $this->teacher_name = $teacherName;
+
     }
 
     public function suggestion(){
@@ -41,8 +42,40 @@ class TeacherItem extends Component
 
     protected $listeners = [
         'input_change' => 'inputChange',
+        'moves' => 'moveToInventory',
     ];
 
+    public function moveToInventory(){
+        $this->gk = 1;
+        foreach ($this->deployed_data as $data){
+            try {
+                $tt = \App\Models\Inventory::where('item_name',$data->item_name)->increment('quantity',$data->quantity);
+                if ($tt == 0){
+                    \App\Models\Inventory::create([
+                        'item_name' => $data->item_name,
+                        'quantity' => $data->quantity,
+                        'unit' => $data->unit,
+                        'item_type' => $data->item_type,
+                        'inventory_number' => 0,
+                    ]);
+                }
+                session()->flash('transfer',"Successfully  Moved to Inventory");
+            }
+            catch (\Exception $e){
+                session()->flash('failed',"Failed to Move");
+            }
+        }
+
+        foreach ($this->deployed_data as $ord){
+            BackupPrepare::find($ord->id)->delete();
+        }
+        $rec = Receiver::where('fullname','=',$this->teacher_name)
+            ->get('id');
+        foreach ($rec as $recs){
+            Receiver::find($recs->id)->delete();
+        }
+
+    }
     public function updated($field)
     {
         if ($field === 'item_name') {

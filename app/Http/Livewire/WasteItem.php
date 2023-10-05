@@ -117,8 +117,7 @@ class WasteItem extends Component
 
     protected $listeners = [
         'remove' => 'removeItemMoved',
-        'moves' => 'moveToInventory',
-        'transfer' => 'moveToBackupWaste'
+        'transfer' => 'moveToBackupWaste',
     ];
 
     public function moveToBackupWaste(){
@@ -146,42 +145,6 @@ class WasteItem extends Component
             }
         }
 
-    }
-
-    public function moveToInventory(){
-        $this->gk = 1;
-        foreach ($this->deployed_data as $data){
-            try {
-                $tt = \App\Models\Inventory::where('item_name',$data->item_name)->increment('quantity',$data->quantity);
-                if ($tt == 0){
-                    \App\Models\Inventory::create([
-                        'item_name' => $data->item_name,
-                        'quantity' => $data->quantity,
-                        'unit' => $data->unit,
-                        'item_type' => $data->item_type,
-                        'inventory_number' => 0,
-                    ]);
-                }
-                BackupWaste::create([
-                    'item_name' => $data->item_name,
-                    'quantity' => $data->quantity,
-                    'unit' => $data->unit,
-                    'receiver' => $data->receiver,
-                    'serial' => $data->serial,
-                ]);
-
-                session()->flash('transfer',"Successfully  Moved to Inventory");
-            }
-            catch (\Exception $e){
-                session()->flash('failed',"Failed to Move");
-            }
-        }
-
-        foreach ($this->deployed_data as $ord){
-            BackupPrepare::find($ord->id)->delete();
-        }
-
-        Receiver::find($this->receiver_id)->delete();
     }
 
     public function removeItemMoved($id){
