@@ -77,7 +77,7 @@ class Inventory extends Component
             $this->quantity = "";
             $this->unit = "";
             $this->inventory_number = "";
-            $this->item_type = "consumable";
+            $this->item_type = "";
             session()->flash('dataAdded', "Successfully Added");
         } catch (\Exception $e) {
             session()->flash('dataError', "Failed to Add");
@@ -123,7 +123,7 @@ class Inventory extends Component
             $this->quantity = "";
             $this->unit = null;
             $this->inventory_number = null;
-            $this->item_type = "consumable";
+            $this->item_type = "";
             session()->flash('dataUpdated', "Successfully Updated");
         } catch (\Exception $e) {
             session()->flash('errorUpdated', "Failed to Update");
