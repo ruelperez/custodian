@@ -16,8 +16,8 @@ class PmrBydate extends Component
             $this->search();
         }
         else{
-            $this->request_data = BackupPrepare::select(DB::raw('DATE(created_at) as date'))
-                ->groupBy('date')
+            $this->request_data = BackupPrepare::select('ics')
+                ->distinct()
                 ->get();
         }
 
@@ -25,9 +25,9 @@ class PmrBydate extends Component
     }
 
     public function search(){
-        $this->request_data = BackupPrepare::select(DB::raw('DATE(created_at) as date'))
-            ->groupBy('date')
-            ->where('created_at','like', '%'.$this->search.'%')
+        $this->request_data = BackupPrepare::select('ics')
+            ->distinct()
+            ->where('ics','like', '%'.$this->search.'%')
             ->get();
     }
 

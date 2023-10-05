@@ -12,7 +12,7 @@ class PmrReport extends Component
     public function render()
     {
         $this->request_data = DB::table('backup_prepares')
-            ->where('created_at','like', '%'.$this->dataDate.'%')
+            ->where('ics','like', '%'.$this->dataDate.'%')
             ->get();
 
         return view('livewire.pmr-report');

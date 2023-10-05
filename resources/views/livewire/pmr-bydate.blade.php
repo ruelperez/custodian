@@ -25,9 +25,9 @@
                     @foreach($request_data as $preps)
                         <tr class="invs">
                             <td style="text-align: left; padding-left: 3%;">
-                                {{$preps->date}}
+                                {{$preps->ics}}
                             </td>
-                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->date}}')">
+                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->ics}}')">
                                 View
                             </td>
                         </tr>
