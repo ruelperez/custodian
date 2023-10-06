@@ -2,7 +2,7 @@
     @if($clickBk == 0)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk6()" wire:click="clickBack"></i>
     @endif
-    <h5 style="margin-left: 1%;">Pmr Report</h5>
+    <h5 style="margin-left: 1%;">ICS Report</h5>
     <div style="display: flex;">
         <div style="margin-top: 4%; margin-left: 15%;">
             <h5>{{$dataDate}}</h5>

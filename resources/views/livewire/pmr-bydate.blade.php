@@ -1,15 +1,9 @@
 <div>
     @if($clickView == 0)
-        <h5 style="margin-left: 1%;">PMR Report</h5>
+        <h5 style="margin-left: 1%;">ICS Report</h5>
         <div style="display: flex;">
-            <div class="input-group mb-1" style="width: 28%; margin-left: 20%; margin-top: 2%;">
-                <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            </div>
-            <div style="margin-top: 3%;">
-                <label style="margin-left: 12%;">Yr:</label>
-                <input type="text" placeholder="0000" style="width: 17%;">
-                <label style="margin-left: 7%;">Mon:</label>
-                <input type="text" placeholder="00" style="width: 17%;">
+            <div class="input-group mb-1" style="width: 35%; margin-left: 20%; margin-top: 2%;">
+                <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search ICS No." aria-label="Recipient's username" aria-describedby="basic-addon2">
             </div>
         </div>
 
