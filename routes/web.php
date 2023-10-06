@@ -23,7 +23,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
     Route::get('/request-pdf/{request}', [\App\Http\Controllers\RequestController::class, 'pdf']);
     Route::get('/request-pdf/pmr-report/{date}', [\App\Http\Controllers\PmrController::class, 'pdf']);
-    Route::get('/request-pdf/wmr-form/docs', [\App\Http\Controllers\WmrController::class, 'pdf']);
+    Route::get('/request-pdf/wmr-form/{teacher}', [\App\Http\Controllers\WmrController::class, 'pdf']);
     Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
 });
 

@@ -35,9 +35,6 @@
                         Serial No.
                     </th>
                     <th>
-                        Remarks
-                    </th>
-                    <th>
                         Receiver
                     </th>
                     <th colspan="2">

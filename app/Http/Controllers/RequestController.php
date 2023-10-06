@@ -20,13 +20,6 @@ class RequestController extends Controller
            $pdf = PDF::loadView('form.form-request', compact('request_data','request'))
                ->setPaper('legal','portrait');
        }
-       else{
-           $request_data = MovedItem::where('receiver', $request)->get();
-           $request = "request";
-           $pdf = PDF::loadView('form.form-request', compact('request_data','request'))
-               ->setPaper('legal','portrait');
-       }
-
         return $pdf->stream('load.pdf');
     }
 }
