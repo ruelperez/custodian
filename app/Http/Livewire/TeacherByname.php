@@ -16,6 +16,7 @@ class TeacherByname extends Component
         }
         else{
             $this->result = BackupPrepare::select('receiver')
+                ->where('item_type')
                 ->distinct()
                 ->get();
         }

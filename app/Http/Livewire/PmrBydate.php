@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\Distribute;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -16,7 +17,7 @@ class PmrBydate extends Component
             $this->search();
         }
         else{
-            $this->request_data = BackupPrepare::select('ics')
+            $this->request_data = Distribute::select('ics')
                 ->distinct()
                 ->orderBy('ics','desc')
                 ->get();
@@ -26,7 +27,7 @@ class PmrBydate extends Component
     }
 
     public function search(){
-        $this->request_data = BackupPrepare::select('ics')
+        $this->request_data = Distribute::select('ics')
             ->distinct()
             ->where('ics','like', '%'.$this->search.'%')
             ->orderBy('ics','desc')

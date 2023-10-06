@@ -11,7 +11,7 @@ class PmrReport extends Component
 
     public function render()
     {
-        $this->request_data = DB::table('backup_prepares')
+        $this->request_data = DB::table('distributes')
             ->where('ics','like', '%'.$this->dataDate.'%')
             ->get();
 

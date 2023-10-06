@@ -114,3 +114,7 @@ function clickMove(){
 function inputChange(){
     window.livewire.emit('input_change');
 }
+
+function clickRequestProceed(){
+    $('#closeRequestMove').click();
+}

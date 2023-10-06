@@ -6,11 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                All the data you moved will be transferred to the purchase request. Click print to proceed.
+                All the data you moved will be transferred to the purchase request. You can just print the data at Purchase Request page.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeMove">Cancel</button>
-                <button type="submit" class="btn btn-primary" onclick="location.href = '/Dashboard/request-pdf/{{$receiver_name}}';" wire:click="clickPrint" style="width: 30%;">Print</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeRequestMove">Cancel</button>
+                <button type="submit" class="btn btn-primary" wire:click="clickPrint" style="width: 30%;" onclick="clickRequestProceed()">Proceed</button>
             </div>
         </div>
     </div>

@@ -2,7 +2,28 @@
     @include('modal.move-modal')
     @include('modal.printRequestModal')
     @include('modal.printWasteModal')
-    <p style="text-align: left; margin-top: 7%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
+    <p style="text-align: left; margin-top: 2%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
+    @if(session()->has('successMove'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('successMove')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has('failedMove'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{session('failedMove')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has('successMoveToPurchase'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('successMoveToPurchase')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has('failedMoveToPurchase'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{session('failedMoveToPurchase')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div style="display: flex; width: 100%;">
         <div style="width: 48%; margin-top: 4.5%;">
             <table class="table table-hover" style="width: 100%; text-align: center">
@@ -29,51 +50,40 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if(count($deployed_data) > 0)
                     @foreach($deployed_data as $data)
-                        @if($data->quantity < 1)
-
-                        @elseif($data->item_type == "consumable")
-                        @else
-                            <tr style="cursor: pointer">
-                                <td>
-                                    {{$data->item_name}}
-                                </td>
-                                <td>
-                                    @if($data->quantity > 0)
-                                        {{$data->quantity}}
-                                    @endif
-                                </td>
-                                <td>
-                                    {{$data->unit}}
-                                </td>
-                                <td>
-                                    {{$data->serial}}
-                                </td>
-                                <td>
-                                    {{$data->created_at}}
-                                </td>
-                                <td>
-                                    <i class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#moveModal" wire:click="clickArrow({{$data->id}})"></i>
-                                </td>
-                            </tr>
-                        @endif
+                        <tr style="cursor: pointer">
+                            <td>
+                                {{$data->item_name}}
+                            </td>
+                            <td>
+                                @if($data->quantity > 0)
+                                    {{$data->quantity}}
+                                @endif
+                            </td>
+                            <td>
+                                {{$data->unit}}
+                            </td>
+                            <td>
+                                {{$data->serial}}
+                            </td>
+                            <td>
+                                {{$data->created_at}}
+                            </td>
+                            <td>
+                                <i class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#moveModal" wire:click="clickArrow({{$data->id}})"></i>
+                            </td>
+                        </tr>
                     @endforeach
+                @else
+                    <tr>
+                        <td>No data posted</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
         </div>
         <div style="width: 48%; margin-left: auto;">
-            @if(session()->has('successMove'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{session('successMove')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            @if(session()->has('failedMove'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{session('failedMove')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
             <div style="display: flex; padding-right: 2%;">
                 <div class="dropdown" style="margin-bottom: 1%;">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;" @if(count($movedData) == 0) disabled @endif >

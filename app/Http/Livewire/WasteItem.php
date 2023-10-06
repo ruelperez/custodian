@@ -53,7 +53,11 @@ class WasteItem extends Component
         $this->receiver_name = $this->teacher_name->fullname;
         $this->deployed_data = BackupPrepare::where('receiver','=', $this->teacher_name->fullname)
             ->where('item_type', '!=', 'consumable')
+            ->where('quantity', '>', 0)
             ->get();
+        if (count($this->deployed_data) == 0){
+            Receiver::find($this->receiver_id)->delete();
+        }
     }
 
     public function displayMoved(){
@@ -171,9 +175,11 @@ class WasteItem extends Component
                 ]);
             }
             $rt = 1;
+            session()->flash('successMoveToPurchase','Successfully moved to purchase request');
         }
         catch (\Exception $e){
             $rt = 0;
+            session()->flash('failedMoveToPurchase','Failed to transfer');
         }
 
         if ($rt == 1){

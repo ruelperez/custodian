@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\Distribute;
 use App\Models\Receiver;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -266,6 +267,17 @@ class Prepare extends Component
         if ($f == 1){
             foreach ($data as $dat){
                 BackupPrepare::create([
+                    'item_name' => $dat->item_name,
+                    'quantity' => $dat->quantity,
+                    'unit' => $dat->unit,
+                    'item_type' => $dat->item_type,
+                    'receiver' => $dat->receiver,
+                    'serial' => $dat->serial,
+                    'ics' => $dat->ics,
+                    'ics_last' => $this->ics_last_number,
+                ]);
+
+                Distribute::create([
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
                     'unit' => $dat->unit,
