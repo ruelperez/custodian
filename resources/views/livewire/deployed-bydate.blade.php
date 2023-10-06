@@ -1,7 +1,7 @@
 <div>
     @if($fg == 1)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk25()" wire:click="clickBack"></i>
-        <h5 style="text-align: left; margin-left: 1%;">Deployed Item</h5>
+        <h5 style="text-align: left; margin-left: 1%;">Deployed Items</h5>
     @endif
     @if($clickView == 0)
         <p style="margin-left: 1%; margin-top: 1.5%; font-size: 20px;">{{ucwords($teacherName)}}</p>

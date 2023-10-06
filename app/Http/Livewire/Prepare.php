@@ -98,7 +98,6 @@ class Prepare extends Component
             $this->item_name = "";
             $this->quantity = "";
             $this->unit = "";
-            $this->receiver = "";
             $this->serial = "";
             $this->receiver_disable = 0;
             $this->item_disable = 0;
@@ -310,9 +309,11 @@ class Prepare extends Component
 
     protected $listeners = [
         'clickBack40' => 'back',
+//        'clickBack8' => 'clickBk8',
     ];
 
-    function back(){
+
+    public function back(){
         $this->sample = 0;
     }
 }

@@ -39,6 +39,7 @@ class DeployedByname extends Component
     protected $listeners = [
         'clickBk23' => 'clickBack1',
         'clickBack25' => 'clickBack25',
+        'clickBack8' => 'clickBack',
 
     ];
 

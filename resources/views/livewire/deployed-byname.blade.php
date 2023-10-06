@@ -1,12 +1,12 @@
 <div>
     @if($rt == 1)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk8()" wire:click="clickBack"></i>
-        <h5 style="text-align: left; margin-left: 1%;">Deployed Item</h5>
+        <h5 style="text-align: left; margin-left: 1%;">Deployed Items</h5>
     @endif
     @include('modal.waste-delete-modal')
     @if($tg == 0)
             <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk40()"></i>
-        <h5 style="text-align: left; margin-left: 1%;">Deployed Item</h5>
+        <h5 style="text-align: left; margin-left: 1%;">Deployed Items</h5>
         <div>
             <div class="input-group mb-1" style="width: 40%; margin-left: 20%; margin-top: 5%;">
                 <input type="text" wire:model.debounce.1ms="search_teacher" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
