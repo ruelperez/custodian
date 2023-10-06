@@ -4,7 +4,7 @@
     @include('modal.printWasteModal')
     <p style="text-align: left; margin-top: 7%; margin-left: 1%; font-size: 18px;">{{ucwords($teacher_name->fullname)}}</p>
     <div style="display: flex; width: 100%;">
-        <div style="width: 48%;">
+        <div style="width: 48%; margin-top: 4.5%;">
             <table class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                     <tr class="inv">

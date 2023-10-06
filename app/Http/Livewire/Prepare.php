@@ -14,6 +14,7 @@ class Prepare extends Component
 
     public function render()
     {
+
         $this->getIcsNum();
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
@@ -44,6 +45,16 @@ class Prepare extends Component
 
         $this->prepare_data = \App\Models\Prepare::all();
         return view('livewire.prepare');
+    }
+
+    public function updated($field)
+    {
+        if ($field === 'quantity') {
+            $this->fa = 1;
+            $this->fas = 1;
+            $this->basis = 0;
+            $this->basin = 0;
+        }
     }
 
     public function getIcsNum(){
@@ -264,13 +275,13 @@ class Prepare extends Component
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
                 ]);
-            }
 
-            $accepter = DB::table('receivers')
-                ->where('fullname','LIKE', '%'.$this->receiver.'%')
-                ->get();
-            if (count($accepter) == 0){
-                Receiver::create(['fullname' => $this->receiver]);
+                $accepter = DB::table('receivers')
+                    ->where('fullname','=', $dat->receiver)
+                    ->get();
+                if (count($accepter) == 0){
+                    Receiver::create(['fullname' => $dat->receiver]);
+                }
             }
 
             foreach ($data as $da){
