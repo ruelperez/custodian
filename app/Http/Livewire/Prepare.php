@@ -73,12 +73,6 @@ class Prepare extends Component
         }
 
         try {
-            $accepter = DB::table('receivers')
-                ->where('fullname','LIKE', '%'.$this->receiver.'%')
-                ->get();
-            if (count($accepter) == 0){
-                Receiver::create(['fullname' => $this->receiver]);
-            }
 
             \App\Models\Prepare::create([
                 'item_name' => $this->item_name,
@@ -270,6 +264,13 @@ class Prepare extends Component
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
                 ]);
+            }
+
+            $accepter = DB::table('receivers')
+                ->where('fullname','LIKE', '%'.$this->receiver.'%')
+                ->get();
+            if (count($accepter) == 0){
+                Receiver::create(['fullname' => $this->receiver]);
             }
 
             foreach ($data as $da){
