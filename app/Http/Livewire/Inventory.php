@@ -84,6 +84,10 @@ class Inventory extends Component
         }
     }
 
+    protected $listeners = [
+        'deleteInv' => 'delete'
+    ];
+
     public function delete($id)
     {
         \App\Models\Inventory::find($id)->delete();

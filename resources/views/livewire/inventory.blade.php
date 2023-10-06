@@ -50,7 +50,7 @@
                         <td>{{$data->inventory_number}}</td>
                         <td>{{$data->item_type}}</td>
                         <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
-                        <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
+                        <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="delInv({{$data->id}})"></i></td>
                     </tr>
                 @endif
                 @php $q++; @endphp

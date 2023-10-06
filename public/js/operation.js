@@ -118,3 +118,10 @@ function inputChange(){
 function clickRequestProceed(){
     $('#closeRequestMove').click();
 }
+
+// Delete data from inventory
+function delInv(id){
+    if (confirm('Are you sure you want to delete? If yes, click "OK"')){
+        window.livewire.emit('deleteInv',id);
+    }
+}
