@@ -125,3 +125,18 @@ function delInv(id){
         window.livewire.emit('deleteInv',id);
     }
 }
+
+// Prepare Material Request hide suggestion if not click input item field
+const searchInputTeacher = document.getElementById('prepareInputTeacher');
+const searchInputItem = document.getElementById('prepareInputItem');
+
+// Event listener for clicking outside of the search container
+document.addEventListener('click', function (event) {
+    if (!searchInputTeacher.contains(event.target)) {
+        window.livewire.emit('removeSuggestTeacher');
+    }
+
+    if (!searchInputItem.contains(event.target)) {
+        window.livewire.emit('removeSuggestItem');
+    }
+});

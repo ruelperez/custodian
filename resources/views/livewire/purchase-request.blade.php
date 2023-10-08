@@ -191,16 +191,5 @@
         }
     });
 
-    // Function to show search suggestions
-    function showSuggestions() {
-        searchSuggestions.style.display = 'block';
-
-    }
-
-    // Function to hide search suggestions
-    function hideSuggestions() {
-        searchSuggestions.hide();
-    }
-
 
 </script>

@@ -56,6 +56,17 @@ class Prepare extends Component
             $this->basis = 0;
             $this->basin = 0;
         }
+        if ($field === 'item_name'){
+            $this->fa = 0;
+            $this->fas = 1;
+            $this->item_disable = 0;
+        }
+        if ($field === 'receiver'){
+            $this->fas = 0;
+            $this->fa = 1;
+            $this->receiver_disable = 0;
+        }
+
     }
 
     public function getIcsNum(){
@@ -309,9 +320,18 @@ class Prepare extends Component
 
     protected $listeners = [
         'clickBack40' => 'back',
-//        'clickBack8' => 'clickBk8',
+        'removeSuggestTeacher' => 'rst',
+        'removeSuggestItem' => 'rsi',
     ];
 
+    public function rst(){
+        $this->basin = 0;
+    }
+
+    public function rsi()
+    {
+        $this->basis = 0;
+    }
 
     public function back(){
         $this->sample = 0;

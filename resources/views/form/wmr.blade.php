@@ -76,29 +76,75 @@
 
             </td>
         </tr>
-        <tr>
-            <td style="border: 1px solid;">
-
-            </td>
-            <td style="border: 1px solid;">
-
-            </td>
-            <td style="border: 1px solid;">
-
-            </td>
-            <td colspan="2" style="border: 1px solid;">
-                TOTAL
-            </td>
-            <td style="border: 1px solid;">
-
-            </td>
-            <td style="border: 1px solid;">
-
-            </td>
-            <td style="border: 1px solid;">
-
-            </td>
-        </tr>
         @php $n++; @endphp
     @endforeach
+    <tr>
+        <td style="border: 1px solid;">
+
+        </td>
+        <td style="border: 1px solid;">
+
+        </td>
+        <td style="border: 1px solid;">
+
+        </td>
+        <td colspan="2" style="border: 1px solid;">
+            TOTAL
+        </td>
+        <td style="border: 1px solid;">
+
+        </td>
+        <td style="border: 1px solid;">
+
+        </td>
+        <td style="border: 1px solid;">
+
+        </td>
+    </tr>
 </table>
+<table style="width: 100%; border: 1px solid; border-collapse: collapse;">
+    <tr>
+        <td style="width: 50%; padding-bottom: 1%; border: 1px solid; border-right: none;">
+            Certified Correct:
+            <br><p style="text-align: center">________________________________<br>Signature over Printed Name of Supply <br> and/or  Property Custodian</p>
+        </td>
+        <td style="width: 50%; padding-bottom: 1%; border: 1px solid; border-left: none;">
+            Disposal Approved :
+            <br><p style="text-align: center">________________________________<br>Signature over Printed Name of Head <br> of Agency/Entity or his/her <br> Authorized Representative</p>
+        </td>
+    </tr>
+</table>
+<table style="width: 100%; text-align: left; border: 1px solid; border-collapse: collapse;">
+    <tr>
+        <td style="text-align: center">
+            CERTIFICATE OF INSPECTION
+        </td>
+    </tr>
+</table>
+<table style="width: 100%; border: 1px solid; border-collapse: collapse;">
+    <tr>
+        <td style="padding-left: 5%; padding-top: 1%;">
+            I hereby certify that the property enumerated above was disposed of as follows:
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 15%; padding-top: 1%; padding-bottom: 2%;">
+            Item ____________ Destroyed <br> Item ____________ Sold at Private Sale <br> Item ____________ Sold at public auction
+            <br> Item ____________ Transferred without cost to <u>__(Name of the Agency/Entity)__</u>
+        </td>
+    </tr>
+</table>
+<table style="width: 100%; border: 1px solid; border-collapse: collapse;">
+    <tr>
+        <td style="border: 1px solid; width: 50%; padding-bottom: 1%;">
+            Certified Correct:
+            <br><p style="text-align: center">_________________________<br>Signature over Printed Name <br> of Inspection Officer</p>
+        </td>
+        <td style="border: 1px solid; width: 50%; padding-bottom: 1%;">
+            Witness to Disposal:
+            <br><p style="text-align: center">_________________________<br>Signature over Printed Name <br> of Witness</p>
+        </td>
+    </tr>
+</table>
+
+

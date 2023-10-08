@@ -20,7 +20,7 @@
                     <u>{{$ics}}</u>
                     <div style="display: flex; margin-top: 3%;">
                         <div class="mb-2" style="width: 70%; margin-left: 15%;" >
-                            <input @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model.debounce.1ms="receiver" required>
+                            <input id="prepareInputTeacher" @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model="receiver" required>
                         </div>
                         @if($basin == 0)
                             <div style="margin-left: 2%; margin-top: 6px;">
@@ -30,7 +30,7 @@
                     </div>
 
                     @if($basin != 0)
-                        <div style="width: 66%; margin-left: 14%; position: absolute;">
+                        <div style="width: 66%; margin-left: 14%; position: absolute;" id="prepareSuggestTeacher">
                             <ul class="list-group">
                                 @php $h=0; @endphp
                                 @foreach($results as $data)
@@ -46,7 +46,7 @@
                     @endif
                     <div style="display: flex">
                         <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                            <input @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
+                            <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model="item_name" required>
                         </div>
                         @if($basis == 0)
                             <div style="margin-left: 2%; margin-top: 6px;">
@@ -56,7 +56,7 @@
                     </div>
 
                     @if($basis != 0)
-                        <div style="width: 66%; margin-left: 14%; position: absolute;">
+                        <div style="width: 66%; margin-left: 14%; position: absolute;" id="prepareSuggestItem">
                             <ul class="list-group">
                                 @php $h=0; @endphp
                                 @foreach($result as $data)
