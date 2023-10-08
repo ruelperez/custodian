@@ -2,33 +2,14 @@
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <img src="{{public_path('image/deped.jpg')}}" width="80">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Region V
+            <img src="{{public_path('image/header.png')}}" width="700">
         </td>
     </tr>
 </table>
-<table style="width: 100%;">
-    <tr>
-        <td style="padding-left: 75%;">
-            <img src="{{public_path('image/school_logo.jpg')}}" width="60">
-        </td>
-        <td style="text-align: center; width: 35%;">
-            Division of Camarines Sur <br> <b>TANDAAY HIGH SCHOOL</b> <br> <i>Tandaay, Nabua, Camarines Sur</i>
-        </td>
-        <td style="padding-right: 200%;">
-            <img src="{{public_path('image/school_logo.jpg')}}" width="60">
-        </td>
-    </tr>
-
-</table>
-<table style="width: 100%; text-align: center; margin-top: 3%;">
+<table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <b>PURCHASE {{strtoupper($request)}}</b>
+            <h4>PURCHASE REQUEST</h4>
         </td>
     </tr>
     <tr style="text-align: right;">
@@ -36,7 +17,6 @@
             <b style="font-size: 13px;">Fund Cluster: _______________</b>
         </td>
     </tr>
-
 </table>
 <table style="width: 100%; text-align: center;border: 1px solid; border-collapse: collapse;">
     <tr style="border: 1px solid;">
