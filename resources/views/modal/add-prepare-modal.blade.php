@@ -35,7 +35,7 @@
                                 @php $h=0; @endphp
                                 @foreach($results as $data)
                                     @if($h < 6)
-                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_items({{$data->id}})">
+                                        <li class="list-group-item btn" style="text-align: left; background-color: #E0FFFF" wire:click="click_items({{$data->id}})">
                                             {{$data->fullname}}
                                         </li>
                                     @endif
@@ -61,7 +61,7 @@
                                 @php $h=0; @endphp
                                 @foreach($result as $data)
                                     @if($h < 6)
-                                        <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">
+                                        <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
                                             {{$data->item_name}}
                                             <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                         </li>
