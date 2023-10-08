@@ -62,7 +62,7 @@
                 <b></b>
             </td>
             <td colspan="2" style="border: 1px solid;">
-                <b>{{$data->item_name}}</b>
+                <b>{{ucwords($data->item_name)}}</b>
             </td>
             <td style="border: 1px solid;">
                 <b>{{$data->serial}}</b>
