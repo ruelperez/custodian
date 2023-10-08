@@ -20,6 +20,9 @@
                     Quantity
                 </th>
                 <th>
+                    Unit Cost
+                </th>
+                <th>
                     Unit
                 </th>
                 <th>
@@ -46,6 +49,7 @@
                     <tr class="invs">
                         <td>{{ucfirst($data->item_name)}}</td>
                         <td>{{$data->quantity}}</td>
+                        <td >{{$data->unit_cost}}</td>
                         <td >{{$data->unit}}</td>
                         <td>{{$data->inventory_number}}</td>
                         <td>{{$data->item_type}}</td>
