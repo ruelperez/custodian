@@ -40,10 +40,10 @@
     <img src="{{asset('image/home.png')}}" class="image"  style="margin-left: 1%; width: 100%;">
     <div class="overlay">
         <div style="text-align: center; margin-top: 15%;">
-            <p style="font-size: 70px;">Welcome to</p><p style="font-size: 70px;">TanHS LMS Portal</p>
+            <p style="font-size: 70px;">Welcome to</p><p style="font-size: 70px;">TanHS!</p>
         </div>
         <div style="text-align: center; margin-top: 4%;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login_modal" style="width: 12%; padding-top: 1%;"><h5>Sign In</h5></button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login_modal" style="width: 12%; padding-top: 1%;"><h5>Login</h5></button>
         </div>
 
     </div>
