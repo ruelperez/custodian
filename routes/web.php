@@ -25,6 +25,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::get('/request-pdf/pmr-report/{date}', [\App\Http\Controllers\PmrController::class, 'pdf']);
     Route::get('/request-pdf/wmr-form/{teacher}', [\App\Http\Controllers\WmrController::class, 'pdf']);
     Route::get('/request-pdf/teacher-form/{teacher}', [\App\Http\Controllers\TeacherController::class, 'pdf']);
+    Route::get('/request-pdf/ics-form/{icsNum}', [\App\Http\Controllers\IcsController::class, 'pdf']);
     Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
 });
 
