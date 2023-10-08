@@ -12,7 +12,7 @@
                 <thead>
                 <tr class="inv">
                     <th style="text-align: left; padding-left: 3%;">
-                        Time Created
+                        ICS No.
                     </th>
                     <th style="text-align: right; padding-right: 5%;">
                         Action
