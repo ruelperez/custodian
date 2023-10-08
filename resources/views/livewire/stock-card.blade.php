@@ -10,7 +10,7 @@
                     <h5>{{ucwords($itemName)}}</h5>
                 </div>
                 <div style="margin-left: auto;">
-                    <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+                    <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/stockcard-form/{{$itemName}}';"></i>
                 </div>
             </div>
             <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 1%;">

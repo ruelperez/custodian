@@ -17,7 +17,7 @@
             <i class="fa-solid fa-suitcase" title="move to purchase request" onclick="clickMove()" style="font-size: 23px; color: green; margin-left: 5%;cursor:pointer;"></i>
         </div>
         <div style="margin-left: 3%;margin-top: 4%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request-form/{{$dataDate}}';"></i>
         </div>
     </div>
 
