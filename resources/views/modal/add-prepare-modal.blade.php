@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
-                <form wire:submit.prevent="submit">
+                    <form wire:submit.prevent="submit">
                     @if(session()->has('dataAdded'))
                         <div class="alert alert-success" style="width: 60%; ">
                             {{ session('dataAdded') }}
@@ -87,6 +87,7 @@
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
                     </div>
+                        <input type="text" hidden wire:model="unit_cost">
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                 </form>
             </div>

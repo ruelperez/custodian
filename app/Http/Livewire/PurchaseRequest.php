@@ -277,7 +277,7 @@ class PurchaseRequest extends Component
         foreach ($order as $orders){
             try {
                 $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('quantity',$orders->quantity);
-             
+
                 if ($tt == 0){
                     \App\Models\Inventory::create([
                         'item_name' => $orders->item_name,

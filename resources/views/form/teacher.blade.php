@@ -8,7 +8,7 @@
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <h3>WASTE MATERIAL REPORT</h3>
+            <h3>INVENTORY CUSTODIAN SLIP</h3>
             <h4>Entity Name: <u>TANDAAY HIGH SCHOOL</u></h4>
         </td>
     </tr>
@@ -59,7 +59,7 @@
                 <b>{{$data->unit_cost}}</b>
             </td>
             <td style="border: 1px solid;">
-                <b></b>
+                <b>{{$data->quantity * $data->unit_cost}}</b>
             </td>
             <td colspan="2" style="border: 1px solid;">
                 <b>{{ucwords($data->item_name)}}</b>
