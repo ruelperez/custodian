@@ -18,6 +18,19 @@
     </tr>
 </table>
 <table style="width: 100%; text-align: center;border: 1px solid; border-collapse: collapse;">
+    <tr>
+        <td colspan="5" style="border: 1px solid; text-align: left">
+            Place of Storage:
+        </td>
+        <td colspan="3" style="border: 1px solid; text-align: left">
+            Date: {{$date}}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8" style="text-align: left">
+            <b>ITEM FOR DISPOSAL</b>
+        </td>
+    </tr>
     <tr style="border: 1px solid;">
         <td rowspan="3" style="border: 1px solid;">
             Item
