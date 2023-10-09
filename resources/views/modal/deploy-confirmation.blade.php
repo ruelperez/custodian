@@ -11,7 +11,7 @@
                 </div>
                 <div wire:loading.remove style="text-align: center;">
                     @if($hh == 0)
-                    Please assure that you have already save the file before doing a deploy. The data you have input will remove after deploying.
+                    Are you sure to deploy item?
                     @elseif($hh == 1)
                         @if(session()->has('good'))
                             <i class="fa-sharp fa-solid fa-circle-check" style="color: green; font-size: 40px;"></i>
@@ -23,7 +23,7 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" wire:click="deploy" wire:loading.attr="disabled" style="width: 25%;">Deploy</button>
+                <button class="btn btn-primary" wire:click="deploy" wire:loading.attr="disabled" style="width: 25%;" @if(session()->has('good')) disabled @endif>Deploy</button>
             </div>
         </div>
     </div>

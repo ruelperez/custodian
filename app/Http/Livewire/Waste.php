@@ -41,4 +41,7 @@ class Waste extends Component
     public function backButton(){
         $this->tg = 0;
     }
+
+
+
 }

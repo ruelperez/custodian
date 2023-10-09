@@ -21,10 +21,13 @@
     @livewireScripts
 </head>
 <body>
-<div style="display: flex; background-color: #6495ED;">
-    <div style="margin-top: 1.5%; margin-bottom: 1.5%; width: 15%; margin-left: 7%;">
-        <h5 style="color: white; text-align: center">TANDAAY NATIONAL HIGH SCHOOL</h5>
+<div style="background-color: #6495ED; padding-top: 2%; padding-bottom: 2%;">
+    <div style="width: 20%; margin-left: 7%;">
+        <h5 style="color: white; text-align: center">TANDAAY HIGH SCHOOL</h5>
     </div>
-    <h4 style="color: white; margin-top: 2.5%; margin-left: 12%;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
+    <div>
+
+    </div>
+    <h4 style="color: white; margin-left: 8%;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
 </div>
 

@@ -14,6 +14,7 @@ class BackupRequest extends Model
         'unit_cost',
         'item_type',
         'total_cost',
+        'created_at',
     ];
 
     use HasFactory;

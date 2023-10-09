@@ -9,11 +9,16 @@ class PropertyCard extends Model
 {
     protected $fillable = [
         'item_name',
-        'receiptUnit',
+        'quantity',
+        'receiptQty',
         'unit',
         'receiver',
         'inventory_id'
     ];
+
+    public function component(){
+        return $this->hasMany(Component::class);
+    }
 
     use HasFactory;
 }

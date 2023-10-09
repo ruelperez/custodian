@@ -10,63 +10,109 @@ class PropertyCard extends Component
 {
     use WithPagination;
 
-    public $stock, $search="", $stockcard_data, $showAllBtn="show", $display_search = "show", $inventory_id, $click_search_bar = 0, $display_table = "hide";
+    public $itemName, $item, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
 
     public function render()
     {
-        if ($this->search != ""){
-            $this->feed();
-        }
-        else{
-            $this->stock = [];
+        $this->stockcard_data = DB::table('property_cards')
+            ->where('item_name', '=', $this->itemName)
+            ->get();
+        if ($this->prop_id != null){
+            $this->component_data = \App\Models\PropertyCard::find($this->prop_id)->component;
         }
         return view('livewire.property-card');
     }
 
-    public function feed(){
-        $this->stock = DB::table('inventories')
-            ->where('item_name','LIKE', '%'.$this->search.'%')
-            ->orderBy('item_name','asc')
-            ->take(5)
-            ->get();
+    public function updated($field){
+        $this->validateOnly($field, [
+            'qty' => 'numeric',
+            'amount' => 'numeric',
+        ]);
+    }
+    public function mount($dateData){
+        $this->itemName = $dateData;
     }
 
-    public function click_suggest($id){
-        $this->inventory_id = $id;
-        $this->search = \App\Models\Inventory::find($id)->item_name;
-        $this->display_search = "hide";
+    public function clickBack(){
+        $this->clickBk = 1;
     }
 
-    public function find(){
-        $this->display_table = "show";
-        $this->display_search = "hide";
-        $this->stockcard_data = DB::table('property_cards')
-            ->where('inventory_id',$this->inventory_id)
-            ->take(6)
-            ->get();
+    public function clickView($name,$time,$id){
+        $this->teacher_name = $name;
+        $this->date = $time;
+        $this->prop_id = $id;
+    }
+
+    public function submit(){
+        try {
+            \App\Models\Component::create([
+                'item_name' => $this->item,
+                'quantity' => $this->qty,
+                'unit' => $this->unit,
+                'receiver' => $this->teacher_name,
+                'property_number' => $this->prop_num,
+                'date_acquired' => $this->date,
+                'amount' => $this->amount,
+                'property_card_id' => $this->prop_id,
+            ]);
+            $this->item = "";
+            $this->qty = "";
+            $this->unit = "";
+            $this->prop_num = "";
+            $this->amount = "";
+            session()->flash('dataAdded',"Successfully added");
+        }
+        catch (\Exception $e){
+            session()->flash('dataFailed',"Failed to add");
+        }
 
     }
 
-    public function updatedSearch(){
-        $this->display_search = "show";
-        $this->display_table = "hide";
+    public function edit($id){
+        $this->component_id = $id;
+        $data = \App\Models\Component::find($id);
+        $this->item = $data->item_name;
+        $this->qty = $data->quantity;
+        $this->unit = $data->unit;
+        $this->prop_num = $data->property_number;
+        $this->date = $data->date_acquired;
+        $this->amount = $data->amount;
+        $this->prop_id = $data->property_card_id;
+        $this->teacher_name = $data->receiver;
     }
 
-    public function showAll(){
-        $this->display_table = "show";
-        $this->stockcard_data = DB::table('property_cards')
-            ->where('inventory_id',$this->inventory_id)
-            ->get();
-        $this->showAllBtn = "hide";
+    public function submitEdit(){
+        $data = \App\Models\Component::find($this->component_id);
+        try {
+            $data->item_name = $this->item;
+            $data->quantity = $this->qty;
+            $data->unit = $this->unit;
+            $data->property_number = $this->prop_num;
+            $data->date_acquired = $this->date;
+            $data->amount = $this->amount;
+            $data->receiver = $this->teacher_name;
+            $data->property_card_id = $this->prop_id;
+            $data->save();
+            session()->flash('successEdit',"Successfully updated");
+        }
+        catch (\Exception $e){
+            session()->flash('failedEdit',"Failed to update");
+        }
+
     }
 
-    public function showless(){
-        $this->showAllBtn = "show";
-        $this->display_table = "show";
-        $this->stockcard_data = DB::table('property_cards')
-            ->where('inventory_id',$this->inventory_id)
-            ->take(6)
-            ->get();
-    }
+    protected $listeners = [
+        'propDel' => 'propDelete'
+    ];
 
+    public function propDelete($id){
+        try {
+            \App\Models\Component::find($id)->delete();
+            session()->flash('successDel', "Successfully deleted");
+        }
+        catch (\Exception $e){
+            session()->flash('failedDel', "Failed to delete");
+        }
+
+    }
 }

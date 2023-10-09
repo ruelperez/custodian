@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\Distribute;
 use App\Models\Receiver;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,11 +11,12 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $ics, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
 
+        $this->getIcsNum();
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
                 $this->basin = 0;
@@ -46,26 +48,54 @@ class Prepare extends Component
         return view('livewire.prepare');
     }
 
+    public function updated($field)
+    {
+        if ($field === 'quantity') {
+            $this->fa = 1;
+            $this->fas = 1;
+            $this->basis = 0;
+            $this->basin = 0;
+        }
+        if ($field === 'item_name'){
+            $this->fa = 0;
+            $this->fas = 1;
+            $this->item_disable = 0;
+        }
+        if ($field === 'receiver'){
+            $this->fas = 0;
+            $this->fa = 1;
+            $this->receiver_disable = 0;
+        }
+
+    }
+
+    public function getIcsNum(){
+        $lastId = BackupPrepare::latest('ics_last')->first();
+        if ($lastId) {
+            $nextId = $lastId->ics_last + 1;
+        } else {
+            $nextId = 1;
+        }
+        $this->ics_last_number = $nextId;
+        $r = date('Y-m-');
+        $this->ics = $r.$nextId;
+    }
+
     public function submit(){
 
         $data = $this->validate([
             'item_name' => 'required',
         ]);
-        if ($this->unit == ""){
-            $this->unit = 0;
-        }
         if ($this->quantity == ""){
             $this->quantity = 0;
         }
 
-        try {
-            $accepter = DB::table('receivers')
-                ->where('fullname','LIKE', '%'.$this->receiver.'%')
-                ->get();
-            if (count($accepter) == 0){
-                Receiver::create(['fullname' => $this->receiver]);
-            }
+        if ($this->quantity > $this->currentQty){
+            session()->flash('insufficient',"Insufficient item quantity");
+            return;
+        }
 
+        try {
 
             \App\Models\Prepare::create([
                 'item_name' => $this->item_name,
@@ -74,16 +104,15 @@ class Prepare extends Component
                 'item_type' => $this->item_type,
                 'receiver' => $this->receiver,
                 'serial' => $this->serial,
+                'ics' => $this->ics,
             ]);
             $this->item_name = "";
             $this->quantity = "";
             $this->unit = "";
-            $this->item_type = "consumable";
-            $this->receiver = "";
             $this->serial = "";
-            session()->flash('dataAdded',"Successfully Added");
             $this->receiver_disable = 0;
             $this->item_disable = 0;
+            session()->flash('dataAdded',"Successfully Added");
         }
         catch (\Exception $e){
             session()->flash('dataError',"Failed to Add");
@@ -93,7 +122,9 @@ class Prepare extends Component
     public function click_item($id){
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
+        $this->unit = $data->unit;
         $this->item_type = $data->item_type;
+        $this->currentQty = $data->quantity;
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;
@@ -209,11 +240,12 @@ class Prepare extends Component
             $inv = \App\Models\Inventory::where('item_name',$datas->item_name)->get();
             if (count($inv) > 0){
                 foreach ($inv as $in){
-                    if ($datas->unit > 0){
+                    if ($datas->item_type == "sets"){
                         \App\Models\PropertyCard::create([
                             'item_name' => $datas->item_name,
                             'unit' => $datas->unit,
-                            'receiptUnit' => $in->unit,
+                            'quantity' => $datas->quantity,
+                            'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
                         ]);
@@ -222,6 +254,7 @@ class Prepare extends Component
                         \App\Models\StockCard::create([
                             'item_name' => $datas->item_name,
                             'quantity' => $datas->quantity,
+                            'unit' => $datas->unit,
                             'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
@@ -231,7 +264,6 @@ class Prepare extends Component
                 }
                 try {
                     \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('quantity',$datas->quantity);
-                    \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('unit',$datas->unit);
                     session()->flash('good',"good");
                     $f = 1;
                 }
@@ -251,7 +283,27 @@ class Prepare extends Component
                     'item_type' => $dat->item_type,
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,
+                    'ics' => $dat->ics,
+                    'ics_last' => $this->ics_last_number,
                 ]);
+
+                Distribute::create([
+                    'item_name' => $dat->item_name,
+                    'quantity' => $dat->quantity,
+                    'unit' => $dat->unit,
+                    'item_type' => $dat->item_type,
+                    'receiver' => $dat->receiver,
+                    'serial' => $dat->serial,
+                    'ics' => $dat->ics,
+                    'ics_last' => $this->ics_last_number,
+                ]);
+
+                $accepter = DB::table('receivers')
+                    ->where('fullname','=', $dat->receiver)
+                    ->get();
+                if (count($accepter) == 0){
+                    Receiver::create(['fullname' => $dat->receiver]);
+                }
             }
 
             foreach ($data as $da){
@@ -260,5 +312,28 @@ class Prepare extends Component
 
         }
 
+    }
+
+    public function clickReport($name){
+        $this->sample = $name;
+    }
+
+    protected $listeners = [
+        'clickBack40' => 'back',
+        'removeSuggestTeacher' => 'rst',
+        'removeSuggestItem' => 'rsi',
+    ];
+
+    public function rst(){
+        $this->basin = 0;
+    }
+
+    public function rsi()
+    {
+        $this->basis = 0;
+    }
+
+    public function back(){
+        $this->sample = 0;
     }
 }

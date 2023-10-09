@@ -19,22 +19,13 @@
            <tbody>
                 @if(count($lack_item) > 0)
                     @foreach($lack_item as $lack)
-                        @if($lack->item_type == "sets" and $lack->unit <= 5)
+                        @if($lack->quantity <= 50)
                             <tr>
                                 <td>
                                     {{ucfirst($lack->item_name)}}
                                 </td>
                                 <td>
                                     {{$lack->unit}}
-                                </td>
-                            </tr>
-                        @elseif($lack->quantity <= 10)
-                            <tr>
-                                <td>
-                                    {{ucfirst($lack->item_name)}}
-                                </td>
-                                <td>
-                                    {{$lack->quantity}}
                                 </td>
                             </tr>
                         @endif
@@ -51,10 +42,8 @@
     </div>
 </div>
 <!-- Show Graph Data -->
-<script src="https://cdnjs.com/libraries/Chart.js"></script>
+
 <script src="{{ asset('js/chart.js') }}"></script>
-
-
 
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');

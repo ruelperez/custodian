@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $item_name, $order_data, $fa=0, $item_type="consumable", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $item_name, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -27,6 +27,9 @@ class PurchaseRequest extends Component
             else{
                 $this->basis = 0;
             }
+        }
+        if ($this->quantity != 0 and $this->unit_cost != 0 and $this->unit_cost != "" and $this->quantity != ""){
+            $this->total_cost = $this->quantity * $this->unit_cost;
         }
 
         $this->request_data = Request::all();
@@ -72,6 +75,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = "";
                 $this->total_cost = "";
                 $this->unit = "";
+                $this->item_type = "";
                 session()->flash('dataAdded',"Successfully Added");
             }
             catch (\Exception $e){
@@ -108,6 +112,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = "";
                 $this->total_cost = "";
                 $this->unit = "";
+                $this->item_type = "";
                 session()->flash('dataAdded',"Successfully Added");
             }
             catch (\Exception $e){
@@ -161,7 +166,7 @@ class PurchaseRequest extends Component
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
-                $this->item_type = "consumable";
+                $this->item_type = "";
                 session()->flash('dataUpdated',"Successfully Updated");
             }
             catch (\Exception $e){
@@ -195,11 +200,11 @@ class PurchaseRequest extends Component
                 $this->unit_cost = null;
                 $this->total_cost = null;
                 $this->unit = null;
-                $this->item_type = "consumable";
-                session()->flash('dataUpdated',"Successfully Updated");
+                $this->item_type = "";
+                session()->flash('dataUpdatedOrder',"Successfully Updated");
             }
             catch (\Exception $e){
-                session()->flash('errorUpdated',"Failed to Update");
+                session()->flash('errorUpdatedOrder',"Failed to Update");
             }
         }
 
@@ -208,6 +213,10 @@ class PurchaseRequest extends Component
     protected $listeners = [
         'move' => 'forward',
         'removeSuggest' => 'hideSuggest',
+        'movetoBup' => 'move_to_backup',
+        'moveToInv' => 'move_to_inventory',
+        'deleteItemRequest' => 'delete',
+        'deleteItemOrder' => 'delete_order',
     ];
 
     public function hideSuggest(){
@@ -237,8 +246,9 @@ class PurchaseRequest extends Component
         $this->unit = $sae->unit;
         $this->quantity = $sae->quantity;
         $this->unit_cost = $sae->unit_cost;
-        $this->total_cost = $sae->total_cost;
+        $this->total_cost = $this->quantity * $this->unit_cost;
         $this->item_name = $sae->item_name;
+        $this->item_type = $sae->item_type;
     }
 
     public function delete_order($id){
@@ -248,6 +258,8 @@ class PurchaseRequest extends Component
     public function click_item($id){
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
+        $this->unit = $data->unit;
+        $this->item_type = $data->item_type;
         $this->pick = 1;
     }
 
@@ -273,9 +285,6 @@ class PurchaseRequest extends Component
                         'inventory_number' => 0,
                     ]);
                 }
-                else{
-                    $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('unit',$orders->unit);
-                }
 
                 BackupOrder::create([
                     'item_name' => $orders->item_name,
@@ -285,8 +294,6 @@ class PurchaseRequest extends Component
                     'total_cost' => $orders->total_cost,
                     'item_type' => $orders->item_type,
                 ]);
-
-
 
                 session()->flash('transfer',"Successfully  Moved to Inventory");
             }
@@ -304,10 +311,22 @@ class PurchaseRequest extends Component
 
     public function add_order_click(){
         $this->base = 1;
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit_cost = null;
+        $this->total_cost = null;
+        $this->unit = null;
+        $this->item_type = "";
     }
 
     public function add_request_click(){
         $this->base = 0;
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit_cost = null;
+        $this->total_cost = null;
+        $this->unit = null;
+        $this->item_type = "";
     }
 
     public function move_to_backup(){
@@ -321,6 +340,7 @@ class PurchaseRequest extends Component
                     'unit_cost' => $reqs->unit_cost,
                     'total_cost' => $reqs->total_cost,
                     'item_type' => $reqs->item_type,
+                    'created_at' => $reqs->created_at,
                 ]);
             }
             foreach ($req as $rr){

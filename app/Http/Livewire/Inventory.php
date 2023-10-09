@@ -8,10 +8,14 @@ use Livewire\Component;
 class Inventory extends Component
 {
     public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
-            $item_type = "consumable", $ng=0;
+            $item_type, $ng=0, $kl = 0;
 
     public function render()
     {
+        if ($this->item_name != ""){
+            $this->itemValidator();
+        }
+
         if ($this->searchInput != ""){
             $this->search();
         }
@@ -23,6 +27,22 @@ class Inventory extends Component
         return view('livewire.inventory');
     }
 
+    public function itemValidator(){
+        $count = 0;
+        $data = \App\Models\Inventory::all();
+        foreach ($data as $datas){
+            if ($datas->item_name == $this->item_name){
+                $count++;
+            }
+        }
+        if ($count > 0){
+            $this->kl = 1;
+        }
+        else{
+            $this->kl = 0;
+        }
+    }
+
     public function search(){
         $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
@@ -32,8 +52,9 @@ class Inventory extends Component
     public function submit()
     {
         $data = $this->validate([
-            'item_name' => 'required',
+            'item_name' => 'required|unique:inventories,item_name',
             'item_type' => 'required',
+            'quantity' => 'required|integer',
         ]);
         if ($this->unit == "") {
             $this->unit = 0;
@@ -56,12 +77,16 @@ class Inventory extends Component
             $this->quantity = "";
             $this->unit = "";
             $this->inventory_number = "";
-            $this->item_type = "consumable";
+            $this->item_type = "";
             session()->flash('dataAdded', "Successfully Added");
         } catch (\Exception $e) {
             session()->flash('dataError', "Failed to Add");
         }
     }
+
+    protected $listeners = [
+        'deleteInv' => 'delete'
+    ];
 
     public function delete($id)
     {
@@ -102,7 +127,7 @@ class Inventory extends Component
             $this->quantity = "";
             $this->unit = null;
             $this->inventory_number = null;
-            $this->item_type = "consumable";
+            $this->item_type = "";
             session()->flash('dataUpdated', "Successfully Updated");
         } catch (\Exception $e) {
             session()->flash('errorUpdated', "Failed to Update");

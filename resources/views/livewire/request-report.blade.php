@@ -1,11 +1,23 @@
 <div>
-    <h4 style="text-align: center; margin-top: 3%;">Request Report</h4>
+    @if($clickBk == 0)
+        <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk()" wire:click="clickBack"></i>
+    @endif
+    <h5 style="margin-left: 1%;">Request Report</h5>
     <div style="display: flex;">
-        <div class="input-group mb-1" style="width: 30%; margin-left: 15%; margin-top: 3%;">
-            <input type="text" wire:model.debounce.1ms="search" class="form-control" placeholder="Search Item" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        @if(session()->has('moveSuccess'))
+            <div class="alert alert-success" style="width: 56%; padding-top: 1.5%; padding-bottom: 1.5%; margin-bottom: 1%; margin-left: 15%; ">
+                {{ session('moveSuccess') }}
+            </div>
+        @elseif(session()->has('moveFailed'))
+            <div class="alert alert-danger" style="width: 56%; padding-top: 1.5%; padding-bottom: 1.5%; margin-bottom: 1%; margin-left: 15%; ">
+                {{ session('moveFailed') }}
+            </div>
+        @endif
+        <div style="margin-top: 4%; @if(session()->has('moveSuccess') or session()->has('moveFailed')) margin-left: 5%; @else margin-left: 76%; @endif">
+            <i class="fa-solid fa-suitcase" title="move to purchase request" onclick="clickMove()" style="font-size: 23px; color: green; margin-left: 5%;cursor:pointer;"></i>
         </div>
-        <div style="margin-left: 37%;margin-top: 4%;">
-            <i title="Save Form" class="fa-solid fa-file-arrow-down" style="font-size: 30px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
+        <div style="margin-left: 3%;margin-top: 4%;">
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="window.location='{{ route('form-inventory.pdf',['request' => 'inventory'])}}'"></i>
         </div>
     </div>
 
@@ -39,7 +51,7 @@
                 @foreach($request_data as $preps)
                     <tr class="invs">
                         <td>
-                            {{$preps->item_name}}
+                            {{ucwords($preps->item_name)}}
                         </td>
                         <td>
                             {{$preps->quantity}}

@@ -17,21 +17,26 @@
                         </div>
                     @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Item Description" wire:model="item_name" required>
+                        <input type="text" class="form-control" placeholder="Item Description" wire:model="item_name">
+                        @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
+                        @if($kl == 1)
+                            <div style="width: 100%; color: red">
+                                <p>Duplicate item. Please input unique item name.</p>
+                            </div>
+                        @endif
                     </div>
-                    @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity">
+                        @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Unit" wire:model="unit" >
+                        @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Inventory Item No." wire:model="inventory_number" >
+                        @error('inventory_number') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('inventory_number') <span style="color: red">{{ $message }}</span> @enderror
                     <div style="margin-left: 15%;">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">

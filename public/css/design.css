@@ -5,7 +5,6 @@
 }
 .inv th {
     text-align: center;
-    width: 50%;
 }
 .inv {
     background-color: #20B2AA;
@@ -19,5 +18,5 @@
     cursor: pointer;
 }
 .navig div:hover {
-    background-color: #00BFFF;
+    /*background-color: #00BFFF;*/
 }

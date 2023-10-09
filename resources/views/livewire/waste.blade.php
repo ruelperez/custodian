@@ -1,6 +1,6 @@
 <div>
-    <h5 style="text-align: left; margin-top: 3%; margin-left: 1%;">Prepare Waste Material Request</h5>
-    <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; @if($tg == 0) display: none; @endif " wire:click="backButton"></i>
+    <i class="fa-solid fa-backward" style="margin-top: 2%; font-size: 20px; cursor: pointer; @if($tg == 0) display: none; @endif " wire:click="backButton"></i>
+    <h5 style="text-align: left; @if($tg == 0) margin-top: 3%; @else margin-top: 1%; @endif  margin-left: 1%;">Prepare Waste Material Request</h5>
     @include('modal.waste-delete-modal')
     @if($tg == 0)
         <div>
@@ -52,10 +52,4 @@
         </div>
     @endif
 </div>
-<script>
-    function removeItemMoved(id,name){
-        if (confirm('Are you sure to remove '+name+'?')){
-            window.livewire.emit('remove', id);
-        }
-    }
-</script>
+

@@ -1,5 +1,5 @@
 <div>
-    <div style="display: flex">
+    <div style="display: flex; width: 100%;">
 
         <div style="width: 19%; background-color: #4682B4">
             <div style="text-align: center; margin-top: 5%;">
@@ -14,84 +14,148 @@
             </div>
             <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
             <div style="margin-top: 3%;" class="navig">
-                <div wire:click="clickPortion('graph')">
-                    GRAPH
+                <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #00BFFF" @endif>
+                    DASHBOARD
                 </div>
-                <div wire:click="clickPortion('purchase')">
+                <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #00BFFF" @endif>
                     PURCHASE REQUEST
                 </div>
-                <div wire:click="clickPortion('inventory')">
+                <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #00BFFF" @endif>
                     INVENTORY
                 </div>
-                <div wire:click="clickPortion('prepare')">
+                <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #00BFFF" @endif>
                     PREPARE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('waste')">
+                <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #00BFFF" @endif onclick="clickWaste()">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div onclick="location.href = '/Dashboard/deployed/';">
-                    DEPLOYED ITEM
-                </div>
-                <div onclick="location.href = '/Dashboard/report/';">
+                <div wire:click="clickPortion('report')" wire:loading.attr="disabled" @if($option == "report") style="background-color: #00BFFF" @endif>
                     REPORTS
                 </div>
             </div>
         </div>
         {{--    @livewire('han')--}}
-        <div style="width: 81%; margin-left: 3%;">
-            <div style="@if($option != "graph") display: none; @endif">
+        <div style="width: 81%; margin-left: 3%; margin-right: 3%;">
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('graph')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('purchase')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('waste')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('inventory')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('prepare')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('report')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
                 @livewire('graph')
             </div>
-            <div style="@if($option != "purchase") display: none; @endif">
+            <div style="@if($option != "purchase") display: none; @endif" wire:loading.remove>
                 @livewire('purchase-request')
             </div>
-            <div style="@if($option != "inventory") display: none; @endif">
+            <div style="@if($option != "inventory") display: none; @endif" wire:loading.remove>
                 @livewire('inventory')
             </div>
-            <div style="@if($option != "prepare") display: none; @endif">
-                @livewire('prepare')
-            </div>
-{{--            @if(isset($reports))--}}
-{{--                @if($option == "waste" and $reports == "view")--}}
-{{--                    <div>--}}
-{{--                        @livewire('waste-item',['teacher_id' => $teacher_id])--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-            <div style="@if($option != "waste") display: none; @endif">
-                @livewire('waste')
-            </div>
-            <div style="@if($option != "deployed") display: none; @endif">
-                @livewire('deployed')
-            </div>
+            @if($option == "prepare")
+                <div wire:loading.remove>
+                    @livewire('prepare')
+                </div>
+            @endif
+            @if($option == "waste")
+                <div wire:loading.remove>
+                    @livewire('waste')
+                </div>
+            @endif
             @if($option == "report")
                 <div>
-                    @if(isset($reports))
-                        @if($reports == "stock-card")
-                            @livewire('stock-card')
-                        @elseif($reports == "property-card")
-                            @livewire('property-card')
-                        @elseif($reports == "waste-material")
-                            @livewire('request-report')
-                        @elseif($reports == "purchase-report")
-                            @livewire('purchase-report')
+                    @if($report != 0)
+                        @if($df == 0)
+                            <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" wire:click="clickBack"></i>
+                        @endif
+                        @if($report == "stock-card")
+                            @livewire('stockcard-by-item')
+                        @elseif($report == "property-card")
+                            @livewire('property-by-item')
+                        @elseif($report == "request-report")
+                            @livewire('request-bydate')
+                        @elseif($report == "purchase-report")
+                            @livewire('purchase-bydate')
+                        @elseif($report == "pmr-report")
+                            @livewire('pmr-bydate')
+                        @elseif($report == "pwmr-report")
+                            @livewire('pwmr-byname',['waste' => $option])
+                        @elseif($report == "teacher")
+                            @livewire('teacher-byname')
                         @endif
                     @else
-                        <div>
-                            <h4 style="text-align: center; margin-top: 3%;">Report</h4>
-                            <div style="display: flex; margin-top: 6%;">
-                                <div style="cursor: pointer; width: 30%; margin-left: 17%; height: 100px; padding-top: 25px; background-color: #FF8C00; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/data/report/stock-card';">
-                                    Stock Card
+                        <div style="width: 70%; margin-left: 15%; margin-top: 7%;">
+                            <div style="display: flex; cursor: pointer; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
+                                <div style="margin-left: 10%;">
+                                    <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #483D8B; padding-top: 10px; text-align: center;color: white; font-size: 25px" onclick="location.href = '/Dashboard/data/report/property-card';">
-                                    Property Card/Property Acknowledge Receipt
+                                <div style="margin-left: 16%; margin-top: 3%;">
+                                    <h4><b>TEACHERS</b></h4>
                                 </div>
                             </div>
-                            <div style="display: flex; margin-top: 4%">
-                                <div style="cursor: pointer;width: 30%; margin-left: 17%; height: 100px; background-color: #008000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/data/report/waste-material';">
-                                    Request Report
+                            <div style="display: flex; ">
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/stock-card.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>STOCK CARD</b></h4>
+                                    </div>
                                 </div>
-                                <div style="cursor: pointer;width: 30%; margin-left: 5%; height: 100px; background-color: #800000; padding-top: 25px; text-align: center;color: white;font-size: 25px" onclick="location.href = '/Dashboard/data/report/purchase-report';">
-                                    Purchase Report
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/property.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 5%;">
+                                        <h5><b>Property Card/Property Acknowledge Receipt</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/purchase-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>Purchase Requests</b></h4>
+                                    </div>
+                                </div>
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/order-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>Purchase Orders</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/pmr-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>ICS Report</b></h4>
+                                    </div>
+                                </div>
+                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/pwmr-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>P.W.M.R Report</b></h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,3 +167,4 @@
     </div>
 
 </div>
+
