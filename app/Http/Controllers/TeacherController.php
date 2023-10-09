@@ -18,7 +18,7 @@ class TeacherController extends Controller
         foreach ($teacher_data as $data){
             $ics = $data->ics;
         }
-        $pdf = PDF::loadView('form.teacher', compact('teacher_data','ics'))
+        $pdf = PDF::loadView('form.teacher', compact('teacher_data','ics','teacher'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }

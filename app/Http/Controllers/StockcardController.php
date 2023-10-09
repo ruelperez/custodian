@@ -13,7 +13,7 @@ class StockcardController extends Controller
             ->where('item_name', '=', $item)
             ->orderBy('created_at','desc')
             ->get();
-        $pdf = PDF::loadView('form.stockcard', compact('stockcard_data'))
+        $pdf = PDF::loadView('form.stockcard', compact('stockcard_data','item'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }
