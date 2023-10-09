@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $ics, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -96,11 +96,11 @@ class Prepare extends Component
         }
 
         try {
-
             \App\Models\Prepare::create([
                 'item_name' => $this->item_name,
                 'quantity' => $this->quantity,
                 'unit' => $this->unit,
+                'unit_cost' => $this->unit_cost,
                 'item_type' => $this->item_type,
                 'receiver' => $this->receiver,
                 'serial' => $this->serial,
@@ -112,6 +112,7 @@ class Prepare extends Component
             $this->serial = "";
             $this->receiver_disable = 0;
             $this->item_disable = 0;
+            $this->unit_cost = "";
             session()->flash('dataAdded',"Successfully Added");
         }
         catch (\Exception $e){
@@ -123,6 +124,7 @@ class Prepare extends Component
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
         $this->unit = $data->unit;
+        $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
         $this->basis = 0;
@@ -280,6 +282,7 @@ class Prepare extends Component
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
                     'unit' => $dat->unit,
+                    'unit_cost' => $dat->unit_cost,
                     'item_type' => $dat->item_type,
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,
@@ -291,6 +294,7 @@ class Prepare extends Component
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
                     'unit' => $dat->unit,
+                    'unit_cost' => $dat->unit_cost,
                     'item_type' => $dat->item_type,
                     'receiver' => $dat->receiver,
                     'serial' => $dat->serial,

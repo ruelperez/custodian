@@ -18,6 +18,7 @@ class RequestBydate extends Component
         else{
             $this->request_data = BackupRequest::select(DB::raw('DATE(created_at) as date'))
                 ->groupBy('date')
+                ->orderBy('created_at','desc')
                 ->get();
         }
 

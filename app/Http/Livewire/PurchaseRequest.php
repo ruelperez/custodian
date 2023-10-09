@@ -273,14 +273,17 @@ class PurchaseRequest extends Component
 
     public function move_to_inventory(){
         $order = Order::all();
+
         foreach ($order as $orders){
             try {
                 $tt = \App\Models\Inventory::where('item_name',$orders->item_name)->increment('quantity',$orders->quantity);
+
                 if ($tt == 0){
                     \App\Models\Inventory::create([
                         'item_name' => $orders->item_name,
                         'quantity' => $orders->quantity,
                         'unit' => $orders->unit,
+                        'unit_cost' => $orders->unit_cost,
                         'item_type' => $orders->item_type,
                         'inventory_number' => 0,
                     ]);

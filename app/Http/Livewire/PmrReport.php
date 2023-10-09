@@ -12,7 +12,8 @@ class PmrReport extends Component
     public function render()
     {
         $this->request_data = DB::table('distributes')
-            ->where('ics','like', '%'.$this->dataDate.'%')
+            ->where('ics','=', $this->dataDate)
+            ->where('item_type', '!=', 'consumable')
             ->get();
 
         return view('livewire.pmr-report');

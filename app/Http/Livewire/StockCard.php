@@ -16,6 +16,7 @@ class StockCard extends Component
     {
         $this->stockcard_data = DB::table('stock_cards')
             ->where('item_name', '=', $this->itemName)
+            ->orderBy('created_at','desc')
             ->get();
 
         return view('livewire.stock-card');

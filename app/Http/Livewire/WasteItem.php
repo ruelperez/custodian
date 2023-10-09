@@ -62,7 +62,9 @@ class WasteItem extends Component
         $this->movedData = MovedItem::where('receiver', $this->receiver_name)->get();
         if (count($this->deployed_data) == 0 and count($this->movedData) == 0){
             Receiver::find($this->receiver_id)->delete();
-            $fa = BackupPrepare::where('receiver','=',$this->receiver_name)->get();
+            $fa = BackupPrepare::where('receiver','=',$this->receiver_name)
+                ->where('item_type','!=', 'consumable')
+                ->get();
             foreach ($fa as $fas){
                 BackupPrepare::find($fas->id)->delete();
             }

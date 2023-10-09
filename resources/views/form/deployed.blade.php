@@ -19,7 +19,7 @@
     </tr>
     <tr style="text-align: left;">
         <td>
-            <b>ICS No: {{$ics}}</b>
+            <b>ICS No: {{$icsNum}}</b>
         </td>
     </tr>
 </table>
@@ -47,7 +47,7 @@
             <b>Est. Useful Life</b>
         </td>
     </tr>
-    @foreach($teacher_data as $data)
+    @foreach($deployed_data as $data)
         <tr style="text-align: center;">
             <td style="border: 1px solid;">
                 <b>{{$data->quantity}}</b>
@@ -77,8 +77,8 @@
     <tr>
         <td>
             <b style="font-size: 14px;">Accountability over Semi-expendable Property, Inventory Custodian Slip (ICS) shall be issued to end-user of semi-expendable
-            property to establish accountability. Accountability shall be extinguished upon return of the item to Property and Supply
-            Section (PSS) or in case of loss, upon approval of the relief from property accountability.</b>
+                property to establish accountability. Accountability shall be extinguished upon return of the item to Property and Supply
+                Section (PSS) or in case of loss, upon approval of the relief from property accountability.</b>
         </td>
     </tr>
 </table>

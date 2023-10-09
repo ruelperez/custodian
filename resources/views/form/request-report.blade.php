@@ -24,10 +24,10 @@
 
         </td>
         <td colspan="2" style="border: 1px solid;text-align: left;">
-            <b>PR No.:</b>
+            <b>PR No.</b>
         </td>
         <td colspan="2" style="border: 1px solid; width: 25%;text-align: left;">
-            <b>Date:</b>
+            <b>Date: {{$date}}</b>
         </td>
     </tr>
     <tr style="text-align: right; border: 1px solid;">
@@ -61,29 +61,29 @@
             <b>Total Cost</b>
         </td>
     </tr>
-    @php $h=0; @endphp
+    @php $h=0; $n=1; @endphp
     @foreach($request_data as $data)
-    <tr style="border: 1px solid;">
-        <td style="border: 1px solid; width: 15%;">
-
-        </td>
-        <td style="border: 1px solid;">
-            {{$data->unit}}
-        </td>
-        <td style="border: 1px solid; width: 40%;">
-            {{$data->item_name}}
-        </td>
-        <td style="border: 1px solid; width: 10%;">
-            {{$data->quantity}}
-        </td>
-        <td style="border: 1px solid;">
-            {{$data->unit_cost}}
-        </td>
-        <td style="border: 1px solid; width: 12%;">
-            {{$data->total_cost}}
-        </td>
-    </tr>
-        @php $h+=$data->total_cost; @endphp
+        <tr style="border: 1px solid;">
+            <td style="border: 1px solid; width: 15%;">
+                {{$n}}
+            </td>
+            <td style="border: 1px solid;">
+                {{$data->unit}}
+            </td>
+            <td style="border: 1px solid; width: 40%;">
+                {{$data->item_name}}
+            </td>
+            <td style="border: 1px solid; width: 10%;">
+                {{$data->quantity}}
+            </td>
+            <td style="border: 1px solid;">
+                {{$data->unit_cost}}
+            </td>
+            <td style="border: 1px solid; width: 12%;">
+                {{$data->total_cost}}
+            </td>
+        </tr>
+        @php $h+=$data->total_cost; $n++; @endphp
     @endforeach
     <tr style="border: 1px solid;">
         <td style="border: 1px solid; width: 15%;">

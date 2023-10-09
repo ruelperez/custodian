@@ -11,6 +11,7 @@ class BackupPrepare extends Model
         'item_name',
         'quantity',
         'unit',
+        'unit_cost',
         'receiver',
         'item_type',
         'serial',
