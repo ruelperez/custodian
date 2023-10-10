@@ -90,7 +90,7 @@
             <p style="text-align: center"><b><u>Teacher III/Supply Officer-Supply Office</u></b><br>Position/Office</p>
         </td>
         <td style="border: 1px solid;">
-            Received by:
+            Received by: {{ucwords($receivedBy)}}
         </td>
     </tr>
     <tr>
