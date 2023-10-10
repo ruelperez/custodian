@@ -86,38 +86,84 @@ class Prepare extends Component
         $data = $this->validate([
             'item_name' => 'required',
         ]);
-        if ($this->quantity == ""){
-            $this->quantity = 0;
+        $move = \App\Models\Prepare::all();
+        foreach ($move as $data){
+            $it = $data->receiver;
         }
+        if (count($move) == 0){
 
-        if ($this->quantity > $this->currentQty){
-            session()->flash('insufficient',"Insufficient item quantity");
-            return;
+            if ($this->quantity == ""){
+                $this->quantity = 0;
+            }
+
+            if ($this->quantity > $this->currentQty){
+                session()->flash('insufficient',"Insufficient item quantity");
+                return;
+            }
+
+            try {
+                \App\Models\Prepare::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'item_type' => $this->item_type,
+                    'receiver' => $this->receiver,
+                    'serial' => $this->serial,
+                    'ics' => $this->ics,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit = "";
+                $this->serial = "";
+                $this->receiver_disable = 0;
+                $this->item_disable = 0;
+                $this->unit_cost = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
-
-        try {
-            \App\Models\Prepare::create([
-                'item_name' => $this->item_name,
-                'quantity' => $this->quantity,
-                'unit' => $this->unit,
-                'unit_cost' => $this->unit_cost,
-                'item_type' => $this->item_type,
-                'receiver' => $this->receiver,
-                'serial' => $this->serial,
-                'ics' => $this->ics,
-            ]);
-            $this->item_name = "";
-            $this->quantity = "";
-            $this->unit = "";
-            $this->serial = "";
+        elseif ($it != $this->receiver){
             $this->receiver_disable = 0;
             $this->item_disable = 0;
-            $this->unit_cost = "";
-            session()->flash('dataAdded',"Successfully Added");
+            session()->flash('different',"Deploy first before adding different name");
         }
-        catch (\Exception $e){
-            session()->flash('dataError',"Failed to Add");
+        else{
+            if ($this->quantity == ""){
+                $this->quantity = 0;
+            }
+
+            if ($this->quantity > $this->currentQty){
+                session()->flash('insufficient',"Insufficient item quantity");
+            }
+
+            try {
+                \App\Models\Prepare::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'item_type' => $this->item_type,
+                    'receiver' => $this->receiver,
+                    'serial' => $this->serial,
+                    'ics' => $this->ics,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit = "";
+                $this->serial = "";
+                $this->receiver_disable = 0;
+                $this->item_disable = 0;
+                $this->unit_cost = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
+
     }
 
     public function click_item($id){
@@ -315,6 +361,13 @@ class Prepare extends Component
             }
 
         }
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit = "";
+        $this->serial = "";
+        $this->receiver_disable = 0;
+        $this->item_disable = 0;
+        $this->unit_cost = "";
 
     }
 

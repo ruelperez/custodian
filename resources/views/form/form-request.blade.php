@@ -9,7 +9,7 @@
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <h4>PURCHASE REQUEST</h4>
+            <h4>PURCHASE {{strtoupper($request)}}</h4>
         </td>
     </tr>
     <tr style="text-align: right;">
@@ -27,7 +27,7 @@
             <b>PR No.:</b>
         </td>
         <td colspan="2" style="border: 1px solid; width: 25%;text-align: left;">
-            <b>Date:</b>
+            <b>Date: {{$date}}</b>
         </td>
     </tr>
     <tr style="text-align: right; border: 1px solid;">
