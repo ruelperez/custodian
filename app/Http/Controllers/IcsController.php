@@ -13,9 +13,8 @@ class IcsController extends Controller
             ->where('ics','=', $icsNum)
             ->where('item_type', '!=', 'consumable')
             ->get();
-        $pdf = PDF::loadView('form.ics', compact('ics_data','icsNum'))
+            $pdf = PDF::loadView('form.ics', compact('ics_data','icsNum'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
-
     }
 }

@@ -17,7 +17,7 @@ class DeployedreportController extends Controller
         foreach ($deployed_data as $data){
             $icsNum = $data->ics;
         }
-        $pdf = PDF::loadView('form.deployed', compact('deployed_data','date','icsNum'))
+        $pdf = PDF::loadView('form.deployed', compact('deployed_data','date','icsNum','name'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }
