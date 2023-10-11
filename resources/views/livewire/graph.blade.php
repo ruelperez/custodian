@@ -16,29 +16,28 @@
 
                     <canvas id="myChart" height="400" style="width: 390%;"></canvas>
                 </div>
+
             </div>
-            <div style="display: flex;">
+            <div style="display: flex; margin-left: 17%;">
                 <div>
-                    <select>
-                        <option selected>January</option>
-                        <option value="1">February</option>
-                        <option value="2">March</option>
-                        <option value="3">April</option>
-                        <option value="3">May</option>
-                        <option value="3">June</option>
-                        <option value="3">July</option>
-                        <option value="3">August</option>
-                        <option value="3">September</option>
-                        <option value="3">October</option>
-                        <option value="3">November</option>
-                        <option value="3">December</option>
+                    <select wire:model="sel">
+                        <option selected value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                 </div>
-                <div>
-                    <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
+                <div class="map_canvass" style="margin-top: 3%; margin-right: 1.5%;">
 
-                        <canvas id="myPie" height="300" style="width: 370%;"></canvas>
-                    </div>
+                    <canvas id="myCharts" style="width: 140%;"></canvas>
                 </div>
 
             </div>
@@ -137,52 +136,43 @@
         }
     });
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
+    var ctxs = document.getElementById('myCharts').getContext('2d');
+    var myCharts = new Chart(ctxs, {
+        type: 'pie',
         data: {
             labels: <?php echo json_encode($item_name) ?>,
             datasets: [{
-                label: '',
                 data: <?php echo json_encode($item_quantity); ?>,
                 backgroundColor: [
-                    'rgba(31, 58, 147, 1)',
-                    'rgba(37, 116, 169, 1)',
-                    'rgba(92, 151, 191, 1)',
-                    'rgb(200, 247, 197)',
-                    'rgb(77, 175, 124)',
-                    'rgb(30, 130, 76)'
-                ],
-                borderColor: [
-                    'rgba(31, 58, 147, 1)',
-                    'rgba(37, 116, 169, 1)',
-                    'rgba(92, 151, 191, 1)',
-                    'rgb(200, 247, 197)',
-                    'rgb(77, 175, 124)',
-                    'rgb(30, 130, 76)'
-                ],
-                borderWidth: 1
+                    'red',
+                    'blue',
+                    'green',
+                    'yellow',
+                    'Crimson',
+                    'DarkOliveGreen',
+                    'SpringGreen',
+                    'CadetBlue',
+                    'RosyBrown',
+                    'Goldenrod',
+                ]
             }]
         },
         options: {
-            scales: {
-                y: {
-                    max: 300,
-                    min: 0,
-                    ticks: {
-                        stepSize: 50
-                    }
-                }
+            tooltips: {
+                enabled: false, // Disable tooltips
             },
             plugins: {
-                title: {
-                    display: false,
-                    text: 'Custom Chart Title'
-                },
                 legend: {
-                    display: false,
-                }
+                    display: false, // Disable legend
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: function(context) {
+                        return <?php echo json_encode($item_name)?>[context.dataIndex];
+                    },
+                },
             }
         }
     });
+
 </script>

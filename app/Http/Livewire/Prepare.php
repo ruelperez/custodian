@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\Distribute;
+use App\Models\Ranking;
 use App\Models\Receiver;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -324,6 +325,18 @@ class Prepare extends Component
         }
         if ($f == 1){
             foreach ($data as $dat){
+                $rank = Ranking::where('item_name', '=', $dat->item_name)->get();
+                if (count($rank) > 0){
+                    Ranking::where('item_name', '=', $dat->item_name)
+                        ->increment('quantity',$dat->quantity);
+                }
+                else{
+                    Ranking::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                    ]);
+                }
+
                 BackupPrepare::create([
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
