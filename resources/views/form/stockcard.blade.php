@@ -41,7 +41,7 @@
         </td>
     </tr>
     <tr style="text-align: center;">
-        <td style="border: 1px solid;">
+        <td style="border: 1px solid; width: 15%;">
             <b>Date</b>
         </td>
         <td style="border: 1px solid;">
@@ -64,7 +64,7 @@
     @foreach($stockcard_data as $data)
         <tr>
             <td style="border: 1px solid;">
-                {{ $data->created_at}}
+                {{ $data->created_at->format('M-d-Y')}}
             </td>
             <td style="border: 1px solid;">
 

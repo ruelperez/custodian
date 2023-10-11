@@ -1,44 +1,77 @@
-<div style="display: flex; width: 100%;">
-    <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
+<div>
+    <div style="display: flex; margin-top: 1%;">
+        <div>
+            <div style="display: flex;">
+                <div style="width: 47%;background-color: #1E90FF; margin-right: 2%; color: white; padding-left: 3%;">
+                    <h1>{{count($lack_item)}}</h1>
+                    <h5>Total Product</h5>
+                </div>
+                <div style="width: 47%; background-color: #FFA500; color: white; padding-left: 3%;">
+                    <h1>{{count($totalTeacher)}}</h1>
+                    <h5>No. of Teacher/Staff</h5>
+                </div>
+            </div>
+            <div style="display: flex; width: 100%;">
+                <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
 
-        <canvas id="myChart" height="610" style="width: 390%;"></canvas>
-    </div>
-
-    <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
-        <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
-            <thead>
-                <tr>
-                    <th>
-                        Insufficient Item
-                    </th>
-                    <th>
-                        Qty
-                    </th>
-                </tr>
-            </thead>
-           <tbody>
-                @if(count($lack_item) > 0)
-                    @foreach($lack_item as $lack)
-                        @if($lack->quantity <= 50)
-                            <tr>
-                                <td>
-                                    {{ucfirst($lack->item_name)}}
-                                </td>
-                                <td>
-                                    {{$lack->unit}}
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-                @else
+                    <canvas id="myChart" height="400" style="width: 390%;"></canvas>
+                </div>
+            </div>
+            <div>
+                <select>
+                    <option selected>January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="3">May</option>
+                    <option value="3">June</option>
+                    <option value="3">July</option>
+                    <option value="3">August</option>
+                    <option value="3">September</option>
+                    <option value="3">October</option>
+                    <option value="3">November</option>
+                    <option value="3">December</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
+                <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
+                    <thead>
                     <tr>
-                        <td colspan="2" style="text-align: center">
-                            None
-                        </td>
+                        <th>
+                            Insufficient Item
+                        </th>
+                        <th>
+                            Qty
+                        </th>
                     </tr>
-                @endif
-           </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                    @if(count($lack_item) > 0)
+                        @foreach($lack_item as $lack)
+                            @if($lack->quantity <= 50)
+                                <tr>
+                                    <td>
+                                        {{ucfirst($lack->item_name)}}
+                                    </td>
+                                    <td>
+                                        {{$lack->unit}}
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="2" style="text-align: center">
+                                None
+                            </td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Show Graph Data -->
