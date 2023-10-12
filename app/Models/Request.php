@@ -15,6 +15,7 @@ class Request extends Model
         'item_type',
         'total_cost',
         'created_at',
+        'pr_num',
     ];
 
     use HasFactory;
