@@ -11,36 +11,20 @@ use Livewire\Component;
 
 class Graph extends Component
 {
-    public $item_name = [], $sel=01, $item_quantity = [], $lack_item, $totalTeacher;
+    public $item_name = [], $pie_name = [], $pie_qty = [], $sel, $item_quantity = [], $lack_item, $totalTeacher;
     public function render()
     {
-//        $dateYear = \date('Y-');
-//
-//        $yh = Distribute::select('item_name')
-//            ->where('created_at','like','%'.$dateYear.$this->sel.'%')
-//            ->distinct()
-//            ->get();
-//       foreach ($yh as $y){
-//           $df = Distribute::where('item_name', '=', $y->item_name)->get();
-//
-//           $num = 0;
-//           foreach ($df as $d){
-//               $num+= $d->quantity;
-//           }
-//           $gt = Ranking::where('item_name', '=', $y->item_name)->get();
-//           if (count($gt) > 0){
-//               Ranking::where('item_name', '=', $y->item_name)
-//               ->increment('quantity',$num);
-//           }
-//           else{
-//               Ranking::create([
-//                   'item_name' => $y->item_name,
-//                   'quantity' => $num,
-//               ]);
-//           }
-//
-//       }
+        $dateYear = \date('Y-');
 
+        $pie = Ranking::where('created_at','like','%'.$dateYear.$this->sel.'%')
+            ->orderBy('quantity','desc')
+            ->take('10')
+            ->get();
+
+        foreach ($pie as $p){
+            $this->pie_name[] = $p->item_name;
+            $this->pie_qty [] = $p->quantity;
+        }
 
         $this->totalTeacher = Receiver::all();
         $inv = \App\Models\Inventory::all();
@@ -50,6 +34,10 @@ class Graph extends Component
         }
         $this->lack_item = \App\Models\Inventory::all();
         return view('livewire.graph');
+    }
+
+    public function mount($month){
+        $this->sel = $month;
     }
 
     public function updated($field){

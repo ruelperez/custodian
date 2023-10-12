@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::get('/custodian', function (){
-        return view('main');
+        return view('main',['month' => '01']);
     });
     Route::get('/data/{option}/{reports}', function ($option,$reports){
         return view('main', ['option' => $option, 'reports' => $reports]);
+    });
+    Route::get('/pie-graph/{mos}', function ($mos){
+        return view('main', ['month' => $mos]);
     });
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
     Route::get('/request-pdf/{request}', [\App\Http\Controllers\RequestController::class, 'pdf']);

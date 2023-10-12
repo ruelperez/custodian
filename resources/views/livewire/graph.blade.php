@@ -19,24 +19,27 @@
 
             </div>
             <div style="display: flex; margin-left: 17%;">
-                <div>
-                    <select wire:model="sel">
-                        <option selected value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-                <div class="map_canvass" style="margin-top: 3%; margin-right: 1.5%;">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Month
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01';">January</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">February</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">March</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">April</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">May</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">June</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">July</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">August</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">September</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">October</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">November</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">December</a></li>
+                        </ul>
+                    </div>
 
+                <div class="map_canvass" style="margin-top: 3%; margin-right: 1.5%;">
                     <canvas id="myCharts" style="width: 140%;"></canvas>
                 </div>
 
@@ -140,9 +143,9 @@
     var myCharts = new Chart(ctxs, {
         type: 'pie',
         data: {
-            labels: <?php echo json_encode($item_name) ?>,
+            labels: <?php echo json_encode($pie_name) ?>,
             datasets: [{
-                data: <?php echo json_encode($item_quantity); ?>,
+                data: <?php echo json_encode($pie_qty); ?>,
                 backgroundColor: [
                     'red',
                     'blue',
