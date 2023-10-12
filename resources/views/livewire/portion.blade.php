@@ -35,7 +35,7 @@
             </div>
         </div>
         {{--    @livewire('han')--}}
-        <div style="width: 81%; margin-left: 3%; margin-right: 3%;">
+        <div style="width: 81%; margin-left: 3%; margin-right: 1%;">
             <div class="spinner-border spin" wire:loading wire:target="clickPortion('graph')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
@@ -55,7 +55,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
             <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
-                @livewire('graph')
+                @livewire('graph',['month' => $mos, 'mon' => $mons])
             </div>
             <div style="@if($option != "purchase") display: none; @endif" wire:loading.remove>
                 @livewire('purchase-request')

@@ -1,5 +1,5 @@
 @include('partial.header')
 
-@livewire('portion')
+    @livewire('portion',['month' => $month, 'mon' => $mon])
 
 @include('partial.footer')

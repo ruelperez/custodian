@@ -14,28 +14,44 @@
             <div style="display: flex; width: 100%;">
                 <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
 
-                    <canvas id="myChart" height="400" style="width: 390%;"></canvas>
+                    <canvas id="myChart" height="500" style="width: 390%;"></canvas>
                 </div>
+
             </div>
-            <div>
-                <select>
-                    <option selected>January</option>
-                    <option value="1">February</option>
-                    <option value="2">March</option>
-                    <option value="3">April</option>
-                    <option value="3">May</option>
-                    <option value="3">June</option>
-                    <option value="3">July</option>
-                    <option value="3">August</option>
-                    <option value="3">September</option>
-                    <option value="3">October</option>
-                    <option value="3">November</option>
-                    <option value="3">December</option>
-                </select>
+            <div style="display: flex; margin-left: 6%;">
+                    <div class="dropdown" style="margin-top: 18%; margin-right: 13%;">
+                        <h3 style=" padding-bottom: 10%;">{{$month_name}}</h3>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Month
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer">
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01/January';">January</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02/February';">February</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/03/March';">March</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/04/April';">April</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/05/May';">May</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/06/June';">June</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/07/July';">July</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/08/August';">August</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/09/September';">September</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/10/October';">October</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/11/November';">November</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/12/December';">December</a></li>
+                        </ul>
+                    </div>
+
+                <div class="map_canvass" style="margin-top: 3%; margin-right: 1.5%;">
+                    @if(count($pie_name) > 0)
+                    <canvas id="myCharts" style="width: 140%;"></canvas>
+                    @else
+                        <h5 style="margin-top: 30%; ">No data posted for month of <u>{{$month_name}}.</u></h5>
+                    @endif
+                </div>
+
             </div>
         </div>
-        <div>
-            <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
+        <div style="margin-left: 3%;">
+            <div style="width: 17%; height: 50px;">
                 <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
                     <thead>
                     <tr>
@@ -56,7 +72,7 @@
                                         {{ucfirst($lack->item_name)}}
                                     </td>
                                     <td>
-                                        {{$lack->unit}}
+                                        {{$lack->quantity}}
                                     </td>
                                 </tr>
                             @endif
@@ -127,4 +143,44 @@
             }
         }
     });
+
+    var ctxs = document.getElementById('myCharts').getContext('2d');
+    var myCharts = new Chart(ctxs, {
+        type: 'pie',
+        data: {
+            labels: <?php echo json_encode($pie_name) ?>,
+            datasets: [{
+                data: <?php echo json_encode($pie_qty); ?>,
+                backgroundColor: [
+                    'red',
+                    'blue',
+                    'green',
+                    'yellow',
+                    'Crimson',
+                    'DarkOliveGreen',
+                    'SpringGreen',
+                    'CadetBlue',
+                    'RosyBrown',
+                    'Goldenrod',
+                ]
+            }]
+        },
+        options: {
+            tooltips: {
+                enabled: false, // Disable tooltips
+            },
+            plugins: {
+                legend: {
+                    display: false, // Disable legend
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: function(context) {
+                        return <?php echo json_encode($item_name)?>[context.dataIndex];
+                    },
+                },
+            }
+        }
+    });
+
 </script>
