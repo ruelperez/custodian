@@ -72,7 +72,7 @@
                                         {{ucfirst($lack->item_name)}}
                                     </td>
                                     <td>
-                                        {{$lack->unit}}
+                                        {{$lack->quantity}}
                                     </td>
                                 </tr>
                             @endif
