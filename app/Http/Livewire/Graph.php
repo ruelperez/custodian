@@ -25,7 +25,6 @@ class Graph extends Component
             $this->pie_name[] = $p->item_name;
             $this->pie_qty [] = $p->quantity;
         }
-
         $this->totalTeacher = Receiver::all();
         $inv = \App\Models\Inventory::all();
         foreach ($inv as $invs){

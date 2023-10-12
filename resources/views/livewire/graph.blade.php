@@ -18,13 +18,13 @@
                 </div>
 
             </div>
-            <div style="display: flex; margin-left: 4%;">
+            <div style="display: flex; margin-left: 6%;">
                     <div class="dropdown" style="margin-top: 18%; margin-right: 13%;">
-                        <h3 style="padding-left: 12%; padding-bottom: 10%;">{{$month_name}}</h3>
+                        <h3 style=" padding-bottom: 10%;">{{$month_name}}</h3>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Select Month
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer">
                             <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01/January';">January</a></li>
                             <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02/February';">February</a></li>
                             <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/03/March';">March</a></li>
@@ -41,7 +41,11 @@
                     </div>
 
                 <div class="map_canvass" style="margin-top: 3%; margin-right: 1.5%;">
+                    @if(count($pie_name) > 0)
                     <canvas id="myCharts" style="width: 140%;"></canvas>
+                    @else
+                        <h5 style="margin-top: 30%; ">No data posted for month of <u>{{$month_name}}.</u></h5>
+                    @endif
                 </div>
 
             </div>
