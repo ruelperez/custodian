@@ -14,28 +14,29 @@
             <div style="display: flex; width: 100%;">
                 <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
 
-                    <canvas id="myChart" height="400" style="width: 390%;"></canvas>
+                    <canvas id="myChart" height="500" style="width: 390%;"></canvas>
                 </div>
 
             </div>
-            <div style="display: flex; margin-left: 17%;">
-                    <div class="dropdown">
+            <div style="display: flex; margin-left: 4%;">
+                    <div class="dropdown" style="margin-top: 18%; margin-right: 13%;">
+                        <h3 style="padding-left: 12%; padding-bottom: 10%;">{{$month_name}}</h3>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Select Month
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01';">January</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">February</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">March</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">April</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">May</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">June</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">July</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">August</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">September</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">October</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">November</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02';">December</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01/January';">January</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02/February';">February</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/03/March';">March</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/04/April';">April</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/05/May';">May</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/06/June';">June</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/07/July';">July</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/08/August';">August</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/09/September';">September</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/10/October';">October</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/11/November';">November</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/12/December';">December</a></li>
                         </ul>
                     </div>
 
@@ -45,8 +46,8 @@
 
             </div>
         </div>
-        <div>
-            <div style="width: 17%; height: 50px; margin-top: 4%; margin-right: 1.5%;">
+        <div style="margin-left: 3%;">
+            <div style="width: 17%; height: 50px;">
                 <table class="table table-hover" style="background-color: #FFC0CB;border-radius: 15px;">
                     <thead>
                     <tr>

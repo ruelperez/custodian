@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Graph extends Component
 {
-    public $item_name = [], $pie_name = [], $pie_qty = [], $sel, $item_quantity = [], $lack_item, $totalTeacher;
+    public $item_name = [], $month_name, $pie_name = [], $pie_qty = [], $sel, $item_quantity = [], $lack_item, $totalTeacher;
     public function render()
     {
         $dateYear = \date('Y-');
@@ -36,8 +36,9 @@ class Graph extends Component
         return view('livewire.graph');
     }
 
-    public function mount($month){
+    public function mount($month,$mon){
         $this->sel = $month;
+        $this->month_name = $mon;
     }
 
     public function updated($field){
