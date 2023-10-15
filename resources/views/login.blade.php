@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-<div style="width: 100%; text-align: right; padding-top: 0.5%; padding-bottom: 0.5%; padding-right: 3%;">
+<div style="width: 100%; text-align: right; padding-top: 0.5%; padding-bottom: 0.5%;">
     <img src="{{asset('image/logo.png')}}" width="70">
 </div>
 <div class="image-container">

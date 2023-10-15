@@ -22,13 +22,20 @@
     @livewireScripts
 </head>
 <body>
-<div style="background-color: #6495ED; padding-top: 2%; padding-bottom: 2%;">
+
+    
+
+<div style="background-color: #0d1321; padding-top: 2%; padding-bottom: 2%;">
     <div style="width: 20%; margin-left: 7%;">
         <h5 style="color: white; text-align: center">TANDAAY HIGH SCHOOL</h5>
+        
     </div>
     <div>
 
     </div>
     <h4 style="color: white; margin-left: 8%;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
+    <div style="width: 100%; text-align: left;  padding-left: 2%;padding-top: 0%; padding-bottom: 0%"; >
+    <img src="{{asset('image/logo.png')}}" width="70">
+    </div>
 </div>
-
+</div>

@@ -1,7 +1,7 @@
 <div>
-    <div style="display: flex; width: 100%;">
+    <div style="display: flex; width: 98%;">
 
-        <div style="width: 19%; background-color: #4682B4">
+        <div style="width: 19%; background-color: #0077b6">
             <div style="text-align: center; margin-top: 5%;">
                 {{--            <img src="{{ asset('image/profile.jpg') }}" width="50%">--}}
                 <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
@@ -14,22 +14,22 @@
             </div>
             <div style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 8%;"></div>
             <div style="margin-top: 3%;" class="navig">
-                <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #023e8a" @endif>
                     DASHBOARD
                 </div>
-                <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #023e8a" @endif>
                     PURCHASE REQUEST
                 </div>
-                <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #023e8a" @endif>
                     INVENTORY
                 </div>
-                <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #023e8a" @endif>
                     PREPARE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #00BFFF" @endif onclick="clickWaste()">
+                <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #023e8a" @endif onclick="clickWaste()">
                     PREPARE WASTE MATERIAL REQUEST
                 </div>
-                <div wire:click="clickPortion('report')" wire:loading.attr="disabled" @if($option == "report") style="background-color: #00BFFF" @endif>
+                <div wire:click="clickPortion('report')" wire:loading.attr="disabled" @if($option == "report") style="background-color: #023e8a" @endif>
                     REPORTS
                 </div>
             </div>
