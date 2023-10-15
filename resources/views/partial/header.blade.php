@@ -35,7 +35,7 @@
     </div>
     <h4 style="color: white; margin-left: 8%;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
     <div style="width: 100%; text-align: left;  padding-left: 2%;padding-top: 0%; padding-bottom: 0%"; >
-    <img src="{{asset('image/logo.png')}}" width="70">
+    <img src="{{asset('image/logo.png')}}" width="90">
     </div>
 </div>
 </div>
