@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Inventory extends Component
 {
-    public $request_data, $searchInput, $result, $item_name, $quantity, $data_id, $inventory_number, $unit,
+    public $request_data, $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
             $item_type, $ng=0, $kl = 0;
 
     public function render()
@@ -55,6 +55,7 @@ class Inventory extends Component
             'item_name' => 'required|unique:inventories,item_name',
             'item_type' => 'required',
             'quantity' => 'required|integer',
+            'unit_cost' => 'integer',
         ]);
         if ($this->unit == "") {
             $this->unit = 0;
@@ -65,11 +66,15 @@ class Inventory extends Component
         if ($this->inventory_number == "") {
             $this->inventory_number = 0;
         }
+        if ($this->unit_cost == "") {
+            $this->unit_cost = 0;
+        }
         try {
             \App\Models\Inventory::create([
                 'item_name' => $this->item_name,
                 'quantity' => $this->quantity,
                 'unit' => $this->unit,
+                'unit_cost' => $this->unit_cost,
                 'inventory_number' => $this->inventory_number,
                 'item_type' => $this->item_type,
             ]);
@@ -78,6 +83,7 @@ class Inventory extends Component
             $this->unit = "";
             $this->inventory_number = "";
             $this->item_type = "";
+            $this->unit_cost = "";
             session()->flash('dataAdded', "Successfully Added");
         } catch (\Exception $e) {
             session()->flash('dataError', "Failed to Add");
@@ -113,6 +119,9 @@ class Inventory extends Component
         if ($this->unit == "") {
             $this->unit = 0;
         }
+        if ($this->unit_cost == "") {
+            $this->unit_cost = 0;
+        }
         if ($this->inventory_number == "") {
             $this->inventory_number = 0;
         }
@@ -121,10 +130,12 @@ class Inventory extends Component
             $data->quantity = $this->quantity;
             $data->item_name = $this->item_name;
             $data->item_type = $this->item_type;
+            $data->unit_cost = $this->unit_cost;
             $data->inventory_number = $this->inventory_number;
             $data->save();
             $this->item_name = "";
             $this->quantity = "";
+            $this->unit_cost = "";
             $this->unit = null;
             $this->inventory_number = null;
             $this->item_type = "";
