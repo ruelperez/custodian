@@ -30,7 +30,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
     Route::get('/request-pdf/teacher-form/{teacher}', [\App\Http\Controllers\TeacherController::class, 'pdf']);
     Route::get('/request-pdf/ics-form/{icsNum}', [\App\Http\Controllers\IcsController::class, 'pdf']);
     Route::get('/request-pdf/stockcard-form/{item}', [\App\Http\Controllers\StockcardController::class, 'pdf']);
-    Route::get('/request-pdf/request-form/{date}', [\App\Http\Controllers\RequestreportController::class, 'pdf']);
+    Route::get('/request-pdf/request-form/{prNum}', [\App\Http\Controllers\RequestreportController::class, 'pdf']);
     Route::get('/request-pdf/order-form/{date}', [\App\Http\Controllers\OrderreportController::class, 'pdf']);
     Route::get('/request-pdf/pwmr-form/{name}/{date}', [\App\Http\Controllers\PwmrreportController::class, 'pdf']);
     Route::get('/request-pdf/deployed-report/{name}/{date}', [\App\Http\Controllers\DeployedreportController::class, 'pdf']);

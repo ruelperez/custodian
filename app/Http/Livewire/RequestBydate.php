@@ -39,6 +39,7 @@ class RequestBydate extends Component
 
     protected $listeners = [
         'clickBack2' => 'back',
+        'prNumClickBack' => 'back',
     ];
 
     public function back(){
