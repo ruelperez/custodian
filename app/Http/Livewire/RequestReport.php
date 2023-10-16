@@ -55,6 +55,7 @@ class RequestReport extends Component
                     'item_type' => $this->request_data[$i]['item_type'],
                     'total_cost' => $this->request_data[$i]['total_cost'],
                     'created_at' => $this->request_data[$i]['created_at'],
+                    'pr_num' => $this->request_data[$i]['pr_num'],
                 ]);
             }
 
