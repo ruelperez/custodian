@@ -43,6 +43,6 @@
             </table>
         </div>
     @elseif($clickView == 1)
-        @livewire('request-report',['dateData' => $dateData])
+        @livewire('request-bypr',['dateData' => $dateData])
     @endif
 </div>

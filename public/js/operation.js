@@ -110,6 +110,10 @@ function clickMove(){
     }
 }
 
+function clickBack50(){
+    window.livewire.emit('prNumClickBack');
+}
+
 // Teachers add item
 function inputChange(){
     window.livewire.emit('input_change');

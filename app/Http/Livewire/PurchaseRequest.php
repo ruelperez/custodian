@@ -15,6 +15,13 @@ class PurchaseRequest extends Component
 
     public function render()
     {
+        $tr = Request::all();
+        if (count($tr) > 0){
+            foreach ($tr as $trd){
+                $this->prNum = $trd->pr_num;
+            }
+
+        }
         if ($this->fa == 0){
             if ($this->item_name != "" and $this->pick == 1){
                 $this->basis = 0;
@@ -351,6 +358,7 @@ class PurchaseRequest extends Component
             foreach ($req as $rr){
                 Request::find($rr->id)->delete();
             }
+            $this->prNum = "";
             session()->flash('move',"Successfully Moved to Backup");
         }catch (\Exception $e){
             session()->flash('move_failed',"Failed to Moved to Backup");
