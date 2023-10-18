@@ -9,7 +9,7 @@
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <h4>PURCHASE {{strtoupper($request)}}</h4>
+            <h4>PURCHASE ORDER</h4>
         </td>
     </tr>
     <tr style="text-align: right;">
@@ -24,7 +24,7 @@
 
         </td>
         <td colspan="2" style="border: 1px solid;text-align: left;">
-            <b>PR No.: {{$pr_num}}</b>
+            <b>PO No.: {{$po_num}}</b>
         </td>
         <td colspan="2" style="border: 1px solid; width: 25%;text-align: left;">
             <b>Date: {{$date}}</b>
@@ -63,26 +63,26 @@
     </tr>
     @php $h=0; @endphp
     @foreach($request_data as $data)
-    <tr style="border: 1px solid;">
-        <td style="border: 1px solid; width: 15%;">
+        <tr style="border: 1px solid;">
+            <td style="border: 1px solid; width: 15%;">
 
-        </td>
-        <td style="border: 1px solid;">
-            {{$data->unit}}
-        </td>
-        <td style="border: 1px solid; width: 40%;">
-            {{$data->item_name}}
-        </td>
-        <td style="border: 1px solid; width: 10%;">
-            {{$data->quantity}}
-        </td>
-        <td style="border: 1px solid;">
-            {{$data->unit_cost}}
-        </td>
-        <td style="border: 1px solid; width: 12%;">
-            {{$data->total_cost}}
-        </td>
-    </tr>
+            </td>
+            <td style="border: 1px solid;">
+                {{$data->unit}}
+            </td>
+            <td style="border: 1px solid; width: 40%;">
+                {{$data->item_name}}
+            </td>
+            <td style="border: 1px solid; width: 10%;">
+                {{$data->quantity}}
+            </td>
+            <td style="border: 1px solid;">
+                {{$data->unit_cost}}
+            </td>
+            <td style="border: 1px solid; width: 12%;">
+                {{$data->total_cost}}
+            </td>
+        </tr>
         @php $h+=$data->total_cost; @endphp
     @endforeach
     <tr style="border: 1px solid;">

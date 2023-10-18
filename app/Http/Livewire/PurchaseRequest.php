@@ -243,6 +243,7 @@ class PurchaseRequest extends Component
                'unit_cost' => $data->unit_cost,
                'total_cost' => $data->total_cost,
                'item_type' => $data->item_type,
+               'po_num' => $data->pr_num,
            ]);
        }
     }
