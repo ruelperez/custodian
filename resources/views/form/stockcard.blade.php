@@ -21,7 +21,7 @@
             <b>Description:</b>
         </td>
         <td colspan="2" style="border: 1px solid; text-align: left;">
-            <b>Stock No.:</b>
+            <b>Stock No.: {{$stockNum}}</b>
         </td>
     </tr>
     <tr style="border: 1px solid;">
