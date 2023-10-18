@@ -9,7 +9,10 @@
                 <div>
                     <h5>{{ucwords($itemName)}}</h5>
                 </div>
-                <div style="margin-left: auto;">
+                <div style="width: 20%; margin-left: 63%;">
+                    <input style="width: 100%" type="text" wire:model="stockNum"  placeholder="Stock No.">
+                </div>
+                <div style="margin-left: 5%;">
                     <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/stockcard-form/{{$itemName}}';"></i>
                 </div>
             </div>
