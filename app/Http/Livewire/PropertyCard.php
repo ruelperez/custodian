@@ -10,15 +10,21 @@ class PropertyCard extends Component
 {
     use WithPagination;
 
-    public $itemName, $item, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
+    public $itemName, $item, $par_num, $property_num, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
 
     public function render()
     {
         $this->stockcard_data = DB::table('property_cards')
             ->where('item_name', '=', $this->itemName)
             ->get();
+        foreach ($this->stockcard_data as $st){
+            $this->property_num = $st->property_num;
+        }
         if ($this->prop_id != null){
             $this->component_data = \App\Models\PropertyCard::find($this->prop_id)->component;
+            foreach ($this->component_data as $ga){
+                $this->par_num = $ga->property_number;
+            }
         }
         return view('livewire.property-card');
     }
@@ -28,6 +34,23 @@ class PropertyCard extends Component
             'qty' => 'numeric',
             'amount' => 'numeric',
         ]);
+
+        if ($field === 'property_num'){
+            $data = \App\Models\PropertyCard::where('item_name','=',$this->itemName)->get();
+            foreach ($data as $datas){
+                $rowData = \App\Models\PropertyCard::find($datas->id);
+                $rowData->property_num = $this->property_num;
+                $rowData->save();
+            }
+        }
+        if ($field === 'par_num'){
+            $data = \App\Models\PropertyCard::find($this->prop_id)->component;
+            foreach ($data as $datas){
+                $rowData = \App\Models\Component::find($datas->id);
+                $rowData->property_number = $this->par_num;
+                $rowData->save();
+            }
+        }
     }
     public function mount($dateData){
         $this->itemName = $dateData;
