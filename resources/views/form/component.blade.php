@@ -27,7 +27,7 @@
 <table style="width: 100%; text-align: right;">
     <tr>
         <td>
-            <b>PAR No.: _________________</b>
+            <b>PAR No. {{$par_num}}</b>
         </td>
     </tr>
 </table>

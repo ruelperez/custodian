@@ -10,7 +10,7 @@ class PropertyCard extends Component
 {
     use WithPagination;
 
-    public $itemName, $item, $property_num, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
+    public $itemName, $item, $par_num, $property_num, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
 
     public function render()
     {
@@ -22,6 +22,9 @@ class PropertyCard extends Component
         }
         if ($this->prop_id != null){
             $this->component_data = \App\Models\PropertyCard::find($this->prop_id)->component;
+            foreach ($this->component_data as $ga){
+                $this->par_num = $ga->property_number;
+            }
         }
         return view('livewire.property-card');
     }
@@ -37,6 +40,14 @@ class PropertyCard extends Component
             foreach ($data as $datas){
                 $rowData = \App\Models\PropertyCard::find($datas->id);
                 $rowData->property_num = $this->property_num;
+                $rowData->save();
+            }
+        }
+        if ($field === 'par_num'){
+            $data = \App\Models\PropertyCard::find($this->prop_id)->component;
+            foreach ($data as $datas){
+                $rowData = \App\Models\Component::find($datas->id);
+                $rowData->property_number = $this->par_num;
                 $rowData->save();
             }
         }
