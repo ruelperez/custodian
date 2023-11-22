@@ -43,4 +43,4 @@ Route::get('/', function () {
     return view('login');
 })->name('login')->middleware('guest');
 Route::post('/login-process', [\App\Http\Controllers\UserController::class, 'login']);
-Route::get('/register', [\App\Http\Controllers\UserController::class, 'store']);
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
