@@ -24,6 +24,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function (){
         return view('main', ['month' => $mos, 'mon' => $mons]);
     });
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
+    Route::get('/request-pdf/purchase/order', [\App\Http\Controllers\OrderController::class, 'pdf']);
     Route::get('/request-pdf/{request}', [\App\Http\Controllers\RequestController::class, 'pdf']);
     Route::get('/request-pdf/pmr-report/{date}', [\App\Http\Controllers\PmrController::class, 'pdf']);
     Route::get('/request-pdf/wmr-form/{teacher}', [\App\Http\Controllers\WmrController::class, 'pdf']);

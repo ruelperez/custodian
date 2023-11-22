@@ -14,6 +14,7 @@ class Order extends Model
         'unit_cost',
         'item_type',
         'total_cost',
+        'po_num',
     ];
 
     use HasFactory;

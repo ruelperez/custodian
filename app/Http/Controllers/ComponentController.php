@@ -10,7 +10,10 @@ class ComponentController extends Controller
 {
     public function pdf($prop_id){
         $request_data = \App\Models\PropertyCard::find($prop_id)->component;
-        $pdf = PDF::loadView('form.component', compact('request_data'))
+        foreach ($request_data as $data){
+            $par_num = $data->property_number;
+        }
+        $pdf = PDF::loadView('form.component', compact('request_data','par_num'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }

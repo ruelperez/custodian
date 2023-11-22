@@ -18,7 +18,7 @@
             <b>Property, Plant and Equipment:</b>
         </td>
         <td colspan="2" rowspan="2"  style="border: 1px solid; text-align: left;padding-top: 0px;">
-            <b>Property No.:</b>
+            <b>Property No. {{$property_num}}</b>
         </td>
     </tr>
     <tr style="border: 1px solid;">

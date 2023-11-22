@@ -44,7 +44,10 @@
                     <div style="width: 12%;">
                         <button style="margin-top: 2%; margin-bottom: 2%; margin-left: 1%; width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Add</button>
                     </div>
-                    <div style="margin-left: 82%;margin-top: 2%;">
+                    <div style="width: 20%; margin-left: 57%; margin-top: 1.5%;">
+                        <input style="width: 100%;" type="text" wire:model="par_num"  placeholder="PAR No.">
+                    </div>
+                    <div style="margin-left: 5%;margin-top: 2%;">
                         <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/component/{{$prop_id}}';"></i>
                     </div>
                 </div>
