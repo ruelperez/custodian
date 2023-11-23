@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <title>
         Login
     </title>
+    @livewireStyles
+    @livewireScripts
     <style>
         .image-container {
             display: inline-block;
@@ -50,8 +54,8 @@
 
 </div>
 
-
-@include('modal.login-modal')
+@livewire('login')
+{{--@include('modal.login-modal')--}}
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg_modal">register</button>
 
 <div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="reg_modal">

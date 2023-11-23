@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
-                        <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Login</button>
                 </form>
             </div>
         </div>
