@@ -17,4 +17,18 @@ class Login extends Component
     public function clickEye($id){
        $this->eye = $id;
     }
+
+    public function submit(){
+        $validated = $this->validate([
+            "username" => 'required',
+            "password" => 'required'
+        ]);
+
+        if(auth()->attempt($validated)){
+            session()->regenerate();
+
+            return redirect('/Dashboard/custodian');
+        }
+        session()->flash('loginFailed','Wrong Password/Username');
+    }
 }

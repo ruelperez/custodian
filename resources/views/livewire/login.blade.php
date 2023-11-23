@@ -7,7 +7,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form wire:submit.prevent="submit">
+                        @if(session()->has('loginFailed'))
+                            <div class="alert alert-danger" style="width: 100%; ">
+                                {{ session('loginFailed') }}
+                            </div>
+                        @endif
+
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Username" wire:model="username" required style="width: 70%; margin-left: 15%;">
                         </div>
