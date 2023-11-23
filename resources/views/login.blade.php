@@ -70,7 +70,10 @@
                     <div class="mb-3">
                         <input class="form-control" placeholder="Password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Login</button>
+                    <div class="mb-3">
+                        <input class="form-control" name="role" value="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">submit</button>
                 </form>
             </div>
         </div>

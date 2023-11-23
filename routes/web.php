@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('Dashboard')->middleware('auth')->group(function (){
+Route::prefix('Dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/custodian', function (){
         return view('main',['month' => '01', 'mon' => 'January']);
     });
