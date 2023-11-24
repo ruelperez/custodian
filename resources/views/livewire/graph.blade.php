@@ -4,7 +4,7 @@
             <div style="display: flex;">
                 <div style="width: 47%;background-color: #1E90FF; margin-right: 2%; color: white; padding-left: 3%;">
                     <h1>{{count($lack_item)}}</h1>
-                    <h5>Total Product</h5>
+                    <h5>Total Items</h5>
                 </div>
                 <div style="width: 47%; background-color: #FFA500; color: white; padding-left: 3%;">
                     <h1>{{count($totalTeacher)}}</h1>
