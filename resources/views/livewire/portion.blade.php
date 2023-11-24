@@ -55,7 +55,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
             <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
-                @livewire('graph',['month' => $mos, 'mon' => $mons])
+                @livewire('graph',['month' => $mos, 'mon' => $mons, 'item_type' => $item_type])
             </div>
             <div style="@if($option != "purchase") display: none; @endif" wire:loading.remove>
                 @livewire('purchase-request')

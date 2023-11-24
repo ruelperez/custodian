@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph",$mons, $mos, $report=0, $df=0;
+    public $option = "graph",$mons, $item_type, $mos, $report=0, $df=0;
 
     public function render()
     {
@@ -32,9 +32,10 @@ class Portion extends Component
         $this->report = 0;
     }
 
-    public function mount($month,$mon){
+    public function mount($month,$mon,$item_type){
         $this->mos = $month;
         $this->mons = $mon;
+        $this->item_type = $item_type;
     }
 
     protected $listeners = [

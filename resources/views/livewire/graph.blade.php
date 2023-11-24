@@ -11,8 +11,28 @@
                     <h5>No. of Teacher/Staff</h5>
                 </div>
             </div>
+            <div style="width: 19%; margin-top: 1%;">
+                <div class="dropdown" style="margin-top: 18%; margin-right: 13%;">
+
+                    <div style="display: flex;">
+                        <div>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Item Type
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer">
+                                <li><a class="dropdown-item" onclick="location.href = '/Dashboard/bar-graph/01/January/all';">All</a></li>
+                                <li><a class="dropdown-item" onclick="location.href = '/Dashboard/bar-graph/01/January/consumable';">Consumable</a></li>
+                                <li><a class="dropdown-item" onclick="location.href = '/Dashboard/bar-graph/01/January/non-consumable';">Non-Consumable</a></li>
+                            </ul>
+                        </div>
+                        <div style="margin-left: 10%; margin-top: 2%;">
+                            <h5 style=" padding-bottom: 10%;">{{ucwords($item_type)}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style="display: flex; width: 100%;">
-                <div class="map_canvas" style="margin-top: 3%; margin-right: 1.5%;">
+                <div class="map_canvas" style="margin-top: 1.5%; margin-right: 1.5%;">
 
                     <canvas id="myChart" height="500" style="width: 390%;"></canvas>
                 </div>
@@ -25,18 +45,18 @@
                             Select Month
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer">
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01/January';">January</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02/February';">February</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/03/March';">March</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/04/April';">April</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/05/May';">May</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/06/June';">June</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/07/July';">July</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/08/August';">August</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/09/September';">September</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/10/October';">October</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/11/November';">November</a></li>
-                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/12/December';">December</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/01/January/{{$item_type}}';">January</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/02/February/{{$item_type}}';">February</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/03/March/{{$item_type}}';">March</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/04/April/{{$item_type}}';">April</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/05/May/{{$item_type}}';">May</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/06/June/{{$item_type}}';">June</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/07/July/{{$item_type}}';">July</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/08/August/{{$item_type}}';">August</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/09/September/{{$item_type}}';">September</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/10/October/{{$item_type}}';">October</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/11/November/{{$item_type}}';">November</a></li>
+                            <li><a class="dropdown-item" onclick="location.href = '/Dashboard/pie-graph/12/December/{{$item_type}}';">December</a></li>
                         </ul>
                     </div>
 
@@ -93,7 +113,7 @@
 <!-- Show Graph Data -->
 
 <script src="{{ asset('js/chart.js') }}"></script>
-
+{{--Bar Graph--}}
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
@@ -144,6 +164,7 @@
         }
     });
 
+    // Pie Chart
     var ctxs = document.getElementById('myCharts').getContext('2d');
     var myCharts = new Chart(ctxs, {
         type: 'pie',
