@@ -337,13 +337,6 @@ class Prepare extends Component
                     ]);
                 }
 
-                if ($dat->quantity * $dat->unit_cost >= 50000 and $dat->item_type == 'non-consumable'){
-
-                }
-                else{
-
-                }
-
                 BackupPrepare::create([
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
@@ -367,7 +360,6 @@ class Prepare extends Component
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
                 ]);
-
 
                 $accepter = DB::table('receivers')
                     ->where('fullname','=', $dat->receiver)

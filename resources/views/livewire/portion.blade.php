@@ -158,16 +158,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: flex;">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('pmr-report')">
-                                    <div style="margin-left: 5%;">
-                                        <img src="{{asset('image/pmr-report.png')}}" width="80">
-                                    </div>
-                                    <div style="margin-left: 8%; margin-top: 7%;">
-                                        <h4><b>P.A.R Report</b></h4>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     @endif
                 </div>
