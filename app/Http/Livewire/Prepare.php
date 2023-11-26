@@ -337,11 +337,19 @@ class Prepare extends Component
                         'quantity' => $dat->quantity,
                     ]);
                 }
-
-                if ($dat->quantity * $dat->unit_cost >= 50000 and $dat->item_type == 'non-consumable'){
-
-                }
-                else{
+                $total_c = $dat->quantity * $dat->unit_cost;
+                if ($total_c >= 50000 and $dat->item_type == 'non-consumable'){
+                    Par::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                        'unit' => $dat->unit,
+                        'unit_cost'  => $dat->unit_cost,
+                        'receiver' => $dat->receiver,
+                        'item_type' => $dat->item_type,
+                        'serial' => $dat->serial,
+                        'ics' => $dat->ics,
+                        'total_cost' => $total_c,
+                    ]);
 
                 }
 
@@ -355,6 +363,7 @@ class Prepare extends Component
                     'serial' => $dat->serial,
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
+                    'total_cost' => $total_c,
                 ]);
 
                 Distribute::create([
