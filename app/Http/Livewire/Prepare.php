@@ -339,7 +339,7 @@ class Prepare extends Component
                 }
 
                 if ($dat->quantity * $dat->unit_cost >= 50000 and $dat->item_type == 'non-consumable'){
-                    
+
                 }
                 else{
 

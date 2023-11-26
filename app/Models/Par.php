@@ -15,7 +15,8 @@ class Par extends Model
         'receiver',
         'item_type',
         'serial',
-        'ics'
+        'ics',
+        'total_cost',
     ];
 
     use HasFactory;
