@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\Distribute;
+use App\Models\Par;
 use App\Models\Ranking;
 use App\Models\Receiver;
 use App\Models\Request;
@@ -338,7 +339,7 @@ class Prepare extends Component
                 }
 
                 if ($dat->quantity * $dat->unit_cost >= 50000 and $dat->item_type == 'non-consumable'){
-
+                    
                 }
                 else{
 

@@ -17,6 +17,6 @@ class Par extends Model
         'serial',
         'ics'
     ];
-    
+
     use HasFactory;
 }
