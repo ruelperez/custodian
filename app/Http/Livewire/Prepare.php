@@ -352,6 +352,19 @@ class Prepare extends Component
                     ]);
 
                 }
+                elseif ($total_c < 50000 and $dat->item_type == 'non-consumable'){
+                    Distribute::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                        'unit' => $dat->unit,
+                        'unit_cost' => $dat->unit_cost,
+                        'item_type' => $dat->item_type,
+                        'receiver' => $dat->receiver,
+                        'serial' => $dat->serial,
+                        'ics' => $dat->ics,
+                        'ics_last' => $this->ics_last_number,
+                    ]);
+                }
 
                 BackupPrepare::create([
                     'item_name' => $dat->item_name,
@@ -365,19 +378,6 @@ class Prepare extends Component
                     'ics_last' => $this->ics_last_number,
                     'total_cost' => $total_c,
                 ]);
-
-                Distribute::create([
-                    'item_name' => $dat->item_name,
-                    'quantity' => $dat->quantity,
-                    'unit' => $dat->unit,
-                    'unit_cost' => $dat->unit_cost,
-                    'item_type' => $dat->item_type,
-                    'receiver' => $dat->receiver,
-                    'serial' => $dat->serial,
-                    'ics' => $dat->ics,
-                    'ics_last' => $this->ics_last_number,
-                ]);
-
 
                 $accepter = DB::table('receivers')
                     ->where('fullname','=', $dat->receiver)
