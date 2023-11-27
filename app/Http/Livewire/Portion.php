@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "report",$mons, $item_type, $mos, $report=0, $df=0;
+    public $option = "graph",$mons, $item_type, $mos, $report=0, $df=0, $hover;
 
     public function render()
     {
@@ -92,6 +92,14 @@ class Portion extends Component
 
     public function loadingState(){
 
+    }
+
+    public function hoverIn($in){
+        $this->hover = $in;
+    }
+
+    public function hoverOut($out){
+        $this->hover = $out;
     }
 
 }
