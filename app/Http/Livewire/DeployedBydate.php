@@ -19,6 +19,7 @@ class DeployedBydate extends Component
         else{
             $this->request_data = BackupPrepare::select(DB::raw('DATE(created_at) as date'))
                 ->where('receiver', '=', $this->teacherName)
+                ->where('total_cost','<', 50000)
                 ->distinct()
                 ->get();
         }
@@ -33,6 +34,7 @@ class DeployedBydate extends Component
         $this->request_data = BackupPrepare::select(DB::raw('DATE(created_at) as date'))
             ->where('created_at','like', '%'.$this->search.'%')
             ->where('receiver', '=', $this->teacherName)
+            ->where('total_cost','<', 50000)
             ->distinct()
             ->get();
     }

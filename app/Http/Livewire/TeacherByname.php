@@ -17,6 +17,7 @@ class TeacherByname extends Component
         else{
             $this->result = BackupPrepare::select('receiver')
                 ->where('item_type', '!=', 'consumable')
+                ->where('total_cost','<', 50000)
                 ->distinct()
                 ->get();
         }
@@ -28,6 +29,7 @@ class TeacherByname extends Component
         $this->result = BackupPrepare::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
             ->where('item_type', '!=', 'consumable')
+            ->where('total_cost','<', 50000)
             ->distinct()
             ->get();
     }

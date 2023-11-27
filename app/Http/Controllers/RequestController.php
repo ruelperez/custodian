@@ -12,14 +12,13 @@ class RequestController extends Controller
     public function pdf($request){
        if($request == "request"){
            $request_data = \App\Models\Request::all();
-           $pdf = PDF::loadView('form.form-request', compact('request_data','request'))
+           foreach ($request_data as $data){
+               $date = $data->created_at->format('M-d-Y');
+               $pr_num = $data->pr_num;
+           }
+           $pdf = PDF::loadView('form.form-request', compact('request_data','request','pr_num', 'date'))
                ->setPaper('legal','portrait');
+           return $pdf->stream('load.pdf');
         }
-       elseif ($request == "order"){
-           $request_data = Order::all();
-           $pdf = PDF::loadView('form.form-request', compact('request_data','request'))
-               ->setPaper('legal','portrait');
-       }
-        return $pdf->stream('load.pdf');
     }
 }

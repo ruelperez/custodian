@@ -13,7 +13,8 @@ class StockCard extends Model
         'quantity',
         'unit',
         'receiver',
-        'inventory_id'
+        'inventory_id',
+        'stock_num',
     ];
 
     use HasFactory;

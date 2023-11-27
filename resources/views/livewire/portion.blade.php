@@ -35,7 +35,7 @@
             </div>
         </div>
         {{--    @livewire('han')--}}
-        <div style="width: 81%; margin-left: 3%; margin-right: 3%;">
+        <div style="width: 81%; margin-left: 3%; margin-right: 1%;">
             <div class="spinner-border spin" wire:loading wire:target="clickPortion('graph')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
@@ -55,7 +55,7 @@
                 <span class="visually-hidden">Loading...</span>
             </div>
             <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
-                @livewire('graph')
+                @livewire('graph',['month' => $mos, 'mon' => $mons, 'item_type' => $item_type])
             </div>
             <div style="@if($option != "purchase") display: none; @endif" wire:loading.remove>
                 @livewire('purchase-request')
@@ -89,6 +89,8 @@
                             @livewire('purchase-bydate')
                         @elseif($report == "pmr-report")
                             @livewire('pmr-bydate')
+                        @elseif($report == "par-report")
+                            @livewire('par-bydate')
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname',['waste' => $option])
                         @elseif($report == "teacher")
@@ -96,7 +98,7 @@
                         @endif
                     @else
                         <div style="width: 70%; margin-left: 15%; margin-top: 7%;">
-                            <div style="display: flex; cursor: pointer; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
+                            <div wire:mouseover="hoverIn('teacherIn')" wire:mouseout="hoverOut('out')" style="display: flex; cursor: pointer; @if($hover == "teacherIn") border: solid black 3px; @endif background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
                                 <div style="margin-left: 10%;">
                                     <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
@@ -104,8 +106,8 @@
                                     <h4><b>TEACHERS</b></h4>
                                 </div>
                             </div>
-                            <div style="display: flex; ">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
+                            <div style="display: flex; margin-top: 1%;">
+                                <div wire:mouseover="hoverIn('stockIn')" wire:mouseout="hoverOut('out')" style=" @if($hover == "stockIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/stock-card.png')}}" width="80">
                                     </div>
@@ -113,7 +115,7 @@
                                         <h4><b>STOCK CARD</b></h4>
                                     </div>
                                 </div>
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
+                                <div wire:mouseover="hoverIn('propertyIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "propertyIn") border: solid black 3px; @endif cursor: pointer; margin-left: 1%; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/property.png')}}" width="80">
                                     </div>
@@ -122,8 +124,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: flex;">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
+                            <div style="display: flex; margin-top: 1%;">
+                                <div wire:mouseover="hoverIn('requestIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "requestIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/purchase-report.png')}}" width="80">
                                     </div>
@@ -131,7 +133,7 @@
                                         <h4><b>Purchase Requests</b></h4>
                                     </div>
                                 </div>
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
+                                <div wire:mouseover="hoverIn('orderIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "orderIn") border: solid black 3px; @endif cursor: pointer;margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/order-report.png')}}" width="80">
                                     </div>
@@ -140,8 +142,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: flex;">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
+                            <div style="display: flex; margin-top: 1%;">
+                                <div wire:mouseover="hoverIn('icsIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "icsIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pmr-report.png')}}" width="80">
                                     </div>
@@ -149,12 +151,22 @@
                                         <h4><b>ICS Report</b></h4>
                                     </div>
                                 </div>
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
+                                <div wire:mouseover="hoverIn('pwmrIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "pwmrIn") border: solid black 3px; @endif cursor: pointer; margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pwmr-report.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 7%;">
                                         <h4><b>P.W.M.R Report</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; margin-top: 1%;">
+                                <div wire:mouseover="hoverIn('parIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "parIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('par-report')">
+                                    <div style="margin-left: 5%;">
+                                        <img src="{{asset('image/pmr-report.png')}}" width="80">
+                                    </div>
+                                    <div style="margin-left: 8%; margin-top: 7%;">
+                                        <h4><b>P.A.R Report</b></h4>
                                     </div>
                                 </div>
                             </div>

@@ -8,19 +8,23 @@
             <div class="modal-body" >
                     <form wire:submit.prevent="submit">
                     @if(session()->has('dataAdded'))
-                        <div class="alert alert-success" style="width: 60%; ">
+                        <div class="alert alert-success" style="width: 100%; ">
                             {{ session('dataAdded') }}
                         </div>
                     @elseif(session()->has('dataError'))
-                        <div class="alert alert-danger" style="width: 60%; ">
+                        <div class="alert alert-danger" style="width: 100%; ">
                             {{ session('dataError') }}
+                        </div>
+                    @elseif(session()->has('different'))
+                        <div class="alert alert-danger" style="width: 100%; ">
+                            {{ session('different') }}
                         </div>
                     @endif
                     <label>ICS No.</label>
                     <u>{{$ics}}</u>
                     <div style="display: flex; margin-top: 3%;">
-                        <div class="mb-2" style="width: 70%; margin-left: 15%;" >
-                            <input id="prepareInputTeacher" @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model="receiver" required>
+                        <div class="mb-2" style="width: 70%; margin-left: 15%; " >
+                            <input @if(session()->has('different')) style="border: solid red 1px;" @endif  id="prepareInputTeacher" @if($receiver_disable == 1) disabled @endif type="text" class="form-control" placeholder="Name of Receiver" wire:click="click_input_items" wire:model="receiver" required>
                         </div>
                         @if($basin == 0)
                             <div style="margin-left: 2%; margin-top: 6px;">
@@ -85,7 +89,7 @@
                         @endif
                     </div>
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
+                        <input type="text" class="form-control" placeholder="Inventory No." wire:click="not_item_click" wire:model="serial" disabled>
                     </div>
                         <input type="text" hidden wire:model="unit_cost">
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>

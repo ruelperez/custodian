@@ -24,7 +24,7 @@
 
         </td>
         <td colspan="2" style="border: 1px solid;text-align: left;">
-            <b>PR No.</b>
+            <b>PR No. {{$prNum}}</b>
         </td>
         <td colspan="2" style="border: 1px solid; width: 25%;text-align: left;">
             <b>Date: {{$date}}</b>

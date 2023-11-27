@@ -16,6 +16,9 @@
                             {{ session('dataError') }}
                         </div>
                     @endif
+                    <div class="mb-3" style="width: 35%; margin-left: 2%;">
+                        <input type="text" class="form-control" placeholder="P.R No." wire:click="not_item_click" wire:model="prNum" @if(count($request_data) > 0) disabled @else required @endif >
+                    </div>
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
                         <input type="text" id="request-searchInput" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
                     </div>

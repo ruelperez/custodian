@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\Distribute;
+use App\Models\Par;
+use App\Models\Ranking;
 use App\Models\Receiver;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,38 +88,84 @@ class Prepare extends Component
         $data = $this->validate([
             'item_name' => 'required',
         ]);
-        if ($this->quantity == ""){
-            $this->quantity = 0;
+        $move = \App\Models\Prepare::all();
+        foreach ($move as $data){
+            $it = $data->receiver;
         }
+        if (count($move) == 0){
 
-        if ($this->quantity > $this->currentQty){
-            session()->flash('insufficient',"Insufficient item quantity");
-            return;
+            if ($this->quantity == ""){
+                $this->quantity = 0;
+            }
+
+            if ($this->quantity > $this->currentQty){
+                session()->flash('insufficient',"Insufficient item quantity");
+                return;
+            }
+
+            try {
+                \App\Models\Prepare::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'item_type' => $this->item_type,
+                    'receiver' => $this->receiver,
+                    'serial' => $this->serial,
+                    'ics' => $this->ics,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit = "";
+                $this->serial = "";
+                $this->receiver_disable = 0;
+                $this->item_disable = 0;
+                $this->unit_cost = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
-
-        try {
-            \App\Models\Prepare::create([
-                'item_name' => $this->item_name,
-                'quantity' => $this->quantity,
-                'unit' => $this->unit,
-                'unit_cost' => $this->unit_cost,
-                'item_type' => $this->item_type,
-                'receiver' => $this->receiver,
-                'serial' => $this->serial,
-                'ics' => $this->ics,
-            ]);
-            $this->item_name = "";
-            $this->quantity = "";
-            $this->unit = "";
-            $this->serial = "";
+        elseif ($it != $this->receiver){
             $this->receiver_disable = 0;
             $this->item_disable = 0;
-            $this->unit_cost = "";
-            session()->flash('dataAdded',"Successfully Added");
+            session()->flash('different',"Deploy first before adding different name");
         }
-        catch (\Exception $e){
-            session()->flash('dataError',"Failed to Add");
+        else{
+            if ($this->quantity == ""){
+                $this->quantity = 0;
+            }
+
+            if ($this->quantity > $this->currentQty){
+                session()->flash('insufficient',"Insufficient item quantity");
+            }
+
+            try {
+                \App\Models\Prepare::create([
+                    'item_name' => $this->item_name,
+                    'quantity' => $this->quantity,
+                    'unit' => $this->unit,
+                    'unit_cost' => $this->unit_cost,
+                    'item_type' => $this->item_type,
+                    'receiver' => $this->receiver,
+                    'serial' => $this->serial,
+                    'ics' => $this->ics,
+                ]);
+                $this->item_name = "";
+                $this->quantity = "";
+                $this->unit = "";
+                $this->serial = "";
+                $this->receiver_disable = 0;
+                $this->item_disable = 0;
+                $this->unit_cost = "";
+                session()->flash('dataAdded',"Successfully Added");
+            }
+            catch (\Exception $e){
+                session()->flash('dataError',"Failed to Add");
+            }
         }
+
     }
 
     public function click_item($id){
@@ -127,6 +175,7 @@ class Prepare extends Component
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
+        $this->serial = $data->inventory_number;
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;
@@ -278,6 +327,46 @@ class Prepare extends Component
         }
         if ($f == 1){
             foreach ($data as $dat){
+                $rank = Ranking::where('item_name', '=', $dat->item_name)->get();
+                if (count($rank) > 0){
+                    Ranking::where('item_name', '=', $dat->item_name)
+                        ->increment('quantity',$dat->quantity);
+                }
+                else{
+                    Ranking::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                    ]);
+                }
+                $total_c = $dat->quantity * $dat->unit_cost;
+                if ($total_c >= 50000 and $dat->item_type == 'non-consumable'){
+                    Par::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                        'unit' => $dat->unit,
+                        'unit_cost'  => $dat->unit_cost,
+                        'receiver' => $dat->receiver,
+                        'item_type' => $dat->item_type,
+                        'serial' => $dat->serial,
+                        'ics' => $dat->ics,
+                        'total_cost' => $total_c,
+                    ]);
+
+                }
+                elseif ($total_c < 50000 and $dat->item_type == 'non-consumable'){
+                    Distribute::create([
+                        'item_name' => $dat->item_name,
+                        'quantity' => $dat->quantity,
+                        'unit' => $dat->unit,
+                        'unit_cost' => $dat->unit_cost,
+                        'item_type' => $dat->item_type,
+                        'receiver' => $dat->receiver,
+                        'serial' => $dat->serial,
+                        'ics' => $dat->ics,
+                        'ics_last' => $this->ics_last_number,
+                    ]);
+                }
+
                 BackupPrepare::create([
                     'item_name' => $dat->item_name,
                     'quantity' => $dat->quantity,
@@ -288,18 +377,7 @@ class Prepare extends Component
                     'serial' => $dat->serial,
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
-                ]);
-
-                Distribute::create([
-                    'item_name' => $dat->item_name,
-                    'quantity' => $dat->quantity,
-                    'unit' => $dat->unit,
-                    'unit_cost' => $dat->unit_cost,
-                    'item_type' => $dat->item_type,
-                    'receiver' => $dat->receiver,
-                    'serial' => $dat->serial,
-                    'ics' => $dat->ics,
-                    'ics_last' => $this->ics_last_number,
+                    'total_cost' => $total_c,
                 ]);
 
                 $accepter = DB::table('receivers')
@@ -315,6 +393,13 @@ class Prepare extends Component
             }
 
         }
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->unit = "";
+        $this->serial = "";
+        $this->receiver_disable = 0;
+        $this->item_disable = 0;
+        $this->unit_cost = "";
 
     }
 

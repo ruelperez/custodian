@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RequestReport extends Component
 {
-    public $search="", $request_data, $clickBk = 0, $dataDate;
+    public $search="", $request_data, $clickBk = 0, $prNo;
 
     public function render()
     {
@@ -18,14 +18,14 @@ class RequestReport extends Component
         }
         else{
             $this->request_data = DB::table('backup_requests')
-                ->where('created_at','like', '%'.$this->dataDate.'%')
+                ->where('pr_num','like', '%'.$this->prNo.'%')
                 ->get();
         }
         return view('livewire.request-report');
     }
 
-    public function mount($dateData){
-       $this->dataDate = $dateData;
+    public function mount($prNum){
+       $this->prNo = $prNum;
     }
 
     public function feed(){
@@ -55,6 +55,7 @@ class RequestReport extends Component
                     'item_type' => $this->request_data[$i]['item_type'],
                     'total_cost' => $this->request_data[$i]['total_cost'],
                     'created_at' => $this->request_data[$i]['created_at'],
+                    'pr_num' => $this->request_data[$i]['pr_num'],
                 ]);
             }
 

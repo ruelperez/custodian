@@ -13,7 +13,8 @@ class PropertyCard extends Model
         'receiptQty',
         'unit',
         'receiver',
-        'inventory_id'
+        'inventory_id',
+        'property_num',
     ];
 
     public function component(){

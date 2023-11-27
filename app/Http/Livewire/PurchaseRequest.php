@@ -11,10 +11,17 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $item_name, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
+        $tr = Request::all();
+        if (count($tr) > 0){
+            foreach ($tr as $trd){
+                $this->prNum = $trd->pr_num;
+            }
+
+        }
         if ($this->fa == 0){
             if ($this->item_name != "" and $this->pick == 1){
                 $this->basis = 0;
@@ -69,6 +76,7 @@ class PurchaseRequest extends Component
                     'unit_cost' => $this->unit_cost,
                     'total_cost' => $this->total_cost,
                     'item_type' => $this->item_type,
+                    'pr_num' => $this->prNum,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -235,6 +243,7 @@ class PurchaseRequest extends Component
                'unit_cost' => $data->unit_cost,
                'total_cost' => $data->total_cost,
                'item_type' => $data->item_type,
+               'po_num' => $data->pr_num,
            ]);
        }
     }
@@ -344,11 +353,13 @@ class PurchaseRequest extends Component
                     'total_cost' => $reqs->total_cost,
                     'item_type' => $reqs->item_type,
                     'created_at' => $reqs->created_at,
+                    'pr_num' => $reqs->pr_num,
                 ]);
             }
             foreach ($req as $rr){
                 Request::find($rr->id)->delete();
             }
+            $this->prNum = "";
             session()->flash('move',"Successfully Moved to Backup");
         }catch (\Exception $e){
             session()->flash('move_failed',"Failed to Moved to Backup");

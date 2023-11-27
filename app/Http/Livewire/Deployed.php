@@ -14,6 +14,7 @@ class Deployed extends Component
         $this->request_data = DB::table('backup_prepares')
             ->where('created_at','like', '%'.$this->dataDate.'%')
             ->where('receiver', '=', $this->teacherName)
+            ->where('total_cost','<', 50000)
             ->get();
         return view('livewire.deployed');
     }

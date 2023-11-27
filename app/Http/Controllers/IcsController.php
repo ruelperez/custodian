@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\DB;
 class IcsController extends Controller
 {
     public function pdf($icsNum){
+        $receivedBy;
         $ics_data = DB::table('distributes')
             ->where('ics','=', $icsNum)
             ->where('item_type', '!=', 'consumable')
             ->get();
-            $pdf = PDF::loadView('form.ics', compact('ics_data','icsNum'))
+        foreach ($ics_data as $data){
+            $receivedBy = $data->receiver;
+        }
+            $pdf = PDF::loadView('form.ics', compact('ics_data','icsNum','receivedBy'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }

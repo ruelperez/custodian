@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph", $report=0, $df=0;
+    public $option = "graph",$mons, $item_type, $mos, $report=0, $df=0, $hover;
 
     public function render()
     {
@@ -32,6 +32,12 @@ class Portion extends Component
         $this->report = 0;
     }
 
+    public function mount($month,$mon,$item_type){
+        $this->mos = $month;
+        $this->mons = $mon;
+        $this->item_type = $item_type;
+    }
+
     protected $listeners = [
         'clickBack1' => 'back1',
         'clickBack2' => 'back2',
@@ -42,8 +48,12 @@ class Portion extends Component
         'clickBack7' => 'back7',
         'clickBack8' => 'back8',
         'clickBack25' => 'back25',
+        'prNumClickBack' => 'bk'
     ];
 
+    public function bk(){
+        $this->df = 0;
+    }
     public function back25(){
         $this->df = 1;
     }
@@ -82,6 +92,14 @@ class Portion extends Component
 
     public function loadingState(){
 
+    }
+
+    public function hoverIn($in){
+        $this->hover = $in;
+    }
+
+    public function hoverOut($out){
+        $this->hover = $out;
     }
 
 }
