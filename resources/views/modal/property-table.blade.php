@@ -91,7 +91,7 @@
                                 <td>{{ucwords($data->quantity)}}</td>
                                 <td>{{$data->unit}}</td>
                                 <td>{{ucwords($data->item_name)}}</td>
-                                <td>{{$data->property_number}}</td>
+                                <td></td>
                                 <td>{{$data->date_acquired}}</td>
                                 <td>{{$data->amount}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#propEdit_modal" style="cursor: pointer;" wire:click="edit({{$data->id}})"></i></td>

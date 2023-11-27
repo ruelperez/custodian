@@ -7,7 +7,10 @@
         <div style="margin-top: 4%; margin-left: 15%;">
             <h5>{{$dataDate}}</h5>
         </div>
-        <div style="margin-left: 58%;margin-top: 4%;">
+        <div style="margin-top: 4%; margin-left: 42%;">
+            <input type="text" wire:model="par_num" placeholder="PAR No. ">
+        </div>
+        <div style="margin-left: 2%;margin-top: 4%;">
             <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/ics-form/{{$dataDate}}';"></i>
         </div>
     </div>

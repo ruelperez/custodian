@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class ParReport extends Component
 {
-    public $search="", $request_data, $clickBk = 0, $dataDate;
+    public $search="", $request_data, $clickBk = 0, $par_num, $dataDate;
 
     public function render()
     {
@@ -19,6 +19,12 @@ class ParReport extends Component
 
     public function mount($dateData){
         $this->dataDate = $dateData;
+    }
+
+    public function updated($field){
+        if ($field === 'par_num'){
+            
+        }
     }
 
     public function clickBack(){
