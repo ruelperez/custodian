@@ -89,6 +89,8 @@
                             @livewire('purchase-bydate')
                         @elseif($report == "pmr-report")
                             @livewire('pmr-bydate')
+                        @elseif($report == "par-report")
+                            @livewire('par-bydate')
                         @elseif($report == "pwmr-report")
                             @livewire('pwmr-byname',['waste' => $option])
                         @elseif($report == "teacher")
@@ -159,7 +161,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">
-                                <div wire:mouseover="hoverIn('parIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "parIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('pmr-report')">
+                                <div wire:mouseover="hoverIn('parIn')" wire:mouseout="hoverOut('out')" style="@if($hover == "parIn") border: solid black 3px; @endif cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('par-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pmr-report.png')}}" width="80">
                                     </div>
