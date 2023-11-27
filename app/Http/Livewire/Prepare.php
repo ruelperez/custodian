@@ -175,6 +175,7 @@ class Prepare extends Component
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
+        $this->serial = $data->inventory_number;
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;

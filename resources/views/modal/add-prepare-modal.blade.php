@@ -89,7 +89,7 @@
                         @endif
                     </div>
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Serial No." wire:click="not_item_click" wire:model="serial">
+                        <input type="text" class="form-control" placeholder="Inventory No." wire:click="not_item_click" wire:model="serial" disabled>
                     </div>
                         <input type="text" hidden wire:model="unit_cost">
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
