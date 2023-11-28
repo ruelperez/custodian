@@ -120,7 +120,7 @@
                                         <img src="{{asset('image/property.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 5%;">
-                                        <h5><b>Property Card/Property Acknowledge Receipt</b></h5>
+                                        <h4><b>Property Card</b></h4>
                                     </div>
                                 </div>
                             </div>
