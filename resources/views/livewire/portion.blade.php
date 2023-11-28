@@ -98,7 +98,7 @@
                         @endif
                     @else
                         <div style="width: 70%; margin-left: 15%; margin-top: 7%;">
-                            <div style="display: flex; cursor: pointer; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
+                            <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="display: flex; cursor: pointer; background-color: #DCDCDC; padding-bottom: 1%; padding-top: 1%;" wire:click="clickReport('teacher')">
                                 <div style="margin-left: 10%;">
                                     <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #AFEEEE;" wire:click="clickReport('stock-card')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/stock-card.png')}}" width="80">
                                     </div>
@@ -115,7 +115,7 @@
                                         <h4><b>STOCK CARD</b></h4>
                                     </div>
                                 </div>
-                                <div style="cursor: pointer; margin-left: 1%; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="cursor: pointer; margin-left: 1%; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/property.png')}}" width="80">
                                     </div>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">
-                                <div style="cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFA500;" wire:click="clickReport('request-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/purchase-report.png')}}" width="80">
                                     </div>
@@ -133,7 +133,7 @@
                                         <h4><b>Purchase Requests</b></h4>
                                     </div>
                                 </div>
-                                <div style="cursor: pointer;margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="cursor: pointer;margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #32CD32;" wire:click="clickReport('purchase-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/order-report.png')}}" width="80">
                                     </div>
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">
-                                <div style="cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #FFE4E1;" wire:click="clickReport('pmr-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pmr-report.png')}}" width="80">
                                     </div>
@@ -151,7 +151,7 @@
                                         <h4><b>ICS Report</b></h4>
                                     </div>
                                 </div>
-                                <div style=" cursor: pointer; margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style=" cursor: pointer; margin-left: 1%;  display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #DB7093				;" wire:click="clickReport('pwmr-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pwmr-report.png')}}" width="80">
                                     </div>
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">
-                                <div style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('par-report')">
+                                <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style=" cursor: pointer; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #6B8E23; color: white; margin-left: 25%;" wire:click="clickReport('par-report')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/pmr-report.png')}}" width="80">
                                     </div>

@@ -123,6 +123,16 @@ function clickRequestProceed(){
     $('#closeRequestMove').click();
 }
 
+function hoverIn(element){
+    element.style.border= 'solid black 3px';
+}
+
+function hoverOut(element){
+    element.style.border = 'none';
+}
+
+
+
 // Delete data from inventory
 function delInv(id){
     if (confirm('Are you sure you want to delete? If yes, click "OK"')){
