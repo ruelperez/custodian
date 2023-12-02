@@ -40,6 +40,7 @@ Route::prefix('Dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/request-pdf/deployed-report/{name}/{date}', [\App\Http\Controllers\DeployedreportController::class, 'pdf']);
     Route::get('/request-pdf/property-card/{itemName}', [\App\Http\Controllers\PropertyController::class, 'pdf']);
     Route::get('/request-pdf/component/{prop_id}', [\App\Http\Controllers\ComponentController::class, 'pdf']);
+    Route::get('/request-pdf/par-report/{date}', [\App\Http\Controllers\ParController::class, 'pdf']);
     Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
 });
 

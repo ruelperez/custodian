@@ -11,7 +11,7 @@
             <input type="text" wire:model="par_num" placeholder="PAR No. ">
         </div>
         <div style="margin-left: 2%;margin-top: 4%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/ics-form/{{$dataDate}}';"></i>
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/par-report/{{$dataDate}}';"></i>
         </div>
     </div>
 
