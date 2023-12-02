@@ -7,15 +7,6 @@
             </div>
             <div class="modal-body" >
                 <form wire:submit.prevent="submit_order">
-                    @if(session()->has('dataAdded'))
-                        <div class="alert alert-success" style="width: 60%; ">
-                            {{ session('dataAdded') }}
-                        </div>
-                    @elseif(session()->has('dataError'))
-                        <div class="alert alert-danger" style="width: 60%; ">
-                            {{ session('dataError') }}
-                        </div>
-                    @endif
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Supplier" wire:model.debounce.1ms="supplier" required>
                     </div>
@@ -48,7 +39,7 @@
                         <input type="text" class="form-control" placeholder="Total Amount In Words" wire:model="total_words" >
                     </div>
                     @error('total_words') <span style="color: red">{{ $message }}</span> @enderror
-                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">UPDATE</button>
                 </form>
             </div>
         </div>
