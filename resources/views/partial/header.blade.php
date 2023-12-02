@@ -23,13 +23,13 @@
 </head>
 <body>
 
-<div style="background-color: #6495ED; padding-top: 2%; padding-bottom: 2%;">
+<div style="background-color: #0d1321; padding-top: 1.5%; padding-bottom: 1.5%;">
     <div style="display: flex;">
         <div style="margin-left: 3%;">
             <img src="{{asset('image/logo.png')}}" width="80">
         </div>
-        <div style="width: 35%; margin-left: 1%;">
-            <h5 style="color: white; text-align: center">TANDAAY HIGH SCHOOL</h5>
+        <div style="width: 35%; margin-left: 1%; margin-top: 0.5%;">
+            <h5 style="color: white; text-align: left">TANDAAY HIGH SCHOOL</h5>
             <h4 style="color: white;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
         </div>
 
