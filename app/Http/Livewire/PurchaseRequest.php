@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\BackupOrder;
 use App\Models\BackupRequest;
 use App\Models\Order;
+use App\Models\OrderAdditional;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -322,13 +323,30 @@ class PurchaseRequest extends Component
     }
 
     public function add_order_click(){
-        $this->base = 1;
-        $this->item_name = "";
-        $this->quantity = "";
-        $this->unit_cost = null;
-        $this->total_cost = null;
-        $this->unit = null;
-        $this->item_type = "";
+        $totalCost = 0;
+        $orderData = Order::all();
+        foreach ($orderData as $order){
+            $totalCost += $order->total_cost;
+        }
+       $data = OrderAdditional::all();
+        if (count($data) > 0){
+            foreach ($data as $datas){
+                dd($totalCost);
+                $this->supplier = $datas->supplier;
+                $this->address = $datas->address;
+                $this->tin = $datas->tin;
+                $this->po_number = $datas->po_number;
+                $this->date = $datas->date;
+                $this->mode = $datas->mode;
+                $this->total = $totalCost;
+                $this->total_words = $datas->total_words;
+            }
+        }
+        else{
+            $this->total = $totalCost;
+        }
+
+
     }
 
     public function add_request_click(){

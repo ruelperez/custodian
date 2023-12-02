@@ -32,7 +32,7 @@
                     </div>
                     @error('mode') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Total" wire:model="total" >
+                        <input type="text" class="form-control" placeholder="Total" wire:model="total" disabled>
                     </div>
                     @error('total') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
