@@ -17,6 +17,7 @@ class Par extends Model
         'serial',
         'ics',
         'total_cost',
+        'parnum',
     ];
 
     use HasFactory;

@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<div style="background-color: #0d1321; padding-top: 0.5%; padding-bottom: 0.5%;">
+<div style="background-color: #0d1321; padding-top: 1.5%; padding-bottom: 1.5%;">
     <div style="display: flex;">
         <div style="margin-left: 3%;">
             <img src="{{asset('image/logo.png')}}" width="80">
