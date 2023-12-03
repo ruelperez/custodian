@@ -12,7 +12,6 @@ class OrderAdditional extends Model
         'address',
         'tin',
         'po_num',
-        'date',
         'mode',
         'total',
         'total_words',
