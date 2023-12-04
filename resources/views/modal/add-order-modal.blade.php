@@ -2,76 +2,44 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Input Item Request</h5>
+                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Input Item Order</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
                 <form wire:submit.prevent="submit_order">
-                    @if(session()->has('dataAdded'))
-                        <div class="alert alert-success" style="width: 60%; ">
-                            {{ session('dataAdded') }}
-                        </div>
-                    @elseif(session()->has('dataError'))
-                        <div class="alert alert-danger" style="width: 60%; ">
-                            {{ session('dataError') }}
-                        </div>
-                    @endif
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model.debounce.1ms="item_name" required>
+                        <input type="text" class="form-control" placeholder="Supplier" wire:model.debounce.1ms="supplier" @if($clickUpdate == 1) disabled @endif>
                     </div>
-                    @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
-                    @if($basis != 0)
-                        <div style="width: 66%; margin-left: 14%; position: absolute;">
-                            <ul class="list-group">
-                                @php $h=0; @endphp
-                                @foreach($result as $data)
-                                    @if($h < 6)
-                                        <li class="list-group-item btn" style="text-align: left; background-color: #E6E6FA" wire:click="click_item({{$data->id}})">
-                                            {{$data->item_name}}
-                                        </li>
-                                    @endif
-                                    @php $h++; @endphp
-                                @endforeach
-                            </ul>
-                        </div>
+                    @error('supplier') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Address" wire:model="address" @if($clickUpdate == 1) disabled @endif>
+                    </div>
+                    @error('address') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="TIN" wire:model="tin" @if($clickUpdate == 1) disabled @endif>
+                    </div>
+                    @error('tin') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="P.O Number" wire:model="po_num" @if($clickUpdate == 1) disabled @endif>
+                    </div>
+                    @error('po_num') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Mode of Procurement" wire:model="mode" @if($clickUpdate == 1) disabled @endif>
+                    </div>
+                    @error('mode') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Total" wire:model="total" disabled>
+                    </div>
+                    @error('total') <span style="color: red">{{ $message }}</span> @enderror
+                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                        <input type="text" class="form-control" placeholder="Total Amount In Words" wire:model="total_words" @if($clickUpdate == 1) disabled @endif>
+                    </div>
+                    @error('total_words') <span style="color: red">{{ $message }}</span> @enderror
+                    @if($clickUpdate == 0)
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">UPDATE</button>
+                    @else
+                        <button type="button" class="btn btn-warning" wire:click="clickEdit" style="width: 60%; margin-left: 20%; color: white">EDIT</button>
                     @endif
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
-                    </div>
-                    @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Unit" wire:model="unit" >
-                    </div>
-                    @error('unit') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Unit Cost" wire:model="unit_cost">
-                    </div>
-                    @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Total Cost" wire:model="total_cost" >
-                    </div>
-                    @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
-                    <div style="margin-left: 15%;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Consumable
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="non-consumable">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Non-Consumable
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="item_type" value="sets">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Sets
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                 </form>
             </div>
         </div>

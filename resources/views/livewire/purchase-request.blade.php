@@ -1,6 +1,7 @@
 <div style="display: flex; width: 100%;">
     @include('modal.add-request-modal')
     @include('modal.edit-request-modal')
+    @include('modal.add-order-modal')
     <div style="margin-top: 2%; width: 50%;">
         <h5 style="margin-top: 3%; margin-left: 35%;">Purchase Request</h5>
         <div style="margin-top: 5%; width: 100%;background-color:#F8F8FF;">
@@ -109,7 +110,8 @@
                         {{ session('errorUpdatedOrder') }}
                     </div>
                 @endif
-                <i class="fa-solid fa-suitcase" title="Move to Inventory" style="@if(session()->has('dataUpdatedOrder') or session()->has('errorUpdatedOrder')) margin-left: 3%; @else margin-left: 84%; @endif font-size: 20px; color: green;  margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
+                <span data-bs-toggle="modal" data-bs-target="#add_order_modal" wire:click="add_order_click" title="Add Item" class="bi bi-plus-circle-fill" style=" font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; margin-left: 75%; ">+</span>
+                <i class="fa-solid fa-suitcase" title="Move to Inventory" style="@if(session()->has('dataUpdatedOrder') or session()->has('errorUpdatedOrder')) margin-left: 3%; @else margin-left: 5%; @endif font-size: 20px; color: green;  margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
                 <i class="fa-solid fa-print" title="Print" style="margin-left: 5%; margin-top: 3%; @if(count($order_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/purchase/order';"></i>
             </div>
             <div style="margin-left:45%;">

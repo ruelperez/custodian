@@ -5,13 +5,14 @@ namespace App\Http\Livewire;
 use App\Models\BackupOrder;
 use App\Models\BackupRequest;
 use App\Models\Order;
+use App\Models\OrderAdditional;
 use App\Models\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $supplier, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -41,6 +42,7 @@ class PurchaseRequest extends Component
 
         $this->request_data = Request::all();
         $this->order_data = Order::all();
+
         return view('livewire.purchase-request');
     }
 
@@ -322,13 +324,60 @@ class PurchaseRequest extends Component
     }
 
     public function add_order_click(){
-        $this->base = 1;
-        $this->item_name = "";
-        $this->quantity = "";
-        $this->unit_cost = null;
-        $this->total_cost = null;
-        $this->unit = null;
-        $this->item_type = "";
+        $totalCost = 0;
+        $orderData = Order::all();
+        foreach ($orderData as $order){
+            $totalCost += $order->total_cost;
+        }
+       $data = OrderAdditional::all();
+        if (count($data) > 0){
+            foreach ($data as $datas){
+                $this->supplier = $datas->supplier;
+                $this->address = $datas->address;
+                $this->tin = $datas->tin;
+                $this->po_num = $datas->po_num;
+                $this->mode = $datas->mode;
+                $this->total = $totalCost;
+                $this->total_words = $datas->total_words;
+            }
+        }
+        else{
+            $this->total = $totalCost;
+        }
+        $this->clickUpdate = 1;
+
+    }
+
+    public function submit_order(){
+        $order = OrderAdditional::all();
+        if (count($order) > 0){
+            foreach ($order as $datas){
+                $datas->supplier = $this->supplier;
+                $datas->address = $this->address;
+                $datas->tin = $this->tin;
+                $datas->po_num = $this->po_num;
+                $datas->mode = $this->mode;
+                $datas->total = $this->total;
+                $datas->total_words = $this->total_words;
+                $datas->save();
+            }
+        }
+        else{
+            OrderAdditional::create([
+                'supplier' => $this->supplier,
+                'address' => $this->address,
+                'tin' => $this->tin,
+                'po_num' => $this->po_num,
+                'mode' => $this->mode,
+                'total' => $this->total,
+                'total_words' => $this->total_words,
+            ]);
+        }
+        $this->clickUpdate = 1;
+    }
+
+    public function clickEdit(){
+        $this->clickUpdate = 0;
     }
 
     public function add_request_click(){
