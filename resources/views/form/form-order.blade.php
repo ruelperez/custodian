@@ -6,31 +6,31 @@
         </td>
     </tr>
 </table>
-<table style="width: 100%; border-collapse: collapse; border: 1px solid; padding-bottom: 1px;">
+<table style="width: 100%; border-collapse: collapse; border: 1px solid;">
     <tr>
-        <td colspan="4" style=" border: 1px solid;">
-            <h5 style="margin-top: 1px;">Supplier:</h5>
-            <h5>Address:</h5>
-            <h5>TIN:</h5>
+        <td colspan="4" style=" border: 1px solid; padding-left: 2%;">
+            <h5 style="margin-top: 10px;">Supplier: {{ucwords($additional->supplier)}}</h5>
+            <h5>Address: {{ucwords($additional->address)}}</h5>
+            <h5>TIN: {{$additional->tin}}</h5>
         </td>
-        <td colspan="3">
-            <h5 style="margin-top: 1px;">P.O No:</h5>
-            <h5>Date:</h5>
-            <h5>Mode of Procurement:</h5>
+        <td colspan="3" style="padding-left: 2%; width: 20%;">
+            <h5 style="margin-top: 10px;">P.O No: {{$additional->po_num}}</h5>
+            <h5>Date: {{$date}}</h5>
+            <h5>Mode of Procurement: {{ucwords($additional->mode)}}</h5>
         </td>
     </tr>
     <tr>
-        <td colspan="7" style="border: solid black 1px">
+        <td colspan="7" style="border: solid black 1px; font-size: 14px; padding-left: 1%;">
             <p>Gentlemen</p>
             <p style="margin-left: 10%;">Please furnish this office the following articles subject to the terms and conditions contained herein:</p>
         </td>
     </tr>
     <tr>
-        <td colspan="4" style=" border: 1px solid; border-bottom: none; text-align: left;">
+        <td colspan="4" style=" border: 1px solid; border-bottom: none; text-align: left; padding-left: 2%; padding-top: 0.5%;">
             <h5 style="margin-top: 1px;">Place of Delivery:</h5>
             <h5>Date of Delivery:</h5>
         </td>
-        <td colspan="3" style="text-align: left">
+        <td colspan="3" style="text-align: left; padding-left: 2%;">
             <h5 style="margin-top: 1px;">Delivery Term:</h5>
             <h5>Payment Term:</h5>
         </td>
@@ -101,7 +101,25 @@
     </tr>
     <tr>
         <td colspan="7" style="border: 1px solid;">
-            <p>{{$totalInWords}}</p>
+            <p>{{ucwords($totalInWords)}}</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="7">
+            In case of failure to make the full delivery within the time specified above, a penalty of one-tenth (1/10) of one percent for every day of delay shall be imposed on the undelivered items.
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <p style="margin-left: 6%;">Conforme:</p>
+            <p style="margin-left: 25%; font-size: 14px;">_________________________________
+            <br> Signature Over Printed Name of Supplier</p>
+            <p style="margin-left: 38%; font-size: 14px;">____________________ <br> <i style="margin-left: 23%;">Date</i></p>
+        </td>
+        <td colspan="3" style="padding-left: 5%; text-align: center">
+            <p style="text-align: left">Very truly yours,</p>
+            <b><u>NELSON E. BELANO</u></b><br>
+            <p>Signature over Printed Name of Authorized Official <br> Secondary School Principal <br> Designation</p>
         </td>
     </tr>
 </table>
