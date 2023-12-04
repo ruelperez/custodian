@@ -100,12 +100,12 @@
         </td>
     </tr>
     <tr>
-        <td colspan="7" style="border: 1px solid;">
+        <td colspan="7" style="border: 1px solid; padding-left: 1%; font-size: 14px;">
             <p>{{ucwords($totalInWords)}}</p>
         </td>
     </tr>
     <tr>
-        <td colspan="7">
+        <td colspan="7" style="padding-left: 1%; font-size: 14px;">
             In case of failure to make the full delivery within the time specified above, a penalty of one-tenth (1/10) of one percent for every day of delay shall be imposed on the undelivered items.
         </td>
     </tr>
