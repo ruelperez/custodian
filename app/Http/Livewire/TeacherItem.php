@@ -36,7 +36,6 @@ class TeacherItem extends Component
     public function displayData(){
         $this->deployed_data = BackupPrepare::where('receiver','=', $this->teacher_name)
             ->where('item_type', '!=', 'consumable')
-            ->where('total_cost','<', 50000)
             ->orderBy($this->sort1,$this->sort2)
             ->get();
     }
