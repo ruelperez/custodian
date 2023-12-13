@@ -47,6 +47,14 @@ class Prepare extends Component
         }
 
         $this->prepare_data = \App\Models\Prepare::all();
+        if (count($this->prepare_data) == 0){
+            $this->serial = 1;
+        }
+        else{
+            $hg = count($this->prepare_data);
+            $hg++;
+            $this->serial = $hg;
+        }
         return view('livewire.prepare');
     }
 
@@ -117,7 +125,6 @@ class Prepare extends Component
                 $this->item_name = "";
                 $this->quantity = "";
                 $this->unit = "";
-                $this->serial = "";
                 $this->receiver_disable = 0;
                 $this->item_disable = 0;
                 $this->unit_cost = "";
@@ -139,6 +146,7 @@ class Prepare extends Component
 
             if ($this->quantity > $this->currentQty){
                 session()->flash('insufficient',"Insufficient item quantity");
+                return;
             }
 
             try {
@@ -155,7 +163,6 @@ class Prepare extends Component
                 $this->item_name = "";
                 $this->quantity = "";
                 $this->unit = "";
-                $this->serial = "";
                 $this->receiver_disable = 0;
                 $this->item_disable = 0;
                 $this->unit_cost = "";
@@ -396,7 +403,6 @@ class Prepare extends Component
         $this->item_name = "";
         $this->quantity = "";
         $this->unit = "";
-        $this->serial = "";
         $this->receiver_disable = 0;
         $this->item_disable = 0;
         $this->unit_cost = "";
