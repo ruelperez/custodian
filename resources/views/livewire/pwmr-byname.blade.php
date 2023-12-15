@@ -7,8 +7,13 @@
     @if($tg == 0)
         <h5 style="text-align: left; margin-left: 1%;">Waste Material Report</h5>
         <div>
-            <div class="input-group mb-1" style="width: 40%; margin-left: 20%; margin-top: 5%;">
-                <input type="text" wire:model.debounce.1ms="search_teacher" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div style="display: flex">
+                <div class="input-group mb-1" style="width: 40%; margin-left: 20%;">
+                    <input type="text" wire:model.debounce.1ms="search_teacher" class="form-control" placeholder="Search Teacher" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </div>
+                <div style="margin-left: 5%;" wire:click="clickSummary" onclick="clickBk7()">
+                    <button class="btn btn-primary"> Summary Report</button>
+                </div>
             </div>
             <div style="margin-left: 20%;width: 60%;margin-top: 2%; margin-bottom: 2%;">
                 <table class="table table-hover" style="width: 100%; text-align: center">
@@ -52,5 +57,8 @@
         <div>
             @livewire('pwmr-bydate',['teacher_name' => $teacher_name])
         </div>
+    @endif
+    @if($ss == 1)
+        @livewire('waste-month')
     @endif
 </div>

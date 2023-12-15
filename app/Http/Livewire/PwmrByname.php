@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class PwmrByname extends Component
 {
-    public $search_teacher, $rt = 0, $result, $tg = 0, $teacher_name;
+    public $search_teacher, $rt = 0, $ss=0, $result, $tg = 0, $teacher_name;
 
     public function render()
     {
@@ -26,6 +26,12 @@ class PwmrByname extends Component
 
     }
 
+    public function clickSummary(){
+        $this->ss = 1;
+        $this->tg = 3;
+        $this->rt = 1;
+    }
+
     public function search(){
         $this->result = BackupWaste::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
@@ -42,8 +48,13 @@ class PwmrByname extends Component
     protected $listeners = [
         'clickBk23' => 'clickBack1',
         'clickBack25' => 'clickBack25',
+        'clickBack8' => 'clickb',
 
     ];
+
+    public function clickb(){
+        $this->ss = 0;
+    }
 
     public function clickBack25(){
         $this->rt = 1;
@@ -57,5 +68,7 @@ class PwmrByname extends Component
     public function clickBack1(){
         $this->rt = 0;
     }
+
+
 
 }
