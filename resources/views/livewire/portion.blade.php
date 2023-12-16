@@ -3,8 +3,11 @@
 
         <div style="width: 19%; background-color: #0077b6">
             <div style="text-align: center; margin-top: 5%;">
+                <div style="display: flex;">
+                    <i class="fa-solid fa-ellipsis-vertical" style="color: white; margin-left: 10%;font-size: 23px; cursor: pointer; margin-right: 22%;"></i>
+                    <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
+                </div>
                 {{--            <img src="{{ asset('image/profile.jpg') }}" width="50%">--}}
-                <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
                 <h5 style="color: white; margin-top: 5%;">ADMIN</h5>
                 <form action="/Dashboard/logout" method="POST" style="margin-top: 5%;">
                     @csrf
