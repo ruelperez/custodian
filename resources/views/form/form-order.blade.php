@@ -1,3 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td{
+            font-size: 14px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
 
 <table style="text-align: center; width: 100%;">
     <tr>
@@ -9,72 +26,72 @@
 <table style="width: 100%; border-collapse: collapse; border: 1px solid;">
     <tr>
         <td colspan="4" style=" border: 1px solid; padding-left: 2%;">
-            <h5 style="margin-top: 10px;">Supplier: {{ucwords($additional->supplier)}}</h5>
-            <h5>Address: {{ucwords($additional->address)}}</h5>
-            <h5>TIN: {{$additional->tin}}</h5>
+            <b style="margin-top: 10px;">Supplier: {{ucwords($additional->supplier)}}</b><br>
+            <b>Address: {{ucwords($additional->address)}}</b><br>
+            <b>TIN: {{$additional->tin}}</b>
         </td>
         <td colspan="3" style="padding-left: 2%; width: 20%;">
-            <h5 style="margin-top: 10px;">P.O No: {{$additional->po_num}}</h5>
-            <h5>Date: {{$date}}</h5>
-            <h5>Mode of Procurement: {{ucwords($additional->mode)}}</h5>
+            <b style="margin-top: 10px;">P.O No: {{$additional->po_num}}</b><br>
+            <b>Date: {{$date}}</b><br>
+            <b>Mode of Procurement: {{ucwords($additional->mode)}}</b>
         </td>
     </tr>
     <tr>
         <td colspan="7" style="border: solid black 1px; font-size: 14px; padding-left: 1%;">
-            <p>Gentlemen</p>
-            <p style="margin-left: 10%;">Please furnish this office the following articles subject to the terms and conditions contained herein:</p>
+            Gentlemen
+            <p style="margin-left: 10%;">Please furnish this office the following articles subject to the terms and conditions contained herein:
         </td>
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
-            <h5 style="margin-top: 1px;">Place of Delivery:</h5>
-            <h5>Date of Delivery:</h5>
+            <b style="margin-top: 1px;">Place of Delivery:</b><br>
+            <b>Date of Delivery:</b>
         </td>
         <td colspan="3" style="text-align: left; padding-left: 2%;">
-            <h5 style="margin-top: 1px;">Delivery Term:</h5>
-            <h5>Payment Term:</h5>
+            <b style="margin-top: 1px;">Delivery Term:</b><br>
+            <b>Payment Term:</b>
         </td>
     </tr>
     <tr style="text-align: center">
         <td style="border: 1px solid;">
-            <h5>Stock/ <br> Property No.</h5>
+            <b>Stock/ <br> Property No.</b>
         </td>
         <td style="border: 1px solid;">
-            <h5>Unit</h5>
+            <b>Unit</b>
         </td>
         <td colspan="2" style="border: 1px solid;">
-            <h5>Description</h5>
+            <b>Description</b>
         </td>
         <td style="border: 1px solid;">
-            <h5>Qunatity</h5>
+            <b>Qunatity</b>
         </td>
         <td style="border: 1px solid;">
-            <h5>Unit Card</h5>
+            <b>Unit Card</b>
         </td>
         <td style="border: 1px solid;">
-            <h5>Amount</h5>
+            <b>Amount</b>
         </td>
     </tr>
     @php $n=1; $tot=0; @endphp
     @foreach($request_data as $data)
         <tr style="text-align: center">
             <td style="border: 1px solid;">
-                <p>{{$n}}</p>
+                {{$n}}
             </td>
             <td style="border: 1px solid;">
-                <p>{{$data->unit}}</p>
+                {{$data->unit}}
             </td>
             <td colspan="2" style="border: 1px solid;">
-                <p>{{ucwords($data->item_name)}}</p>
+                {{ucwords($data->item_name)}}
             </td>
             <td style="border: 1px solid;">
-                <p>{{$data->quantity}}</p>
+                {{$data->quantity}}
             </td>
             <td style="border: 1px solid;">
-                <p>{{$data->unit_cost}}</p>
+                {{$data->unit_cost}}
             </td>
             <td style="border: 1px solid;">
-                <p>{{$data->total_cost}}</p>
+                {{$data->total_cost}}
             </td>
         </tr>
         @php $n++; $tot += $data->total_cost; @endphp
@@ -93,7 +110,7 @@
 
         </td>
         <td style="border: 1px solid; text-align: right">
-            <p>TOTAL</p>
+            TOTAL
         </td>
         <td style="border: 1px solid;">
             {{$tot}}
@@ -101,7 +118,7 @@
     </tr>
     <tr>
         <td colspan="7" style="border: 1px solid; padding-left: 1%; font-size: 14px;">
-            <p>{{ucwords($totalInWords)}}</p>
+            {{ucwords($totalInWords)}}
         </td>
     </tr>
     <tr>
@@ -111,30 +128,31 @@
     </tr>
     <tr>
         <td colspan="4">
-            <p style="margin-left: 6%;">Conforme:</p>
+            <p style="margin-left: 6%;">Conforme:
             <p style="margin-left: 25%; font-size: 14px;">_________________________________
-            <br> Signature Over Printed Name of Supplier</p>
-            <p style="margin-left: 38%; font-size: 14px;">____________________ <br> <i style="margin-left: 23%;">Date</i></p>
+            <br> Signature Over Printed Name of Supplier
+            <p style="margin-left: 38%; font-size: 14px;">____________________ <br> <i style="margin-left: 23%;">Date</i>
         </td>
         <td colspan="3" style="padding-left: 5%; text-align: center;font-size: 14px;">
-            <p style="text-align: left">Very truly yours,</p>
+            <p style="text-align: left">Very truly yours,
             <b><u>NELSON E. BELANO</u></b><br>
-            <p>Signature over Printed Name of Authorized Official <br> Secondary School Principal <br> Designation</p>
+            Signature over Printed Name of Authorized Official <br> Secondary School Principal <br> Designation
         </td>
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
-            <p style="margin-top: 1px;font-size: 14px;"> <b>Fund Cluster: _____________________ <br>Funds Available: _____________________</b></p>
-            <p style="text-align: center;font-size: 14px;">________________________________________<br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
+            <p style="margin-top: 1px;font-size: 14px;"> <b>Fund Cluster: _____________________ <br>Funds Available: _____________________</b>
+            <p style="text-align: center;font-size: 14px;">________________________________________<br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit
 
         </td>
         <td colspan="3" style="text-align: left; padding-left: 2%; border: 1px solid;">
-            <p style="margin-top: 1px;font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b></p>
+            <p style="margin-top: 1px;font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b>
         </td>
     </tr>
 </table>
 
 
-
+</body>
+</html>
 
 
