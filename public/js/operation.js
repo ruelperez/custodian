@@ -154,3 +154,17 @@ document.addEventListener('click', function (event) {
         window.livewire.emit('removeSuggestItem');
     }
 });
+
+function clickEllipsis(){
+    var an = $(".div100");
+    var sn = $(".div101");
+    $(".div100").toggle();
+    if (an.css("display") !== "none") {
+        // Set margin-top for elements with class "div101"
+        sn.css("margin-top", "37.8%");
+    } else {
+        // If "div100" is hidden, you may want to reset the margin-top
+        sn.css("margin-top", "75%");
+    }
+
+}

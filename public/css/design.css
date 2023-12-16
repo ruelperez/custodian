@@ -20,3 +20,11 @@
 .navig div:hover {
     /*background-color: #00BFFF;*/
 }
+
+.div100 div i{
+    margin-right: 3%;
+}
+
+.div100 div {
+    cursor: pointer;
+}
