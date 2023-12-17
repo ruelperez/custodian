@@ -8,10 +8,11 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph",$mons, $current, $new, $retype, $item_type, $mos, $report=0, $df=0, $hover;
+    public $option = "graph",$mons, $username, $current, $new, $retype, $item_type, $mos, $report=0, $df=0, $hover;
 
     public function render()
     {
+        $this->username = auth()->user()->username;
         return view('livewire.portion');
     }
 
