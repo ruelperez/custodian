@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph",$mons, $item_type, $mos, $report=0, $df=0, $hover;
+    public $option = "graph",$mons, $current, $new, $retype, $item_type, $mos, $report=0, $df=0, $hover;
 
     public function render()
     {
@@ -100,6 +102,35 @@ class Portion extends Component
 
     public function hoverOut($out){
         $this->hover = $out;
+    }
+
+    public function submitChangePassword(){
+        $storedHash = auth()->user()->password;
+        $userId = auth()->user()->id;
+
+        if (Hash::check($this->current, $storedHash)) {
+            $this->validate([
+                'new' => 'required', // Add any other password rules as needed
+                'retype' => 'required|same:new',
+            ]);
+
+            $hash = bcrypt($this->new);
+            $user = User::find($userId);
+            $user->password = $hash;
+            $user->save();
+            $updated = User::find($userId);
+            auth()->login($updated);
+
+            $this->current = "";
+            $this->new = "";
+            $this->retype = "";
+            session()->flash('dataUpdated',"Successfully Updated");
+        }
+        else{
+            $this->addError('current', 'Wrong Current Password'); // Add an error message
+            return;
+
+        }
     }
 
 }

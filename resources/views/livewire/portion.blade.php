@@ -1,4 +1,5 @@
 <div>
+    @include('modal.changePassModal')
     <div style="display: flex; width: 100%;">
 
         <div style="width: 19%; background-color: #0077b6">
@@ -18,7 +19,7 @@
                     z-index: 2; /* Make sure this is lower than the z-index of the covering div */
                   color: white;">
                     <div ><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
-                    <div style=" margin-top: 5%;"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
+                    <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
                     <div style="margin-top: 15%;">
                         <form action="/Dashboard/logout" method="POST">
                             @csrf
