@@ -168,3 +168,24 @@ function clickEllipsis(){
     }
 
 }
+
+$(document).ready(function() {
+    var sn = $(".div101");
+    // Hide the div when anything on the page is clicked
+    $(document).click(function(event) {
+        if (!$(event.target).is("#ellip")) {
+            $(".div100").hide();
+            sn.css("margin-top", "75%");
+        }
+    });
+
+});
+
+// function clickBody(){
+//     if (!$(event.target).is("#ellip")) {
+//         $("#myDiv").hide();
+//     }
+// }
+// $(document).click(function(event) {
+//
+// });

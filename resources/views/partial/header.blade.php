@@ -21,7 +21,7 @@
     @livewireStyles
     @livewireScripts
 </head>
-<body>
+<body onclick="clickBody()" id="body">
 
 <div style="background-color: #0d1321; padding-top: 1.5%; padding-bottom: 1.5%;">
     <div style="display: flex;">

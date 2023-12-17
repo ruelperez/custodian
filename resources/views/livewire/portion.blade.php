@@ -5,7 +5,7 @@
             <div style="position: relative;">
                 <div style="text-align: center; margin-top: 10%; position: absolute; width: 100%;">
                     <div style="display: flex;">
-                        <i onclick="clickEllipsis()" class="fa-solid fa-ellipsis-vertical" style="color: white; margin-left: 10%;font-size: 23px; cursor: pointer; margin-right: 22%;"></i>
+                        <i onclick="clickEllipsis()" class="fa-solid fa-ellipsis-vertical" id="ellip" style="color: white; margin-left: 10%;font-size: 23px; cursor: pointer; margin-right: 22%;"></i>
                         <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
                     </div>
                     <h5 style="color: white; margin-top: 5%;">ADMIN</h5>
