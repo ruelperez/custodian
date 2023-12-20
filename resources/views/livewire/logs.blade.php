@@ -1,9 +1,9 @@
 <div>
-    <h5 style="text-align: left; margin-top: 3%;">Logs</h5>
-    <div style="width: 25%; margin-left: 3%;">
-        <input type="text" placeholder="Search Item" wire:model.debounce.1ms="searchInput" style="width: 100%; padding: 1%; margin-top: 2%;">
-    </div>
-    <table class="table table-hover" style="margin-top: 0.5%; width: 96.5%; margin-bottom: 2%;">
+    <h4 style="text-align: left; margin-top: 3%;">Logs</h4>
+{{--    <div style="width: 25%; margin-left: 3%;">--}}
+{{--        <input type="text" placeholder="Search Item" wire:model.debounce.1ms="searchInput" style="width: 100%; padding: 1%; margin-top: 2%;">--}}
+{{--    </div>--}}
+    <table class="table table-hover" style="margin-top: 2%; width: 96.5%; margin-bottom: 2%;">
         <thead>
         <tr class="inv">
             <th>
