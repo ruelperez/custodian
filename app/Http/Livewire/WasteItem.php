@@ -120,6 +120,10 @@ class WasteItem extends Component
             $newQty = $data->quantity - $this->qty;
             $data->quantity = $newQty;
             $data->save();
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Move Item on PWMR'
+            ]);
             $this->clickMove();
         }
         else{
@@ -146,6 +150,10 @@ class WasteItem extends Component
                 ]);
             }
             $g = 1;
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Move item to Backup on PWMR'
+            ]);
         }
         catch (\Exception $e){
             $g = 0;
@@ -170,6 +178,13 @@ class WasteItem extends Component
         MovedItem::find($id)->delete();
     }
 
+    public function print(){
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Print Item on PWMR'
+        ]);
+    }
+
     public function clickPrint(){
         $rt = 0;
         $move = MovedItem::all();
@@ -184,6 +199,10 @@ class WasteItem extends Component
             }
             $rt = 1;
             session()->flash('successMoveToPurchase','Successfully moved to purchase request');
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Move Item from PWMR to Purchase Request'
+            ]);
         }
         catch (\Exception $e){
             $rt = 0;

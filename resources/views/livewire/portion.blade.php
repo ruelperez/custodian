@@ -18,7 +18,7 @@
                 <div class="div100" style="display: none; width: 70%; padding: 5px 12px; background-color: #0d1321;  border: solid black 3px;border-radius: 12px;  position: relative; margin-left: 10%; top: 52px;
                     z-index: 2; /* Make sure this is lower than the z-index of the covering div */
                   color: white;">
-                    <div ><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
+                    <div wire:click="clickPortion('logs')" wire:loading.attr="disabled"><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
                     <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
                     <div style="margin-top: 15%;">
                         <form action="/Dashboard/logout" method="POST">
@@ -57,6 +57,9 @@
             <div class="spinner-border spin" wire:loading wire:target="clickPortion('graph')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
+            <div class="spinner-border spin" wire:loading wire:target="clickPortion('logs')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
             <div class="spinner-border spin" wire:loading wire:target="clickPortion('purchase')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
                 <span class="visually-hidden">Loading...</span>
             </div>
@@ -71,6 +74,9 @@
             </div>
             <div class="spinner-border spin" wire:loading wire:target="clickPortion('report')" style="width: 70px; height: 70px; font-size: 30px; margin-left: 43%; margin-top: 20%;">
                 <span class="visually-hidden">Loading...</span>
+            </div>
+            <div style="@if($option != "logs") display: none; @endif" wire:loading.remove>
+                @livewire('logs')
             </div>
             <div style="@if($option != "graph") display: none; @endif" wire:loading.remove>
                 @livewire('graph',['month' => $mos, 'mon' => $mons, 'item_type' => $item_type])

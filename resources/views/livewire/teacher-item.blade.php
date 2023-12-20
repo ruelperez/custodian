@@ -22,7 +22,7 @@
             <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
         </div>
         <div style="margin-left: 3%; margin-top: 1%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/teacher-form/{{$teacher_name}}';"></i>
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" wire:click="print" onclick="location.href = '/Dashboard/request-pdf/teacher-form/{{$teacher_name}}';" wire:click="print"></i>
         </div>
         <div style="margin-left: 3%;">
             <div class="dropdown">

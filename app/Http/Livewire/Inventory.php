@@ -85,6 +85,10 @@ class Inventory extends Component
             $this->item_type = "";
             $this->unit_cost = "";
             session()->flash('dataAdded', "Successfully Added");
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Add Item on Inventory'
+            ]);
         } catch (\Exception $e) {
             session()->flash('dataError', "Failed to Add");
         }
@@ -97,6 +101,10 @@ class Inventory extends Component
     public function delete($id)
     {
         \App\Models\Inventory::find($id)->delete();
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Delete Item on Inventory'
+        ]);
     }
 
     public function edit($id)
@@ -140,6 +148,10 @@ class Inventory extends Component
             $this->inventory_number = null;
             $this->item_type = "";
             session()->flash('dataUpdated', "Successfully Updated");
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Edit Item on Inventory'
+            ]);
         } catch (\Exception $e) {
             session()->flash('errorUpdated', "Failed to Update");
         }

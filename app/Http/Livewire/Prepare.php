@@ -129,6 +129,10 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 session()->flash('dataAdded',"Successfully Added");
+                Logs::create([
+                    'name' => auth()->user()->username,
+                    'action' => 'Add Item on PMR'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('dataError',"Failed to Add");
@@ -167,6 +171,10 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 session()->flash('dataAdded',"Successfully Added");
+                Logs::create([
+                    'name' => auth()->user()->username,
+                    'action' => 'Add Item on PMR'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('dataError',"Failed to Add");
@@ -242,6 +250,10 @@ class Prepare extends Component
 
     public function delete($id){
         \App\Models\Prepare::find($id)->delete();
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Delete Item on PMR'
+        ]);
     }
 
     public function edit($id){
@@ -284,6 +296,11 @@ class Prepare extends Component
             $this->item_type = "consumable";
             $this->receiver = "";
             session()->flash('dataAdded',"Successfully Updated");
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Edit Item on PMR'
+            ]);
+
         }
         catch (\Exception $e){
             session()->flash('dataError',"Failed to Update");
@@ -398,6 +415,10 @@ class Prepare extends Component
             foreach ($data as $da){
                 \App\Models\Prepare::find($da->id)->delete();
             }
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Deploy Item on PMR'
+            ]);
 
         }
         $this->item_name = "";

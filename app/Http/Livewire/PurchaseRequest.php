@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupOrder;
 use App\Models\BackupRequest;
+use App\Models\Log;
 use App\Models\Order;
 use App\Models\OrderAdditional;
 use App\Models\Request;
@@ -12,10 +13,11 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $supplier, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
+        $this->usr = auth()->user()->username;
         $tr = Request::all();
         if (count($tr) > 0){
             foreach ($tr as $trd){
@@ -54,6 +56,13 @@ class PurchaseRequest extends Component
     }
 
     public function submit(){
+        $rr = Request::all();
+        if (count($rr) == 1){
+            Log::create([
+                'name' => auth()->user()->username,
+                'action' => 'Purchase Request, Add Item'
+            ]);
+        }
         if ($this->base == 0){
             $data = $this->validate([
                 'item_name' => 'required',
@@ -87,6 +96,8 @@ class PurchaseRequest extends Component
                 $this->unit = "";
                 $this->item_type = "";
                 session()->flash('dataAdded',"Successfully Added");
+
+
             }
             catch (\Exception $e){
                 session()->flash('dataError',"Failed to Add");
@@ -134,6 +145,10 @@ class PurchaseRequest extends Component
 
     public function delete($id){
         Request::find($id)->delete();
+        Log::create([
+            'name' => $this->usr,
+            'action' => ' Delete Item on Purchase Request'
+        ]);
     }
 
     public function edit($id){
@@ -178,6 +193,10 @@ class PurchaseRequest extends Component
                 $this->unit = null;
                 $this->item_type = "";
                 session()->flash('dataUpdated',"Successfully Updated");
+                Log::create([
+                    'name' => $this->usr,
+                    'action' => 'Edit, Purchase Request'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('errorUpdated',"Failed to Update");
@@ -212,6 +231,10 @@ class PurchaseRequest extends Component
                 $this->unit = null;
                 $this->item_type = "";
                 session()->flash('dataUpdatedOrder',"Successfully Updated");
+                Log::create([
+                    'name' => $this->usr,
+                    'action' => 'Edit, Purchase Order'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('errorUpdatedOrder',"Failed to Update");
@@ -264,6 +287,10 @@ class PurchaseRequest extends Component
 
     public function delete_order($id){
         Order::find($id)->delete();
+        Log::create([
+            'name' => $this->usr,
+            'action' => ' Delete Item on Purchase Order'
+        ]);
     }
 
     public function click_item($id){
@@ -310,6 +337,11 @@ class PurchaseRequest extends Component
                 ]);
 
                 session()->flash('transfer',"Successfully  Moved to Inventory");
+
+                Log::create([
+                    'name' => auth()->user()->username,
+                    'action' => 'Move to Inventory om Purchase Order'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('failed',"Failed to Move");
@@ -390,6 +422,20 @@ class PurchaseRequest extends Component
         $this->item_type = "";
     }
 
+    public function print(){
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Print on Purchase Request'
+        ]);
+    }
+
+    public function prints(){
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Print on Purchase Order'
+        ]);
+    }
+
     public function move_to_backup(){
         $req = Request::all();
         try {
@@ -410,6 +456,10 @@ class PurchaseRequest extends Component
             }
             $this->prNum = "";
             session()->flash('move',"Successfully Moved to Backup");
+            Log::create([
+                'name' => auth()->user()->username,
+                'action' => 'Move to Backup on Purchase Request'
+            ]);
         }catch (\Exception $e){
             session()->flash('move_failed',"Failed to Moved to Backup");
         }

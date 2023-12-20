@@ -60,6 +60,10 @@ class TeacherItem extends Component
                     ]);
                 }
                 session()->flash('transfer',"Successfully  Moved to Inventory");
+                Logs::create([
+                    'name' => auth()->user()->username,
+                    'action' => 'Move to Inventory from Teacher deployed Item'
+                ]);
             }
             catch (\Exception $e){
                 session()->flash('failed',"Failed to Move");
@@ -135,10 +139,21 @@ class TeacherItem extends Component
             $this->unit = "";
             $this->serial = "";
             session()->flash('success',"Successfully add item");
+            Logs::create([
+                'name' => auth()->user()->username,
+                'action' => 'Add Item on Teachers Deployed Item'
+            ]);
         }
         catch (\Exception $e){
             session()->flash('failed',"Failed to add item");
         }
+    }
+
+    public function print(){
+        Logs::create([
+            'name' => auth()->user()->username,
+            'action' => 'Print Item on Teachers Deployed Item'
+        ]);
     }
 
 }

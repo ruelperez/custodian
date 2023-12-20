@@ -29,7 +29,7 @@
                 @endif
                 <span data-bs-toggle="modal" data-bs-target="#add_request_modal" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; @if(session()->has('dataUpdated') or session()->has('errorUpdated')) margin-left: 3%; @else margin-left: 75%; @endif ">+</span>
                 <i class="fa-solid fa-suitcase" title="Move to Backup" style="font-size: 20px; color: green; margin-left: 5%; margin-top: 3.5%; @if(count($request_data) != 0) cursor:pointer; @endif" @if(count($request_data) != 0) onclick="moveBup()" @endif></i>
-                <i class="fa-solid fa-print" title="Print" style="margin-left: 5%; margin-top: 3%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request';"></i>
+                <i class="fa-solid fa-print" title="Print" wire:click="print" style="margin-left: 5%; margin-top: 3%; @if(count($request_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/request';"></i>
             </div>
             <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 1%;">
                 <thead>
@@ -112,7 +112,7 @@
                 @endif
                 <span data-bs-toggle="modal" data-bs-target="#add_order_modal" wire:click="add_order_click" title="Add data" class="bi bi-plus-circle-fill" style=" font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; margin-left: 75%; ">+</span>
                 <i class="fa-solid fa-suitcase" title="Move to Inventory" style="@if(session()->has('dataUpdatedOrder') or session()->has('errorUpdatedOrder')) margin-left: 3%; @else margin-left: 5%; @endif font-size: 20px; color: green;  margin-top: 3.5%; @if(count($order_data) != 0) cursor:pointer; @endif" @if(count($order_data) != 0) onclick="moveInv()" @endif></i>
-                <i class="fa-solid fa-print" title="Print" style="margin-left: 5%; margin-top: 3%; @if(count($order_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/purchase/order';"></i>
+                <i class="fa-solid fa-print" title="Print" style="margin-left: 5%; margin-top: 3%; @if(count($order_data) == 0) pointer-events: none; @endif font-size: 23px; cursor: pointer; color: #0a53be" wire:click="prints" onclick="location.href = '/Dashboard/request-pdf/purchase/order';"></i>
             </div>
             <div style="margin-left:45%;">
                 <span class="visually-hidden">Loading...</span>
