@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Log;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -85,7 +86,7 @@ class Inventory extends Component
             $this->item_type = "";
             $this->unit_cost = "";
             session()->flash('dataAdded', "Successfully Added");
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Add Item on Inventory'
             ]);
@@ -101,7 +102,7 @@ class Inventory extends Component
     public function delete($id)
     {
         \App\Models\Inventory::find($id)->delete();
-        Logs::create([
+        Log::create([
             'name' => auth()->user()->username,
             'action' => 'Delete Item on Inventory'
         ]);
@@ -148,7 +149,7 @@ class Inventory extends Component
             $this->inventory_number = null;
             $this->item_type = "";
             session()->flash('dataUpdated', "Successfully Updated");
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Edit Item on Inventory'
             ]);

@@ -1,4 +1,4 @@
-<div>
+<div> <button onclick="location.href = '/Dashboard/export';">export</button>
     @include('modal.changePassModal')
     <div style="display: flex; width: 100%;">
 

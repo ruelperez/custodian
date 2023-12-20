@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,8 @@ Route::prefix('Dashboard')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/request-pdf/par-report/{date}', [\App\Http\Controllers\ParController::class, 'pdf']);
     Route::get('/form-inventory/{request}', [\App\Http\Controllers\InventoryController::class, 'pdf'])->name('form-inventory.pdf');
     Route::get('/request-pdf/waste-summary/{date}', [\App\Http\Controllers\BackupwasteController::class, 'pdf']);
+    Route::get('/export', [ExportController::class, 'export'])->name('export');
+
 });
 
 Route::get('/', function () {

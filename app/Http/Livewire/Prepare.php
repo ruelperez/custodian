@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\Distribute;
+use App\Models\Log;
 use App\Models\Par;
 use App\Models\Ranking;
 use App\Models\Receiver;
@@ -129,7 +130,7 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 session()->flash('dataAdded',"Successfully Added");
-                Logs::create([
+                Log::create([
                     'name' => auth()->user()->username,
                     'action' => 'Add Item on PMR'
                 ]);
@@ -171,7 +172,7 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 session()->flash('dataAdded',"Successfully Added");
-                Logs::create([
+                Log::create([
                     'name' => auth()->user()->username,
                     'action' => 'Add Item on PMR'
                 ]);
@@ -250,7 +251,7 @@ class Prepare extends Component
 
     public function delete($id){
         \App\Models\Prepare::find($id)->delete();
-        Logs::create([
+        Log::create([
             'name' => auth()->user()->username,
             'action' => 'Delete Item on PMR'
         ]);
@@ -296,7 +297,7 @@ class Prepare extends Component
             $this->item_type = "consumable";
             $this->receiver = "";
             session()->flash('dataAdded',"Successfully Updated");
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Edit Item on PMR'
             ]);
@@ -415,10 +416,6 @@ class Prepare extends Component
             foreach ($data as $da){
                 \App\Models\Prepare::find($da->id)->delete();
             }
-            Logs::create([
-                'name' => auth()->user()->username,
-                'action' => 'Deploy Item on PMR'
-            ]);
 
         }
         $this->item_name = "";
@@ -427,7 +424,10 @@ class Prepare extends Component
         $this->receiver_disable = 0;
         $this->item_disable = 0;
         $this->unit_cost = "";
-
+        Log::create([
+            'name' => auth()->user()->username,
+            'action' => 'Deploy Item on PMR'
+        ]);
     }
 
     public function clickReport($name){

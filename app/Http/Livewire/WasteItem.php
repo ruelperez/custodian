@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
 use App\Models\BackupWaste;
+use App\Models\Log;
 use App\Models\MovedItem;
 use App\Models\Receiver;
 use App\Models\Request;
@@ -120,7 +121,7 @@ class WasteItem extends Component
             $newQty = $data->quantity - $this->qty;
             $data->quantity = $newQty;
             $data->save();
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Move Item on PWMR'
             ]);
@@ -150,7 +151,7 @@ class WasteItem extends Component
                 ]);
             }
             $g = 1;
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Move item to Backup on PWMR'
             ]);
@@ -179,7 +180,7 @@ class WasteItem extends Component
     }
 
     public function print(){
-        Logs::create([
+        Log::create([
             'name' => auth()->user()->username,
             'action' => 'Print Item on PWMR'
         ]);
@@ -199,7 +200,7 @@ class WasteItem extends Component
             }
             $rt = 1;
             session()->flash('successMoveToPurchase','Successfully moved to purchase request');
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Move Item from PWMR to Purchase Request'
             ]);
