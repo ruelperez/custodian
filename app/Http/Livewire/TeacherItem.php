@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\Log;
 use App\Models\Receiver;
 use Livewire\Component;
 
@@ -60,7 +61,7 @@ class TeacherItem extends Component
                     ]);
                 }
                 session()->flash('transfer',"Successfully  Moved to Inventory");
-                Logs::create([
+                Log::create([
                     'name' => auth()->user()->username,
                     'action' => 'Move to Inventory from Teacher deployed Item'
                 ]);
@@ -139,7 +140,7 @@ class TeacherItem extends Component
             $this->unit = "";
             $this->serial = "";
             session()->flash('success',"Successfully add item");
-            Logs::create([
+            Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Add Item on Teachers Deployed Item'
             ]);
@@ -150,7 +151,7 @@ class TeacherItem extends Component
     }
 
     public function print(){
-        Logs::create([
+        Log::create([
             'name' => auth()->user()->username,
             'action' => 'Print Item on Teachers Deployed Item'
         ]);
