@@ -3,7 +3,7 @@
     <p style="margin-left: 1%;margin-top: 1.5%; font-size: 20px;">{{ucwords($teacherName)}}</p>
     <div style="display: flex;">
         <div style="margin-left: 82%;margin-top: 1%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/deployed-report/{{$teacherName}}/{{$dataDate}}';"></i>
+            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/deployed-report/{{$teacherName}}/{{$dataDate}}';" wire:click="print"></i>
         </div>
     </div>
 

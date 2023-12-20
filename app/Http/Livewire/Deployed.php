@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\Log;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -27,4 +28,12 @@ class Deployed extends Component
     public function clickBack(){
         $this->clickBk = 1;
     }
+
+    public function print(){
+        Log::create([
+            'name' => auth()->user()->username,
+            'action' => 'Print Item on Deployed Item'
+        ]);
+    }
+
 }
