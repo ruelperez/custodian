@@ -423,7 +423,7 @@ class PurchaseRequest extends Component
     }
 
     public function print(){
-        Logs::create([
+        Log::create([
             'name' => auth()->user()->username,
             'action' => 'Print on Purchase Request'
         ]);
