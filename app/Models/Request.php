@@ -16,6 +16,10 @@ class Request extends Model
         'total_cost',
         'created_at',
         'pr_num',
+        'purpose',
+        'requested_by',
+        'approved_by',
+        'designator',
     ];
 
     use HasFactory;
