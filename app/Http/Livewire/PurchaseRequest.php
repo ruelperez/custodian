@@ -88,6 +88,10 @@ class PurchaseRequest extends Component
                     'total_cost' => $this->total_cost,
                     'item_type' => $this->item_type,
                     'pr_num' => $this->prNum,
+                    'purpose' => $this->purpose,
+                    'requested_by' => $this->requested_by,
+                    'approved_by' => $this->approved_by,
+                    'designator' => $this->designator,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
