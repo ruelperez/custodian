@@ -104,15 +104,15 @@
     </tr>
     <tr style="border: 1px solid;">
         <td colspan="6" style="border: 1px solid; width: 100%; text-align: left; height: 10%;">
-            <b>Purpose</b>
+            <b>Purpose: </b>{{ucwords($purpose)}}
         </td>
     </tr>
 </table>
 
 <table style="width: 100%; border: 1px solid;">
     <tr>
-        <td style="padding-left: 35%;">Requested By:</td>
-        <td style="padding-left: 50%;">Approved By:</td>
+        <td style="padding-left: 35%;">Requested By: {{ucwords($requested_by)}}</td>
+        <td style="padding-left: 50%;">Approved By: {{ucwords($approved_by)}}</td>
     </tr>
     <tr>
         <td>Signature:</td>
@@ -123,7 +123,7 @@
         <td style="text-align: right">_________________________</td>
     </tr>
     <tr>
-        <td>Designation:</td>
+        <td>Designation: {{ucwords($designator)}}</td>
         <td style="text-align: right">_________________________</td>
     </tr>
 </table>

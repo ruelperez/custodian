@@ -453,12 +453,21 @@ class PurchaseRequest extends Component
                     'item_type' => $reqs->item_type,
                     'created_at' => $reqs->created_at,
                     'pr_num' => $reqs->pr_num,
+                    'purpose' => $this->purpose,
+                    'requested_by' => $this->requested_by,
+                    'approved_by' => $this->approved_by,
+                    'designator' => $this->designator,
                 ]);
             }
             foreach ($req as $rr){
                 Request::find($rr->id)->delete();
             }
             $this->prNum = "";
+            $this->purpose = "";
+            $this->requested_by = "";
+            $this->approved_by = "";
+            $this->designator = "";
+            
             session()->flash('move',"Successfully Moved to Backup");
             Log::create([
                 'name' => auth()->user()->username,
