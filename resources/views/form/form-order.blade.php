@@ -15,11 +15,17 @@
 </head>
 <body>
 
-
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
-            <h4>PURCHASE ORDER</h4>
+            <img src="{{public_path('image/header.png')}}" width="700">
+        </td>
+    </tr>
+</table>
+<table style="text-align: center; width: 100%;">
+    <tr>
+        <td>
+            <h3>PURCHASE ORDER</h3>
         </td>
     </tr>
 </table>
