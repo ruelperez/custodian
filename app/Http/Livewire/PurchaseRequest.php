@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $purpose, $requested_by, $approved_by, $designator, $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $purpose, $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -467,7 +467,7 @@ class PurchaseRequest extends Component
             $this->requested_by = "";
             $this->approved_by = "";
             $this->designator = "";
-            
+
             session()->flash('move',"Successfully Moved to Backup");
             Log::create([
                 'name' => auth()->user()->username,

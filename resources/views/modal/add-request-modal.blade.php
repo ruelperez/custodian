@@ -58,18 +58,6 @@
                         <input type="text" class="form-control" placeholder="Purpose" wire:click="not_item_click" wire:model="purpose" @if(count($request_data) > 0) disabled @endif>
                     </div>
                     @error('purpose') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Requested by" wire:click="not_item_click" wire:model="requested_by" @if(count($request_data) > 0) disabled @endif>
-                    </div>
-                    @error('requested_by') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Approved by" wire:click="not_item_click" wire:model="approved_by" @if(count($request_data) > 0) disabled @endif>
-                    </div>
-                    @error('approved_by') <span style="color: red">{{ $message }}</span> @enderror
-                    <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                        <input type="text" class="form-control" placeholder="Designator" wire:click="not_item_click" wire:model="designator" @if(count($request_data) > 0) disabled @endif>
-                    </div>
-                    @error('designator') <span style="color: red">{{ $message }}</span> @enderror
                     <div style="margin-left: 15%;">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">
