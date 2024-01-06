@@ -118,7 +118,7 @@
     </tr>
     <tr>
         <td colspan="7" style="border: 1px solid; padding-left: 1%; font-size: 14px;">
-            {{ucwords($totalInWords)}}
+            <b>{{ucwords($totalInWords)}}</b>
         </td>
     </tr>
     <tr>
@@ -134,19 +134,18 @@
             <p style="margin-left: 38%; font-size: 14px;">____________________ <br> <i style="margin-left: 23%;">Date</i>
         </td>
         <td colspan="3" style="padding-left: 5%; text-align: center;font-size: 14px;">
-            <p style="text-align: left">Very truly yours,
+            <p style="text-align: left">Very truly yours,</p>
             <b><u>NELSON E. BELANO</u></b><br>
-            Signature over Printed Name of Authorized Official <br> Secondary School Principal <br> Designation
+            Signature over Printed Name of Authorized<br> Secondary School Principal <br> Designation
         </td>
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
             <p style="margin-top: 1px;font-size: 14px;"> <b>Fund Cluster: _____________________ <br>Funds Available: _____________________</b>
-            <p style="text-align: center;font-size: 14px;">________________________________________<br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit
-
+            <p style="text-align: center;font-size: 14px;">________________________________________<br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
         </td>
-        <td colspan="3" style="text-align: left; padding-left: 2%; border: 1px solid;">
-            <p style="margin-top: 1px;font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b>
+        <td colspan="3" style=" border: 1px solid;">
+            <p style="font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b></p><p style="color: white"><br>Date of the ORS/BURS: _____________________</p>
         </td>
     </tr>
 </table>

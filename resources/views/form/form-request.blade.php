@@ -111,8 +111,8 @@
 
 <table style="width: 100%; border: 1px solid;">
     <tr>
-        <td style="padding-left: 35%;">Requested By: {{ucwords($requested_by)}}</td>
-        <td style="padding-left: 50%;">Approved By: {{ucwords($approved_by)}}</td>
+        <td style="padding-left: 35%;">Requested By:</td>
+        <td style="padding-left: 50%;">Approved By: </td>
     </tr>
     <tr>
         <td>Signature:</td>
@@ -123,7 +123,7 @@
         <td style="text-align: right">_________________________</td>
     </tr>
     <tr>
-        <td>Designation: {{ucwords($designator)}}</td>
+        <td>Designation: </td>
         <td style="text-align: right">_________________________</td>
     </tr>
 </table>

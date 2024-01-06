@@ -16,11 +16,8 @@ class RequestController extends Controller
                $date = $data->created_at->format('M-d-Y');
                $pr_num = $data->pr_num;
                $purpose = $data->purpose;
-               $requested_by = $data->requested_by;
-               $approved_by = $data->approved_by;
-               $designator = $data->designator;
            }
-           $pdf = PDF::loadView('form.form-request', compact('request_data','request','pr_num', 'date','purpose','requested_by','approved_by','designator'))
+           $pdf = PDF::loadView('form.form-request', compact('request_data','request','pr_num', 'date','purpose'))
                ->setPaper('legal','portrait');
            return $pdf->stream('load.pdf');
         }

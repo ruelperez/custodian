@@ -89,9 +89,6 @@ class PurchaseRequest extends Component
                     'item_type' => $this->item_type,
                     'pr_num' => $this->prNum,
                     'purpose' => $this->purpose,
-                    'requested_by' => $this->requested_by,
-                    'approved_by' => $this->approved_by,
-                    'designator' => $this->designator,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -165,6 +162,7 @@ class PurchaseRequest extends Component
         $this->total_cost = $sae->total_cost;
         $this->item_name = $sae->item_name;
         $this->item_type = $sae->item_type;
+        $this->purpose = $sae->purpose;
     }
 
     public function edit_submit(){
@@ -196,6 +194,7 @@ class PurchaseRequest extends Component
                 $this->total_cost = null;
                 $this->unit = null;
                 $this->item_type = "";
+                $this->purpose = "";
                 session()->flash('dataUpdated',"Successfully Updated");
                 Log::create([
                     'name' => $this->usr,
