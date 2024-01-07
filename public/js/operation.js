@@ -161,7 +161,7 @@ function clickEllipsis(){
     $(".div100").toggle();
     if (an.css("display") !== "none") {
         // Set margin-top for elements with class "div101"
-        sn.css("margin-top", "31%");
+        sn.css("margin-top", "19.5%");
     } else {
         // If "div100" is hidden, you may want to reset the margin-top
         sn.css("margin-top", "75%");
