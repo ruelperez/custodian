@@ -1,6 +1,6 @@
 <div>
     <div style="display: flex; margin-top: 2%;">
-        
+        @livewire('pr-designation')
         <div style="width: 30%; height: 267px; margin-right: 3%; text-align: center; border: solid black 1px; padding-top: 1%;">
             <b>Purchase Order</b>
             <div style="display: flex; margin-top: 3%;">
