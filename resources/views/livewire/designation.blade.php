@@ -9,15 +9,26 @@
                 </div>
 
                 <div style="text-align: right; padding-right: 5%;">
-                    <input type="text" wire:model="requestedBy" placeholder="Printed Name">
-                    <input style="margin-top: 4%;" type="text" wire:model="approvedBy" placeholder="Designation">
-                    <input style="margin-top: 12%;" type="text" wire:model="designation1" placeholder="Printed Name">
-                    <input style="margin-top: 4%;" type="text" wire:model="designation2" placeholder="Designation">
+                    <input type="text" wire:model="requestName" placeholder="Printed Name" @if($pr_btn === "update") disabled @endif>
+                    <input style="margin-top: 4%;" type="text" wire:model="requestDesignation" placeholder="Designation" @if($pr_btn === "update") disabled @endif>
+                    <input style="margin-top: 12%;" type="text" wire:model="approvedName" placeholder="Printed Name" @if($pr_btn === "update") disabled @endif>
+                    <input style="margin-top: 4%;" type="text" wire:model="approvedDesignation" placeholder="Designation" @if($pr_btn === "update") disabled @endif>
                 </div>
             </div>
-            <div style="width: 50%;" class="bg-warning mx-auto mt-3">
-                EDIT
-            </div>
+            @if($pr_btn === "submit")
+                <div style="width: 50%; cursor: pointer;" class="bg-primary text-white mx-auto mt-3" wire:click="prSubmit" >
+                    SUBMIT
+                </div>
+            @elseif($pr_btn === "update")
+                <div style="width: 50%; cursor: pointer;" class="bg-warning mx-auto mt-3 text-white" wire:click="prBtn('edit')">
+                    EDIT
+                </div>
+            @elseif($pr_btn === "edit")
+                <div style="width: 50%; cursor: pointer;" class="bg-success mx-auto mt-3 text-white" wire:click="prBtn('update')">
+                    UPDATE
+                </div>
+            @endif
+
         </div>
         <div style="width: 30%; height: 267px; margin-right: 3%; text-align: center; border: solid black 1px; padding-top: 1%;">
             <b>Purchase Order</b>
