@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desig_par', function (Blueprint $table) {
+        Schema::create('desig_ics', function (Blueprint $table) {
             $table->id();
+            $table->string('printedName')->nullable();
+            $table->string('position')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desig_par');
+        Schema::dropIfExists('desig_ics');
     }
 };

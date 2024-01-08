@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desig_ics', function (Blueprint $table) {
+        Schema::create('desig_wmrs', function (Blueprint $table) {
             $table->id();
+            $table->string('nameOfSupply')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desig_ics');
+        Schema::dropIfExists('desig_wmrs');
     }
 };

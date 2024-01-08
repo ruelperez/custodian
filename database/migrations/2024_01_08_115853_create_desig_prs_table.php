@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desig_po', function (Blueprint $table) {
+        Schema::create('desig_prs', function (Blueprint $table) {
             $table->id();
+            $table->string('requestPrintedName')->nullable();
+            $table->string('requestDesignation')->nullable();
+            $table->string('approvedPrintedName')->nullable();
+            $table->string('approvedDesignation')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desig_po');
+        Schema::dropIfExists('desig_prs');
     }
 };
