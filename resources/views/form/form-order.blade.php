@@ -141,7 +141,7 @@
         </td>
         <td colspan="3" style="padding-left: 5%; text-align: center;font-size: 14px;">
             <p style="text-align: left">Very truly yours,</p>
-            <b><u>NELSON E. BELANO</u></b><br>
+            <b><u>{{strtoupper($principal)}}</u></b><br>
             Signature over Printed Name of Authorized<br> Secondary School Principal <br> Designation
         </td>
     </tr>

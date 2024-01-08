@@ -15,6 +15,11 @@ class OrderAdditional extends Model
         'mode',
         'total',
         'total_words',
+        'chief',
+        'place_delivery',
+        'date_delivery',
+        'delivery_term',
+        'payment_term',
     ];
 
     use HasFactory;
