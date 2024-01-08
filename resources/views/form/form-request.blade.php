@@ -103,28 +103,28 @@
         </td>
     </tr>
     <tr style="border: 1px solid;">
-        <td colspan="6" style="border: 1px solid; width: 100%; text-align: left; height: 10%;">
+        <td colspan="6" style="width: 100%; text-align: left; height: 10%; padding-left: 1%;">
             <b>Purpose: </b>{{ucwords($purpose)}}
         </td>
     </tr>
 </table>
 
-<table style="width: 100%; border: 1px solid;">
+<table style="width: 100%; border: 1px solid; padding-left: 1%; padding-right: 1%;">
     <tr>
-        <td style="padding-left: 35%;">Requested By:</td>
-        <td style="padding-left: 50%;">Approved By: </td>
+        <td style="padding-left: 33%;">Requested By:</td>
+        <td style="padding-right: 55%;">Approved By: </td>
     </tr>
     <tr>
-        <td>Signature:</td>
+        <td>Signature: _________________________</td>
         <td style="text-align: right">_________________________</td>
     </tr>
     <tr>
-        <td>Printed Name:</td>
-        <td style="text-align: right">_________________________</td>
+        <td>Printed Name: {{ucwords($name1)}}</td>
+        <td style="width: 30%; text-align: center;">{{ucwords($name2)}}</td>
     </tr>
     <tr>
-        <td>Designation: </td>
-        <td style="text-align: right">_________________________</td>
+        <td>Designation: {{ucwords($designation1)}}</td>
+        <td style="text-align: center; width: 30%;">{{$designation2}}</td>
     </tr>
 </table>
 
