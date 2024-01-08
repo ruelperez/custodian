@@ -15,7 +15,6 @@ class PrDesignation extends Component
     public function render()
     {
         $this->desigPr = DesigPr::first();
-        $this->desigWmr = DesigWmr::first();
         if ($this->num == 0 and $this->desigPr === null){
             $this->pr_btn = "submit";
         }
