@@ -1,4 +1,4 @@
-<div style="width: 30%; height: 275px; margin-right: 3%; text-align: center; border: solid black 1px; padding-top: 1%;">
+<div style="width: 30%; height: 275px; margin-right: 3%; text-align: center; background-color: #DCDCDC; border-radius: 5%; padding-top: 1%;">
     <b>Purchase Order</b>
     <div style="display: flex; margin-top: 5%; margin-bottom: 37%;">
         <div style="text-align: left; padding-left: 5%;">

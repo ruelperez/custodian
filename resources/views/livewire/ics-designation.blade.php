@@ -1,4 +1,4 @@
-<div style="width: 30%; height: 275px; text-align: center; padding-top: 1%; border: solid black 1px;">
+<div style="width: 30%; height: 275px; text-align: center; padding-top: 1%; background-color: #DCDCDC; border-radius: 5%;">
     <b>ICS Form</b>
     <div style="display: flex; margin-top: 5%; margin-bottom: 24%;">
         <div style="text-align: left; padding-left: 5%;">

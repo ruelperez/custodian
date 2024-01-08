@@ -1,4 +1,4 @@
-<div style="width: 30%; height: 275px; border: solid black 1px; text-align: center; padding-top: 1%;">
+<div style="width: 30%; height: 275px; background-color: #DCDCDC; border-radius: 5%; text-align: center; padding-top: 1%;">
     <b>WMR Form</b>
     <div style="display: flex; margin-top: 5%; margin-bottom: 38%;">
         <div style="text-align: left; padding-left: 5%;">
