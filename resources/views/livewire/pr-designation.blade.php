@@ -1,6 +1,6 @@
-<div style="width: 30%; height: 267px; border: solid black 1px; text-align: center; margin-right: 3%; padding-top: 1%;">
+<div style="width: 30%; height: 275px; border: solid black 1px; text-align: center; margin-right: 3%; padding-top: 1%;">
     <b>Purchase Request </b>
-    <div style="display: flex; margin-top: 3%;">
+    <div style="display: flex; margin-top: 5%;">
         <div style="text-align: left; padding-left: 5%;">
             <label>Requested By:</label>
             <label style="margin-top: 67%;">Approved By:</label>

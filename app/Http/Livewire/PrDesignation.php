@@ -15,7 +15,6 @@ class PrDesignation extends Component
     public function render()
     {
         $this->desigPr = DesigPr::first();
-        $this->desigPo = DesigPo::first();
         $this->desigIcs = DesigIc::first();
         $this->desigWmr = DesigWmr::first();
         $this->desigPar = DesigPar::first();

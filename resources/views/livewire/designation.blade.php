@@ -1,20 +1,7 @@
 <div>
     <div style="display: flex; margin-top: 2%;">
         @livewire('pr-designation')
-        <div style="width: 30%; height: 267px; margin-right: 3%; text-align: center; border: solid black 1px; padding-top: 1%;">
-            <b>Purchase Order</b>
-            <div style="display: flex; margin-top: 3%;">
-                <div style="text-align: left; padding-left: 5%;">
-                    <label>Name of School Principal:</label>
-                </div>
-                <div style="text-align: right; padding-right: 5%;">
-                    <input type="text" wire:model="principal" placeholder="Name of Principal">
-                </div>
-            </div>
-            <div style="width: 50%; margin-top: 37%;" class="bg-warning mx-auto">
-                EDIT
-            </div>
-        </div>
+        @livewire('po-designation')
         <div style="width: 30%; height: 200px; border: solid black 1px; text-align: center; padding-top: 1%;">
             <b>ICS Form</b>
             <div style="display: flex; margin-top: 3%;">
