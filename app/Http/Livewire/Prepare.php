@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -122,6 +122,7 @@ class Prepare extends Component
                     'receiver' => $this->receiver,
                     'serial' => $this->serial,
                     'ics' => $this->ics,
+                    'position' => $this->position,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -164,6 +165,7 @@ class Prepare extends Component
                     'receiver' => $this->receiver,
                     'serial' => $this->serial,
                     'ics' => $this->ics,
+                    'position' => $this->position,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -403,6 +405,7 @@ class Prepare extends Component
                     'ics' => $dat->ics,
                     'ics_last' => $this->ics_last_number,
                     'total_cost' => $total_c,
+                    'position' => $dat->position,
                 ]);
 
                 $accepter = DB::table('receivers')
@@ -424,6 +427,8 @@ class Prepare extends Component
         $this->receiver_disable = 0;
         $this->item_disable = 0;
         $this->unit_cost = "";
+        $this->receiver = "";
+        $this->position = "";
         Log::create([
             'name' => auth()->user()->username,
             'action' => 'Deploy Item on PMR'
