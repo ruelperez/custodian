@@ -65,4 +65,8 @@ class Designation extends Component
             $data->save();
         }
     }
+
+    public function poBtn(){
+
+    }
 }
