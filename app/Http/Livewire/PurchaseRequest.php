@@ -374,6 +374,11 @@ class PurchaseRequest extends Component
                 $this->mode = $datas->mode;
                 $this->total = $totalCost;
                 $this->total_words = $datas->total_words;
+                $this->chief = $datas->chief;
+                $this->place_delivery = $datas->place_delivery;
+                $this->date_delivery = $datas->date_delivery;
+                $this->delivery_term = $datas->delivery_term;
+                $this->payment_term = $datas->payment_term;
             }
         }
         else{
@@ -394,6 +399,11 @@ class PurchaseRequest extends Component
                 $datas->mode = $this->mode;
                 $datas->total = $this->total;
                 $datas->total_words = $this->total_words;
+                $datas->chief = $this->chief;
+                $datas->place_delivery = $this->place_delivery;
+                $datas->date_delivery = $this->date_delivery;
+                $datas->delivery_term = $this->delivery_term;
+                $datas->payment_term = $this->payment_term;
                 $datas->save();
             }
         }
@@ -406,6 +416,11 @@ class PurchaseRequest extends Component
                 'mode' => $this->mode,
                 'total' => $this->total,
                 'total_words' => $this->total_words,
+                'chief' => $this->chief,
+                'place_delivery' => $this->place_delivery,
+                'date_delivery' => $this->date_delivery,
+                'delivery_term' => $this->delivery_term,
+                'payment_term' => $this->payment_term,
             ]);
         }
         $this->clickUpdate = 1;

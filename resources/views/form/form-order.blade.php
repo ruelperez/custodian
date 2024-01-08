@@ -50,12 +50,12 @@
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
-            <b style="margin-top: 1px;">Place of Delivery:</b><br>
-            <b>Date of Delivery:</b>
+            <b style="margin-top: 1px;">Place of Delivery: {{ucwords($additional->place_delivery)}}</b><br>
+            <b>Date of Delivery: {{ucwords($additional->date_delivery)}}</b>
         </td>
         <td colspan="3" style="text-align: left; padding-left: 2%;">
-            <b style="margin-top: 1px;">Delivery Term:</b><br>
-            <b>Payment Term:</b>
+            <b style="margin-top: 1px;">Delivery Term: {{ucwords($additional->delivery_term)}}</b><br>
+            <b>Payment Term: {{ucwords($additional->payment_term)}}</b>
         </td>
     </tr>
     <tr style="text-align: center">
@@ -135,20 +135,20 @@
     <tr>
         <td colspan="4">
             <p style="margin-left: 6%;">Conforme:
-            <p style="margin-left: 25%; font-size: 14px;">_________________________________
+            <p style="text-align: center; font-size: 14px;"><b>{{strtoupper($additional->supplier)}}</b>
             <br> Signature Over Printed Name of Supplier
-            <p style="margin-left: 38%; font-size: 14px;">____________________ <br> <i style="margin-left: 23%;">Date</i>
+            <p style="text-align: center; font-size: 14px;">____________________ <br> <i style="text-align: center;">Date</i>
         </td>
         <td colspan="3" style="padding-left: 5%; text-align: center;font-size: 14px;">
             <p style="text-align: left">Very truly yours,</p>
-            <b><u>{{strtoupper($principal)}}</u></b><br>
+            <b>{{strtoupper($principal)}}</b><br>
             Signature over Printed Name of Authorized<br> Secondary School Principal <br> Designation
         </td>
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
             <p style="margin-top: 1px;font-size: 14px;"> <b>Fund Cluster: _____________________ <br>Funds Available: _____________________</b>
-            <p style="text-align: center;font-size: 14px;">________________________________________<br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
+            <p style="text-align: center;font-size: 14px;"><b>{{strtoupper($additional->chief)}}</b><br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
         </td>
         <td colspan="3" style=" border: 1px solid;">
             <p style="font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b></p><p style="color: white"><br>Date of the ORS/BURS: _____________________</p>

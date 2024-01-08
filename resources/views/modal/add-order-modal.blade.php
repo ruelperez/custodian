@@ -9,7 +9,7 @@
                 <form wire:submit.prevent="submit_order">
                     <div style="display: flex; width: 100%;">
                         <div style="margin-left: 3%;">
-                            <div class="mb-2" style="width: 100%;">
+                            <div class="mb-3" style="width: 100%;">
                                 <input type="text" class="form-control" placeholder="Supplier" wire:model.debounce.1ms="supplier" @if($clickUpdate == 1) disabled @endif>
                             </div>
                             @error('supplier') <span style="color: red">{{ $message }}</span> @enderror
@@ -52,7 +52,7 @@
                             </div>
                             @error('delivery_term') <span style="color: red">{{ $message }}</span> @enderror
                             <div class="mb-3" style="width: 100%;">
-                                <input type="text" class="form-control" placeholder="Payment Term" wire:model="payment_term" disabled>
+                                <input type="text" class="form-control" placeholder="Payment Term" wire:model="payment_term" @if($clickUpdate == 1) disabled @endif>
                             </div>
                             @error('payment_term') <span style="color: red">{{ $message }}</span> @enderror
                             <div class="mb-3" style="width: 100%;">
