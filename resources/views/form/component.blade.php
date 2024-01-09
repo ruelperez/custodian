@@ -88,7 +88,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>MARIBETH B. LASTROLLO</b>
+            <b>{{strtoupper($desig->printedName)}}</b>
         </td>
     </tr>
     <tr style="text-align: center;">
@@ -104,7 +104,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>Teacher III/Supply Officer – Supply Office</b>
+            <b>{{strtoupper($desig->position)}}</b>
         </td>
     </tr>
     <tr style="text-align: center;">
