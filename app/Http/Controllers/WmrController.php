@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DesigWmr;
 use App\Models\MovedItem;
 use App\Models\Order;
 use Barryvdh\DomPDF\Facade\Pdf;

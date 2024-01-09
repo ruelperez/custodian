@@ -2,7 +2,7 @@
     <b>WMR Form</b>
     <div style="display: flex; margin-top: 5%; margin-bottom: 38%;">
         <div style="text-align: left; padding-left: 5%;">
-            <label>Signature Over Printed Name:</label>
+            <label>Name of Supply Officer:</label>
         </div>
         <div style="text-align: right; padding-right: 5%;">
             <input type="text" wire:model="nameOfSupply" placeholder="Name of Supplier" @if($pr_btn === "update") disabled @endif>

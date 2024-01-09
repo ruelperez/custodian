@@ -2,7 +2,7 @@
     <b>PAR Form</b>
     <div style="display: flex; margin-top: 5%; margin-bottom: 24%;">
         <div style="text-align: left; padding-left: 5%;">
-            <label>Signature Over Printed Name:</label>
+            <label>Name of Supply Officer:</label>
             <label style="margin-top: 15%;">Position:</label>
         </div>
         <div style="text-align: right; padding-right: 5%;">
