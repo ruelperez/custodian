@@ -86,16 +86,17 @@
     <tr>
         <td rowspan="3" style="width: 50%; border: 1px solid;">
             <p><b>Received from:</b><p/>
-            <p style="text-align: center"><b><u>MARIBETH B. LASTROLLO</u></b><br>Signature Over Printed Name</p><br>
-            <p style="text-align: center"><b><u>Teacher III/Supply Officer-Supply Office</u></b><br>Position/Office</p>
+            <p style="text-align: center"><b><u>{{strtoupper($desig->printedName)}}</u></b><br>Signature Over Printed Name</p><br>
+            <p style="text-align: center"><b><u>{{strtoupper($desig->position)}}</u></b><br>Position/Office</p>
         </td>
         <td>
             <p><b>Received by:</b></p> {{ucwords($receivedBy)}}
         </td>
     </tr>
     <tr>
-        <td style="border: 1px solid; padding-bottom: 55px;">
+        <td style="border: 1px solid;">
             Signature Over Printed Name
+            <p style="margin-top: 6%;">{{ucwords($position2)}}</p>
         </td>
     </tr>
     <tr>
