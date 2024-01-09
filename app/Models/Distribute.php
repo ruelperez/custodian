@@ -18,6 +18,7 @@ class Distribute extends Model
         'created_at',
         'ics',
         'ics_last',
+        'position',
     ];
 
     use HasFactory;

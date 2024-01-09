@@ -391,6 +391,7 @@ class Prepare extends Component
                         'serial' => $dat->serial,
                         'ics' => $dat->ics,
                         'ics_last' => $this->ics_last_number,
+                        'position' => $this->position,
                     ]);
                 }
 
