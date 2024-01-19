@@ -22,10 +22,10 @@
                 <label>ICS No.</label>
                 <u>{{$ics}}</u>
                 <div style="display: flex; width: 90%; margin-left: 5%; text-align: center; cursor: pointer; margin-top: 3%;">
-                    <div style="width: 50%; background-color: #61676A; color: white" id="icsBtn" onclick="ics()">
+                    <div class="py-1" style="width: 50%; background-color: #61676A; color: white" id="icsBtn" onclick="ics()">
                         ICS
                     </div>
-                    <div style="width: 50%;background-color: #86969D; color: white" id="parBtn" onclick="par()">
+                    <div class="py-1" style="width: 50%;background-color: #86969D; color: white" id="parBtn" onclick="par()">
                         PAR
                     </div>
                 </div>

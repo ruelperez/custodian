@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $transaction_name, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -38,6 +38,7 @@ class Prepare extends Component
         }
         elseif ($this->clickAdd == "property_ics"){
             $this->transaction_name = "property_ics";
+
         }
     }
 
@@ -106,10 +107,24 @@ class Prepare extends Component
     public function updated($field)
     {
         if ($field === 'quantity') {
+            $this->validate([
+                'quantity' => 'numeric'
+            ]);
             $this->fa = 1;
             $this->fas = 1;
             $this->basis = 0;
             $this->basin = 0;
+            if($this->unit_cost == ""){
+                $this->unit_cost = 0;
+            }
+            if ($this->quantity == ""){
+                $this->total_cost = $this->unit_cost * 0;
+            }
+            else{
+                $this->total_cost = $this->unit_cost * $this->quantity;
+            }
+
+
         }
         if ($field === 'item_name'){
             $this->fa = 0;
@@ -272,7 +287,7 @@ class Prepare extends Component
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
             ->where('item_type','!=','consumable')
-            ->where('item_type','!=','consumable')
+            ->where('unit_cost', '<', 50000)
             ->get();
         if (count($this->result) == 0){
             $this->basis = 0;
