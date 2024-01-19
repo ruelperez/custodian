@@ -22,14 +22,14 @@
                 <label>ICS No.</label>
                 <u>{{$ics}}</u>
                 <div style="display: flex; width: 90%; margin-left: 5%; text-align: center; cursor: pointer; margin-top: 3%;">
-                    <div style="width: 50%; background-color: #61676A; color: white">
+                    <div style="width: 50%; background-color: #61676A; color: white" id="icsBtn" onclick="ics()">
                         ICS
                     </div>
-                    <div style="width: 50%;background-color: #86969D; color: white">
+                    <div style="width: 50%;background-color: #86969D; color: white" id="parBtn" onclick="par()">
                         PAR
                     </div>
                 </div>
-                <div>
+                <div id="ics">
                     <form wire:submit.prevent="submit">
                         <div style="display: flex; margin-top: 3%;">
                             <div class="mb-2" style="width: 70%; margin-left: 15%; " >
@@ -115,6 +115,12 @@
                         <input type="text" hidden wire:model="unit_cost">
                         <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                     </form>
+                </div>
+                <div id="spinner" class="spinner-border spin" style="width: 70px; height: 70px; font-size: 25px; margin-left: 43%; margin-top: 20%;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div id="par">
+                    <h1>PAR FORM HERE</h1>
                 </div>
             </div>
         </div>

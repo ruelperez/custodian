@@ -169,6 +169,35 @@ function clickEllipsis(){
 
 }
 
+function par(){
+   $('#ics').hide();
+   $('#parBtn').css("background-color", "#61676A");
+   $('#icsBtn').css("background-color", "#86969D");
+    $('#par').hide();
+   $("#spinner").show();
+    setTimeout(function() {
+        $("#spinner").hide();
+    }, 500);
+    setTimeout(function() {
+        $("#par").show();
+    }, 500);
+
+}
+
+function ics(){
+    $('#par').hide();
+    $('#ics').hide();
+    $('#parBtn').css("background-color", "#86969D");
+    $('#icsBtn').css("background-color", "#61676A");
+    $("#spinner").show();
+    setTimeout(function() {
+        $("#spinner").hide();
+    }, 500);
+    setTimeout(function() {
+        $("#ics").show();
+    },500);
+}
+
 $(document).ready(function() {
     var sn = $(".div101");
     // Hide the div when anything on the page is clicked
@@ -178,7 +207,6 @@ $(document).ready(function() {
             sn.css("margin-top", "75%");
         }
     });
-
 });
 
 // function clickBody(){
