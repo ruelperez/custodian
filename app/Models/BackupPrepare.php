@@ -19,7 +19,8 @@ class BackupPrepare extends Model
         'ics',
         'ics_last',
         'total_cost',
-        'position'
+        'position',
+        'transaction_name'
     ];
 
     use HasFactory;

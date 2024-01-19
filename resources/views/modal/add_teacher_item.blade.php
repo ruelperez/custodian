@@ -11,7 +11,9 @@
                         {{ session('success') }}
                     </div>
                 @elseif(session()->has('failed'))
-                    {{ session('failed') }}
+                    <div class="alert alert-danger" style="width: 60%; ">
+                        {{ session('failed') }}
+                    </div>
                 @endif
                 <form wire:submit.prevent="submit">
                     <div class="mb-2" style="width: 70%; margin-left: 15%;">

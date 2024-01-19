@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $transaction_name, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -33,6 +33,12 @@ class Prepare extends Component
 
     public function addClick($data){
         $this->clickAdd = $data;
+        if ($this->clickAdd == "supply"){
+            $this->transaction_name = "supply";
+        }
+        elseif ($this->clickAdd == "property_ics"){
+            $this->transaction_name = "property_ics";
+        }
     }
 
     public function propertyIcs(){
@@ -132,6 +138,7 @@ class Prepare extends Component
 
     public function submit(){
 
+
         $data = $this->validate([
             'item_name' => 'required',
         ]);
@@ -161,6 +168,7 @@ class Prepare extends Component
                     'serial' => $this->serial,
                     'ics' => $this->ics,
                     'position' => $this->position,
+                    'transaction_name' => $this->transaction_name
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -204,6 +212,7 @@ class Prepare extends Component
                     'serial' => $this->serial,
                     'ics' => $this->ics,
                     'position' => $this->position,
+                    'transaction_name' => $this->transaction_name
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -433,7 +442,7 @@ class Prepare extends Component
                     ]);
 
                 }
-                elseif ($total_c < 50000 and $dat->item_type == 'non-consumable'){
+                elseif ($dat->transaction_name == "property_ics"){
                     Distribute::create([
                         'item_name' => $dat->item_name,
                         'quantity' => $dat->quantity,
@@ -460,6 +469,7 @@ class Prepare extends Component
                     'ics_last' => $this->ics_last_number,
                     'total_cost' => $total_c,
                     'position' => $dat->position,
+                    'transaction_name' => $dat->transaction_name,
                 ]);
 
                 $accepter = DB::table('receivers')

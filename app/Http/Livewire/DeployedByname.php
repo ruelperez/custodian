@@ -17,7 +17,7 @@ class DeployedByname extends Component
         }
         else{
             $this->result = BackupPrepare::select('receiver')
-                ->where('item_type','=','consumable')
+                ->where('transaction_name','=','supply')
                 ->distinct()
                 ->get();
         }
@@ -27,7 +27,7 @@ class DeployedByname extends Component
     public function search(){
         $this->result = BackupPrepare::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
-            ->where('item_type','=','consumable')
+            ->where('transaction_name','=','supply')
             ->distinct()
             ->get();
     }

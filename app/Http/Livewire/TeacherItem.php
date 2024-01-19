@@ -26,6 +26,8 @@ class TeacherItem extends Component
     public function suggestion(){
         if ($this->item_name != ""){
             $this->suggestData = \App\Models\Inventory::where('item_name','LIKE', '%'.$this->item_name.'%')
+                ->where('item_type','=',"non-consumable")
+//                ->where('unit_cost', '<', 50000)
                 ->get();
         }
         else{
@@ -36,7 +38,7 @@ class TeacherItem extends Component
 
     public function displayData(){
         $this->deployed_data = BackupPrepare::where('receiver','=', $this->teacher_name)
-            ->where('item_type', '!=', 'consumable')
+            ->where('transaction_name', '=', 'property_ics')
             ->orderBy($this->sort1,$this->sort2)
             ->get();
     }
@@ -125,6 +127,7 @@ class TeacherItem extends Component
             'year' => 'integer'
         ]);
         $date = $this->year."-".$this->month."-".$this->day;
+
         try {
             BackupPrepare::create([
                 'item_name' => $this->item_name,
@@ -134,6 +137,7 @@ class TeacherItem extends Component
                 'receiver' => $this->teacher_name,
                 'created_at' => $date,
                 'serial' => $this->serial,
+                'transaction_name' => 'property_ics'
             ]);
             $this->item_name = "";
             $this->quantity = "";

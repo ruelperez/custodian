@@ -13,6 +13,7 @@ class TeacherController extends Controller
         $teacher_data = BackupPrepare::where('receiver', $teacher)
             ->where('item_type', '!=', 'consumable')
             ->where('quantity', '>', 0)
+            ->where('transaction_name', '=', 'property_ics')
             ->orderBy('created_at','desc')
             ->get();
         foreach ($teacher_data as $data){

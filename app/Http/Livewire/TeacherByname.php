@@ -16,8 +16,8 @@ class TeacherByname extends Component
         }
         else{
             $this->result = BackupPrepare::select('receiver')
-                ->where('item_type', '!=', 'consumable')
-                ->where('total_cost','<', 50000)
+                ->where('transaction_name', '=', 'property_ics')
+//                ->where('total_cost','<', 50000)
                 ->distinct()
                 ->get();
         }
@@ -28,8 +28,9 @@ class TeacherByname extends Component
     public function search(){
         $this->result = BackupPrepare::select('receiver')
             ->where('receiver', 'LIKE', '%'.$this->search_teacher.'%')
-            ->where('item_type', '!=', 'consumable')
-            ->where('total_cost','<', 50000)
+            ->where('transaction_name', '=', 'property_ics')
+//            ->where('item_type', '!=', 'consumable')
+//            ->where('total_cost','<', 50000)
             ->distinct()
             ->get();
     }
