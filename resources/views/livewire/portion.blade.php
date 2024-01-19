@@ -19,7 +19,7 @@
                     z-index: 2; /* Make sure this is lower than the z-index of the covering div */
                   color: white;">
                     <div wire:click="clickPortion('logs')" wire:loading.attr="disabled"><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
-                    <div wire:click="clickPortion('designation')" style=" margin-top: 5%;" wire:loading.attr="disabled"><i <i class="fa-solid fa-marker"></i></i> Designator</div>
+                    <div wire:click="clickPortion('designation')" style=" margin-top: 5%;" wire:loading.attr="disabled"> <i class="fa-solid fa-marker"></i> Designator</div>
                     <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
                     <div style="margin-top: 15%;">
                         <form action="/Dashboard/logout" method="POST">

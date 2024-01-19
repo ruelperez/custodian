@@ -14,12 +14,56 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
 
         $this->getIcsNum();
+        $this->supplyInvNum();
+        if ($this->clickAdd === "supply"){
+            $this->supply();
+        }
+        elseif ($this->clickAdd === "property_ics"){
+            $this->propertyIcs();
+        }
+        $this->prepare_data = \App\Models\Prepare::all();
+        return view('livewire.prepare');
+    }
+
+    public function addClick($data){
+        $this->clickAdd = $data;
+    }
+
+    public function propertyIcs(){
+        if ($this->fas == 0){
+            if ($this->receiver != "" and $this->picks == 1){
+                $this->basin = 0;
+                $this->picks = 0;
+            }
+            elseif ($this->receiver != ""){
+                $this->searchs();
+            }
+            else{
+                $this->basin = 0;
+            }
+        }
+
+        if ($this->fa == 0){
+            if ($this->item_name != "" and $this->pick == 1){
+                $this->basis = 0;
+                $this->pick = 0;
+            }
+            elseif ($this->item_name != ""){
+                $this->basis = 1;
+                $this->icsSearchItem();
+            }
+            else{
+                $this->basis = 0;
+            }
+        }
+    }
+    public function supply(){
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
                 $this->basin = 0;
@@ -46,17 +90,11 @@ class Prepare extends Component
                 $this->basis = 0;
             }
         }
+    }
 
-        $this->prepare_data = \App\Models\Prepare::all();
-        if (count($this->prepare_data) == 0){
-            $this->serial = 1;
-        }
-        else{
-            $hg = count($this->prepare_data);
-            $hg++;
-            $this->serial = $hg;
-        }
-        return view('livewire.prepare');
+    public function supplyInvNum(){
+       $prepData = \App\Models\Prepare::all();
+       $this->serial = count($prepData) + 1;
     }
 
     public function updated($field)
@@ -211,6 +249,21 @@ class Prepare extends Component
     public function search(){
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
+            ->where('item_type','=','consumable')
+            ->get();
+        if (count($this->result) == 0){
+            $this->basis = 0;
+        }
+        else{
+            $this->basis = 1;
+        }
+    }
+
+    public function icsSearchItem(){
+        $this->result = DB::table('inventories')
+            ->where('item_name','LIKE', '%'.$this->item_name.'%')
+            ->where('item_type','!=','consumable')
+            ->where('item_type','!=','consumable')
             ->get();
         if (count($this->result) == 0){
             $this->basis = 0;

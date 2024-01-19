@@ -1,5 +1,7 @@
-<div style="width: 30%; height: 275px; background-color: #DCDCDC; border-radius: 5%; text-align: center; padding-top: 1%;">
-    <b>WMR Form</b>
+<div style="width: 30%; height: 275px; background-color: #2F4F4F; text-align: center;" class="text-white">
+    <div style="background-color: #0d1321;" class="pt-2 pb-2">
+        <b>W.M.R</b>
+    </div>
     <div style="display: flex; margin-top: 5%; margin-bottom: 38%;">
         <div style="text-align: left; padding-left: 5%;">
             <label>Name of Supply Officer:</label>
