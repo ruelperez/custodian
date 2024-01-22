@@ -116,10 +116,10 @@
                         <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                     </form>
                 </div>
-                <div id="spinner" class="spinner-border spin" style="width: 70px; height: 70px; font-size: 25px; margin-left: 43%; margin-top: 20%;">
+                <div id="spinner" class="spinner-border spin" style="width: 70px; height: 70px; font-size: 25px; margin-left: 43%; margin-top: 20%; display: none;">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <div id="par">
+                <div id="par" style="display: none;">
                     <h1>PAR FORM HERE</h1>
                 </div>
             </div>

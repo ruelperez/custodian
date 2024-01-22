@@ -20,7 +20,6 @@ class Prepare extends Component
     {
 
         $this->getIcsNum();
-        $this->supplyInvNum();
         if ($this->clickAdd === "supply"){
             $this->supply();
         }
@@ -35,10 +34,14 @@ class Prepare extends Component
         $this->clickAdd = $data;
         if ($this->clickAdd == "supply"){
             $this->transaction_name = "supply";
+            $this->supplyInvNum();
         }
         elseif ($this->clickAdd == "property_ics"){
             $this->transaction_name = "property_ics";
-
+            $distributeLastData = Distribute::latest()->first();
+            $prepData = \App\Models\Prepare::where('transaction_name','property_ics')->get();
+            $temp = $distributeLastData->id + count($prepData) + 1;
+            $this->serial = $this->ics.'-'.$temp;
         }
     }
 
@@ -255,7 +258,6 @@ class Prepare extends Component
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
-        $this->serial = $data->inventory_number;
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;
