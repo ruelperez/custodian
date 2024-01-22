@@ -38,11 +38,15 @@ class Prepare extends Component
         }
         elseif ($this->clickAdd == "property_ics"){
             $this->transaction_name = "property_ics";
-            $distributeLastData = Distribute::latest()->first();
-            $prepData = \App\Models\Prepare::where('transaction_name','property_ics')->get();
-            $temp = $distributeLastData->id + count($prepData) + 1;
-            $this->serial = $this->ics.'-'.$temp;
+            $this->icsInvNum();
         }
+    }
+
+    public function icsInvNum(){
+        $distributeLastData = Distribute::latest()->first();
+        $prepData = \App\Models\Prepare::where('transaction_name','property_ics')->get();
+        $temp = $distributeLastData->id + count($prepData) + 1;
+        $this->serial = $this->ics.'-'.$temp;
     }
 
     public function propertyIcs(){
@@ -143,7 +147,7 @@ class Prepare extends Component
     }
 
     public function getIcsNum(){
-        $lastId = BackupPrepare::latest('ics_last')->first();
+        $lastId = BackupPrepare::latest()->first();
         if ($lastId) {
             $nextId = $lastId->ics_last + 1;
         } else {
@@ -248,6 +252,13 @@ class Prepare extends Component
                 session()->flash('dataError',"Failed to Add");
             }
         }
+        if ($this->transaction_name == "supply"){
+            $this->supplyInvNum();
+        }
+        elseif ($this->transaction_name == "property_ics"){
+            $this->icsInvNum();
+        }
+
 
     }
 
