@@ -26,7 +26,7 @@
                     Unit
                 </th>
                 <th>
-                    Serial
+                    Inventory No.
                 </th>
                 <th>
                     Receiver

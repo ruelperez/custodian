@@ -43,15 +43,15 @@ class Prepare extends Component
     }
 
     public function icsInvNum(){
-        $distributeLastData = Distribute::latest()->first();
-        if ($distributeLastData == null) {
+        $distributeLastData = Distribute::all();
+        if (count($distributeLastData) == 0) {
             $prepData = \App\Models\Prepare::where('transaction_name','property_ics')->get();
             $temp = 0 + count($prepData) + 1;
             $this->serial = $this->ics.'-'.$temp;
         }
         else{
             $prepData = \App\Models\Prepare::where('transaction_name','property_ics')->get();
-            $temp = $distributeLastData->id + count($prepData) + 1;
+            $temp = count($distributeLastData) + count($prepData) + 1;
             $this->serial = $this->ics.'-'.$temp;
         }
     }
