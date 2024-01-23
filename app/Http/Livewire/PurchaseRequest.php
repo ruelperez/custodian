@@ -456,6 +456,7 @@ class PurchaseRequest extends Component
 
     public function move_to_backup(){
         $req = Request::all();
+
         try {
             foreach ($req as $reqs){
                 BackupRequest::create([
@@ -468,9 +469,6 @@ class PurchaseRequest extends Component
                     'created_at' => $reqs->created_at,
                     'pr_num' => $reqs->pr_num,
                     'purpose' => $this->purpose,
-                    'requested_by' => $this->requested_by,
-                    'approved_by' => $this->approved_by,
-                    'designator' => $this->designator,
                 ]);
             }
             foreach ($req as $rr){
