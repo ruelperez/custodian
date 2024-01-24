@@ -65,7 +65,7 @@
                 <b>{{ucwords($data->item_name)}}</b>
             </td>
             <td style="border: 1px solid;">
-                <b>{{$data->serial}}</b>
+                <b>ICS {{$data->serial}}</b>
             </td>
             <td style="border: 1px solid;">
                 <b></b>
