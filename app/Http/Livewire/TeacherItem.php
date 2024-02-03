@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\BackupPrepare;
+use App\Models\CheckItem;
 use App\Models\Log;
 use App\Models\Receiver;
 use Livewire\Component;
@@ -49,8 +50,10 @@ class TeacherItem extends Component
         'clickCheck' => 'clickCheck',
     ];
 
-    public function clickCheck(){
-
+    public function clickCheck($id){
+        CheckItem::create([
+           'item_id' => $id
+        ]);
     }
 
     public function moveToInventory(){

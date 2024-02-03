@@ -219,7 +219,6 @@ function teacherClick(id){
         d.css("margin-left", "14%");
         e.show();
         f.css("background-color", "#66CDAA");
-        window.livewire.emit('clickCheck',id);
 
     } else {
         d.css("margin-left", "46%");
