@@ -198,6 +198,37 @@ function ics(){
     },500);
 }
 
+function teacherHover(id){
+    var a = $('#checkBox'+id);
+    a.css("border", "solid black 1px");
+
+}
+
+function teacherOut(id){
+    var b = $('#checkBox'+id);
+    b.css("border", "");
+
+}
+
+function teacherClick(id){
+    var c = $('#checkBox'+id);
+    var d = $('#plusIcon');
+    var e = $('#returnId');
+    var f = $('#tea1'+id);
+    if (c.prop('checked')) {
+        d.css("margin-left", "14%");
+        e.show();
+        f.css("background-color", "#66CDAA");
+        window.livewire.emit('clickCheck',id);
+
+    } else {
+        d.css("margin-left", "46%");
+        e.hide();
+        f.css("background-color", "");
+    }
+}
+
+
 $(document).ready(function() {
     var sn = $(".div101");
     // Hide the div when anything on the page is clicked
@@ -207,8 +238,10 @@ $(document).ready(function() {
             sn.css("margin-top", "75%");
         }
     });
-});
 
+
+
+});
 // function clickBody(){
 //     if (!$(event.target).is("#ellip")) {
 //         $("#myDiv").hide();

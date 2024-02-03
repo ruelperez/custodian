@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph",$mons, $username, $current, $new, $retype, $item_type, $mos, $report=0, $df=0, $hover;
+    public $option = "report",$mons, $username, $current, $new, $retype, $item_type, $mos, $report="teacher", $df=0, $hover;
 
     public function render()
     {

@@ -46,7 +46,12 @@ class TeacherItem extends Component
     protected $listeners = [
         'input_change' => 'inputChange',
         'moves' => 'moveToInventory',
+        'clickCheck' => 'clickCheck',
     ];
+
+    public function clickCheck(){
+
+    }
 
     public function moveToInventory(){
         $this->gk = 1;
