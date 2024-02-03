@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('backup_prepares', function (Blueprint $table) {
-            $table->string('transaction_name');
+            $table->string('item_id')->nullable();
         });
     }
 
