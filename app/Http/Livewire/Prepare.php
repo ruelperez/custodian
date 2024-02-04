@@ -437,6 +437,7 @@ class Prepare extends Component
                     }
 
                 }
+                if ($datas->item_name)
                 try {
                     \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('quantity',$datas->quantity);
                     session()->flash('good',"good");
@@ -513,6 +514,7 @@ class Prepare extends Component
                 if (count($accepter) == 0){
                     Receiver::create(['fullname' => $dat->receiver]);
                 }
+
             }
 
             foreach ($data as $da){

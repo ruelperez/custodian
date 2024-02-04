@@ -110,13 +110,18 @@
                                 </td>
 
                                 <td>
-                                    @if($data->item_status == "" or $data->item_status == null)
+                                    @if($data->is_returned == 0)
                                         <div class="form-check">
                                             <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
                                         </div>
                                     @else
-                                        <p style="color: red;">{{ucfirst($data->item_status)}}</p>
+                                        @foreach($invAll as $inv)
+                                            @if($data->serial == $inv->inventory_number)
+                                                <p style="color: red;">{{ucfirst($inv->item_status)}}</p>
+                                            @endif
+                                        @endforeach
                                     @endif
+
                                 </td>
                             </tr>
                         @endif

@@ -78,10 +78,17 @@
                                     @php $h=0; @endphp
                                     @foreach($result as $data)
                                         @if($h < 6)
-                                            <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
-                                                {{$data->item_name}}
-                                                <p style="margin-left: auto">qty : {{$data->quantity}}</p>
-                                            </li>
+                                            @if($data->item_status != null or $data->item_status != "")
+                                                <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
+                                                    {{$data->item_name}} ({{$data->item_status}})
+                                                    <p style="margin-left: auto">qty : {{$data->quantity}}</p>
+                                                </li>
+                                            @elseif($data->item_status == "returned")
+                                                <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
+                                                    {{$data->item_name}}
+                                                    <p style="margin-left: auto">qty : {{$data->quantity}}</p>
+                                                </li>
+                                            @endif
                                         @endif
                                         @php $h++; @endphp
                                     @endforeach

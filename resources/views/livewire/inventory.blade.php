@@ -47,7 +47,7 @@
             @foreach($request_data as $data)
                 @if($q < 10)
                     <tr class="invs">
-                        <td>@if($data->item_status == "returned") {{ucfirst($data->item_name)}} (returned) @else {{ucfirst($data->item_name)}} @endif</td>
+                        <td>@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->item_status}}) @else {{ucfirst($data->item_name)}} @endif</td>
                         <td>{{$data->quantity}}</td>
                         <td >{{$data->unit_cost}}</td>
                         <td >{{$data->unit}}</td>

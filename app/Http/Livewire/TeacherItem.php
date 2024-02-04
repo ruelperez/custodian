@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class TeacherItem extends Component
 {
-    public $receiver_id, $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $invAll, $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
 
     public function render()
@@ -45,6 +45,7 @@ class TeacherItem extends Component
             ->get();
         $this->checkData = BackupPrepare::where('item_id','=', '1')
             ->get();
+        $this->invAll = \App\Models\Inventory::all();
 
     }
 
@@ -80,14 +81,14 @@ class TeacherItem extends Component
                     'item_status' => 'returned',
                 ]);
 
-                $datas->item_status = "returned";
+                $datas->is_returned = true;
                 $datas->save();
             }
             elseif ($h == 1){
                 $dataInv = \App\Models\Inventory::find($inv_id);
                 $dataInv->item_status = "returned";
 
-                $datas->item_status = "returned";
+                $datas->is_returned = true;
                 $datas->save();
             }
 
