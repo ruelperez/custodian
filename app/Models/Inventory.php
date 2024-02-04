@@ -14,6 +14,7 @@ class Inventory extends Model
         'unit_cost',
         'inventory_number',
         'item_type',
+        'item_status',
     ];
 
     use HasFactory;

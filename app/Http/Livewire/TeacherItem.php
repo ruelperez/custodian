@@ -61,9 +61,16 @@ class TeacherItem extends Component
             ->get();
         foreach ($data as $datas){
             \App\Models\Inventory::create([
-                ''
+                'item_name' => $datas->item_name,
+                'quantity' => $datas->quantity,
+                'unit' => $datas->unit,
+                'unit_cost' => $datas->unit_cost,
+                'inventory_number' => $datas->serial,
+                'item_type' => $datas->item_type,
+                'item_status' => 'returned',
             ]);
         }
+
     }
 
     public function clickUncheck($id){
