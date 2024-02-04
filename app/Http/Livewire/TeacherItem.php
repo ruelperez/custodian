@@ -59,17 +59,40 @@ class TeacherItem extends Component
         $data = BackupPrepare::where('receiver','=',$name)
             ->where('item_id','1')
             ->get();
+
         foreach ($data as $datas){
-            \App\Models\Inventory::create([
-                'item_name' => $datas->item_name,
-                'quantity' => $datas->quantity,
-                'unit' => $datas->unit,
-                'unit_cost' => $datas->unit_cost,
-                'inventory_number' => $datas->serial,
-                'item_type' => $datas->item_type,
-                'item_status' => 'returned',
-            ]);
+            $h = 0;
+            $inv = \App\Models\Inventory::all();
+            foreach ($inv as $invs){
+                if ($invs->inventory_number == $datas->serial){
+                    $h = 1;
+                    $inv_id = $invs->id;
+                }
+            }
+            if ($h == 0){
+                \App\Models\Inventory::create([
+                    'item_name' => $datas->item_name,
+                    'quantity' => $datas->quantity,
+                    'unit' => $datas->unit,
+                    'unit_cost' => $datas->unit_cost,
+                    'inventory_number' => $datas->serial,
+                    'item_type' => $datas->item_type,
+                    'item_status' => 'returned',
+                ]);
+
+                $datas->item_status = "returned";
+                $datas->save();
+            }
+            elseif ($h == 1){
+                $dataInv = \App\Models\Inventory::find($inv_id);
+                $dataInv->item_status = "returned";
+
+                $datas->item_status = "returned";
+                $datas->save();
+            }
+
         }
+
 
     }
 

@@ -110,9 +110,13 @@
                                 </td>
 
                                 <td>
-                                    <div class="form-check">
-                                    <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
-                                    </div>
+                                    @if($data->item_status == "" or $data->item_status == null)
+                                        <div class="form-check">
+                                            <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
+                                        </div>
+                                    @else
+                                        <p style="color: red;">{{ucfirst($data->item_status)}}</p>
+                                    @endif
                                 </td>
                             </tr>
                         @endif
