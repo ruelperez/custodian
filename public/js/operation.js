@@ -98,12 +98,6 @@ function removeItemMoved(id,name){
     }
 }
 
-function moveToInventory(){
-    if (confirm('Are you sure to move all item to inventory?')){
-        window.livewire.emit('moves');
-    }
-}
-
 function clickMove(){
     if (confirm('Are you sure to move to purchase request?')){
         window.livewire.emit('movebToPr');
@@ -212,18 +206,17 @@ function teacherOut(id){
 
 function teacherClick(id){
     var c = $('#checkBox'+id);
-    var d = $('#plusIcon');
-    var e = $('#returnId');
-    var f = $('#tea1'+id);
     if (c.prop('checked')) {
-        d.css("margin-left", "14%");
-        e.show();
-        f.css("background-color", "#66CDAA");
+        window.livewire.emit('clickCheck',id);
 
     } else {
-        d.css("margin-left", "46%");
-        e.hide();
-        f.css("background-color", "");
+        window.livewire.emit('clickUncheck',id);
+    }
+}
+
+function clickRtrn(name){
+    if (confirm('Are you sure you want return items? If yes, click "OK"')){
+        window.livewire.emit('returnItem',name);
     }
 }
 

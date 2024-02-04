@@ -10,11 +10,12 @@ use Livewire\Component;
 
 class TeacherItem extends Component
 {
-    public $receiver_id, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
 
     public function render()
     {
+
         $this->displayData();
         return view('livewire.teacher-item');
     }
@@ -42,54 +43,38 @@ class TeacherItem extends Component
             ->where('transaction_name', '=', 'property_ics')
             ->orderBy($this->sort1,$this->sort2)
             ->get();
+        $this->checkData = BackupPrepare::where('item_id','=', '1')
+            ->get();
+
     }
 
     protected $listeners = [
         'input_change' => 'inputChange',
-        'moves' => 'moveToInventory',
         'clickCheck' => 'clickCheck',
+        'clickUncheck'=> 'clickUncheck',
+        'returnItem' => 'returnItem',
     ];
 
-    public function clickCheck($id){
-        CheckItem::create([
-           'item_id' => $id
-        ]);
+    public function returnItem($name){
+        $data = BackupPrepare::where('receiver','=',$name)
+            ->where('item_id','1')
+            ->get();
+        foreach ($data as $datas){
+            \App\Models\Inventory::create([
+                ''
+            ]);
+        }
     }
 
-    public function moveToInventory(){
-        $this->gk = 1;
-        foreach ($this->deployed_data as $data){
-            try {
-                $tt = \App\Models\Inventory::where('item_name',$data->item_name)->increment('quantity',$data->quantity);
-                if ($tt == 0){
-                    \App\Models\Inventory::create([
-                        'item_name' => $data->item_name,
-                        'quantity' => $data->quantity,
-                        'unit' => $data->unit,
-                        'item_type' => $data->item_type,
-                        'inventory_number' => 0,
-                    ]);
-                }
-                session()->flash('transfer',"Successfully  Moved to Inventory");
-                Log::create([
-                    'name' => auth()->user()->username,
-                    'action' => 'Move to Inventory from Teacher deployed Item'
-                ]);
-            }
-            catch (\Exception $e){
-                session()->flash('failed',"Failed to Move");
-            }
-        }
-
-        foreach ($this->deployed_data as $ord){
-            BackupPrepare::find($ord->id)->delete();
-        }
-        $rec = Receiver::where('fullname','=',$this->teacher_name)
-            ->get('id');
-        foreach ($rec as $recs){
-            Receiver::find($recs->id)->delete();
-        }
-
+    public function clickUncheck($id){
+        $data = BackupPrepare::find($id);
+        $data->item_id = '0';
+        $data->save();
+    }
+    public function clickCheck($id){
+       $data = BackupPrepare::find($id);
+       $data->item_id = '1';
+       $data->save();
     }
     public function updated($field)
     {

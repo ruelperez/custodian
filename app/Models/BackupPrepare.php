@@ -22,6 +22,7 @@ class BackupPrepare extends Model
         'position',
         'transaction_name',
         'item_id',
+        'item_status',
     ];
 
     use HasFactory;
