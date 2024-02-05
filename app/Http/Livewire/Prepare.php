@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $itemStats, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $mas=0, $itemStats, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -273,7 +273,15 @@ class Prepare extends Component
     public function click_item($id,$item_status){
         $this->itemStats = $item_status;
         $data = \App\Models\Inventory::find($id);
-        $this->item_name = $data->item_name;
+        if ($data->item_status == "returned"){
+            $this->item_name = $data->item_name;
+            $this->mas = 1;
+        }
+        else{
+            $this->item_name = $data->item_name;
+            $this->mas = 0;
+        }
+
         $this->unit = $data->unit;
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;

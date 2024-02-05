@@ -64,6 +64,7 @@
                         <div style="display: flex">
                             <div class="mb-2" style="width: 70%; margin-left: 15%;">
                                 <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model="item_name" required>
+                                @if($mas == 1) <i style="color: green"> (Returned)</i> @endif
                             </div>
                             @if($basis == 0)
                                 <div style="margin-left: 2%; margin-top: 6px;">
