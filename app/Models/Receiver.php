@@ -9,6 +9,7 @@ class Receiver extends Model
 {
     protected $fillable = [
         'fullname',
+        'position',
     ];
 
     use HasFactory;
