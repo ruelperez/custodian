@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $itemStats, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -167,7 +167,6 @@ class Prepare extends Component
 
     public function submit(){
 
-
         $data = $this->validate([
             'item_name' => 'required',
         ]);
@@ -197,7 +196,8 @@ class Prepare extends Component
                     'serial' => $this->serial,
                     'ics' => $this->ics,
                     'position' => $this->position,
-                    'transaction_name' => $this->transaction_name
+                    'transaction_name' => $this->transaction_name,
+                    'item_status' => $this->itemStats,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -241,7 +241,8 @@ class Prepare extends Component
                     'serial' => $this->serial,
                     'ics' => $this->ics,
                     'position' => $this->position,
-                    'transaction_name' => $this->transaction_name
+                    'transaction_name' => $this->transaction_name,
+                    'item_status' => $this->itemStats,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -269,13 +270,20 @@ class Prepare extends Component
 
     }
 
-    public function click_item($id){
+    public function click_item($id,$item_status){
+        $this->itemStats = $item_status;
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
         $this->unit = $data->unit;
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
+        if ($data->inventory_number != 0 and $data->item_status != ""){
+            $this->serial = $data->inventory_number;
+        }
+        else{
+            $this->icsInvNum();
+        }
         $this->basis = 0;
         $this->basin = 0;
         $this->item_disable = 1;
@@ -368,6 +376,7 @@ class Prepare extends Component
         $this->quantity = $data->quantity;
         $this->unit = $data->unit;
         $this->item_type = $data->item_type;
+        $this->serial = $data->serial;
     }
 
     public function submit_edit(){
@@ -437,15 +446,27 @@ class Prepare extends Component
                     }
 
                 }
-                if ($datas->item_name)
-                try {
-                    \App\Models\Inventory::where('item_name',$datas->item_name)->decrement('quantity',$datas->quantity);
-                    session()->flash('good',"good");
-                    $f = 1;
+                if ($datas->item_status == null or $datas->item_status == ""){
+                    try {
+                        \App\Models\Inventory::where('item_name',$datas->item_name)
+                            ->where('item_status',null)->decrement('quantity',$datas->quantity);
+                        session()->flash('good',"good");
+                        $f = 1;
+                    }
+                    catch (\Exception $e){
+                        session()->flash('bad',"bad");
+                        $f = 0;
+                    }
                 }
-                catch (\Exception $e){
-                    session()->flash('bad',"bad");
-                    $f = 0;
+                else{
+                    $invData = \App\Models\Inventory::where('inventory_number',$datas->serial)->get();
+                    foreach ($invData as $inv){
+                        $inv->item_status = "transferred";
+                        $inv->save();
+                        $f = 1;
+                        break;
+                    }
+
                 }
 
             }
@@ -512,7 +533,11 @@ class Prepare extends Component
                     ->where('fullname','=', $dat->receiver)
                     ->get();
                 if (count($accepter) == 0){
-                    Receiver::create(['fullname' => $dat->receiver]);
+                    Receiver::create([
+                        'fullname' => $dat->receiver,
+                        'position' => $dat->position
+                    ]);
+
                 }
 
             }

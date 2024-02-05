@@ -43,7 +43,8 @@ class TeacherItem extends Component
             ->where('transaction_name', '=', 'property_ics')
             ->orderBy($this->sort1,$this->sort2)
             ->get();
-        $this->checkData = BackupPrepare::where('item_id','=', '1')
+        $this->checkData = BackupPrepare::where('receiver','=', $this->teacher_name)
+            ->where('item_id','=', '1')
             ->get();
         $this->invAll = \App\Models\Inventory::all();
 
@@ -68,6 +69,7 @@ class TeacherItem extends Component
                 if ($invs->inventory_number == $datas->serial){
                     $h = 1;
                     $inv_id = $invs->id;
+                    break;
                 }
             }
             if ($h == 0){
@@ -87,11 +89,14 @@ class TeacherItem extends Component
             elseif ($h == 1){
                 $dataInv = \App\Models\Inventory::find($inv_id);
                 $dataInv->item_status = "returned";
+                $dataInv->save();
 
                 $datas->is_returned = true;
                 $datas->save();
             }
 
+            $datas->item_id = 0;
+            $datas->save();
         }
 
 
