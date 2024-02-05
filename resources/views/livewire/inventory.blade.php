@@ -46,16 +46,18 @@
             @php $q=0; @endphp
             @foreach($request_data as $data)
                 @if($q < 10)
-                    <tr class="invs">
-                        <td>@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->item_status}}) @else {{ucfirst($data->item_name)}} @endif</td>
-                        <td>{{$data->quantity}}</td>
-                        <td >{{$data->unit_cost}}</td>
-                        <td >{{$data->unit}}</td>
-                        <td>{{$data->inventory_number}}</td>
-                        <td>{{$data->item_type}}</td>
-                        <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
-                        <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="delInv({{$data->id}})"></i></td>
-                    </tr>
+                    @if($data->item_status != "transferred")
+                        <tr class="invs">
+                            <td>@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->item_status}}) @else {{ucfirst($data->item_name)}} @endif</td>
+                            <td>{{$data->quantity}}</td>
+                            <td >{{$data->unit_cost}}</td>
+                            <td >{{$data->unit}}</td>
+                            <td>{{$data->inventory_number}}</td>
+                            <td>{{$data->item_type}}</td>
+                            <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
+                            <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="delInv({{$data->id}})"></i></td>
+                        </tr>
+                    @endif
                 @endif
                 @php $q++; @endphp
             @endforeach

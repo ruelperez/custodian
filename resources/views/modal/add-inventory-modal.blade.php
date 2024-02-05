@@ -19,11 +19,11 @@
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Item Description" wire:model="item_name">
                         @error('item_name') <span style="color: red">{{ $message }}</span> @enderror
-                        @if($kl == 1)
-                            <div style="width: 100%; color: red">
-                                <p>Duplicate item. Please input unique item name.</p>
-                            </div>
-                        @endif
+{{--                        @if($kl == 1)--}}
+{{--                            <div style="width: 100%; color: red">--}}
+{{--                                <p>Duplicate item. Please input unique item name.</p>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                     </div>
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Quantity" wire:model="quantity">

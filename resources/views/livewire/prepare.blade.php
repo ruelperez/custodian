@@ -57,7 +57,12 @@
                         @if($q < 10)
                             <tr class="invs">
                                 <td>{{$data->unit}}</td>
-                                <td>{{$data->item_name}}</td>
+                                @if($data->item_status == null or $data->item_status == "")
+                                    <td>{{$data->item_name}}</td>
+                                @else
+                                    <td>{{$data->item_name}} (returned)</td>
+                                @endif
+
                                 <td>{{$data->quantity}}</td>
                                 <td>{{$data->serial}}</td>
                                 <td>{{ucwords($data->receiver)}}</td>

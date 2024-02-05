@@ -32,7 +32,7 @@ class Inventory extends Component
         $count = 0;
         $data = \App\Models\Inventory::all();
         foreach ($data as $datas){
-            if ($datas->item_name == $this->item_name){
+            if (strcasecmp($datas->item_name, $this->item_name) == 0){
                 $count++;
             }
         }
@@ -47,6 +47,7 @@ class Inventory extends Component
     public function search(){
         $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
+//            ->where('item_status','!=', 'transferred')
             ->get();
     }
 

@@ -274,14 +274,12 @@ class Prepare extends Component
         $this->itemStats = $item_status;
         $data = \App\Models\Inventory::find($id);
         if ($data->item_status == "returned"){
-            $this->item_name = $data->item_name;
             $this->mas = 1;
         }
         else{
-            $this->item_name = $data->item_name;
             $this->mas = 0;
         }
-
+        $this->item_name = $data->item_name;
         $this->unit = $data->unit;
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
@@ -300,6 +298,7 @@ class Prepare extends Component
     public function click_items($id){
         $data = Receiver::find($id);
         $this->receiver = $data->fullname;
+        $this->position = $data->position;
         $this->picks = 1;
         $this->basis = 0;
         $this->receiver_disable = 1;
