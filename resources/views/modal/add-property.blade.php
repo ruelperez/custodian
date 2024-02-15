@@ -26,7 +26,7 @@
                         ICS
                     </div>
                     <div class="py-1" style="width: 50%;background-color: #F5F5F5; color: black" id="parBtn" onclick="par()">
-                        PAR
+                        PAR/Property
                     </div>
                 </div>
                 <div id="ics">
@@ -127,8 +127,22 @@
                 <div id="spinner" class="spinner-border spin" style="width: 70px; height: 70px; font-size: 25px; margin-left: 43%; margin-top: 20%; display: none;">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <div id="par" style="display: none;">
-                    <h1>PAR FORM HERE</h1>
+                <div id="par" style="display: none">
+                    <div style="display: flex;margin-top: 4%;">
+                        <div class="form-check" style="width: 50%;padding-left: 37%;">
+                            <input class="form-check-input" type="radio" wire:model="propBtn" value="par" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                PAR
+                            </label>
+                        </div>
+                        <div class="form-check" style="width: 50%; padding-left: 10%;">
+                            <input class="form-check-input" type="radio" wire:model="propBtn" value="property" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Property
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
