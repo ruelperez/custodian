@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "report",$mons, $username, $current, $new, $retype, $item_type, $mos, $report="teacher", $df=0, $hover;
+    public $option = "purchase",$mons, $username, $current, $new, $retype, $item_type, $mos, $report, $df=0, $hover;
 
     public function render()
     {
@@ -111,8 +111,8 @@ class Portion extends Component
 
         if (Hash::check($this->current, $storedHash)) {
             $this->validate([
-                'new' => 'required', // Add any other password rules as needed
-                'retype' => 'required|same:new',
+                'new' => 'required|min:5', // Add any other password rules as needed
+                'retype' => 'required|min:5|same:new',
             ]);
 
             $hash = bcrypt($this->new);

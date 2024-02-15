@@ -52,7 +52,7 @@
                             </div>
                             @error('delivery_term') <span style="color: red">{{ $message }}</span> @enderror
                             <div class="mb-3" style="width: 100%;">
-                                <input type="text" class="form-control" placeholder="Payment Term" wire:model="payment_term" @if($clickUpdate == 1) disabled @endif>
+                                <input  type="text" class="form-control" placeholder="Payment Term" wire:model="payment_term" @if($clickUpdate == 1) disabled @endif>
                             </div>
                             @error('payment_term') <span style="color: red">{{ $message }}</span> @enderror
                             <div class="mb-3" style="width: 100%;">

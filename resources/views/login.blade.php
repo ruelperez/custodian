@@ -56,33 +56,33 @@
 
 @livewire('login')
 {{--@include('modal.login-modal')--}}
-{{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg_modal">register</button>--}}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg_modal">register</button>
 
-{{--<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="reg_modal">--}}
-{{--    <div class="modal-dialog" role="document">--}}
-{{--        <div class="modal-content">--}}
-{{--            <div class="modal-header">--}}
-{{--                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Admin Reg</h5>--}}
-{{--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-{{--            </div>--}}
-{{--            <div class="modal-body">--}}
-{{--                <form action="/register" method="post">--}}
-{{--                    @csrf--}}
-{{--                    <div class="mb-3">--}}
-{{--                        <input type="text" class="form-control" placeholder="Username" name="username" required>--}}
-{{--                    </div>--}}
-{{--                    <div class="mb-3">--}}
-{{--                        <input class="form-control" placeholder="Password" name="password" required>--}}
-{{--                    </div>--}}
-{{--                    <div class="mb-3">--}}
-{{--                        <input class="form-control" name="role" value="1">--}}
-{{--                    </div>--}}
-{{--                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">submit</button>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+<div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="reg_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Admin Reg</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/register" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="role" value="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @include('partial.footer')
