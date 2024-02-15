@@ -88,7 +88,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>{{strtoupper($desig->printedName)}}</b>
+            <b>@if($desig != null) {{strtoupper($desig->printedName)}} @endif</b>
         </td>
     </tr>
     <tr style="text-align: center;">
@@ -104,7 +104,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>{{strtoupper($desig->position)}}</b>
+            <b>@if($desig != null) {{strtoupper($desig->position)}} @endif</b>
         </td>
     </tr>
     <tr style="text-align: center;">

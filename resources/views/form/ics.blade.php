@@ -86,8 +86,8 @@
     <tr>
         <td rowspan="3" style="width: 50%; border: 1px solid;">
             <p><b>Received from:</b><p/>
-            <p style="text-align: center"><b><u>{{strtoupper($desig->printedName)}}</u></b><br>Signature Over Printed Name</p><br>
-            <p style="text-align: center"><b><u>{{strtoupper($desig->position)}}</u></b><br>Position/Office</p>
+            <p style="text-align: center"><b><u>@if($desig != null) {{strtoupper($desig->printedName)}} @endif</u></b><br>Signature Over Printed Name</p><br>
+            <p style="text-align: center"><b><u>@if($desig != null) {{strtoupper($desig->position)}} @endif</u></b><br>Position/Office</p>
         </td>
         <td>
             <p><b>Received by:</b></p> {{ucwords($receivedBy)}}

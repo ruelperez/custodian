@@ -119,7 +119,7 @@
     <tr>
         <td style="width: 50%; padding-bottom: 1%; border: 1px solid; border-right: none;">
             Certified Correct:
-            <br><p style="text-align: center"><b><u>{{ucwords($desig->nameOfSupply)}}</u></b><br>Signature over Printed Name of Supply <br> and/or  Property Custodian</p>
+            <br><p style="text-align: center"><b><u>@if($desig != null) {{ucwords($desig->nameOfSupply)}} @endif</u></b><br>Signature over Printed Name of Supply <br> and/or  Property Custodian</p>
         </td>
         <td style="width: 50%; padding-bottom: 1%; border: 1px solid; border-left: none;">
             Disposal Approved :
