@@ -11,13 +11,25 @@ class OrderController extends Controller
 {
     public function pdf(){
         $desig = DesigPo::first();
-        $principal = $desig->principal;
+        if ($desig ==  null or $desig == ""){
+            $principal = "";
+        }
+        else{
+            $principal = $desig->principal;
+        }
         $request_data = \App\Models\Order::all();
         $order = OrderAdditional::all();
-        foreach ($order as $orders){
-            $additional = OrderAdditional::find($orders->id);
-            $date = $orders->updated_at->format('M-d-Y');
-            $totalInWords = $orders->total_words;
+        if (count($order) < 1){
+            $additional = "";
+            $date = "";
+            $totalInWords = "";
+        }
+        else{
+            foreach ($order as $orders){
+                $additional = OrderAdditional::find($orders->id);
+                $date = $orders->updated_at->format('M-d-Y');
+                $totalInWords = $orders->total_words;
+            }
         }
         $pdf = PDF::loadView('form.form-order', compact('request_data','additional','date','totalInWords','principal'))
             ->setPaper('legal','portrait');

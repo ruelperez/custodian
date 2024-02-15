@@ -32,14 +32,14 @@
 <table style="width: 100%; border-collapse: collapse; border: 1px solid;">
     <tr>
         <td colspan="4" style=" border: 1px solid; padding-left: 2%;">
-            <b style="margin-top: 10px;">Supplier: {{ucwords($additional->supplier)}}</b><br>
-            <b>Address: {{ucwords($additional->address)}}</b><br>
-            <b>TIN: {{$additional->tin}}</b>
+            <b style="margin-top: 10px;">Supplier: @if($additional != "") {{ucwords($additional->supplier)}} @endif </b><br>
+            <b>Address: @if($additional != "") {{ucwords($additional->address)}} @endif</b><br>
+            <b>TIN: @if($additional != "") {{$additional->tin}} @endif</b>
         </td>
         <td colspan="3" style="padding-left: 2%; width: 20%;">
-            <b style="margin-top: 10px;">P.O No: {{$additional->po_num}}</b><br>
+            <b style="margin-top: 10px;">P.O No:  @if($additional != "") {{$additional->po_num}} @endif </b><br>
             <b>Date: {{$date}}</b><br>
-            <b>Mode of Procurement: {{ucwords($additional->mode)}}</b>
+            <b>Mode of Procurement: @if($additional != "") {{ucwords($additional->mode)}} @endif</b>
         </td>
     </tr>
     <tr>
@@ -50,12 +50,12 @@
     </tr>
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
-            <b style="margin-top: 1px;">Place of Delivery: {{ucwords($additional->place_delivery)}}</b><br>
-            <b>Date of Delivery: {{ucwords($additional->date_delivery)}}</b>
+            <b style="margin-top: 1px;">Place of Delivery: @if($additional != "") {{ucwords($additional->place_delivery)}} @endif </b><br>
+            <b>Date of Delivery: @if($additional != "") {{ucwords($additional->date_delivery)}} @endif </b>
         </td>
         <td colspan="3" style="text-align: left; padding-left: 2%;">
-            <b style="margin-top: 1px;">Delivery Term: {{ucwords($additional->delivery_term)}}</b><br>
-            <b>Payment Term: {{ucwords($additional->payment_term)}}</b>
+            <b style="margin-top: 1px;">Delivery Term: @if($additional != "") {{ucwords($additional->delivery_term)}} @endif </b><br>
+            <b>Payment Term: @if($additional != "") {{ucwords($additional->payment_term)}} @endif </b>
         </td>
     </tr>
     <tr style="text-align: center">
@@ -135,7 +135,7 @@
     <tr>
         <td colspan="4">
             <p style="margin-left: 6%;">Conforme:
-            <p style="text-align: center; font-size: 14px;"><b>{{strtoupper($additional->supplier)}}</b>
+            <p style="text-align: center; font-size: 14px;"><b>@if($additional != "") {{strtoupper($additional->supplier)}} @endif</b>
             <br> Signature Over Printed Name of Supplier
             <p style="text-align: center; font-size: 14px;">____________________ <br> <i style="text-align: center;">Date</i>
         </td>
@@ -148,7 +148,7 @@
     <tr>
         <td colspan="4" style=" border: 1px solid; text-align: left; padding-left: 2%; padding-top: 0.5%;">
             <p style="margin-top: 1px;font-size: 14px;"> <b>Fund Cluster: _____________________ <br>Funds Available: _____________________</b>
-            <p style="text-align: center;font-size: 14px;"><b>{{strtoupper($additional->chief)}}</b><br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
+            <p style="text-align: center;font-size: 14px;"><b> @if($additional != "") {{strtoupper($additional->chief)}} @endif</b><br> Signature Over Printed Name of Chief Accountant Head/Head of Accounting Division/Unit</p>
         </td>
         <td colspan="3" style=" border: 1px solid;">
             <p style="font-size: 14px;"> <b>ORS/BURS No.: _____________________ <br>Date of the ORS/BURS: _____________________<br>Amount: _____________________</b></p><p style="color: white"><br>Date of the ORS/BURS: _____________________</p>
