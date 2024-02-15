@@ -166,7 +166,9 @@ function clickEllipsis(){
 function par(){
    $('#ics').hide();
    $('#parBtn').css("background-color", "#61676A");
-   $('#icsBtn').css("background-color", "#86969D");
+    $('#parBtn').css("color", "white");
+   $('#icsBtn').css("background-color", "#F5F5F5");
+    $('#icsBtn').css("color", "black");
     $('#par').hide();
    $("#spinner").show();
     setTimeout(function() {
@@ -181,8 +183,10 @@ function par(){
 function ics(){
     $('#par').hide();
     $('#ics').hide();
-    $('#parBtn').css("background-color", "#86969D");
+    $('#parBtn').css("background-color", "#F5F5F5");
+    $('#parBtn').css("color", "black");
     $('#icsBtn').css("background-color", "#61676A");
+    $('#icsBtn').css("color", "white");
     $("#spinner").show();
     setTimeout(function() {
         $("#spinner").hide();

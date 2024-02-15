@@ -25,7 +25,7 @@
                     <div class="py-1" style="width: 50%; background-color: #61676A; color: white" id="icsBtn" onclick="ics()">
                         ICS
                     </div>
-                    <div class="py-1" style="width: 50%;background-color: #86969D; color: white" id="parBtn" onclick="par()">
+                    <div class="py-1" style="width: 50%;background-color: #F5F5F5; color: black" id="parBtn" onclick="par()">
                         PAR
                     </div>
                 </div>
