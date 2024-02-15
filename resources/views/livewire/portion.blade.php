@@ -1,5 +1,6 @@
 <div>
     @include('modal.changePassModal')
+    @include('modal.click-settings')
     <div style="display: flex; width: 100%;">
 
         <div style="width: 19%; background-color: #0077b6">
@@ -21,6 +22,9 @@
                     <div wire:click="clickPortion('logs')" wire:loading.attr="disabled"><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
                     <div wire:click="clickPortion('designation')" style=" margin-top: 5%;" wire:loading.attr="disabled"> <i class="fa-solid fa-marker"></i> Designator</div>
                     <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
+                    <div wire:click="clickSettings" data-bs-toggle="modal" data-bs-target="#clickSettings" id="settings" style="margin-top: 5%; color: white; background-color: #0d1321">
+                        <i class="fa-solid fa-gear" style="margin-right: 7px;"></i>Settings
+                    </div>
                     <div style="margin-top: 15%;">
                         <form action="/Dashboard/logout" method="POST">
                             @csrf
