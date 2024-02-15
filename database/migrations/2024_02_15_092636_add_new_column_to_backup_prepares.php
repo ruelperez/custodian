@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('backup_prepares', function (Blueprint $table) {
-            $table->string('serial')->nullable();
+            $table->string('ics')->nullable();
+            $table->string('ics_last')->nullable();
         });
     }
 

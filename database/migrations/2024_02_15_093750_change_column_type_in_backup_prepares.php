@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('backup_prepares', function (Blueprint $table) {
-            $table->string('ics')->nullable()->change();
-            $table->string('ics_last')->nullable()->change();
             $table->string('total_cost')->nullable()->change();
         });
     }
