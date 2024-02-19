@@ -9,11 +9,8 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-<<<<<<< HEAD
-    public $option = "graph",$mons, $registrationSwitch, $username, $current, $new, $retype, $item_type, $mos, $report, $df=0, $hover;
-=======
+
     public $option = "graph",$mons, $username, $current, $new, $retype, $item_type, $mos, $report, $df=0, $hover;
->>>>>>> add-parameter
 
     public function render()
     {
