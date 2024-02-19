@@ -23,7 +23,7 @@ class Portion extends Component
         if (count($data) == 0){
             IsRegistration::create([
                 'user_id' => auth()->user()->id,
-                'on_off' => false,
+                'on_off' => true,
             ]);
         }
         $an = IsRegistration::all();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('is_registrations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->boolean('on_off')->default('0');
+            $table->boolean('on_off')->default('1');
             $table->timestamps();
         });
     }

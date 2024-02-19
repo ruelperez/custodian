@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Login extends Component
 {
-    public $eye = 0,$gt=0, $is_reg, $role = 1,$password_confirmation, $password, $username;
+    public $eye = 0,$gt=0, $is_reg = 1, $role = 1,$password_confirmation, $password, $username;
 
     public function render()
     {
