@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class IsRegistration extends Model
 {
-    
+    protected $fillable = [
+        'user_id',
+        'on_off',
+    ];
     use HasFactory;
 }
