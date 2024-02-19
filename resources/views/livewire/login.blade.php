@@ -66,7 +66,7 @@
                                 <input class="form-control" wire:model="role" hidden>
                             </div>
                             @if($is_reg == 0)
-                                <p style="color: red;margin-left: 15%;">The registration is disabled, Contact admin user to enable.</p>
+                                <p style="color: red;margin-left: 15%;">The registrationssssssss is disabled, Contact admin user to enable.</p>
                             @endif
                             <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;" @if($is_reg == 0) disabled @endif>Register</button>
                             <p class="text-center text-muted mt-3 mb-0">Click here to <u wire:click="log" style="cursor: pointer;" class="fw-bold text-body">Login</u></p>
