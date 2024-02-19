@@ -18,7 +18,10 @@ class Prepare extends Model
         'ics',
         'position',
         'transaction_name',
-        'item_status'
+        'item_status',
+        'par_num',
+        'prop_num',
+        'date_acquired',
     ];
 
     use HasFactory;
