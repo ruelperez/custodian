@@ -63,13 +63,13 @@
                         @endif
                     </div>
 
-                    @if($basis != 0)
+                    @if($basis !== 0)
                         <div style="width: 66%; margin-left: 14%; position: absolute;" id="prepareSuggestItem">
                             <ul class="list-group">
                                 @php $h=0; @endphp
                                 @foreach($result as $data)
                                     @if($h < 6)
-                                        <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
+                                        <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
                                             {{$data->item_name}}
                                             <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                         </li>

@@ -26,6 +26,7 @@ class Prepare extends Component
         elseif ($this->clickAdd === "property_ics"){
             $this->propertyIcs();
         }
+
         $this->prepare_data = \App\Models\Prepare::all();
         return view('livewire.prepare');
     }
@@ -38,6 +39,7 @@ class Prepare extends Component
     }
 
     public function addClick($data){
+        $this->clearInput();
         $this->clickAdd = $data;
         if ($this->clickAdd == "supply"){
             $this->transaction_name = "supply";
@@ -47,6 +49,16 @@ class Prepare extends Component
             $this->transaction_name = "property_ics";
             $this->icsInvNum();
         }
+    }
+
+    public function clearInput(){
+        $this->receiver="";
+        $this->position="";
+        $this->item_name="";
+        $this->unit="";
+        $this->quantity = "";
+        $this->unit_cost="";
+        $this->total_cost= "";
     }
 
     public function icsInvNum(){
@@ -110,7 +122,7 @@ class Prepare extends Component
                 $this->basis = 0;
                 $this->pick = 0;
             }
-            elseif ($this->item_name != ""){
+            elseif ($this->item_name != "" and $this->pick == 0){
                 $this->basis = 1;
                 $this->search();
             }
@@ -319,6 +331,7 @@ class Prepare extends Component
             ->get();
         if (count($this->result) == 0){
             $this->basis = 0;
+            $this->pick = 0;
         }
         else{
             $this->basis = 1;
