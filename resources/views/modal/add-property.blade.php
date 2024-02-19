@@ -25,8 +25,10 @@
                     <div class="py-1" wire:click="clickIcs"  style=" @if($rt == 1) width: 50%; background-color: #61676A; color: white @else width: 50%;background-color: #F5F5F5; color: black @endif " id="icsBtn">
                         ICS
                     </div>
+
                     <div class="py-1" wire:click="clickPar" style="@if($rt == 0) width: 50%; background-color: #61676A; color: white @else width: 50%;background-color: #F5F5F5; color: black @endif " id="parBtn">
                         PAR/Property
+
                     </div>
                 </div>
                 <div id="ics" style="@if($rt == 1) display: block @else display: none @endif">
@@ -124,21 +126,11 @@
                         <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                     </form>
                 </div>
-                <div id="par" style="@if($rt == 0) display: block @else display: none @endif">
-                    <div style="display: flex; margin-top: 4%;">
-                        <div class="form-check" style="width: 50%; padding-left: 40%;">
-                            <input class="form-check-input" type="radio" wire:model="proBtn" value="par" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                PAR
-                            </label>
-                        </div>
-                        <div class="form-check" style="width: 50%; padding-left: 10%;">
-                            <input class="form-check-input" type="radio" wire:model="proBtn" value="property" id="flexRadioDefault2" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Property
-                            </label>
-                        </div>
-                    </div>
+                <div id="spinner" class="spinner-border spin" style="width: 70px; height: 70px; font-size: 25px; margin-left: 43%; margin-top: 20%; display: none;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div id="par" style="display: none;">
+                    <h1>PAR FORM HERE</h1>
                 </div>
                 <div style=" @if($proBtn == "par" and $rt == 0) display: block; @else display: none; @endif ">
                     <form wire:submit.prevent="submit_par">
