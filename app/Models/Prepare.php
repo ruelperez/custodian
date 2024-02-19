@@ -21,7 +21,7 @@ class Prepare extends Model
         'item_status',
         'par_num',
         'prop_num',
-        'date_acquired'
+        'date_acquired',
     ];
 
     use HasFactory;
