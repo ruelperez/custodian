@@ -172,14 +172,6 @@
                             <input type="text" class="form-control" placeholder="Position" wire:click="not_item_click" wire:model="position">
                             @error('position') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="PAR No" wire:click="not_item_click" wire:model="par_num">
-                            @error('par_num') <span style="color: red">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit">
-                            @error('unit') <span style="color: red">{{ $message }}</span> @enderror
-                        </div>
                         <div style="display: flex">
                             <div class="mb-2" style="width: 70%; margin-left: 15%;">
                                 <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model="item_name" required>
@@ -216,6 +208,10 @@
                             </div>
                         @endif
                         <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                            <input type="text" class="form-control" placeholder="Unit" wire:model="unit" disabled>
+                            @error('unit') <span style="color: red">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
                             <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
                             @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                             @if(session()->has('insufficient'))
@@ -225,19 +221,18 @@
                             @endif
                         </div>
                         <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Property No." wire:click="not_item_click" wire:model="prop_num">
-                            @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
+                            <input type="text" class="form-control" placeholder="Unit Cost" wire:click="not_item_click" wire:model="unit_cost">
+                            @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Date Acquired" wire:click="not_item_click" wire:model="date_acquired">
-                            @error('date_acquired') <span style="color: red">{{ $message }}</span> @enderror
+                            <input type="text" class="form-control" placeholder="Total Cost" wire:click="not_item_click" wire:model="total_cost">
+                            @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Amount" wire:click="not_item_click" wire:model="amount">
-                            @error('amount') <span style="color: red">{{ $message }}</span> @enderror
+                            <input type="text" class="form-control" placeholder="Inventory No." wire:click="not_item_click" wire:model="serial" disabled>
                         </div>
                         <input type="text" hidden wire:model="unit_cost">
-                        <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">Submit</button>
+                        <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                     </form>
                 </div>
                 <div style=" @if($proBtn == "property" and $rt == 0) display: block; @else display: none; @endif ">
