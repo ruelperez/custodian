@@ -22,6 +22,9 @@ class Prepare extends Model
         'par_num',
         'prop_num',
         'date_acquired',
+        'ppe',
+        'reference',
+        'officer'
     ];
 
     use HasFactory;

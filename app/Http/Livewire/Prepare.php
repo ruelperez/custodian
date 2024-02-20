@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $mas=0, $proBtn="par", $rt=1, $itemStats, $par_num, $prop_num, $date_acquired, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $mas=0, $officer, $reference, $ppe, $proBtn="par", $rt=1, $itemStats, $par_num,$amount, $prop_num, $date, $date_acquired, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -328,9 +328,12 @@ class Prepare extends Component
                     'position' => $this->position,
                     'transaction_name' => $this->transaction_name,
                     'item_status' => $this->itemStats,
-                    'par_num' => $this->par_num,
+                    'ppe' => $this->ppe,
                     'prop_num' => $this->prop_num,
+                    'par_num' => $this->par_num,
                     'date_acquired' => $this->date_acquired,
+                    'reference' => $this->reference,
+                    'officer' => $this->officer,
                 ]);
 
                 $this->item_name = "";
@@ -377,6 +380,13 @@ class Prepare extends Component
                     'position' => $this->position,
                     'transaction_name' => $this->transaction_name,
                     'item_status' => $this->itemStats,
+                    'total_cost' => $this->total_cost,
+                    'ppe' => $this->ppe,
+                    'prop_num' => $this->prop_num,
+                    'par_num' => $this->par_num,
+                    'date_acquired' => $this->date_acquired,
+                    'reference' => $this->reference,
+                    'officer' => $this->officer,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
