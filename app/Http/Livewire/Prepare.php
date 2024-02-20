@@ -18,7 +18,6 @@ class Prepare extends Component
 
     public function render()
     {
-
         $this->getIcsNum();
         if ($this->clickAdd === "supply"){
             $this->supply();
@@ -26,18 +25,124 @@ class Prepare extends Component
         elseif ($this->clickAdd === "property_ics"){
             $this->propertyIcs();
         }
+        elseif ($this->clickAdd == "par"){
+            $this->par();
+        }
+        elseif ($this->clickAdd == "property"){
+            $this->property();
+        }
         $this->prepare_data = \App\Models\Prepare::all();
         return view('livewire.prepare');
     }
 
+    public function property(){
+        if ($this->fas == 0){
+            if ($this->receiver != "" and $this->picks == 1){
+                $this->basin = 0;
+                $this->picks = 0;
+            }
+            elseif ($this->receiver != ""){
+                $this->searchs();
+            }
+            else{
+                $this->basin = 0;
+            }
+        }
+
+        if ($this->fa == 0){
+            if ($this->item_name != "" and $this->pick == 1){
+                $this->basis = 0;
+                $this->pick = 0;
+            }
+            elseif ($this->item_name != ""){
+                $this->basis = 1;
+                $this->propertySearchItem();
+            }
+            else{
+                $this->basis = 0;
+            }
+        }
+    }
+
+    public function propertySearchItem(){
+        $this->result = DB::table('inventories')
+            ->where('item_name','LIKE', '%'.$this->item_name.'%')
+            ->where('item_type','!=','consumable')
+            ->where('unit_cost', '>', 50000)
+            ->get();
+        if (count($this->result) == 0){
+            $this->basis = 0;
+        }
+        else{
+            $this->basis = 1;
+        }
+    }
+    public function par(){
+        if ($this->fas == 0){
+            if ($this->receiver != "" and $this->picks == 1){
+                $this->basin = 0;
+                $this->picks = 0;
+            }
+            elseif ($this->receiver != ""){
+                $this->searchs();
+            }
+            else{
+                $this->basin = 0;
+            }
+        }
+
+        if ($this->fa == 0){
+            if ($this->item_name != "" and $this->pick == 1){
+                $this->basis = 0;
+                $this->pick = 0;
+            }
+            elseif ($this->item_name != ""){
+                $this->basis = 1;
+                $this->parSearchItem();
+            }
+            else{
+                $this->basis = 0;
+            }
+        }
+    }
+
+    public function parSearchItem(){
+        $this->result = DB::table('inventories')
+            ->where('item_name','LIKE', '%'.$this->item_name.'%')
+            ->where('item_type','!=','consumable')
+            ->where('unit_cost', '>', 50000)
+            ->get();
+        if (count($this->result) == 0){
+            $this->basis = 0;
+        }
+        else{
+            $this->basis = 1;
+        }
+    }
+
+
+
     public function clickIcs(){
         $this->rt = 1;
+        $this->clickAdd = "property_ics";
+        $this->clearInput();
     }
     public function clickPar(){
         $this->rt = 0;
+        $this->clickAdd = $this->proBtn;
     }
 
+    public function clickParBtn(){
+        $this->clickAdd = "par";
+    }
+
+    public function clickPropBtn(){
+        $this->clickAdd = "property";
+    }
+
+
     public function addClick($data){
+        $this->clearInput();
         $this->clickAdd = $data;
         if ($this->clickAdd == "supply"){
             $this->transaction_name = "supply";
@@ -47,6 +152,18 @@ class Prepare extends Component
             $this->transaction_name = "property_ics";
             $this->icsInvNum();
         }
+    }
+
+    public function clearInput(){
+        $this->item_name = "";
+        $this->quantity = "";
+        $this->position = "";
+        $this->receiver = "";
+        $this->unit = "";
+        $this->unit_cost = "";
+        $this->total_cost = "";
+        $item_disable = 0;
+        $receiver_disable = 0;
     }
 
     public function icsInvNum(){
@@ -109,6 +226,7 @@ class Prepare extends Component
             if ($this->item_name != "" and $this->pick == 1){
                 $this->basis = 0;
                 $this->pick = 0;
+                $this->result = [];
             }
             elseif ($this->item_name != ""){
                 $this->basis = 1;
@@ -116,6 +234,7 @@ class Prepare extends Component
             }
             else{
                 $this->basis = 0;
+                $this->result = [];
             }
         }
     }
@@ -309,6 +428,7 @@ class Prepare extends Component
         $this->basin = 0;
         $this->item_disable = 1;
         $this->pick = 1;
+        $this->result = [];
     }
     public function click_items($id){
         $data = Receiver::find($id);

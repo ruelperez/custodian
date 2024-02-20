@@ -6,6 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
+                @if($clickAdd == "supply")
                     <form wire:submit.prevent="submit">
                     @if(session()->has('dataAdded'))
                         <div class="alert alert-success" style="width: 100%; ">
@@ -98,6 +99,7 @@
                         <input type="text" hidden wire:model="unit_cost">
                     <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
                 </form>
+                @endif
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <div>
+    @include('modal.add-property')
     @include('modal.add-prepare-modal')
     @include('modal.deploy-confirmation')
-    @include('modal.add-property')
     @include('modal.edit-prepare-modal')
     @if($sample != 0)
         @livewire('deployed-byname')
