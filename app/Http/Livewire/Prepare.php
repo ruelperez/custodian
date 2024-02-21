@@ -162,8 +162,8 @@ class Prepare extends Component
         $this->unit = "";
         $this->unit_cost = "";
         $this->total_cost = "";
-        $item_disable = 0;
-        $receiver_disable = 0;
+        $this->item_disable = 0;
+        $this->receiver_disable = 0;
     }
 
     public function icsInvNum(){
@@ -428,7 +428,10 @@ class Prepare extends Component
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
-        if ($data->inventory_number != 0 and $data->item_status != ""){
+        if ($this->transaction_name == "supply"){
+            $this->supplyInvNum();
+        }
+        elseif ($data->inventory_number != 0 and $data->item_status != ""){
             $this->serial = $data->inventory_number;
         }
         else{
