@@ -18,6 +18,7 @@ class Prepare extends Component
 
     public function render()
     {
+
         $this->getIcsNum();
         if ($this->clickAdd === "supply"){
             $this->supply();
@@ -31,15 +32,16 @@ class Prepare extends Component
         elseif ($this->clickAdd == "property"){
             $this->property();
         }
+
         $this->prepare_data = \App\Models\Prepare::all();
         return view('livewire.prepare');
     }
 
     public function property(){
+
         if ($this->fas == 0){
             if ($this->receiver != "" and $this->picks == 1){
                 $this->basin = 0;
-                $this->picks = 0;
             }
             elseif ($this->receiver != ""){
                 $this->searchs();
@@ -52,10 +54,8 @@ class Prepare extends Component
         if ($this->fa == 0){
             if ($this->item_name != "" and $this->pick == 1){
                 $this->basis = 0;
-                $this->pick = 0;
             }
             elseif ($this->item_name != ""){
-                $this->basis = 1;
                 $this->propertySearchItem();
             }
             else{
@@ -130,14 +130,17 @@ class Prepare extends Component
     public function clickPar(){
         $this->rt = 0;
         $this->clickAdd = $this->proBtn;
+        $this->clearInput();
     }
 
     public function clickParBtn(){
         $this->clickAdd = "par";
+        $this->clearInput();
     }
 
     public function clickPropBtn(){
         $this->clickAdd = "property";
+        $this->clearInput();
     }
 
 
@@ -161,9 +164,13 @@ class Prepare extends Component
         $this->receiver = "";
         $this->unit = "";
         $this->unit_cost = "";
+        $this->par_num = "";
         $this->total_cost = "";
         $this->item_disable = 0;
         $this->receiver_disable = 0;
+        $this->date = "";
+        $this->prop_num = "";
+
     }
 
     public function icsInvNum(){
@@ -496,12 +503,14 @@ class Prepare extends Component
         $this->fa = 0;
         $this->fas = 1;
         $this->item_disable = 0;
+        $this->pick = 0;
     }
 
     public function click_input_items(){
         $this->fas = 0;
         $this->fa = 1;
         $this->receiver_disable = 0;
+        $this->picks = 0;
     }
 
     public function not_item_click(){
