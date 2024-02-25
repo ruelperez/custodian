@@ -237,8 +237,8 @@
                                 @error('date_acquired') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="Amount" wire:click="not_item_click" wire:model="amount" disabled>
-                                @error('amount') <span style="color: red">{{ $message }}</span> @enderror
+                                <input type="text" class="form-control" placeholder="Amount" wire:click="not_item_click" wire:model="total_cost" disabled>
+                                @error('total_cost') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <input type="text" hidden wire:model="unit_cost">
                             <button type="submit" class="btn btn-primary" style="width: 60%; margin-left: 20%;">ADD</button>
