@@ -15,8 +15,12 @@ class Inventory extends Model
         'inventory_number',
         'item_type',
         'item_status',
+        'components',
+        'prop_num',
+        'reference',
+        'office',
+        'date',
     ];
-
     use HasFactory;
 
     public function stockcard(){

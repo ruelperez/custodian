@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class Inventory extends Component
 {
-    public $request_data, $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
-            $item_type, $ng=0, $kl = 0;
+    public $request_data, $selectItemType = "consumable", $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
+            $item_type = "consumable", $ng=0, $kl = 0, $components, $prop_num, $reference, $office, $date;
 
     public function render()
     {
@@ -21,9 +21,8 @@ class Inventory extends Component
             $this->search();
         }
         else{
-            $this->request_data = \App\Models\Inventory::all();
+            $this->request_data = \App\Models\Inventory::where('item_type',$this->selectItemType)->get();
         }
-
 
         return view('livewire.inventory');
     }
@@ -96,6 +95,47 @@ class Inventory extends Component
         }
     }
 
+    public function submit_sets(){
+        $data = $this->validate([
+            'item_name' => 'required|unique:inventories,item_name',
+            'quantity' => 'required|integer',
+        ]);
+
+        if ($this->quantity == "") {
+            $this->quantity = 0;
+        }
+
+        try {
+            \App\Models\Inventory::create([
+                'item_name' => $this->item_name,
+                'components' => $this->components,
+                'prop_num' => $this->prop_num,
+                'reference' => $this->reference,
+                'quantity' => $this->quantity,
+                'office' => $this->office,
+                'date' => $this->date,
+                'item_type' => $this->item_type,
+                'unit' => "none",
+                'inventory_number' => "none",
+                'unit_cost' => 0,
+            ]);
+            $this->item_name = "";
+            $this->components = "";
+            $this->prop_num = "";
+            $this->reference = "";
+            $this->quantity = "";
+            $this->office = "";
+            $this->date = "";
+            session()->flash('dataAdded_sets', "Successfully Added");
+            Log::create([
+                'name' => auth()->user()->username,
+                'action' => 'Add Item on Inventory'
+            ]);
+        } catch (\Exception $e) {
+            session()->flash('dataError_sets', "Failed to Add");
+        }
+    }
+
     protected $listeners = [
         'deleteInv' => 'delete'
     ];
@@ -121,6 +161,19 @@ class Inventory extends Component
         $this->inventory_number = $data->inventory_number;
         $this->estimated = $data->estimated;
         $this->item_type = $data->item_type;
+    }
+
+    public function edit_sets($id){dd('haha');
+        $this->data_id = $id;
+        $data = \App\Models\Inventory::find($id);
+        $this->item_name = $data->item_name;
+        $this->components = $data->components;
+        $this->prop_num = $data->prop_num;
+        $this->reference = $data->reference;
+        $this->quantity = $data->quantity;
+        $this->office = $data->office;
+        $this->date = $data->date;
+        dd($this->date);
     }
 
     public function edit_submit()
@@ -158,6 +211,34 @@ class Inventory extends Component
             session()->flash('errorUpdated', "Failed to Update");
         }
 
+    }
+
+    public function edit_submit_sets(){
+        $data = \App\Models\Inventory::find($this->data_id);
+        try {
+            $data->components = $this->components;
+            $data->prop_num = $this->prop_num;
+            $data->reference = $this->reference;
+            $data->quantity = $this->quantity;
+            $data->office = $this->office;
+            $data->date = $this->date;
+            $data->item_name = $this->item_name;
+            $data->save();
+            $this->item_name = "";
+            $this->components = "";
+            $this->reference = "";
+            $this->prop_num = "";
+            $this->quantity = "";
+            $this->office = "";
+            $this->date = "";
+            session()->flash('dataUpdated_sets', "Successfully Updated");
+            Log::create([
+                'name' => auth()->user()->username,
+                'action' => 'Edit Item on Inventory'
+            ]);
+        } catch (\Exception $e) {
+            session()->flash('errorUpdated_sets', "Failed to Update");
+        }
     }
 
 }
