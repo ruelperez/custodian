@@ -1,7 +1,7 @@
 <div>
     @include('modal.add-inventory-modal')
     @include('modal.edit-inventory-modal')
-{{--    @include('modal.edit-sets')--}}
+    @include('modal.edit-sets')
     <h5 style="text-align: left; margin-top: 3%;">Inventory</h5>
     <div style="display: flex; margin-top: 3%;">
         <div style="width: 12%;">
@@ -90,8 +90,8 @@
                             <td >{{$data->reference}}</td>
                             <td>{{$data->quantity}}</td>
                             <td>{{$data->office}}</td>
-                            <td>{{$data->date}}</td>
-                            <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal_sets" wire:click="edit({{$data->id}})"></i></td>
+{{--                            <td>{{$data->date}}</td>--}}
+                            <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal_sets" wire:click="edit_sets({{$data->id}})"></i></td>
                             <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="delInv({{$data->id}})"></i></td>
                         </tr>
                     @endif

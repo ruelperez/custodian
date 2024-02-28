@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $mas=0, $officer, $reference, $ppe, $proBtn="par", $rt=1, $itemStats, $par_num, $prop_num, $date, $date_acquired, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $mas=0, $components, $officer, $reference, $proBtn="par", $rt=1, $itemStats, $par_num, $prop_num, $date, $date_acquired, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -67,8 +67,8 @@ class Prepare extends Component
     public function propertySearchItem(){
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
-            ->where('item_type','!=','consumable')
-            ->where('unit_cost', '>', 50000)
+            ->where('item_type','=','sets')
+//            ->where('unit_cost', '>', 50000)
             ->get();
         if (count($this->result) == 0){
             $this->basis = 0;
@@ -341,7 +341,7 @@ class Prepare extends Component
                     'position' => $this->position,
                     'transaction_name' => $this->transaction_name,
                     'item_status' => $this->itemStats,
-                    'ppe' => $this->ppe,
+                    'ppe' => $this->components,
                     'prop_num' => $this->prop_num,
                     'par_num' => $this->par_num,
                     'date_acquired' => $this->date_acquired,
@@ -355,6 +355,13 @@ class Prepare extends Component
                 $this->receiver_disable = 0;
                 $this->item_disable = 0;
                 $this->unit_cost = "";
+                $this->components = "";
+                $this->receiver = "";
+                $this->position = "";
+                $this->prop_num = "";
+                $this->reference = "";
+                $this->officer = "";
+                $this->date = "";
                 session()->flash('dataAdded',"Successfully Added");
                 Log::create([
                     'name' => auth()->user()->username,
@@ -394,7 +401,7 @@ class Prepare extends Component
                     'transaction_name' => $this->transaction_name,
                     'item_status' => $this->itemStats,
                     'total_cost' => $this->total_cost,
-                    'ppe' => $this->ppe,
+                    'ppe' => $this->components,
                     'prop_num' => $this->prop_num,
                     'par_num' => $this->par_num,
                     'date_acquired' => $this->date_acquired,
@@ -407,6 +414,13 @@ class Prepare extends Component
                 $this->receiver_disable = 0;
                 $this->item_disable = 0;
                 $this->unit_cost = "";
+                $this->components = "";
+                $this->receiver = "";
+                $this->position = "";
+                $this->prop_num = "";
+                $this->reference = "";
+                $this->officer = "";
+                $this->date = "";
                 session()->flash('dataAdded',"Successfully Added");
                 Log::create([
                     'name' => auth()->user()->username,
@@ -441,6 +455,12 @@ class Prepare extends Component
         $this->unit_cost = $data->unit_cost;
         $this->item_type = $data->item_type;
         $this->currentQty = $data->quantity;
+        $this->components = $data->components;
+        $this->prop_num = $data->prop_num;
+        $this->reference = $data->reference;
+        $this->quantity = $data->quantity;
+        $this->officer = $data->office;
+        $this->date = $data->date;
         if ($this->transaction_name == "supply"){
             $this->supplyInvNum();
         }

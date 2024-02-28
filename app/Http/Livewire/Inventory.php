@@ -21,7 +21,7 @@ class Inventory extends Component
             $this->search();
         }
         else{
-            $this->request_data = \App\Models\Inventory::where('item_type',$this->selectItemType)->get();
+            $this->request_data = \App\Models\Inventory::where('item_type','=',$this->selectItemType)->get();
         }
 
         return view('livewire.inventory');
@@ -163,7 +163,7 @@ class Inventory extends Component
         $this->item_type = $data->item_type;
     }
 
-    public function edit_sets($id){dd('haha');
+    public function edit_sets($id){
         $this->data_id = $id;
         $data = \App\Models\Inventory::find($id);
         $this->item_name = $data->item_name;
@@ -172,8 +172,7 @@ class Inventory extends Component
         $this->reference = $data->reference;
         $this->quantity = $data->quantity;
         $this->office = $data->office;
-        $this->date = $data->date;
-        dd($this->date);
+//        $this->date = $data->date;
     }
 
     public function edit_submit()

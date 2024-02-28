@@ -278,13 +278,9 @@
                                 <input type="text" class="form-control" placeholder="Position" wire:click="not_item_click" wire:model="position">
                                 @error('position') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
-                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="PPE (item description)" wire:click="not_item_click" wire:model="ppe">
-                                @error('ppe') <span style="color: red">{{ $message }}</span> @enderror
-                            </div>
                             <div style="display: flex">
                                 <div class="mb-2" style="width: 70%; margin-left: 15%;">
-                                    <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Description" wire:click="click_input_item" wire:model="item_name" required>
+                                    <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="PPE Item Description" wire:click="click_input_item" wire:model="item_name" required>
                                     @if($mas == 1) <i style="color: green"> (Returned)</i> @endif
                                 </div>
                                 @if($basis == 0)
@@ -317,6 +313,10 @@
                                     </ul>
                                 </div>
                             @endif
+                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                                <input type="text" class="form-control" placeholder=Description" wire:click="not_item_click" wire:model="components">
+                                @error('ppe') <span style="color: red">{{ $message }}</span> @enderror
+                            </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
                                 <input type="text" class="form-control" placeholder="Property #" wire:model="prop_num" >
                                 @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
