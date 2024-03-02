@@ -15,6 +15,11 @@ class PropertyCard extends Model
         'receiver',
         'inventory_id',
         'property_num',
+        'position',
+        'ppe',
+        'reference',
+        'officer',
+        'dates',
     ];
 
     public function component(){

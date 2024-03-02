@@ -109,7 +109,7 @@ class Prepare extends Component
     public function parSearchItem(){
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
-            ->where('item_type','!=','consumable')
+            ->where('item_type','=','non-consumable')
             ->where('unit_cost', '>', 50000)
             ->get();
         if (count($this->result) == 0){
@@ -458,7 +458,7 @@ class Prepare extends Component
         $this->components = $data->components;
         $this->prop_num = $data->prop_num;
         $this->reference = $data->reference;
-        $this->quantity = $data->quantity;
+//        $this->quantity = $data->quantity;
         $this->officer = $data->office;
         $this->date = $data->date;
         if ($this->transaction_name == "supply"){
@@ -623,6 +623,12 @@ class Prepare extends Component
                             'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
+                            'property_num' => $datas->prop_num,
+                            'position' => $datas->position,
+                            'ppe' => $datas->ppe,
+                            'reference' => $datas->reference,
+                            'officer' => $datas->officer,
+                            'dates' => $datas->dates,
                         ]);
                     }
                     else{

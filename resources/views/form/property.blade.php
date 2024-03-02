@@ -15,15 +15,15 @@
 <table style="width: 100%; text-align: center;border: 1px solid; border-collapse: collapse;">
     <tr style="border: 1px solid; text-align: left">
         <td colspan="5"  style="border: 1px solid; padding-bottom: 35px;">
-            <b>Property, Plant and Equipment:</b>
+            <b>Property, Plant and Equipment: {{strtoupper($data->item_name)}}</b>
         </td>
         <td colspan="2" rowspan="2"  style="border: 1px solid; text-align: left;padding-top: 0px;">
-            <b>Property No. {{$property_num}}</b>
+            <b>Property No. {{$data->property_num}}</b>
         </td>
     </tr>
     <tr style="border: 1px solid;">
         <td colspan="5" style="border: 1px solid; text-align: left; padding-bottom: 35px;">
-            <b>Description: {{strtoupper($itemName)}}</b>
+            <b>Description: {{ucwords($data->ppe)}}</b>
         </td>
     </tr>
     <tr style="border: 1px solid;">
@@ -54,26 +54,24 @@
             <b>Office/Officer</b>
         </td>
     </tr>
-    @foreach($request_data as $data)
-        <tr style="border: 1px solid;">
-            <td style="border: 1px solid;">
-                {{$data->created_at->format('M-d-Y')}}
-            </td>
-            <td style="border: 1px solid;">
+    <tr style="border: 1px solid;">
+        <td style="border: 1px solid;">
+            {{$data->created_at->format('M-d-Y')}}
+        </td>
+        <td style="border: 1px solid;">
 
-            </td>
-            <td style="border: 1px solid;">
-                {{$data->receiptQty}}
-            </td>
-            <td style="border: 1px solid;">
-                {{$data->quantity}}
-            </td>
-            <td colspan="2" style="border: 1px solid;">
-                {{$data->receiver}}
-            </td>
-            <td style="border: 1px solid;">
-                {{$data->receiptQty - $data->quantity}}
-            </td>
-        </tr>
-    @endforeach
+        </td>
+        <td style="border: 1px solid;">
+            {{$data->receiptQty}}
+        </td>
+        <td style="border: 1px solid;">
+            {{$data->quantity}}
+        </td>
+        <td colspan="2" style="border: 1px solid;">
+            {{$data->receiver}}
+        </td>
+        <td style="border: 1px solid;">
+            {{$data->receiptQty - $data->quantity}}
+        </td>
+    </tr>
 </table>

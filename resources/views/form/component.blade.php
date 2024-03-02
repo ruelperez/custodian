@@ -1,3 +1,4 @@
+
 <table style="text-align: center; width: 100%;">
     <tr>
         <td>
@@ -88,7 +89,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>@if($desig != null) {{strtoupper($desig->printedName)}} @endif</b>
+{{--            <b>@if($desig != null)  {{strtoupper($desig->printedName)}} @endif</b>--}}
         </td>
     </tr>
     <tr style="text-align: center;">
@@ -104,7 +105,7 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-            <b>@if($desig != null) {{strtoupper($desig->position)}} @endif</b>
+{{--            <b>@if($desig != null) {{strtoupper($desig->position)}} @endif</b>--}}
         </td>
     </tr>
     <tr style="text-align: center;">
