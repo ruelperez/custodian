@@ -335,7 +335,7 @@
                                 @error('officer') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="Date" wire:click="not_item_click" wire:model="date">
+                                <input type="text" class="form-control" placeholder="Date" wire:click="not_item_click" wire:model="date_acquired">
                                 @error('date') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <input type="text" hidden wire:model="unit_cost">

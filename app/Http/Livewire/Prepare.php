@@ -467,7 +467,7 @@ class Prepare extends Component
         $this->reference = $data->reference;
 //        $this->quantity = $data->quantity;
         $this->officer = $data->office;
-        $this->date = $data->date;
+//        $this->date = $data->date;
         if ($this->transaction_name == "supply"){
             $this->supplyInvNum();
         }
