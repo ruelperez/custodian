@@ -13,9 +13,12 @@ class ParController extends Controller
         $desig = DesigPar::first();
         $request_data = Par::where('ics','=', $date)->get();
         foreach ($request_data as $pr){
+            $receivedBy = $pr->receiver;
+            $position = $pr->position;
             $par_num = $pr->parnum;
+            $dates = $pr->date_acquired;
         }
-        $pdf = PDF::loadView('form.component', compact('request_data','par_num','desig'))
+        $pdf = PDF::loadView('form.prop_components', compact('request_data','dates','par_num','desig','position','receivedBy'))
             ->setPaper('legal','portrait');
         return $pdf->stream('load.pdf');
     }

@@ -176,14 +176,6 @@
                                 <input type="text" class="form-control" placeholder="Position" wire:click="not_item_click" wire:model="position">
                                 @error('position') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
-                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="PAR No" wire:click="not_item_click" wire:model="par_num">
-                                @error('par_num') <span style="color: red">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="Unit" wire:model="unit" disabled>
-                                @error('unit') <span style="color: red">{{ $message }}</span> @enderror
-                            </div>
                             <div style="display: flex">
                                 <div class="mb-2" style="width: 70%; margin-left: 15%;">
                                     <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Description" wire:click="click_input_item" wire:model="item_name" required>
@@ -220,6 +212,18 @@
                                 </div>
                             @endif
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                                <input type="text" class="form-control" placeholder="Unit" wire:model="unit" disabled>
+                                @error('unit') <span style="color: red">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                                <input type="text" class="form-control" placeholder="PAR No" wire:click="not_item_click" wire:model="par_num">
+                                @error('par_num') <span style="color: red">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                                <input type="text" class="form-control" placeholder="Property No." wire:click="not_item_click" wire:model="prop_num">
+                                @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
                                 <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
                                 @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                                 @if(session()->has('insufficient'))
@@ -227,10 +231,6 @@
                                         {{ session('insufficient') }}
                                     </div>
                                 @endif
-                            </div>
-                            <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="Property No." wire:click="not_item_click" wire:model="prop_num">
-                                @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
                                 <input type="text" class="form-control" placeholder="Date Acquired" wire:click="not_item_click" wire:model="date_acquired">

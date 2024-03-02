@@ -18,6 +18,10 @@ class Par extends Model
         'ics',
         'total_cost',
         'parnum',
+        'property_num',
+        'date_acquired',
+        'amount',
+        'position',
     ];
 
     use HasFactory;

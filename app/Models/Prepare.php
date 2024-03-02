@@ -24,7 +24,8 @@ class Prepare extends Model
         'date_acquired',
         'ppe',
         'reference',
-        'officer'
+        'officer',
+        'amount',
     ];
 
     use HasFactory;

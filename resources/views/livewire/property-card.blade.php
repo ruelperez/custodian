@@ -63,7 +63,7 @@
                             {{$preps->created_at}}
                         </td>
                         <td>
-                            <p style="color: green; cursor: pointer" data-bs-toggle="modal" data-bs-target="#propTable_modal" wire:click="clickView('{{$preps->receiver}}','{{$preps->created_at}}',{{$preps->id}})">View</p>
+                            <p style="color: green; cursor: pointer" data-bs-toggle="modal" data-bs-target="#propTable_modal" wire:click="clickView('{{$preps->receiver}}','{{$preps->dates}}',{{$preps->id}})">View</p>
 
 {{--                                                        <p style="color: green; cursor: pointer" data-bs-toggle="modal" data-bs-target="#propAdd_modal" wire:click="clickView('{{$preps->receiver}}','{{$preps->created_at}}',{{$preps->id}})">View</p>--}}
                         </td>

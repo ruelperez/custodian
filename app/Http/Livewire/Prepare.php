@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class Prepare extends Component
 {
-    public $prepare_data, $mas=0, $components, $officer, $reference, $proBtn="par", $rt=1, $itemStats, $par_num, $prop_num, $date, $date_acquired, $transaction_name, $total_cost, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
+    public $prepare_data, $mas=0, $components, $officer, $reference, $proBtn="par", $rt=1, $itemStats, $par_num, $prop_num, $date, $date_acquired, $transaction_name, $total_cost = 0, $clickAdd, $position, $ics, $unit_cost, $ics_last_number, $currentQty, $sample=0, $results, $serial, $search_data, $hh=0, $ids, $fa=0, $receiver_disable = 0, $item_disable = 0, $item_name, $basin=0, $result, $picks=0, $fas=0, $receiver, $basis=0, $pick=0, $unit, $quantity, $item_type="consumable";
 
     public function render()
     {
@@ -347,6 +347,7 @@ class Prepare extends Component
                     'date_acquired' => $this->date_acquired,
                     'reference' => $this->reference,
                     'officer' => $this->officer,
+                    'amount' => $this->total_cost,
                 ]);
 
                 $this->item_name = "";
@@ -361,7 +362,9 @@ class Prepare extends Component
                 $this->prop_num = "";
                 $this->reference = "";
                 $this->officer = "";
-                $this->date = "";
+                $this->total_cost = 0;
+                $this->date_acquired = "";
+                $this->par_num = "";
                 session()->flash('dataAdded',"Successfully Added");
                 Log::create([
                     'name' => auth()->user()->username,
@@ -407,6 +410,7 @@ class Prepare extends Component
                     'date_acquired' => $this->date_acquired,
                     'reference' => $this->reference,
                     'officer' => $this->officer,
+                    'amount' => $this->total_cost,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -421,6 +425,9 @@ class Prepare extends Component
                 $this->reference = "";
                 $this->officer = "";
                 $this->date = "";
+                $this->total_cost = 0;
+                $this->date_acquired = "";
+                $this->par_num = "";
                 session()->flash('dataAdded',"Successfully Added");
                 Log::create([
                     'name' => auth()->user()->username,
@@ -628,7 +635,7 @@ class Prepare extends Component
                             'ppe' => $datas->ppe,
                             'reference' => $datas->reference,
                             'officer' => $datas->officer,
-                            'dates' => $datas->dates,
+                            'dates' => $datas->date_acquired,
                         ]);
                     }
                     else{
@@ -694,6 +701,10 @@ class Prepare extends Component
                         'ics' => $dat->ics,
                         'total_cost' => $total_c,
                         'parnum' => $dat->par_num,
+                        'property_num' => $dat->prop_num,
+                        'date_acquired' => $dat->date_acquired,
+                        'amount' => $dat->amount,
+                        'position' =>$dat->position
                     ]);
 
                 }

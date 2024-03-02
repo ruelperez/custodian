@@ -28,7 +28,7 @@
 <table style="width: 100%; text-align: right;">
     <tr>
         <td>
-            <b>PAR No. TANHS-{{$prop_data->property_num}}</b>
+            <b>PAR No. {{$par_num}}</b>
         </td>
     </tr>
 </table>
@@ -65,7 +65,7 @@
                 {{$data->item_name}}
             </td>
             <td style="border: 1px solid;">
-                {{$data->property_number}}
+                {{$data->property_num}}
             </td>
             <td style="border: 1px solid;">
                 {{$data->date_acquired}}
@@ -78,27 +78,27 @@
 </table>
 <table style="width: 100%; border-collapse: collapse;">
     <tr>
-        <td style="border: 1px solid; border-bottom: none; border-top: none; ">
-                <b>Received by:</b>
-            <p>{{ucwords($prop_data->receiver)}}</p>
+        <td style="border: 1px solid; border-bottom: none; border-top: none;">
+            <b>Received by:</b>
         </td>
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
             <b>Issued by:</b>
         </td>
     </tr>
     <tr>
-        <td style="border: 1px solid; border-top: none; ">
+        <td style="border: 1px solid; border-top: none; border-bottom: none; ">
 
         </td>
-        <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-{{--            <b>@if($desig != null)  {{strtoupper($desig->printedName)}} @endif</b>--}}
+        <td style="border: 1px solid; border-top: none; border-bottom: none; text-align: center; padding-top: 1%;">
+            {{--            <b>@if($desig != null)  {{strtoupper($desig->printedName)}} @endif</b>--}}
         </td>
     </tr>
     <tr style="text-align: center;">
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
-            Signature Over Printed Name of End User
+            <b>{{ucwords($receivedBy)}}</b><br>Signature Over Printed Name of End User
         </td>
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
+            <b>{{ucwords($desig->printedName)}}</b><br>Signature Over Printed Name of End User
             Signature Over Printed Name of Supply Officer and/or Property Custodian
         </td>
     </tr>
@@ -107,24 +107,25 @@
 
         </td>
         <td style="border: 1px solid; border-top: none; text-align: center; padding-top: 1%;">
-{{--            <b>@if($desig != null) {{strtoupper($desig->position)}} @endif</b>--}}
+            {{--            <b>@if($desig != null) {{strtoupper($desig->position)}} @endif</b>--}}
         </td>
     </tr>
     <tr style="text-align: center;">
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
-            <b>{{ucwords($prop_data->position)}}</b><br>
+            <b>{{ucwords($position)}}</b><br>
             Position/Office
         </td>
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
+            <b>{{ucwords($desig->position)}}</b><br>
             Position/Office
         </td>
     </tr>
     <tr style="text-align: left;">
         <td style="border: 1px solid; border-top: none; padding-top: 1%;">
-            Date:
+            Date: {{$dates}}
         </td>
         <td style="border: 1px solid; border-top: none; padding-top: 1%;">
-            Date:
+            Date: {{$dates}}
         </td>
     </tr>
 </table>

@@ -48,14 +48,11 @@
                         <button style="width: 100%; background-color: #2F4F4F; color: white" class="btn" onclick="location.href = '/Dashboard/request-pdf/property-card/{{$prop_id}}';">Print (Property Card)</button>
                     </div>
                     <div style="width: 20%; margin-left: 1%;">
-                        <button style="width: 100%; background-color: #2F4F4F; color: white" class="btn" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Print (PAR)</button>
+                        <button style="width: 100%; background-color: #2F4F4F; color: white" class="btn" onclick="location.href = '/Dashboard/request-pdf/component/{{$prop_id}}';">Print (PAR)</button>
                     </div>
                     <div style="margin-left: auto; margin-top: 1%;">
                        <p>PAR No. <b>{{$par_num}}</b></p>
                     </div>
-{{--                    <div style="margin-left: 5%;margin-top: 2%;">--}}
-{{--                        <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/component/{{$prop_id}}';"></i>--}}
-{{--                    </div>--}}
                 </div>
 
                 <table class="table table-hover" style="width: 100%; text-align: center; margin-top: 1%;" >
@@ -97,7 +94,7 @@
                                 <td>{{ucwords($data->quantity)}}</td>
                                 <td>{{$data->unit}}</td>
                                 <td>{{ucwords($data->item_name)}}</td>
-                                <td></td>
+                                <td>{{$data->property_number}}</td>
                                 <td>{{$data->date_acquired}}</td>
                                 <td>{{$data->amount}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#propEdit_modal" style="cursor: pointer;" wire:click="edit({{$data->id}})"></i></td>

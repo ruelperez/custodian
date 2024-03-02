@@ -20,11 +20,9 @@ class PropertyCard extends Component
         foreach ($this->stockcard_data as $st){
             $this->property_num = $st->property_num;
         }
+
         if ($this->prop_id != null){
             $this->component_data = \App\Models\PropertyCard::find($this->prop_id)->component;
-            foreach ($this->component_data as $ga){
-                $this->par_num = $ga->property_number;
-            }
         }
         return view('livewire.property-card');
     }
@@ -66,6 +64,9 @@ class PropertyCard extends Component
         $this->date = $time;
         $this->prop_id = $id;
         $this->par_num = 'TANHS-'.$df->property_num;
+        $ds = \App\Models\PropertyCard::find($id)->component;
+        $cnt = count($ds) + 1;
+        $this->prop_num = $this->par_num.'-'.$cnt;
     }
 
     public function submit(){
@@ -83,8 +84,11 @@ class PropertyCard extends Component
             $this->item = "";
             $this->qty = "";
             $this->unit = "";
-            $this->prop_num = "";
             $this->amount = "";
+            $ds = \App\Models\PropertyCard::find($this->prop_id)->component;
+            $cnt = count($ds) + 1;
+            $this->prop_num = $this->par_num.'-'.$cnt;
+
             session()->flash('dataAdded',"Successfully added");
         }
         catch (\Exception $e){
@@ -118,6 +122,14 @@ class PropertyCard extends Component
             $data->receiver = $this->teacher_name;
             $data->property_card_id = $this->prop_id;
             $data->save();
+            $this->item = "";
+            $this->qty = "";
+            $this->unit = "";
+            $this->amount = "";
+            $this->prop_num = "";
+            $this->date = "";
+            $this->teacher_name = "";
+            $this->prop_id = "";
             session()->flash('successEdit',"Successfully updated");
         }
         catch (\Exception $e){
@@ -133,6 +145,9 @@ class PropertyCard extends Component
     public function propDelete($id){
         try {
             \App\Models\Component::find($id)->delete();
+            $ds = \App\Models\PropertyCard::find($this->prop_id)->component;
+            $cnt = count($ds) + 1;
+            $this->prop_num = $this->par_num.'-'.$cnt;
             session()->flash('successDel', "Successfully deleted");
         }
         catch (\Exception $e){
