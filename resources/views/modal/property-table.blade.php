@@ -1,5 +1,5 @@
 <div wire:ignore.self class="modal" tabindex="-1" role="dialog" id="propTable_modal">
-    <div class="modal-dialog modal-lg" role="document" style="">
+    <div class="modal-dialog modal-xl" role="document" style="">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="insertModalLabel"><h5>{{ucwords($itemName)}}</h5></h5>
@@ -41,17 +41,17 @@
                     @endif
                 </div>
                 <div style="display: flex">
-                    <div style="width: 20%;">
+                    <div style="width: 15%;">
                         <button style="width: 100%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Add</button>
                     </div>
-                    <div style="width: 25%; margin-left: 1%;">
+                    <div style="width: 20%; margin-left: 1%;">
                         <button style="width: 100%; background-color: #2F4F4F; color: white" class="btn" onclick="location.href = '/Dashboard/request-pdf/property-card/{{$prop_id}}';">Print (Property Card)</button>
                     </div>
-                    <div style="width: 25%; margin-left: 1%;">
+                    <div style="width: 20%; margin-left: 1%;">
                         <button style="width: 100%; background-color: #2F4F4F; color: white" class="btn" data-bs-toggle="modal" data-bs-target="#propAdd_modal">Print (PAR)</button>
                     </div>
-                    <div style="width: 25%; margin-left: auto; margin-top: 1%;">
-                        <input style="width: 100%;" type="text" wire:model="par_num"  placeholder="PAR No.">
+                    <div style="margin-left: auto; margin-top: 1%;">
+                       <p>PAR No. <b>{{$par_num}}</b></p>
                     </div>
 {{--                    <div style="margin-left: 5%;margin-top: 2%;">--}}
 {{--                        <i title="Print Form" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/component/{{$prop_id}}';"></i>--}}

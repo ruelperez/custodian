@@ -61,9 +61,11 @@ class PropertyCard extends Component
     }
 
     public function clickView($name,$time,$id){
+        $df = \App\Models\PropertyCard::find($id);
         $this->teacher_name = $name;
         $this->date = $time;
         $this->prop_id = $id;
+        $this->par_num = 'TANHS-'.$df->property_num;
     }
 
     public function submit(){
