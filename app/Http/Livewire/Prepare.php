@@ -468,6 +468,7 @@ class Prepare extends Component
         $this->currentQty = $data->quantity;
         $this->components = $data->components;
         $this->prop_num = $data->prop_num;
+        $this->par_num = $data->par_num;
         $this->reference = $data->reference;
 //        $this->quantity = $data->quantity;
         $this->officer = $data->office;

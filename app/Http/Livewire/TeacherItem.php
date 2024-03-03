@@ -80,6 +80,8 @@ class TeacherItem extends Component
                     'unit_cost' => $datas->unit_cost,
                     'inventory_number' => $datas->serial,
                     'item_type' => $datas->item_type,
+                    'prop_num' => $datas->prop_num,
+                    'par_num' => $datas->par_num,
                     'item_status' => 'returned',
                 ]);
 
