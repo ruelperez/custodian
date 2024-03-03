@@ -19,8 +19,10 @@
                         {{ session('different') }}
                     </div>
                 @endif
-                <label>ICS No.</label>
-                <u>{{$ics}}</u>
+                <div style=" @if($proBtn == "property" and $rt == 0 or $proBtn == "par" and $rt == 0) display: none; @else display: block; @endif ">
+                    <label>ICS No.</label>
+                    <u>{{$ics}}</u>
+                </div>
                 <div style="display: flex; width: 90%; margin-left: 5%; text-align: center; cursor: pointer; margin-top: 3%;">
                     <div class="py-1" wire:click="clickIcs"  style=" @if($rt == 1) width: 50%; background-color: #61676A; color: white @else width: 50%;background-color: #F5F5F5; color: black @endif " id="icsBtn">
                         ICS
