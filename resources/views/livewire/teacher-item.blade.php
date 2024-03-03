@@ -42,6 +42,15 @@
                 <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
             </div>
         @endif
+        <div style="@if(count($checkData) > 0) margin-left: 20%; @else margin-left: 37%; @endif ">
+            <i class="fa-solid fa-circle" style="color: green;"></i> Active
+        </div>
+        <div style="margin-left: 3%;">
+            <i class="fa-solid fa-circle" style="color: red;"></i> Return
+        </div>
+        <div style="margin-left: 3%;">
+            <i class="fa-solid fa-circle" style="color: yellow;"></i> Transffered
+        </div>
     </div>
 
     <div style="display: flex; width: 100%;">
@@ -113,11 +122,16 @@
                                     @if($data->is_returned == 0)
                                         <div class="form-check">
                                             <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
+                                            <i class="fa-solid fa-circle" style="color: green"></i>
                                         </div>
                                     @else
                                         @foreach($invAll as $inv)
                                             @if($data->serial == $inv->inventory_number)
-                                                <p style="color: red;">{{ucfirst($inv->item_status)}}</p>
+                                                @if($inv->item_status == "returned")
+                                                    <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
+                                                @elseif($inv->item_status == "transferred")
+                                                    <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif

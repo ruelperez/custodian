@@ -509,7 +509,7 @@ class Prepare extends Component
     public function icsSearchItem(){
         $this->result = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->item_name.'%')
-            ->where('item_type','!=','consumable')
+            ->where('item_type','=','non-consumable')
             ->where('unit_cost', '<', 50000)
             ->get();
         if (count($this->result) == 0){
