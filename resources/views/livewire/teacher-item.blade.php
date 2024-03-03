@@ -103,16 +103,25 @@
                                     {{$data->unit}}
                                 </td>
                                 <td>
+                                    @if($data->transaction_name == "property_ics")
                                     {{$data->serial}}
+                                    @endif
                                 </td>
                                 <td>
-                                    {{$data->ics}}
+                                    @if($data->transaction_name == "property_ics")
+                                        {{$data->ics}}
+                                    @endif
                                 </td>
                                 <td>
-                                    {{$data->par_num}}
+                                    @if($data->transaction_name == "par" or $data->transaction_name == "property")
+                                        {{$data->par_num}}
+                                    @endif
                                 </td>
                                 <td>
-                                    {{$data->prop_num}}
+                                    @if($data->transaction_name == "property" or $data->transaction_name == "par")
+                                        {{$data->prop_num}}
+                                    @endif
+
                                 </td>
                                 <td>
                                     {{$data->created_at}}

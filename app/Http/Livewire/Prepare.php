@@ -125,21 +125,25 @@ class Prepare extends Component
     public function clickIcs(){
         $this->rt = 1;
         $this->clickAdd = "property_ics";
+        $this->transaction_name = "property_ics";
         $this->clearInput();
     }
     public function clickPar(){
         $this->rt = 0;
         $this->clickAdd = $this->proBtn;
+        $this->transaction_name = $this->proBtn;
         $this->clearInput();
     }
 
     public function clickParBtn(){
         $this->clickAdd = "par";
+        $this->transaction_name = "par";
         $this->clearInput();
     }
 
     public function clickPropBtn(){
         $this->clickAdd = "property";
+        $this->transaction_name = "property";
         $this->clearInput();
     }
 

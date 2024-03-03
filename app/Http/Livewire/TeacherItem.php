@@ -40,7 +40,7 @@ class TeacherItem extends Component
 
     public function displayData(){
         $this->deployed_data = BackupPrepare::where('receiver','=', $this->teacher_name)
-            ->where('transaction_name', '=', 'property_ics')
+            ->where('transaction_name', '!=', 'supply')
             ->orderBy($this->sort1,$this->sort2)
             ->get();
         $this->checkData = BackupPrepare::where('receiver','=', $this->teacher_name)
