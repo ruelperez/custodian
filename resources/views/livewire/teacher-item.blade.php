@@ -109,10 +109,10 @@
                                     {{$data->ics}}
                                 </td>
                                 <td>
-
+                                    {{$data->par_num}}
                                 </td>
                                 <td>
-
+                                    {{$data->prop_num}}
                                 </td>
                                 <td>
                                     {{$data->created_at}}

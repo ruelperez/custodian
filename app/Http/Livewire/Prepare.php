@@ -467,7 +467,7 @@ class Prepare extends Component
         $this->reference = $data->reference;
 //        $this->quantity = $data->quantity;
         $this->officer = $data->office;
-//        $this->date = $data->date;
+        $this->date_acquired = $data->date;
         if ($this->transaction_name == "supply"){
             $this->supplyInvNum();
         }
@@ -736,6 +736,8 @@ class Prepare extends Component
                     'total_cost' => $total_c,
                     'position' => $dat->position,
                     'transaction_name' => $dat->transaction_name,
+                    'prop_num' => $dat->prop_num,
+                    'par_num' => $dat->par_num,
                 ]);
 
                 $accepter = DB::table('receivers')

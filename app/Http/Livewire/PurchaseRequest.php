@@ -48,6 +48,12 @@ class PurchaseRequest extends Component
         return view('livewire.purchase-request');
     }
 
+//    public function updated($value){
+//        if ($value == "unit_cost"){
+//
+//        }
+//    }
+
 
     public function search(){
         $this->result = DB::table('inventories')
