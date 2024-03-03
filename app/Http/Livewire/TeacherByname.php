@@ -16,7 +16,7 @@ class TeacherByname extends Component
         }
         else{
             $this->result = BackupPrepare::select('receiver')
-                ->where('transaction_name', '=', 'property_ics')
+                ->where('transaction_name', '!=', 'supply')
 //                ->where('total_cost','<', 50000)
                 ->distinct()
                 ->get();
