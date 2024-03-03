@@ -98,7 +98,7 @@
             <b>{{ucwords($prop_data->receiver)}}</b><br>Signature Over Printed Name of End User
         </td>
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
-            <b>{{ucwords($desig->printedName)}}</b><br>Signature Over Printed Name of End User
+            <b>@if($desig == null) @else {{ucwords($desig->printedName)}} @endif</b><br>Signature Over Printed Name of End User
             Signature Over Printed Name of Supply Officer and/or Property Custodian
         </td>
     </tr>
@@ -116,7 +116,7 @@
             Position/Office
         </td>
         <td style="border: 1px solid; border-bottom: none; border-top: none;">
-            <b>{{ucwords($desig->position)}}</b><br>
+            <b>@if($desig == null) @else {{ucwords($desig->position)}} @endif</b><br>
             Position/Office
         </td>
     </tr>
