@@ -40,16 +40,17 @@
                     @endif
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
+                        @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('quantity') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Unit" wire:click="not_item_click" wire:model="unit" >
                     </div>
                     @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Unit Cost" wire:click="not_item_click" wire:model="unit_cost">
+                        @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
                     </div>
-                    @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
+
                     <div class="mb-3" style="width: 70%; margin-left: 15%;">
                         <input type="text" class="form-control" placeholder="Total Cost" wire:click="not_item_click" wire:model="total_cost" >
                     </div>

@@ -48,11 +48,20 @@ class PurchaseRequest extends Component
         return view('livewire.purchase-request');
     }
 
-//    public function updated($value){
-//        if ($value == "unit_cost"){
-//
-//        }
-//    }
+    public function updated($value){
+        if ($value == "unit_cost"){
+            $this->validate([
+                'unit_cost' => 'numeric',
+            ]);
+
+        }
+        if ($value == "quantity"){
+            $this->validate([
+                'quantity' => 'numeric',
+            ]);
+
+        }
+    }
 
 
     public function search(){
