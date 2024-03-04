@@ -94,7 +94,7 @@
 
                         @elseif($data->item_type == "consumable")
                         @else
-                            <tr style="cursor: pointer;"  onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
+                            <tr onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
                                 <td>
                                     {{$data->item_name}}
                                 </td>

@@ -99,6 +99,15 @@ class TeacherItem extends Component
                 }
             }
             if ($h == 0){
+                if ($datas->transaction_name == "par"){
+                    $datas->serial = $datas->par_num;
+                }
+                elseif ($datas->transaction_name == "property"){
+                    $datas->serial = $datas->prop_num;
+                }
+                elseif ($datas->transaction_name == "property_ics"){
+                    $datas->serial = $datas->ics;
+                }
                 \App\Models\Inventory::create([
                     'item_name' => $datas->item_name,
                     'quantity' => $datas->quantity,
