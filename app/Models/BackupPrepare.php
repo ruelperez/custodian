@@ -24,7 +24,8 @@ class BackupPrepare extends Model
         'item_id',
         'item_status',
         'prop_num',
-        'par_num'
+        'par_num',
+        'is_stolen'
     ];
 
     use HasFactory;

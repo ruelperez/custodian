@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class TeacherItem extends Component
 {
-    public $receiver_id, $invAll, $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $invAll, $stolenIds, $stolenItem = "", $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
 
     public function render()
@@ -36,6 +36,32 @@ class TeacherItem extends Component
             $this->suggestData = [];
         }
 
+    }
+
+    public function stolen($stolenId){
+        $rr = BackupPrepare::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
+    }
+
+    public function yesStolen(){
+        $rf = BackupPrepare::find($this->stolenIds);
+        $rf->is_stolen = true;
+        $rf->save();
+        $this->emit('modalClosed');
+    }
+
+    public function noStolen(){
+        $rf = BackupPrepare::find($this->stolenIds);
+        $rf->is_stolen = false;
+        $rf->save();
+        $this->emit('modalClosed');
+    }
+
+    public function not_stolen($stolenId){
+        $rr = BackupPrepare::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
     }
 
     public function displayData(){

@@ -1,5 +1,6 @@
 <div>
-
+    @include('modal.stolen')
+    @include('modal.not_stolen')
     @include('modal.add_teacher_item')
     <div style="margin-left: 1%; margin-top: 2%;">
         <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
@@ -42,7 +43,7 @@
                 <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
             </div>
         @endif
-        <div style="@if(count($checkData) > 0) margin-left: 20%; @else margin-left: 37%; @endif ">
+        <div style="@if(count($checkData) > 0) margin-left: 12%; @else margin-left: 29%; @endif ">
             <i class="fa-solid fa-circle" style="color: green;"></i> Active
         </div>
         <div style="margin-left: 3%;">
@@ -50,6 +51,9 @@
         </div>
         <div style="margin-left: 3%;">
             <i class="fa-solid fa-circle" style="color: yellow;"></i> Transffered
+        </div>
+        <div style="margin-left: 3%;">
+            <i class="fa-solid fa-circle" style="color: black;"></i> Stolen
         </div>
     </div>
 
@@ -128,10 +132,14 @@
                                 </td>
 
                                 <td>
-                                    @if($data->is_returned == 0)
+                                    @if($data->is_stolen == 1)
+                                        <div class="form-check">
+                                            <i class="fa-solid fa-circle" style="color: black" data-bs-toggle="modal" data-bs-target="#not_stolen" wire:click="not_stolen({{$data->id}})"></i>
+                                        </div>
+                                    @elseif($data->is_returned == 0)
                                         <div class="form-check">
                                             <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
-                                            <i class="fa-solid fa-circle" style="color: green"></i>
+                                            <i class="fa-solid fa-circle" style="color: green" data-bs-toggle="modal" data-bs-target="#stolen" wire:click="stolen({{$data->id}})"></i>
                                         </div>
                                     @else
                                         @foreach($invAll as $inv)
