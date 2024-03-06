@@ -7,11 +7,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Is this item ({{$stolenItem}}) stolen?
+                Is this item ({{$stolenItem}}) stolen or lost?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="yesStolen" >Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="yesLost">LOST</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="yesStolen" >STOLEN</button>
             </div>
         </div>
     </div>

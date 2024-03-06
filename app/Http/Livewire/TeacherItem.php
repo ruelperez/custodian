@@ -19,12 +19,10 @@ class TeacherItem extends Component
         $this->displayData();
         return view('livewire.teacher-item');
     }
-
     public function mount($teacherName){
         $this->teacher_name = $teacherName;
 
     }
-
     public function suggestion(){
         if ($this->item_name != ""){
             $this->suggestData = \App\Models\Inventory::where('item_name','LIKE', '%'.$this->item_name.'%')
@@ -37,25 +35,31 @@ class TeacherItem extends Component
         }
 
     }
-
-    public function stolen($stolenId){
+    public function not_active($stolenId){
         $rr = BackupPrepare::find($stolenId);
         $this->stolenItem = $rr->item_name;
         $this->stolenIds = $stolenId;
     }
 
-    public function yesStolen(){
-        $rf = BackupPrepare::find($this->stolenIds);
-        $rf->is_stolen = true;
-        $rf->save();
-        $this->emit('modalClosed');
-    }
-
-    public function noStolen(){
+    public function active(){
         $rf = BackupPrepare::find($this->stolenIds);
         $rf->is_stolen = false;
+        $rf->is_lost = false;
         $rf->save();
-        $this->emit('modalClosed');
+    }
+
+    public function lost(){
+        $rf = BackupPrepare::find($this->stolenIds);
+        $rf->is_stolen = false;
+        $rf->is_lost = true;
+        $rf->save();
+    }
+
+    public function stolen(){
+        $rf = BackupPrepare::find($this->stolenIds);
+        $rf->is_stolen = true;
+        $rf->is_lost = false;
+        $rf->save();
     }
 
     public function not_stolen($stolenId){
@@ -63,7 +67,11 @@ class TeacherItem extends Component
         $this->stolenItem = $rr->item_name;
         $this->stolenIds = $stolenId;
     }
-
+    public function not_lost($stolenId){
+        $rr = BackupPrepare::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
+    }
     public function displayData(){
         $this->deployed_data = BackupPrepare::where('receiver','=', $this->teacher_name)
             ->where('transaction_name', '!=', 'supply')
@@ -82,7 +90,6 @@ class TeacherItem extends Component
         'clickUncheck'=> 'clickUncheck',
         'returnItem' => 'returnItem',
     ];
-
     public function returnItem($name){
         $data = BackupPrepare::where('receiver','=',$name)
             ->where('item_id','1')
@@ -138,7 +145,6 @@ class TeacherItem extends Component
 
 
     }
-
     public function clickUncheck($id){
         $data = BackupPrepare::find($id);
         $data->item_id = '0';
@@ -168,25 +174,20 @@ class TeacherItem extends Component
     public function clickSort1($name){
         $this->sort1 = $name;
     }
-
     public function clickSort2($name){
         $this->sort2 = $name;
     }
-
     public function itemInputChange(){
         dd('vava');
     }
-
     public function add_request_click(){
 
     }
-
     public function click_item($id){
         $this->item_name = \App\Models\Inventory::find($id)->item_name;
         $this->unit = \App\Models\Inventory::find($id)->unit;
         $this->suggestData = [];
     }
-
     public function submit(){
         $this->validate([
             'quantity' => 'numeric',
