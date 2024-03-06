@@ -16,6 +16,7 @@ class StockcardByItem extends Component
         }
         else{
             $this->request_data = \App\Models\StockCard::select('item_name')
+                ->where('unit_cost','<=',50000)
                 ->distinct()
                 ->get();
         }

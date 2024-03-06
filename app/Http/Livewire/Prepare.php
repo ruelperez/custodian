@@ -651,6 +651,7 @@ class Prepare extends Component
                             'receiptQty' => $in->quantity,
                             'receiver' => $datas->receiver,
                             'inventory_id' => $in->id,
+                            'unit_cost' => $datas->unit_cost,
                         ]);
                     }
 
