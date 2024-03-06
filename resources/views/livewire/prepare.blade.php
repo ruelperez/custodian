@@ -64,7 +64,11 @@
                                 @endif
 
                                 <td>{{$data->quantity}}</td>
-                                <td>{{$data->serial}}</td>
+                                @if($data->transaction_name == "par" or $data->transaction_name == "property")
+                                    <td>{{$data->prop_num}}</td>
+                                @else
+                                    <td>{{$data->serial}}</td>
+                                @endif
                                 <td>{{ucwords($data->receiver)}}</td>
                                 <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_prepare_modal" wire:click="edit({{$data->id}})"></i></td>
                                 <td><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" wire:click="delete({{$data->id}})"></i></td>
