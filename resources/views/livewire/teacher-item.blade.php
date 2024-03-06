@@ -4,6 +4,7 @@
     @include('modal.add_teacher_item')
     @include('modal.not-active')
     @include('modal.not_lost')
+    @include('modal.view_components')
     <div style="margin-left: 1%; margin-top: 2%;">
         <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
     </div>
@@ -45,7 +46,7 @@
                 <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
             </div>
         @endif
-        <div style="@if(count($checkData) > 0) margin-left: 8%; @else margin-left: 25%; @endif ">
+        <div style="@if(count($checkData) > 0) margin-left: 12%; @else margin-left: 29%; @endif ">
             <i class="fa-solid fa-circle" style="color: green;"></i> Active
         </div>
         <div style="margin-left: 2%;">
@@ -63,7 +64,7 @@
     </div>
 
     <div style="display: flex; width: 100%;">
-        <div style="width: 80%; margin-left: 10%;">
+        <div style="width: 90%; margin-left: 5%;">
             <table id="tbTeach" class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                 <tr class="inv">
@@ -91,6 +92,9 @@
                     <th colspan="2">
                         Date
                     </th>
+                    <th>
+
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -100,8 +104,8 @@
                         @elseif($data->item_type == "consumable")
                         @else
                             <tr onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
-                                <td>
-                                    {{$data->item_name}}
+                                <td style="text-align: left">
+                                    {{ucfirst($data->item_name)}}
                                 </td>
                                 <td>
                                     @if($data->quantity > 0)
@@ -161,7 +165,11 @@
                                             @endif
                                         @endforeach
                                     @endif
-
+                                </td>
+                                <td style="text-align: left; width: 1%; padding-left: 0px;">
+                                    @if($data->transaction_name == "property")
+                                        <i title="view components" class="fa-solid fa-eye" style="font-size: 15px; cursor: pointer" data-bs-toggle="modal" data-bs-target="#view_components" wire:click="view_components('{{$data->prop_num}}','{{$data->item_name}}')"></i>
+                                    @endif
                                 </td>
                             </tr>
                         @endif

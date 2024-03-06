@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class TeacherItem extends Component
 {
-    public $receiver_id, $invAll, $stolenIds, $stolenItem = "", $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $itemName, $component_data = [], $invAll, $stolenIds, $stolenItem = "", $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
 
     public function render()
@@ -82,6 +82,16 @@ class TeacherItem extends Component
             ->get();
         $this->invAll = \App\Models\Inventory::all();
 
+    }
+
+    public function view_components($propNum,$item){
+        $this->itemName = $item;
+        $tg;
+       $fr = \App\Models\PropertyCard::where('property_num',$propNum)->get();
+       foreach ($fr as $rf){
+           $tg = $rf->id;
+       }
+       $this->component_data = \App\Models\PropertyCard::find($tg)->component;
     }
 
     protected $listeners = [
