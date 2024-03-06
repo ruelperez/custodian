@@ -15,9 +15,9 @@ class ParBydate extends Component
             $this->search();
         }
         else{
-            $this->request_data = Par::select('ics')
+            $this->request_data = Par::select('parnum')
                 ->distinct()
-                ->orderBy('ics','desc')
+                ->orderBy('parnum','desc')
                 ->get();
         }
 
@@ -25,10 +25,10 @@ class ParBydate extends Component
     }
 
     public function search(){
-        $this->request_data = Par::select('ics')
+        $this->request_data = Par::select('parnum')
             ->distinct()
-            ->where('ics','like', '%'.$this->search.'%')
-            ->orderBy('ics','desc')
+            ->where('parnum','like', '%'.$this->search.'%')
+            ->orderBy('parnum','desc')
             ->get();
     }
 

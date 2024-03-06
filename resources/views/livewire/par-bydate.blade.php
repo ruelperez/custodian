@@ -12,7 +12,7 @@
                 <thead>
                 <tr class="inv">
                     <th style="text-align: left; padding-left: 3%;">
-                        ICS No.
+                        PAR No.
                     </th>
                     <th style="text-align: right; padding-right: 5%;">
                         Action
@@ -25,9 +25,9 @@
                     @foreach($request_data as $preps)
                         <tr class="invs">
                             <td style="text-align: left; padding-left: 3%;">
-                                {{$preps->ics}}
+                                {{$preps->parnum}}
                             </td>
-                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->ics}}')">
+                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->parnum}}')">
                                 View
                             </td>
                         </tr>

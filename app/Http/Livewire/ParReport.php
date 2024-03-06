@@ -13,7 +13,7 @@ class ParReport extends Component
     public function render()
     {
         $this->request_data = Par::
-            where('ics','=', $this->dataDate)
+            where('parnum','=', $this->dataDate)
             ->get();
         return view('livewire.par-report');
     }
