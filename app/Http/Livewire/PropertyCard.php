@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Par;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,7 +11,7 @@ class PropertyCard extends Component
 {
     use WithPagination;
 
-    public $itemName, $item, $par_num, $property_num, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
+    public $itemName, $position, $item, $par_num, $property_num, $qty, $prop_id, $unit, $component_id, $prop_num, $date, $amount=0, $clickBk=0, $stockcard_data, $teacher_name, $component_data = [];
 
     public function render()
     {
@@ -60,6 +61,7 @@ class PropertyCard extends Component
 
     public function clickView($name,$time,$id){
         $df = \App\Models\PropertyCard::find($id);
+        $this->position = $df->position;
         $this->teacher_name = $name;
         $this->date = $time;
         $this->prop_id = $id;
@@ -80,7 +82,36 @@ class PropertyCard extends Component
                 'date_acquired' => $this->date,
                 'amount' => $this->amount,
                 'property_card_id' => $this->prop_id,
+                'par_num' => $this->par_num,
+                'position' => $this->position,
             ]);
+
+            $gh = \App\Models\Component::latest()->first()->get();
+            $vf = Par::all();
+            foreach ($gh as $comp){
+                $n = 0;
+                foreach ($vf as $par){
+                    if ($comp->id == $par->component_id){
+
+                        $n++;
+                    }
+                }
+                if ($n == 0){
+                    Par::create([
+                        'item_name' => $this->item,
+                        'quantity' => $this->qty,
+                        'unit' => $this->unit,
+                        'receiver' => $this->teacher_name,
+                        'parnum' => $this->par_num,
+                        'property_num' => $this->prop_num,
+                        'date_acquired' => $this->date,
+                        'amount' => $this->amount,
+                        'position' => $this->position,
+                        'component_id' => $comp->id,
+                    ]);
+                }
+                $n = 0;
+            }
             $this->item = "";
             $this->qty = "";
             $this->unit = "";
@@ -148,6 +179,11 @@ class PropertyCard extends Component
             $ds = \App\Models\PropertyCard::find($this->prop_id)->component;
             $cnt = count($ds) + 1;
             $this->prop_num = $this->par_num.'-'.$cnt;
+
+            $ds = Par::where('component_id',$id)->get();
+            foreach ($ds as $er){
+                Par::find($er->id)->delete();
+            }
             session()->flash('successDel', "Successfully deleted");
         }
         catch (\Exception $e){

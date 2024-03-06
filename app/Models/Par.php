@@ -22,6 +22,7 @@ class Par extends Model
         'date_acquired',
         'amount',
         'position',
+        'component_id'
     ];
 
     use HasFactory;

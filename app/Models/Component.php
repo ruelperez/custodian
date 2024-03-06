@@ -15,7 +15,9 @@ class Component extends Model
         'property_number',
         'date_acquired',
         'amount',
-        'property_card_id'
+        'property_card_id',
+        'par_num',
+        'position'
     ];
 
     use HasFactory;
