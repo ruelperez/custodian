@@ -33,10 +33,10 @@
                             <input type="text" class="form-control" placeholder="Unit Cost" wire:model="unit_cost" >
                             @error('unit_cost') <span style="color: red">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                            <input type="text" class="form-control" placeholder="Inventory Item No." wire:model="inventory_number" >
-                            @error('inventory_number') <span style="color: red">{{ $message }}</span> @enderror
-                        </div>
+{{--                        <div class="mb-3" style="width: 70%; margin-left: 15%;">--}}
+{{--                            <input type="text" class="form-control" placeholder="Inventory Item No." wire:model="inventory_number" >--}}
+{{--                            @error('inventory_number') <span style="color: red">{{ $message }}</span> @enderror--}}
+{{--                        </div>--}}
                         <div style="margin-left: 15%;">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" wire:model="item_type" value="consumable">

@@ -34,7 +34,7 @@
                         Quantity
                     </th>
                     <th>
-                       Inventory No.
+                       Inventory/Property No.
                     </th>
                     <th>
                         Receiver
