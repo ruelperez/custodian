@@ -27,6 +27,10 @@
                         <th>
                             Amount
                         </th>
+                        <th>
+
+                        </th>
+
                     </tr>
                     </thead>
 
@@ -44,6 +48,25 @@
                                 <td>{{$data->property_number}}</td>
                                 <td>{{$data->date_acquired}}</td>
                                 <td>{{$data->amount}}</td>
+                                <td>
+                                    @if($data->is_stolen == 1)
+                                        <div class="form-check">
+                                            <i class="fa-solid fa-circle" style="color: black;" data-bs-toggle="modal" data-bs-target="#com_not_stolen" wire:click="com_not_stolen({{$data->id}})" data-bs-dismiss="modal"></i>
+                                        </div>
+                                    @elseif($data->is_lost == 1)
+                                        <div class="form-check">
+                                            <i class="fa-solid fa-circle" style="color: brown;" data-bs-toggle="modal" data-bs-target="#com_not_lost" wire:click="com_not_lost({{$data->id}})" data-bs-dismiss="modal"></i>
+                                        </div>
+                                    @elseif($data->is_return == 1)
+                                        <div class="form-check">
+                                            <i class="fa-solid fa-circle" style="color: red; cursor: pointer"></i>
+                                        </div>
+                                    @else
+                                        <div class="form-check">
+                                            <i class="fa-solid fa-circle" style="color: green; cursor: pointer" data-bs-toggle="modal" data-bs-target="#com_not_active" wire:click="com_not_active({{$data->id}})" data-bs-dismiss="modal"></i>
+                                        </div>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @endif

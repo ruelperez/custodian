@@ -20,7 +20,8 @@ class Inventory extends Model
         'reference',
         'office',
         'date',
-        'par_num'
+        'par_num',
+        'receiver'
     ];
     use HasFactory;
 

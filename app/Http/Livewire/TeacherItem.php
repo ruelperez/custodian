@@ -41,8 +41,21 @@ class TeacherItem extends Component
         $this->stolenIds = $stolenId;
     }
 
+    public function com_not_active($stolenId){
+        $rr = \App\Models\Component::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
+    }
+
     public function active(){
         $rf = BackupPrepare::find($this->stolenIds);
+        $rf->is_stolen = false;
+        $rf->is_lost = false;
+        $rf->save();
+    }
+
+    public function com_active(){
+        $rf = \App\Models\Component::find($this->stolenIds);
         $rf->is_stolen = false;
         $rf->is_lost = false;
         $rf->save();
@@ -55,8 +68,27 @@ class TeacherItem extends Component
         $rf->save();
     }
 
+    public function com_lost(){
+        $rf = \App\Models\Component::find($this->stolenIds);
+        $rf->is_stolen = false;
+        $rf->is_lost = true;
+        $rf->save();
+
+        $ff = BackupPrepare::where('component_id',$this->stolenIds)->get();
+        foreach ($ff as $rr){
+            BackupPrepare::find($rr->id)->delete();
+        }
+    }
+
     public function stolen(){
-        $rf = BackupPrepare::find($this->stolenIds);
+        $rf = \App\Models\Component::find($this->stolenIds);
+        $rf->is_stolen = true;
+        $rf->is_lost = false;
+        $rf->save();
+    }
+
+    public function com_stolen(){
+        $rf = \App\Models\Component::find($this->stolenIds);
         $rf->is_stolen = true;
         $rf->is_lost = false;
         $rf->save();
@@ -67,8 +99,20 @@ class TeacherItem extends Component
         $this->stolenItem = $rr->item_name;
         $this->stolenIds = $stolenId;
     }
+
+    public function com_not_stolen($stolenId){
+        $rr = \App\Models\Component::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
+    }
     public function not_lost($stolenId){
         $rr = BackupPrepare::find($stolenId);
+        $this->stolenItem = $rr->item_name;
+        $this->stolenIds = $stolenId;
+    }
+
+    public function com_not_lost($stolenId){
+        $rr = \App\Models\Component::find($stolenId);
         $this->stolenItem = $rr->item_name;
         $this->stolenIds = $stolenId;
     }
@@ -100,6 +144,28 @@ class TeacherItem extends Component
         'clickUncheck'=> 'clickUncheck',
         'returnItem' => 'returnItem',
     ];
+
+    public function return(){
+        $ff = BackupPrepare::where('component_id',$this->stolenIds)->get();
+        foreach ($ff as $rr){
+            BackupPrepare::find($rr->id)->delete();
+        }
+
+        $rq = \App\Models\Component::find($this->stolenIds);
+        $rq->is_return = true;
+        $rq->save();
+        $rs = \App\Models\Component::find($this->stolenIds);
+        \App\Models\Inventory::create([
+            'item_name' => $rs->item_name,
+            'quantity' => $rs->quantity,
+            'unit' => $rs->unit,
+            'prop_num' => $rs->property_number,
+            'date' => $rs->date_acquired,
+            'par_num' => $rs->par_num,
+            'item_status' => 'returned',
+            'item_type' => 'non-consumable'
+        ]);
+    }
     public function returnItem($name){
         $data = BackupPrepare::where('receiver','=',$name)
             ->where('item_id','1')

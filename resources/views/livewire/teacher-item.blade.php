@@ -5,6 +5,9 @@
     @include('modal.not-active')
     @include('modal.not_lost')
     @include('modal.view_components')
+    @include('modal.com_not_active')
+    @include('modal.com_not_lost')
+    @include('modal.com_not_stolen')
     <div style="margin-left: 1%; margin-top: 2%;">
         <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
     </div>

@@ -26,7 +26,8 @@ class BackupPrepare extends Model
         'prop_num',
         'par_num',
         'is_stolen',
-        'is_lost'
+        'is_lost',
+        'component_id'
     ];
 
     use HasFactory;

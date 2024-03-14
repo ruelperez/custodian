@@ -17,7 +17,10 @@ class Component extends Model
         'amount',
         'property_card_id',
         'par_num',
-        'position'
+        'position',
+        'is_return',
+        'is_stolen',
+        'is_lost',
     ];
 
     use HasFactory;

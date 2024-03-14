@@ -757,6 +757,13 @@ class Prepare extends Component
 
                 }
 
+                $iry = \App\Models\Inventory::where('item_name','=',$dat->item_name)->get();
+                if (count($iry) > 0){
+                    foreach ($iry as $irys){
+                        $irys->receiver = $dat->receiver;
+                        $irys->save();
+                    }
+                }
             }
 
             foreach ($data as $da){

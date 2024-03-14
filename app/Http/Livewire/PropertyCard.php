@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BackupPrepare;
 use App\Models\Par;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -88,6 +89,7 @@ class PropertyCard extends Component
 
             $gh = \App\Models\Component::latest()->first()->get();
             $vf = Par::all();
+            $back = BackupPrepare::all();
             foreach ($gh as $comp){
                 $n = 0;
                 foreach ($vf as $par){
@@ -107,6 +109,33 @@ class PropertyCard extends Component
                         'date_acquired' => $this->date,
                         'amount' => $this->amount,
                         'position' => $this->position,
+                        'component_id' => $comp->id,
+                    ]);
+                }
+                $n = 0;
+            }
+
+            foreach ($gh as $comp){
+                $n = 0;
+                foreach ($back as $par){
+                    if ($comp->id == $par->component_id){
+
+                        $n++;
+                    }
+                }
+                if ($n == 0){
+                    BackupPrepare::create([
+                        'item_name' => $this->item,
+                        'quantity' => $this->qty,
+                        'unit'=> $this->unit,
+                        'receiver' => $this->teacher_name,
+                        'item_type' => "sets",
+                        'position'=> $this->position,
+                        'transaction_name' => "supply",
+                        'prop_num'  => $this->prop_num,
+                        'par_num'  => $this->par_num,
+                        'is_stolen' => 0,
+                        'is_lost' => 0,
                         'component_id' => $comp->id,
                     ]);
                 }
@@ -143,6 +172,18 @@ class PropertyCard extends Component
 
     public function submitEdit(){
         $data = \App\Models\Component::find($this->component_id);
+        $ds = BackupPrepare::where('component_id','=',$this->component_id)->get();
+        foreach ($ds as $sd){
+            $idss = $sd->id;
+        }
+        $re = BackupPrepare::find($idss);
+        $re->item_name = $this->item;
+        $re->quantity= $this->qty;
+        $re->unit = $this->unit;
+        $re->prop_num = $this->prop_num;
+        $re->receiver = $this->teacher_name;
+        $re->save();
+
         try {
             $data->item_name = $this->item;
             $data->quantity = $this->qty;
@@ -174,6 +215,10 @@ class PropertyCard extends Component
     ];
 
     public function propDelete($id){
+        $ds = BackupPrepare::where('component_id','=',$id)->get();
+        foreach ($ds as $sd){
+           BackupPrepare::find($sd->id)->delete();
+        }
         try {
             \App\Models\Component::find($id)->delete();
             $ds = \App\Models\PropertyCard::find($this->prop_id)->component;

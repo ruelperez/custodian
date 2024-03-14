@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class Inventory extends Component
 {
-    public $request_data, $selectItemType = "consumable", $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
-            $item_type = "consumable", $ng=0, $kl = 0, $components, $prop_num, $reference, $office, $date;
+    public $request_data, $selectItemType = "non-consumable", $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
+            $item_type = "non-consumable", $ng=0, $kl = 0, $components, $prop_num, $reference, $office, $date;
 
     public function render()
     {
@@ -26,7 +26,6 @@ class Inventory extends Component
 
         return view('livewire.inventory');
     }
-
     public function itemValidator(){
         $count = 0;
         $data = \App\Models\Inventory::all();
