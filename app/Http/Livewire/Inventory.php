@@ -45,6 +45,7 @@ class Inventory extends Component
     public function search(){
         $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
+            ->orWhere('receiver','LIKE', '%'.$this->searchInput.'%')
 //            ->where('item_status','!=', 'transferred')
             ->get();
     }
