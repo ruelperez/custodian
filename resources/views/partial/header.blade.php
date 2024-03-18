@@ -29,8 +29,8 @@
             <img src="{{asset('image/logo.png')}}" width="80">
         </div>
         <div style="width: 35%; margin-left: 1%; margin-top: 0.5%;">
-            <h5 style="color: white; text-align: left">TANDAAY HIGH SCHOOL</h5>
-            <h4 style="color: white;">PROPERTY CUSTODIAN MANAGEMENT SYSTEM</h4>
+            <h4 style="color: white; text-align: left">ITTS</h4>
+            <h5 style="color: white;">Inventory System</h5>
         </div>
 
     </div>
