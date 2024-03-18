@@ -10,13 +10,14 @@ use Livewire\Component;
 
 class TeacherItem extends Component
 {
-    public $receiver_id, $itemName, $component_data = [], $invAll, $stolenIds, $stolenItem = "", $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
+    public $receiver_id, $role, $itemName, $component_data = [], $invAll, $stolenIds, $stolenItem = "", $checkData, $month = "1", $day = "1", $year, $quantity, $serial, $item_type = "non-consumable",  $suggestData = [], $qtyPass = 0, $sort1 = "item_name", $sort2 = "desc", $qtyNotModel, $waste_id, $unit, $movedData, $qty = 0, $item_name, $teacher_name, $receiver_name, $deployed_data, $ff=0, $hover_id;
 
 
     public function render()
     {
 
         $this->displayData();
+        $this->role = auth()->user()->role;
         return view('livewire.teacher-item');
     }
     public function mount($teacherName){

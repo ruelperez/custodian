@@ -9,11 +9,16 @@ use Livewire\Component;
 
 class Portion extends Component
 {
-    public $option = "graph",$mons, $registrationSwitch, $username, $current, $new, $retype, $item_type, $mos, $report, $df=0, $hover;
+    public $option = "graph",$mons, $role, $registrationSwitch, $username, $current, $new, $retype, $item_type, $mos, $report, $df=0, $hover;
 
     public function render()
     {
         $this->username = auth()->user()->username;
+        $this->role = auth()->user()->role;
+        if ($this->role == "0"){
+            $this->option = "report";
+            $this->report = "teacher";
+        }
         return view('livewire.portion');
     }
 

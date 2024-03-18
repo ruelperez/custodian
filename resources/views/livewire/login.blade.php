@@ -3,18 +3,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">@if($gt == 0) Admin Login @else Register @endif</h5>
+                    <h5 class="modal-title" id="insertModalLabel" style="margin-left: 42%;">@if($gt == 0) Login @else Register @endif</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @if($gt == 0)
                         <form wire:submit.prevent="submit">
+                            @csrf
                             @if(session()->has('loginFailed'))
                                 <div class="alert alert-danger" style="width: 100%; ">
                                     {{ session('loginFailed') }}
                                 </div>
                             @endif
-
                             <div class="mb-3">
                                 <input type="text" class="form-control" placeholder="Username" wire:model="username" required style="width: 70%; margin-left: 15%;">
                             </div>
@@ -33,7 +33,10 @@
                     @else
                         <form  wire:submit.prevent="submit_reg">
                             @csrf
-
+                            <div class="form-check form-switch mb-3" style="margin-left: 15%;">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" wire:model="role">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Admin</label>
+                            </div>
                             @if(session()->has('loginFailed'))
                                 <div class="alert alert-danger" style="width: 100%; ">
                                     {{ session('loginFailed') }}
@@ -62,9 +65,6 @@
                                 @endif
                             </div>
                             @error('password_confirmation') <span class="mb-3" style="color: red;margin-left: 15%;">{{ $message }}</span> @enderror
-                            <div class="mb-3">
-                                <input class="form-control" wire:model="role" hidden>
-                            </div>
                             @if($is_reg == 0)
                                 <p style="color: red;margin-left: 15%;">The registration is disabled, Contact admin user to enable.</p>
                             @endif

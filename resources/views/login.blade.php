@@ -37,22 +37,22 @@
     </style>
 </head>
 <body>
-<div style="width: 100%; text-align: right; padding-top: 0.5%; padding-bottom: 0.5%; padding-right: 3%;">
-    <img src="{{asset('image/logo.png')}}" width="70">
-</div>
-<div class="image-container">
-    <img src="{{asset('image/home.png')}}" class="image"  style="margin-left: 1%; width: 100%;">
-    <div class="overlay">
-        <div style="text-align: center; margin-top: 15%;">
-            <p style="font-size: 70px;">Welcome to</p><p style="font-size: 70px;">TanHS!</p>
-        </div>
+{{--<div style="width: 100%; text-align: right; padding-top: 0.5%; padding-bottom: 0.5%; padding-right: 3%;">--}}
+{{--    <img src="{{asset('image/logo.png')}}" width="70">--}}
+{{--</div>--}}
+{{--<div class="image-container">--}}
+{{--    <img src="{{asset('image/home.png')}}" class="image"  style="margin-left: 1%; width: 100%;">--}}
+{{--    <div class="overlay">--}}
+{{--        <div style="text-align: center; margin-top: 15%;">--}}
+{{--            <p style="font-size: 70px;">Welcome to</p><p style="font-size: 70px;">TanHS!</p>--}}
+{{--        </div>--}}
         <div style="text-align: center; margin-top: 4%;">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login_modal" style="width: 12%; padding-top: 1%;"><h5>Login</h5></button>
         </div>
 
-    </div>
+{{--    </div>--}}
 
-</div>
+{{--</div>--}}
 
 @livewire('login')
 

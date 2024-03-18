@@ -10,7 +10,7 @@
                         <i onclick="clickEllipsis()" class="fa-solid fa-ellipsis-vertical" id="ellip" style="color: white; margin-left: 10%;font-size: 23px; cursor: pointer; margin-right: 22%;"></i>
                         <i class="fa-solid fa-user" style="font-size: 100px; color: #DCDCDC	"></i>
                     </div>
-                    <h5 style="color: white; margin-top: 5%;">ADMIN</h5>
+                    <h5 style="color: white; margin-top: 5%;">@if($role == "1") ADMIN @else ITTS USER @endif</h5>
 {{--                    <form action="/Dashboard/logout" method="POST" style="margin-top: 5%;">--}}
 {{--                        @csrf--}}
 {{--                        <button type="submit" style="border: none;border-radius: 25px; width: 35%; background-color: white; color: blue; cursor: pointer;">Logout</button>--}}
@@ -19,12 +19,14 @@
                 <div class="div100" style="display: none; width: 70%; padding: 5px 12px; background-color: #0d1321;  border: solid black 3px;border-radius: 12px;  position: relative; margin-left: 10%; top: 52px;
                     z-index: 2; /* Make sure this is lower than the z-index of the covering div */
                   color: white;">
-                    <div wire:click="clickPortion('logs')" wire:loading.attr="disabled"><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
-                    <div wire:click="clickPortion('designation')" style=" margin-top: 5%;" wire:loading.attr="disabled"> <i class="fa-solid fa-marker"></i> Designator</div>
-                    <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
-                    <div wire:click="clickSettings" data-bs-toggle="modal" data-bs-target="#clickSettings" id="settings" style="margin-top: 5%; color: white; background-color: #0d1321">
-                        <i class="fa-solid fa-gear" style="margin-right: 7px;"></i>Settings
-                    </div>
+                    @if($role == "1")
+                        <div wire:click="clickPortion('logs')" wire:loading.attr="disabled"><i class="fa-solid fa-tent-arrow-left-right"></i> Logs</div>
+                        <div wire:click="clickPortion('designation')" style=" margin-top: 5%;" wire:loading.attr="disabled"> <i class="fa-solid fa-marker"></i> Designator</div>
+                        <div style=" margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#changePassModal"><i class="fa-solid fa-pen-nib"></i> Change Password</div>
+                        <div wire:click="clickSettings" data-bs-toggle="modal" data-bs-target="#clickSettings" id="settings" style="margin-top: 5%; color: white; background-color: #0d1321">
+                            <i class="fa-solid fa-gear" style="margin-right: 7px;"></i>Settings
+                        </div>
+                    @endif
                     <div style="margin-top: 15%;">
                         <form action="/Dashboard/logout" method="POST">
                             @csrf
@@ -37,21 +39,23 @@
 
             <div class="div101" style="width: 80%; height: 1px; background-color: white; margin-left: 10%; margin-top: 75%;"></div>
             <div style="margin-top: 3%;" class="navig">
-                <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #023e8a" @endif>
-                    DASHBOARD
-                </div>
-                <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #023e8a" @endif>
-                    PURCHASE REQUEST
-                </div>
-                <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #023e8a" @endif>
-                    INVENTORY
-                </div>
-                <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #023e8a" @endif>
-                    PREPARE MATERIAL REQUEST
-                </div>
-                <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #023e8a" @endif onclick="clickWaste()">
-                    PREPARE WASTE MATERIAL REQUEST
-                </div>
+                @if($role == "1")
+                    <div wire:click="clickPortion('graph')" wire:loading.attr="disabled" @if($option == "graph") style="background-color: #023e8a" @endif>
+                        DASHBOARD
+                    </div>
+                    <div wire:click="clickPortion('purchase')" wire:loading.attr="disabled" @if($option == "purchase") style="background-color: #023e8a" @endif>
+                        PURCHASE REQUEST
+                    </div>
+                    <div wire:click="clickPortion('inventory')" wire:loading.attr="disabled" @if($option == "inventory") style="background-color: #023e8a" @endif>
+                        INVENTORY
+                    </div>
+                    <div wire:click="clickPortion('prepare')" wire:loading.attr="disabled" @if($option == "prepare") style="background-color: #023e8a" @endif>
+                        PREPARE MATERIAL REQUEST
+                    </div>
+                    <div wire:click="clickPortion('waste')" wire:loading.attr="disabled" @if($option == "waste") style="background-color: #023e8a" @endif onclick="clickWaste()">
+                        PREPARE WASTE MATERIAL REQUEST
+                    </div>
+                @endif
                 <div wire:click="clickPortion('report')" wire:loading.attr="disabled" @if($option == "report") style="background-color: #023e8a" @endif>
                     REPORTS
                 </div>
@@ -138,7 +142,7 @@
                                     <img src="{{asset('image/teacher.png')}}" width="80">
                                 </div>
                                 <div style="margin-left: 16%; margin-top: 3%;">
-                                    <h4><b>TEACHERS</b></h4>
+                                    <h4><b>EMPLOYEES</b></h4>
                                 </div>
                             </div>
                             <div style="display: flex; margin-top: 1%;">

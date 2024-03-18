@@ -23,33 +23,36 @@
         </div>
     @endif
     <div style="display: flex;">
-        <div style=" margin-left: 10%;" id="plusIcon">
-            <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
-        </div>
-        <div style="margin-left: 3%; margin-top: 1%;">
-            <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" wire:click="print" onclick="location.href = '/Dashboard/request-pdf/teacher-form/{{$teacher_name}}';" wire:click="print"></i>
-        </div>
-        <div style="margin-left: 3%;">
-            <div class="dropdown">
-                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-sort" style="font-size: 19px; cursor: pointer;"></i>
-                    Sort
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" wire:click="clickSort1('item_name')" style="cursor: pointer;">Name @if($sort1 == "item_name") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
-                    <li><a class="dropdown-item" wire:click="clickSort1('created_at')" style="cursor: pointer;">Date @if($sort1 == "created_at") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
-                    <hr>
-                    <li><a class="dropdown-item" wire:click="clickSort2('asc')" style="cursor: pointer;">Ascending @if($sort2 == "asc") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
-                    <li><a class="dropdown-item" wire:click="clickSort2('desc')" style="cursor: pointer;">Descending @if($sort2 == "desc") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
-                </ul>
+        @if($role == "1")
+            <div style=" margin-left: 10%;" id="plusIcon">
+                <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
             </div>
-        </div>
-        @if(count($checkData) > 0)
-            <div style="width: 14%; margin-left: 3%;" id="returnId">
-                <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
+            <div style="margin-left: 3%; margin-top: 1%;">
+                <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" wire:click="print" onclick="location.href = '/Dashboard/request-pdf/teacher-form/{{$teacher_name}}';" wire:click="print"></i>
             </div>
+            <div style="margin-left: 3%;">
+                <div class="dropdown">
+                    <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-sort" style="font-size: 19px; cursor: pointer;"></i>
+                        Sort
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" wire:click="clickSort1('item_name')" style="cursor: pointer;">Name @if($sort1 == "item_name") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
+                        <li><a class="dropdown-item" wire:click="clickSort1('created_at')" style="cursor: pointer;">Date @if($sort1 == "created_at") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" wire:click="clickSort2('asc')" style="cursor: pointer;">Ascending @if($sort2 == "asc") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
+                        <li><a class="dropdown-item" wire:click="clickSort2('desc')" style="cursor: pointer;">Descending @if($sort2 == "desc") <b style="font-size: 30px; margin-left: 3%;">&middot;</b> @endif</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            @if(count($checkData) > 0)
+                <div style="width: 14%; margin-left: 3%;" id="returnId">
+                    <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
+                </div>
+            @endif
         @endif
-        <div style="@if(count($checkData) > 0) margin-left: 12%; @else margin-left: 29%; @endif ">
+        <div @if($role == "1") style="@if(count($checkData) > 0) margin-left: 12%; @else margin-left: 29%; @endif " @else style="margin-left: 5%; margin-bottom: 1%;" @endif >
             <i class="fa-solid fa-circle" style="color: green;"></i> Active
         </div>
         <div style="margin-left: 2%;">
@@ -95,9 +98,11 @@
                     <th colspan="2">
                         Date
                     </th>
-                    <th>
+                    @if($role == "1")
+                        <th>
 
-                    </th>
+                        </th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -142,38 +147,39 @@
                                 <td>
                                     {{$data->created_at}}
                                 </td>
-
-                                <td>
-                                    @if($data->is_stolen == 1)
-                                        <div class="form-check">
-                                            <i class="fa-solid fa-circle" style="color: black;cursor: pointer" data-bs-toggle="modal" data-bs-target="#not_stolen" wire:click="not_stolen({{$data->id}})"></i>
-                                        </div>
-                                    @elseif($data->is_lost == 1)
-                                        <div class="form-check">
-                                            <i class="fa-solid fa-circle" style="color: brown;cursor: pointer" data-bs-toggle="modal" data-bs-target="#not_lost" wire:click="not_lost({{$data->id}})"></i>
-                                        </div>
-                                    @elseif($data->is_returned == 0)
-                                        <div class="form-check">
-                                            <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
-                                            <i class="fa-solid fa-circle" style="color: green; cursor: pointer" data-bs-toggle="modal" data-bs-target="#not_active" wire:click="not_active({{$data->id}})"></i>
-                                        </div>
-                                    @else
-                                        @foreach($invAll as $inv)
-                                            @if($data->serial == $inv->inventory_number)
-                                                @if($inv->item_status == "returned")
-                                                    <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
-                                                @elseif($inv->item_status == "transferred")
-                                                    <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                    <td>
+                                        @if($data->is_stolen == 1)
+                                            <div class="form-check">
+                                                <i class="fa-solid fa-circle" style="color: black;cursor: pointer" data-bs-toggle="modal" data-bs-target="#not_stolen" wire:click="not_stolen({{$data->id}})"></i>
+                                            </div>
+                                        @elseif($data->is_lost == 1)
+                                            <div class="form-check">
+                                                <i class="fa-solid fa-circle" style="color: brown;cursor: pointer" data-bs-toggle="modal" data-bs-target="#not_lost" wire:click="not_lost({{$data->id}})"></i>
+                                            </div>
+                                        @elseif($data->is_returned == 0)
+                                            <div class="form-check">
+                                                @if($role == "1")
+                                                    <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
                                                 @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td style="text-align: left; width: 1%; padding-left: 0px;">
-                                    @if($data->transaction_name == "property")
-                                        <i title="view components" class="fa-solid fa-eye" style="font-size: 15px; cursor: pointer" data-bs-toggle="modal" data-bs-target="#view_components" wire:click="view_components('{{$data->prop_num}}','{{$data->item_name}}')"></i>
-                                    @endif
-                                </td>
+                                                <i class="fa-solid fa-circle" style="color: green; @if($role == "1") cursor: pointer @endif " @if($role == "1") data-bs-toggle="modal" data-bs-target="#not_active" wire:click="not_active({{$data->id}})" @endif></i>
+                                            </div>
+                                        @else
+                                            @foreach($invAll as $inv)
+                                                @if($data->serial == $inv->inventory_number)
+                                                    @if($inv->item_status == "returned")
+                                                        <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
+                                                    @elseif($inv->item_status == "transferred")
+                                                        <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </td>
+                                    <td style="text-align: left; width: 1%; padding-left: 0px;">
+                                        @if($data->transaction_name == "property")
+                                            <i title="view components" class="fa-solid fa-eye" style="font-size: 15px; cursor: pointer" data-bs-toggle="modal" data-bs-target="#view_components" wire:click="view_components('{{$data->prop_num}}','{{$data->item_name}}')"></i>
+                                        @endif
+                                    </td>
                             </tr>
                         @endif
                     @endforeach
