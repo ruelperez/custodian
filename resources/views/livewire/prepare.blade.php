@@ -60,7 +60,7 @@
                                 @if($data->item_status == null or $data->item_status == "")
                                     <td>{{$data->item_name}}</td>
                                 @else
-                                    <td>{{$data->item_name}} (returned)</td>
+                                    <td>{{$data->item_name}} ({{$data->serial}})</td>
                                 @endif
 
                                 <td>{{$data->quantity}}</td>
