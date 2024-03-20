@@ -159,13 +159,24 @@
                                         </div>
                                     @else
                                         @foreach($invAll as $inv)
-                                            @if($data->serial == $inv->inventory_number)
-                                                @if($inv->item_status == "returned")
-                                                    <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
-                                                @elseif($inv->item_status == "transferred")
-                                                    <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                            @if($data->unit_cost <= 50000)
+                                                @if($data->serial == $inv->inventory_number)
+                                                    @if($inv->item_status == "returned")
+                                                        <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
+                                                    @elseif($inv->item_status == "transferred")
+                                                        <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                                    @endif
+                                                @endif
+                                            @else
+                                                @if($data->prop_num == $inv->inventory_number)
+                                                    @if($inv->item_status == "returned")
+                                                        <i class="fa-solid fa-circle" style="color: red; margin-left:50%;"></i>
+                                                    @elseif($inv->item_status == "transferred")
+                                                        <i class="fa-solid fa-circle" style="color: yellow; margin-left:50%;"></i>
+                                                    @endif
                                                 @endif
                                             @endif
+
                                         @endforeach
                                     @endif
                                 </td>
