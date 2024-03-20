@@ -182,27 +182,41 @@ class TeacherItem extends Component
                 }
             }
             if ($h == 0){
-                if ($datas->transaction_name == "par"){
-                    $datas->serial = $datas->par_num;
+//                if ($datas->transaction_name == "par"){
+//                    $datas->serial = $datas->par_num;
+//                }
+//                elseif ($datas->transaction_name == "property"){
+//                    $datas->serial = $datas->prop_num;
+//                }
+//                elseif ($datas->transaction_name == "property_ics"){
+//                    $datas->serial = $datas->ics;
+//                }
+                if ($datas->unit_cost <= 50000){
+                    \App\Models\Inventory::create([
+                        'item_name' => $datas->item_name,
+                        'quantity' => $datas->quantity,
+                        'unit' => $datas->unit,
+                        'unit_cost' => $datas->unit_cost,
+                        'inventory_number' => $datas->serial,
+                        'item_type' => $datas->item_type,
+                        'prop_num' => $datas->prop_num,
+                        'par_num' => $datas->par_num,
+                        'item_status' => 'returned',
+                    ]);
                 }
-                elseif ($datas->transaction_name == "property"){
-                    $datas->serial = $datas->prop_num;
+                else{
+                    \App\Models\Inventory::create([
+                        'item_name' => $datas->item_name,
+                        'quantity' => $datas->quantity,
+                        'unit' => $datas->unit,
+                        'unit_cost' => $datas->unit_cost,
+                        'inventory_number' => $datas->prop_num,
+                        'item_type' => $datas->item_type,
+                        'prop_num' => $datas->prop_num,
+                        'par_num' => $datas->par_num,
+                        'item_status' => 'returned',
+                    ]);
                 }
-                elseif ($datas->transaction_name == "property_ics"){
-                    $datas->serial = $datas->ics;
-                }
-                \App\Models\Inventory::create([
-                    'item_name' => $datas->item_name,
-                    'quantity' => $datas->quantity,
-                    'unit' => $datas->unit,
-                    'unit_cost' => $datas->unit_cost,
-                    'inventory_number' => $datas->serial,
-                    'item_type' => $datas->item_type,
-                    'prop_num' => $datas->prop_num,
-                    'par_num' => $datas->par_num,
-                    'item_status' => 'returned',
-                ]);
-
                 $datas->is_returned = true;
                 $datas->save();
             }

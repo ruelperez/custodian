@@ -37,9 +37,6 @@
                 <th>
                     Item No.
                 </th>
-                <th>
-                    Receiver
-                </th>
                 <th colspan="2">
                     Action
                 </th>
@@ -84,7 +81,7 @@
                 @if($q < 10)
                     @if($data->item_status != "transferred")
                         <tr class="invs">
-                            <td style="text-align: left">@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->item_status}}) @else {{ucfirst($data->item_name)}} @endif</td>
+                            <td style="text-align: left">@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->inventory_number}}) @else {{ucfirst($data->item_name)}} @endif</td>
                             <td style="text-align: left">{{$data->components}}</td>
                             <td >{{$data->prop_num}}</td>
                             <td >{{$data->reference}}</td>
@@ -104,12 +101,11 @@
                 @if($q < 10)
                     @if($data->item_status != "transferred")
                         <tr class="invs">
-                            <td style="text-align: left">@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->item_status}}) @else {{ucfirst($data->item_name)}} @endif</td>
+                            <td style="text-align: left">@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->inventory_number}}) @else {{ucfirst($data->item_name)}} @endif</td>
                             <td style="text-align: left">{{$data->quantity}}</td>
                             <td >{{$data->unit_cost}}</td>
                             <td >{{$data->unit}}</td>
                             <td>{{$data->inventory_number}}</td>
-                            <td>{{$data->receiver}}</td>
                             <td><i class="fa-solid fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit_inventory_modal" wire:click="edit({{$data->id}})"></i></td>
                             <td ><i class="fa-solid fa-trash" style="color: red; cursor: pointer;" onclick="delInv({{$data->id}})"></i></td>
                         </tr>
