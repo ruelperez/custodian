@@ -89,7 +89,7 @@
                                                 </li>
                                             @elseif($data->item_status == "returned")
                                                 <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
-                                                    {{$data->item_name}} ({{$data->item_status}})
+                                                    {{$data->item_name}} ({{$data->inventory_number}})
                                                     <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                                 </li>
                                             @endif
@@ -203,7 +203,7 @@
                                                     </li>
                                                 @elseif($data->item_status == "returned")
                                                     <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
-                                                        {{$data->item_name}} ({{$data->item_status}})
+                                                        {{$data->item_name}} ({{$data->inventory_number}})
                                                         <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                                     </li>
                                                 @endif
@@ -305,7 +305,7 @@
                                                     </li>
                                                 @elseif($data->item_status == "returned")
                                                     <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
-                                                        {{$data->item_name}} ({{$data->item_status}})
+                                                        {{$data->item_name}} ({{$data->inventory_number}})
                                                         <p style="margin-left: auto">qty : {{$data->quantity}}</p>
                                                     </li>
                                                 @endif
