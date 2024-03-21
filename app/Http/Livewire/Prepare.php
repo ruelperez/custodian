@@ -361,8 +361,6 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 $this->components = "";
-                $this->receiver = "";
-                $this->position = "";
                 $this->prop_num = "";
                 $this->reference = "";
                 $this->officer = "";
@@ -423,8 +421,6 @@ class Prepare extends Component
                 $this->item_disable = 0;
                 $this->unit_cost = "";
                 $this->components = "";
-                $this->receiver = "";
-                $this->position = "";
                 $this->prop_num = "";
                 $this->reference = "";
                 $this->officer = "";
