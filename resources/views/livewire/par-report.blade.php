@@ -2,7 +2,7 @@
     @if($clickBk == 0)
         <i class="fa-solid fa-backward" style="font-size: 20px; cursor: pointer; margin-top: 3%; margin-bottom: 2%;" onclick="clickBk6()" wire:click="clickBack"></i>
     @endif
-    <h5 style="margin-left: 1%;">P.A.R Report</h5>
+    <h5 style="margin-left: 1%;">Property Card</h5>
     <div style="display: flex;">
         <div style="margin-top: 4%; margin-left: 15%;">
             <h5>{{$dataDate}}</h5>
@@ -26,7 +26,7 @@
                     Unit
                 </th>
                 <th>
-                    Serial
+                    Inventory No.
                 </th>
                 <th>
                     Receiver

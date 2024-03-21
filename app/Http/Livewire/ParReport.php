@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BackupPrepare;
 use App\Models\Par;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -12,8 +13,7 @@ class ParReport extends Component
 
     public function render()
     {
-        $this->request_data = Par::
-            where('parnum','=', $this->dataDate)
+        $this->request_data = BackupPrepare::where('serial','=',$this->dataDate)
             ->get();
         return view('livewire.par-report');
     }

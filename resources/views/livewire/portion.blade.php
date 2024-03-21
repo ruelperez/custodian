@@ -155,7 +155,7 @@
                                         <img src="{{asset('image/PAR.png')}}" width="80">
                                     </div>
                                     <div style="margin-left: 8%; margin-top: 7%;">
-                                        <h4><b>P.A.R Report</b></h4>
+                                        <h4><b>Property Card</b></h4>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: flex; margin-top: 1%;">
+                            <div style="display: flex; margin-top: 1%; display: none">
                                 <div onmouseover="hoverIn(this)" onmouseout="hoverOut(this)" style="cursor: pointer; margin-left: 1%; display: flex; width: 50%; height: 100px; padding-top: 1%; padding-bottom: 1%; background-color: #40E0D0;" wire:click="clickReport('property-card')">
                                     <div style="margin-left: 5%;">
                                         <img src="{{asset('image/Propertycard icon.png')}}" width="80">

@@ -2,34 +2,51 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\BackupPrepare;
 use App\Models\Par;
 use Livewire\Component;
 
 class ParBydate extends Component
 {
-    public $search, $request_data, $clickView = 0, $dateData;
+    public $search, $request_data = [], $clickView = 0, $dateData, $selectTransaction="ics";
 
     public function render()
     {
-        if ($this->search != ""){
-            $this->search();
+        if ($this->selectTransaction == "ics"){
+            if ($this->search != ""){
+                $this->request_data = BackupPrepare::select('serial','item_name')
+                    ->orWhere('serial','like', '%'.$this->search.'%')
+                    ->orWhere('item_name','like', '%'.$this->search.'%')
+                    ->where('transaction_name','=',"property_ics")
+                    ->distinct()
+                    ->get();
+            }
+            else{
+                $this->request_data = BackupPrepare::select('serial','item_name')
+                    ->where('transaction_name','=',"property_ics")
+                    ->distinct()
+                    ->get();
+            }
         }
         else{
-            $this->request_data = Par::select('parnum')
-                ->distinct()
-                ->orderBy('parnum','desc')
-                ->get();
+            if ($this->search != ""){
+                $this->request_data = BackupPrepare::select('serial','item_name')
+                    ->orWhere('serial','like', '%'.$this->search.'%')
+                    ->orWhere('item_name','like', '%'.$this->search.'%')
+                    ->where('transaction_name','=',"par")
+                    ->distinct()
+                    ->get();
+            }
+            else{
+                $this->request_data = BackupPrepare::select('serial','item_name')
+                    ->where('transaction_name','=',"par")
+                    ->distinct()
+                    ->get();
+            }
         }
 
-        return view('livewire.par-bydate');
-    }
 
-    public function search(){
-        $this->request_data = Par::select('parnum')
-            ->distinct()
-            ->where('parnum','like', '%'.$this->search.'%')
-            ->orderBy('parnum','desc')
-            ->get();
+        return view('livewire.par-bydate');
     }
 
     public function click($name){
