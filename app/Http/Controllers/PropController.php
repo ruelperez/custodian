@@ -13,7 +13,7 @@ class PropController extends Controller
         $item_name;
         $serial = $date;
         $desig = DesigPar::first();
-        $request_data = BackupPrepare::where('serial','=',$date)->get();
+        $request_data = BackupPrepare::where('id','=',$date)->get();
         foreach ($request_data as $datas){
             $item_name = $datas->item_name;
             $par_num = $datas->par_num;

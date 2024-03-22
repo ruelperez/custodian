@@ -57,7 +57,7 @@
                             {{$preps->receiver}}
                         </td>
                         <td>
-                            {{$preps->created_at}} @if($ind == "par") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$dataDate}}';"></i>@endif
+                            {{$preps->created_at}} @if($ind == "par") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$preps->id}}';"></i>@endif
                         </td>
                     </tr>
                 @endforeach
