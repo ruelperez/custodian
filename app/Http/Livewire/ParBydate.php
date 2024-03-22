@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ParBydate extends Component
 {
-    public $search, $request_data = [], $clickView = 0, $dateData, $selectTransaction="ics";
+    public $search, $request_data = [], $clickView = 0, $dateData, $selectTransaction="ics", $itts;
 
     public function render()
     {
@@ -49,7 +49,8 @@ class ParBydate extends Component
         return view('livewire.par-bydate');
     }
 
-    public function click($name){
+    public function click($name,$ind){
+        $this->itts = $ind;
         $this->dateData = $name;
         $this->clickView = 1;
     }

@@ -16,6 +16,10 @@ class MovedItem extends Model
         'serial',
         'created_at',
         'backup_prepare_id',
+        'transaction_name',
+        'ics',
+        'prop_num',
+        'par_num',
     ];
 
     use HasFactory;

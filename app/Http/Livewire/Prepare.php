@@ -740,6 +740,7 @@ class Prepare extends Component
                     'transaction_name' => $dat->transaction_name,
                     'prop_num' => $dat->prop_num,
                     'par_num' => $dat->par_num,
+                    'date_acquired' => $dat->date_acquired,
                 ]);
 
                 $accepter = DB::table('receivers')

@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ParReport extends Component
 {
-    public $search="", $request_data, $clickBk = 0, $dataDate;
+    public $search="", $ind, $request_data, $clickBk = 0, $dataDate;
 
     public function render()
     {
@@ -18,7 +18,8 @@ class ParReport extends Component
         return view('livewire.par-report');
     }
 
-    public function mount($dateData){
+    public function mount($dateData, $itts){
+        $this->ind = $itts;
         $this->dataDate = $dateData;
     }
 

@@ -33,7 +33,7 @@
                             <td style="text-align: left; padding-left: 3%;">
                                 {{ucfirst($preps->item_name)}} ({{$preps->serial}})
                             </td>
-                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->serial}}')">
+                            <td style="text-align: right; padding-right: 7.5%; color: green; cursor: pointer;" onclick="clickBack()" wire:click="click('{{$preps->serial}}','{{$selectTransaction}}')">
                                 View
                             </td>
                         </tr>
@@ -49,6 +49,6 @@
             </table>
         </div>
     @elseif($clickView == 1)
-        @livewire('par-report',['dateData' => $dateData])
+        @livewire('par-report',['dateData' => $dateData,'itts' => $itts])
     @endif
 </div>

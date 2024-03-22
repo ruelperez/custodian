@@ -84,7 +84,12 @@ class WasteItem extends Component
                 'serial' => $data->serial,
                 'created_at' => $data->created_at,
                 'backup_prepare_id' => $this->waste_id,
+                'par_num' => $data->par_num,
+                'prop_num' => $data->prop_num,
+                'ics' => $data->ics,
+                'transaction_name' => $data->transaction_name,
             ]);
+
             $this->qty = 0;
             session()->flash('successMove', "Successfully Moved");
         }
@@ -150,6 +155,21 @@ class WasteItem extends Component
                     'serial' => $data->serial,
                 ]);
             }
+            foreach ($datas as $data){
+                BackupPrepare::create([
+                    'item_name' => $data->item_name,
+                    'quantity' => $data->quantity,
+                    'unit' => $data->unit,
+                    'receiver' => "Waste",
+                    'serial' => $data->serial,
+                    'item_type' => $data->item_type,
+                    'transaction_name' =>  $data->transaction_name,
+                    'ics' => $data->ics,
+                    'prop_num' => $data->prop_num,
+                    'par_num' => $data->par_num,
+                ]);
+            }
+
             $g = 1;
             Log::create([
                 'name' => auth()->user()->username,

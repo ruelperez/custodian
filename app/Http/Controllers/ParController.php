@@ -15,7 +15,7 @@ class ParController extends Controller
         $serial = $date;
         $data = BackupPrepare::where('serial','=',$date)->get();
         foreach ($data as $datas){
-$item_name = $datas->item_name;
+        $item_name = $datas->item_name;
 
         }
         $pdf = PDF::loadView('form.new_prop', compact('data','item_name','serial'))
