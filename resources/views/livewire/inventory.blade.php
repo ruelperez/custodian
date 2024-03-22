@@ -98,7 +98,7 @@
         @else
             @php $q=0; @endphp
             @foreach($request_data as $data)
-                @if($q < 10)
+                @if($q < 20)
                     @if($data->item_status != "transferred")
                         <tr class="invs">
                             <td style="text-align: left">@if($data->item_status == "returned") {{ucfirst($data->item_name)}} ({{$data->inventory_number}}) @else {{ucfirst($data->item_name)}} @endif</td>

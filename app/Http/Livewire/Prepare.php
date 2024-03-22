@@ -639,7 +639,7 @@ class Prepare extends Component
                             'dates' => $datas->date_acquired,
                         ]);
                     }
-                    elseif($datas->item_type == "supply"){
+                    elseif($datas->transaction_name == "supply"){
                         \App\Models\StockCard::create([
                             'item_name' => $datas->item_name,
                             'quantity' => $datas->quantity,
