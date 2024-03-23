@@ -322,11 +322,9 @@ class Prepare extends Component
     }
 
     public function submit(){
-
         if ($this->itemStats == ""){
             $this->itemStats = null;
         }
-
         $data = $this->validate([
             'item_name' => 'required',
         ]);
@@ -459,6 +457,44 @@ class Prepare extends Component
                         'reference' => $this->reference,
                         'officer' => $this->officer,
                         'amount' => $this->total_cost,
+                    ]);
+
+                    $this->item_name = "";
+                    $this->quantity = "";
+                    $this->unit = "";
+                    $this->receiver_disable = 0;
+                    $this->item_disable = 0;
+                    $this->unit_cost = "";
+                    $this->components = "";
+                    $this->prop_num = "";
+                    $this->reference = "";
+                    $this->officer = "";
+                    $this->total_cost = 0;
+                    $this->date_acquired = "";
+                    $this->par_num = "";
+                    session()->flash('dataAdded',"Successfully Added");
+                    Log::create([
+                        'name' => auth()->user()->username,
+                        'action' => 'Add Item on PMR'
+                    ]);
+                }
+                catch (\Exception $e){
+                    session()->flash('dataError',"Failed to Add");
+                }
+            }
+            else{
+                try {
+                    \App\Models\Prepare::create([
+                        'item_name' => $this->item_name,
+                        'quantity' => $this->quantity,
+                        'unit' => $this->unit,
+                        'unit_cost' => $this->unit_cost,
+                        'item_type' => $this->item_type,
+                        'receiver' => $this->receiver,
+                        'serial' => $this->prop_num,
+                        'ics' => $this->ics,
+                        'position' => $this->position,
+                        'transaction_name' => $this->transaction_name,
                     ]);
 
                     $this->item_name = "";
