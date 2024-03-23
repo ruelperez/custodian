@@ -295,15 +295,8 @@ class Prepare extends Component
             $this->basis = 0;
             $this->basin = 0;
 
-            $gg =  BackupPrepare::all();
-            $rr = \App\Models\Prepare::all();
-            if (count($rr) < 1){
-                $lastId = BackupPrepare::latest()->first()->id;
-            }
-            else{
-                $lastId = \App\Models\Prepare::latest()->first()->id;
-            }
-            $cnt = $lastId + 1;
+            $rr = BackupPrepare::where('transaction_name','=','par')->get();
+            $cnt = count($rr) + 1;
             $this->par_num = $this->prop_num.'-'.$cnt;
         }
 
@@ -599,9 +592,18 @@ class Prepare extends Component
         $data = \App\Models\Inventory::find($id);
         if ($data->item_status == "returned"){
             $this->mas = 1;
+            if ($this->transaction_name == "par"){
+                $gd = BackupPrepare::where('transaction_name','=','par')->get();
+                $sd = count($gd) + 1;
+                $this->par_num = $data->prop_num.'-'.$sd;
+            }
+            else{
+                $this->par_num = $data->par_num;
+            }
         }
         else{
             $this->mas = 0;
+            $this->par_num = $data->par_num;
         }
         $this->item_name = $data->item_name;
         $this->unit = $data->unit;
@@ -610,12 +612,6 @@ class Prepare extends Component
         $this->currentQty = $data->quantity;
         $this->components = $data->components;
         $this->prop_num = $data->prop_num;
-//        if ($this->transaction_name == "par"){
-//
-//        }
-//        else{
-//            $this->par_num = $data->par_num;
-//        }
         $this->reference = $data->reference;
 //        $this->quantity = $data->quantity;
         $this->officer = $data->office;

@@ -7,7 +7,7 @@
         <div style="margin-top: 4%; margin-left: 15%;">
             <h5>{{$dataDate}}</h5>
         </div>
-        <div style="margin-left: 58%;margin-top: 4%;">
+        <div style="margin-left: 60%;margin-top: 4%;">
             <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/par-report/{{$dataDate}}';"></i>
         </div>
     </div>
@@ -31,8 +31,11 @@
                 <th>
                     Receiver
                 </th>
-                <th colspan="2">
+                <th>
                     Time Created
+                </th>
+                <th>
+
                 </th>
             </tr>
             </thead>
@@ -57,7 +60,10 @@
                             {{$preps->receiver}}
                         </td>
                         <td>
-                            {{$preps->created_at}} @if($ind == "par") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$preps->id}}';"></i>@endif
+                            {{$preps->created_at}}
+                        </td>
+                        <td>
+                            @if($ind == "par") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$preps->id}}';"></i>@endif
                         </td>
                     </tr>
                 @endforeach
