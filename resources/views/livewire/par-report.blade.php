@@ -54,16 +54,16 @@
                             {{$preps->unit}}
                         </td>
                         <td>
-                            {{$preps->serial}}
+                            {{ucwords($preps->serial)}}
                         </td>
                         <td>
-                            {{$preps->receiver}}
+                            {{ucwords($preps->receiver)}}
                         </td>
                         <td>
                             {{$preps->created_at}}
                         </td>
                         <td>
-                            @if($ind == "par") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$preps->id}}';"></i>@endif
+                            @if($ind == "par" and $preps->receiver != "Waste") <i title="Print" class="fa-solid fa-print" style="font-size: 18px; cursor: pointer; color: #0a53be; margin-left: 15%;" onclick="location.href = '/Dashboard/request-pdf/par-prop/{{$preps->id}}';"></i>@endif
                         </td>
                     </tr>
                 @endforeach
