@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('backup_prepares', function (Blueprint $table) {
+            $table->boolean('is_stolen')->default(0);
             $table->boolean('is_lost')->default(0);
         });
     }
