@@ -105,7 +105,7 @@
                         @if($data->quantity < 1)
 
                         @elseif($data->item_type == "consumable")
-                        @else
+                        @elseif($data->show_waste == "1")
                             <tr onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
                                 <td style="text-align: left">
                                     {{ucfirst($data->item_name)}}
