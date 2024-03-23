@@ -26,14 +26,16 @@
                     <tbody>
                     @if(count($result) > 0)
                         @foreach($result as $preps)
-                            <tr class="invs">
-                                <td>
-                                    {{ucwords($preps->receiver)}}
-                                </td>
-                                <td style="color: #0c63e4; cursor: pointer" onclick="clickBk7()" wire:click="clickView('{{$preps->receiver}}')">
-                                    View
-                                </td>
-                            </tr>
+                            @if($preps->receiver != "Waste")
+                                <tr class="invs">
+                                    <td>
+                                        {{ucwords($preps->receiver)}}
+                                    </td>
+                                    <td style="color: #0c63e4; cursor: pointer" onclick="clickBk7()" wire:click="clickView('{{$preps->receiver}}')">
+                                        View
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     @else
                         <tr>

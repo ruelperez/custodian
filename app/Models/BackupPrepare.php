@@ -30,6 +30,7 @@ class BackupPrepare extends Model
         'component_id',
         'date_acquired',
         'show_waste',
+        'show_teachers'
     ];
 
     use HasFactory;
