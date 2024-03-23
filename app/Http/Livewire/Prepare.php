@@ -288,10 +288,23 @@ class Prepare extends Component
             $this->receiver_disable = 0;
         }
 
-        if ($field === 'par_num'){
-            $gg =  \App\Models\Prepare::all();
-            $cnt = count($gg) + 1;
-            $this->prop_num = $this->par_num.'-'.$cnt;
+
+        if ($field === 'prop_num'){
+            $this->fa = 1;
+            $this->fas = 1;
+            $this->basis = 0;
+            $this->basin = 0;
+
+            $gg =  BackupPrepare::all();
+            $rr = \App\Models\Prepare::all();
+            if (count($rr) < 1){
+                $lastId = BackupPrepare::latest()->first()->id;
+            }
+            else{
+                $lastId = \App\Models\Prepare::latest()->first()->id;
+            }
+            $cnt = $lastId + 1;
+            $this->par_num = $this->prop_num.'-'.$cnt;
         }
 
     }
@@ -332,50 +345,147 @@ class Prepare extends Component
                 return;
             }
 
-            try {
-                \App\Models\Prepare::create([
-                    'item_name' => $this->item_name,
-                    'quantity' => $this->quantity,
-                    'unit' => $this->unit,
-                    'unit_cost' => $this->unit_cost,
-                    'item_type' => $this->item_type,
-                    'receiver' => $this->receiver,
-                    'serial' => $this->serial,
-                    'ics' => $this->ics,
-                    'position' => $this->position,
-                    'transaction_name' => $this->transaction_name,
-                    'item_status' => $this->itemStats,
-                    'ppe' => $this->components,
-                    'prop_num' => $this->prop_num,
-                    'par_num' => $this->par_num,
-                    'date_acquired' => $this->date_acquired,
-                    'reference' => $this->reference,
-                    'officer' => $this->officer,
-                    'amount' => $this->total_cost,
-                ]);
+            if ($this->transaction_name == "property_ics"){
+                try {
+                    \App\Models\Prepare::create([
+                        'item_name' => $this->item_name,
+                        'quantity' => $this->quantity,
+                        'unit' => $this->unit,
+                        'unit_cost' => $this->unit_cost,
+                        'item_type' => $this->item_type,
+                        'receiver' => $this->receiver,
+                        'serial' => $this->serial,
+                        'ics' => $this->ics,
+                        'position' => $this->position,
+                        'transaction_name' => $this->transaction_name,
+                        'item_status' => $this->itemStats,
+                        'ppe' => $this->components,
+                        'prop_num' => $this->prop_num,
+                        'par_num' => $this->par_num,
+                        'date_acquired' => $this->date_acquired,
+                        'reference' => $this->reference,
+                        'officer' => $this->officer,
+                        'amount' => $this->total_cost,
+                    ]);
 
-                $this->item_name = "";
-                $this->quantity = "";
-                $this->unit = "";
-                $this->receiver_disable = 0;
-                $this->item_disable = 0;
-                $this->unit_cost = "";
-                $this->components = "";
-                $this->prop_num = "";
-                $this->reference = "";
-                $this->officer = "";
-                $this->total_cost = 0;
-                $this->date_acquired = "";
-                $this->par_num = "";
-                session()->flash('dataAdded',"Successfully Added");
-                Log::create([
-                    'name' => auth()->user()->username,
-                    'action' => 'Add Item on PMR'
-                ]);
+                    $this->item_name = "";
+                    $this->quantity = "";
+                    $this->unit = "";
+                    $this->receiver_disable = 0;
+                    $this->item_disable = 0;
+                    $this->unit_cost = "";
+                    $this->components = "";
+                    $this->prop_num = "";
+                    $this->reference = "";
+                    $this->officer = "";
+                    $this->total_cost = 0;
+                    $this->date_acquired = "";
+                    $this->par_num = "";
+                    session()->flash('dataAdded',"Successfully Added");
+                    Log::create([
+                        'name' => auth()->user()->username,
+                        'action' => 'Add Item on PMR'
+                    ]);
+                }
+                catch (\Exception $e){
+                    session()->flash('dataError',"Failed to Add");
+                }
             }
-            catch (\Exception $e){
-                session()->flash('dataError',"Failed to Add");
+            elseif($this->transaction_name == "par"){
+                try {
+                    \App\Models\Prepare::create([
+                        'item_name' => $this->item_name,
+                        'quantity' => $this->quantity,
+                        'unit' => $this->unit,
+                        'unit_cost' => $this->unit_cost,
+                        'item_type' => $this->item_type,
+                        'receiver' => $this->receiver,
+                        'serial' => $this->prop_num,
+                        'ics' => $this->ics,
+                        'position' => $this->position,
+                        'transaction_name' => $this->transaction_name,
+                        'item_status' => $this->itemStats,
+                        'ppe' => $this->components,
+                        'prop_num' => $this->prop_num,
+                        'par_num' => $this->par_num,
+                        'date_acquired' => $this->date_acquired,
+                        'reference' => $this->reference,
+                        'officer' => $this->officer,
+                        'amount' => $this->total_cost,
+                    ]);
+
+                    $this->item_name = "";
+                    $this->quantity = "";
+                    $this->unit = "";
+                    $this->receiver_disable = 0;
+                    $this->item_disable = 0;
+                    $this->unit_cost = "";
+                    $this->components = "";
+                    $this->prop_num = "";
+                    $this->reference = "";
+                    $this->officer = "";
+                    $this->total_cost = 0;
+                    $this->date_acquired = "";
+                    $this->par_num = "";
+                    session()->flash('dataAdded',"Successfully Added");
+                    Log::create([
+                        'name' => auth()->user()->username,
+                        'action' => 'Add Item on PMR'
+                    ]);
+                }
+                catch (\Exception $e){
+                    session()->flash('dataError',"Failed to Add");
+                }
+
             }
+            elseif($this->transaction_name == "property"){
+                try {
+                    \App\Models\Prepare::create([
+                        'item_name' => $this->item_name,
+                        'quantity' => $this->quantity,
+                        'unit' => $this->unit,
+                        'unit_cost' => $this->unit_cost,
+                        'item_type' => $this->item_type,
+                        'receiver' => $this->receiver,
+                        'serial' => $this->prop_num,
+                        'ics' => $this->ics,
+                        'position' => $this->position,
+                        'transaction_name' => $this->transaction_name,
+                        'item_status' => $this->itemStats,
+                        'ppe' => $this->components,
+                        'prop_num' => $this->prop_num,
+                        'par_num' => $this->par_num,
+                        'date_acquired' => $this->date_acquired,
+                        'reference' => $this->reference,
+                        'officer' => $this->officer,
+                        'amount' => $this->total_cost,
+                    ]);
+
+                    $this->item_name = "";
+                    $this->quantity = "";
+                    $this->unit = "";
+                    $this->receiver_disable = 0;
+                    $this->item_disable = 0;
+                    $this->unit_cost = "";
+                    $this->components = "";
+                    $this->prop_num = "";
+                    $this->reference = "";
+                    $this->officer = "";
+                    $this->total_cost = 0;
+                    $this->date_acquired = "";
+                    $this->par_num = "";
+                    session()->flash('dataAdded',"Successfully Added");
+                    Log::create([
+                        'name' => auth()->user()->username,
+                        'action' => 'Add Item on PMR'
+                    ]);
+                }
+                catch (\Exception $e){
+                    session()->flash('dataError',"Failed to Add");
+                }
+            }
+
+
         }
         elseif ($it != $this->receiver){
             $this->receiver_disable = 0;
@@ -675,7 +785,7 @@ class Prepare extends Component
                     $rr = BackupPrepare::where('receiver','!=',$datas->receiver)
                         ->where('serial','=',$datas->serial)->get();
                     foreach ($rr as $re){
-                        $re->show_waste = "0";
+                        $re->item_status = "transferred";
                         $re->save();
                     }
                 }

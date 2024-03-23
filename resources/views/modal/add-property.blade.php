@@ -218,12 +218,12 @@
                                 @error('unit') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="PAR No" wire:click="not_item_click" wire:model="par_num">
-                                @error('par_num') <span style="color: red">{{ $message }}</span> @enderror
+                                <input type="text" class="form-control" placeholder="Property No." wire:model="prop_num">
+                                @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
-                                <input type="text" class="form-control" placeholder="Property No." wire:click="not_item_click" wire:model="prop_num">
-                                @error('prop_num') <span style="color: red">{{ $message }}</span> @enderror
+                                <input type="text" class="form-control" placeholder="PAR No" wire:model="par_num" disabled>
+                                @error('par_num') <span style="color: red">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3" style="width: 70%; margin-left: 15%;">
                                 <input type="text" class="form-control" placeholder="Quantity" wire:click="not_item_click" wire:model="quantity">
