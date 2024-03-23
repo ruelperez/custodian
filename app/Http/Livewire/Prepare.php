@@ -672,7 +672,12 @@ class Prepare extends Component
                         $f = 1;
                         break;
                     }
-
+                    $rr = BackupPrepare::where('receiver','!=',$datas->receiver)
+                        ->where('serial','=',$datas->serial)->get();
+                    foreach ($rr as $re){
+                        $re->show_waste = "0";
+                        $re->save();
+                    }
                 }
 
             }

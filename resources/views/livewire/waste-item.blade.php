@@ -52,28 +52,30 @@
                 <tbody>
                 @if(count($deployed_data) > 0)
                     @foreach($deployed_data as $data)
-                        <tr style="cursor: pointer">
-                            <td>
-                                {{$data->item_name}}
-                            </td>
-                            <td>
-                                @if($data->quantity > 0)
-                                    {{$data->quantity}}
-                                @endif
-                            </td>
-                            <td>
-                                {{$data->unit}}
-                            </td>
-                            <td>
-                                {{$data->serial}}
-                            </td>
-                            <td>
-                                {{$data->created_at}}
-                            </td>
-                            <td>
-                                <i class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#moveModal" wire:click="clickArrow({{$data->id}})"></i>
-                            </td>
-                        </tr>
+                        @if($data->show_waste == "1" and $data->is_stolen == "0" and $data->is_lost == "0")
+                            <tr style="cursor: pointer">
+                                <td>
+                                    {{$data->item_name}}
+                                </td>
+                                <td>
+                                    @if($data->quantity > 0)
+                                        {{$data->quantity}}
+                                    @endif
+                                </td>
+                                <td>
+                                    {{$data->unit}}
+                                </td>
+                                <td>
+                                    {{$data->serial}}
+                                </td>
+                                <td>
+                                    {{$data->created_at}}
+                                </td>
+                                <td>
+                                    <i class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#moveModal" wire:click="clickArrow({{$data->id}})"></i>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 @else
                     <tr>
