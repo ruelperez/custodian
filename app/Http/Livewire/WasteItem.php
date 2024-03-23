@@ -63,12 +63,6 @@ class WasteItem extends Component
         $this->movedData = MovedItem::where('receiver', $this->receiver_name)->get();
         if (count($this->deployed_data) == 0 and count($this->movedData) == 0){
             Receiver::find($this->receiver_id)->delete();
-            $fa = BackupPrepare::where('receiver','=',$this->receiver_name)
-                ->where('item_type','!=', 'consumable')
-                ->get();
-            foreach ($fa as $fas){
-                BackupPrepare::find($fas->id)->delete();
-            }
         }
 
     }
@@ -168,6 +162,13 @@ class WasteItem extends Component
                     'prop_num' => $data->prop_num,
                     'par_num' => $data->par_num,
                 ]);
+                $re = BackupPrepare::where('serial','=',$data->serial)->get();
+                foreach ($re as $data){
+                    $data->show_waste = "0";
+                    $data->show_teachers = 0;
+                    $data->save();
+                }
+
             }
 
             $g = 1;
@@ -181,8 +182,9 @@ class WasteItem extends Component
         }
 
         if ($g == 1){
-            foreach ($datas as $data){
-                $data->delete();
+            $datasa = MovedItem::all();
+            foreach ($datasa as $dataa){
+                $dataa->delete();
             }
         }
 

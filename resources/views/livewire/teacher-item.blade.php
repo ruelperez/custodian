@@ -102,10 +102,9 @@
                 </thead>
                 <tbody>
                     @foreach($deployed_data as $data)
-                        @if($data->quantity < 1)
+                        @if($data->item_type == "consumable")
 
-                        @elseif($data->item_type == "consumable")
-                        @elseif($data->show_teachers == "1")
+                        @elseif($data->show_teachers == 1)
                             <tr onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
                                 <td style="text-align: left">
                                     {{ucfirst($data->item_name)}}
