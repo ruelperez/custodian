@@ -227,6 +227,9 @@ class TeacherItem extends Component
                 $datas->save();
             }
 
+            $datas->show_waste = "0";
+            $datas->save();
+
             $datas->item_id = 0;
             $datas->save();
         }

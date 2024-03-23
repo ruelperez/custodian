@@ -491,7 +491,7 @@ class Prepare extends Component
                         'unit_cost' => $this->unit_cost,
                         'item_type' => $this->item_type,
                         'receiver' => $this->receiver,
-                        'serial' => $this->prop_num,
+                        'serial' => $this->ics,
                         'ics' => $this->ics,
                         'position' => $this->position,
                         'transaction_name' => $this->transaction_name,
