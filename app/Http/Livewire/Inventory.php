@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Inventory extends Component
 {
-    public $request_data, $selectItemType = "non-consumable", $searchInput, $result, $item_name, $unit_cost, $quantity, $data_id, $inventory_number, $unit,
+    public $request_data, $selectItemType = "non-consumable", $searchInput, $result, $item_name, $unit_cost=0, $quantity=1, $data_id, $inventory_number, $unit="pcs",
             $item_type = "non-consumable", $ng=0, $kl = 0, $components, $prop_num, $reference, $office, $date;
 
     public function render()
@@ -45,8 +45,8 @@ class Inventory extends Component
     public function search(){
         $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
-            ->where('item_type','=',$this->selectItemType)
             ->orWhere('receiver','LIKE', '%'.$this->searchInput.'%')
+            ->where('item_type','=',$this->selectItemType)
 //            ->where('item_status','!=', 'transferred')
             ->get();
     }
@@ -81,10 +81,10 @@ class Inventory extends Component
                 'item_type' => $this->item_type,
             ]);
             $this->item_name = "";
-            $this->quantity = "";
-            $this->unit = "";
+//            $this->quantity = "";
+//            $this->unit = "";
             $this->inventory_number = "";
-            $this->unit_cost = "";
+//            $this->unit_cost = "";
             session()->flash('dataAdded', "Successfully Added");
             Log::create([
                 'name' => auth()->user()->username,
@@ -210,6 +210,8 @@ class Inventory extends Component
         }
 
     }
+
+
 
     public function edit_submit_sets(){
         $data = \App\Models\Inventory::find($this->data_id);

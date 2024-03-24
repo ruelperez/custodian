@@ -15,7 +15,7 @@
                     <thead>
                     <tr class="inv">
                         <th style="text-align: left">
-                            Teachers
+                            Employees
                         </th>
                         <th>
                             Action
@@ -40,7 +40,6 @@
                             <td colspan="2">
                                 No Item Posted
                             </td>
-
                         </tr>
                     @endif
                     </tbody>
