@@ -17,6 +17,9 @@
                 <option value="sets">Sets</option>
             </select>
         </div>
+        <div style="margin-left: 22%;">
+            <p style="margin-top: 10px;">Total Search: {{count($request_data)}}</p>
+        </div>
     </div>
     <table class="table table-hover" style="margin-top: 0.5%; width: 96.5%; margin-bottom: 2%;">
         <thead>

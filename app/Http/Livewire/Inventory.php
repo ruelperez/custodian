@@ -45,6 +45,7 @@ class Inventory extends Component
     public function search(){
         $this->request_data = DB::table('inventories')
             ->where('item_name','LIKE', '%'.$this->searchInput.'%')
+            ->where('item_type','=',$this->selectItemType)
             ->orWhere('receiver','LIKE', '%'.$this->searchInput.'%')
 //            ->where('item_status','!=', 'transferred')
             ->get();
@@ -83,7 +84,6 @@ class Inventory extends Component
             $this->quantity = "";
             $this->unit = "";
             $this->inventory_number = "";
-            $this->item_type = "";
             $this->unit_cost = "";
             session()->flash('dataAdded', "Successfully Added");
             Log::create([
@@ -200,7 +200,6 @@ class Inventory extends Component
             $this->unit_cost = "";
             $this->unit = null;
             $this->inventory_number = null;
-            $this->item_type = "";
             session()->flash('dataUpdated', "Successfully Updated");
             Log::create([
                 'name' => auth()->user()->username,
