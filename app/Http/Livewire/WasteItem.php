@@ -116,10 +116,10 @@ class WasteItem extends Component
 
     public function submitMove(){
         if ($this->qtyPass == 1){
-            $data = BackupPrepare::find($this->waste_id);
-            $newQty = $data->quantity - $this->qty;
-            $data->quantity = $newQty;
-            $data->save();
+//            $data = BackupPrepare::find($this->waste_id);
+//            $newQty = $data->quantity - $this->qty;
+//            $data->quantity = $newQty;
+//            $data->save();
             Log::create([
                 'name' => auth()->user()->username,
                 'action' => 'Move Item on PWMR'
