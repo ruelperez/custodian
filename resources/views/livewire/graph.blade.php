@@ -8,7 +8,7 @@
                 </div>
                 <div style="width: 47%; background-color: #FFA500; color: white; padding-left: 3%;">
                     <h1>{{count($totalTeacher)}}</h1>
-                    <h5>No. of Teacher/Staff</h5>
+                    <h5>No. of Employee/Staff</h5>
                 </div>
             </div>
             <div style="width: 19%; margin-top: 1%;">
