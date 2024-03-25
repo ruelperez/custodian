@@ -7,7 +7,7 @@
         <div style="margin-top: 4%; margin-left: 15%;">
             <h5>{{$dataDate}}</h5>
         </div>
-        <div style="margin-left: 60%;margin-top: 4%;">
+        <div style="margin-left: 55%;margin-top: 4%;">
             <i title="Print" class="fa-solid fa-print" style="font-size: 25px; cursor: pointer; color: #0a53be" onclick="location.href = '/Dashboard/request-pdf/par-report/{{$dataDate}}';"></i>
         </div>
     </div>
